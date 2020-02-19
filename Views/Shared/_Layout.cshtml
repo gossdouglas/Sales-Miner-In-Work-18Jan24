@@ -3,15 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Allpax Sale Miner</title>
+    <title>@ViewBag.Title - Allpax Sales Miner</title>
     @Styles.Render("~/Content/css")
-    <!--@Scripts.Render("~/bundles/modernizr")-->
-	<!--  -->
-	<div class="container-fluid">
-        phantom 217
-    </div>
-
-
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -22,23 +19,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Allpax Sale Miner", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Allpax Sales Miner", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+            
             <div class="navbar-collapse collapse">
-                @*<ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>*@
-				<ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    @*<li>@Html.ActionLink("About", "About", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
-                    @*<li>@Html.ActionLink("View Data", "ViewData", "ViewData")</li>
-                <li>@Html.ActionLink("Kit", "Kit", "Kit")</li>
-                <li>@Html.ActionLink("Equipment", "Equipment", "Equipment")</li>
-                <li>@Html.ActionLink("Customer", "Customer", "Customer")</li>*@
-
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>                  
                     <li>@Html.ActionLink("View Data", "ViewData", "ViewData")</li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -71,15 +57,15 @@
                         </ul>
                     </li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                <p class="nav navbar-text navbar-right">Hello, @User.Identity.Name!</p>
             </div>
         </div>
     </div>
-    <div class="container-fluid body-content">
+    <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year Allpax</p>
         </footer>
     </div>
 
