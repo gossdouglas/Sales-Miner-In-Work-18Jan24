@@ -46,14 +46,6 @@ namespace allpax_sale_miner.Controllers
             return new EmptyResult();
         }
 
-        public ActionResult DeleteCustomer(tbl_customer custDelete)
-        {
-            tbl_customer tbl_customer = db.tbl_customer.Find(custDelete.id);
-            db.tbl_customer.Remove(tbl_customer);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         //end CMPS 411 controller code
 
         protected override void Dispose(bool disposing)

@@ -124,10 +124,12 @@ $(document).ready(function(){//begin document read jquery statements
         alert(
             "Selected for DELETE:"+ '\n' +
             "Record: " + selectedItem0 + '\n' +
-            );
+            "Type: " + selectedItem1 + '\n' +
+            "Sub-type: " + selectedItem2 + '\n');
 
-        axios.post('/CustomerMgmt/DeleteCustomer', {
-            id: selectedItem0,           
+        axios.post('/Material/DeleteMaterial', {
+            type: selectedItem1,
+            subtype: selectedItem2,
           })
           .then(function (response) {
             console.log(response);
