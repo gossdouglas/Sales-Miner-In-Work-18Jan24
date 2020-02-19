@@ -284,7 +284,6 @@
     <Content Include="Views\CustomerMgmt\Edit.cshtml" />
     <Content Include="Views\CustomerMgmt\Index.cshtml" />
     <Content Include="Views\CustomerMgmt\Index-orig.cshtml" />
-    <Content Include="Views\Shared\_Layout-broken - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

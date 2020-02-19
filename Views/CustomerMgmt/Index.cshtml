@@ -69,19 +69,35 @@ $(document).ready(function(){//begin document read jquery statements
     $("#addButton").click(function () {//when the add button is clicked...
         var addItem1 = $("#addRecordItem1").val();
         var addItem2 = $("#addRecordItem2").val();
+        var addItem3 = $("#addRecordItem3").val();
+        var addItem4 = $("#addRecordItem4").val();
+        var addItem5 = $("#addRecordItem5").val();
+        var addItem6 = $("#addRecordItem6").val();
 
         alert(
            "Selected for Add POST:"+ '\n' +
            "addItem1: " + addItem1 + '\n' +
-            "addItem2: " + addItem2 + '\n'
+            "addItem2: " + addItem2 + '\n' +
+            "addItem3: " + addItem3 + '\n' +
+            "addItem4: " + addItem4 + '\n' +
+            "addItem5: " + addItem5 + '\n' +
+            "addItem6: " + addItem6 + '\n' 
         );
         $("#addRecordItem1").val('');
         $("#addRecordItem2").val('');
+        $("#addRecordItem3").val('');
+        $("#addRecordItem4").val('');
+        $("#addRecordItem5").val('');
+        $("#addRecordItem6").val('');
 //begin axios add post
 
-        axios.post('/Material/AddMaterial', {
-            type: addItem1,
-            subtype: addItem2,
+        axios.post('/CustomerMgmt/AddCustomer', {
+            customerCode: addItem1,
+            name: addItem2,
+            address: addItem3,
+            city: addItem4,
+            state: addItem5,
+            zipCode: addItem6,
           })
           .then(function (response) {
             console.log(response);
@@ -171,23 +187,23 @@ $(document).ready(function(){//begin document read jquery statements
                 </div>
                 <div class="col-md-2">
                     <h5>NAME</h5>
-                    <input type="text" id="addRecordItem2" value="">
+                    <input type="text" id="addRecordItem2" value="test add">
                 </div>
                 <div class="col-md-2">
                     <h5>ADDRESS</h5>
-                    <input type="text" id="addRecordItem3" value="">
+                    <input type="text" id="addRecordItem3" value="test add">
                 </div>
                 <div class="col-md-2">
                     <h5>CITY</h5>
-                    <input type="text" id="addRecordItem4" value="">
+                    <input type="text" id="addRecordItem4" value="test add">
                 </div>
                 <div class="col-md-1">
                     <h5>STATE</h5>
-                    <input type="text" id="addRecordItem5" value="">
+                    <input type="text" id="addRecordItem5" value="ts">
                 </div>
                 <div class="col-md-1">
                     <h5>ZIP</h5>
-                    <input type="text" id="addRecordItem6" value="">
+                    <input type="text" id="addRecordItem6" value="99999">
                 </div>
                 <div class="col-md-auto">
                     <h5>ACTION</h5>
