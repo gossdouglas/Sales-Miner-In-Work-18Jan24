@@ -124,12 +124,15 @@ $(document).ready(function(){//begin document read jquery statements
         alert(
             "Selected for DELETE:"+ '\n' +
             "Record: " + selectedItem0 + '\n' +
-            "Type: " + selectedItem1 + '\n' +
-            "Sub-type: " + selectedItem2 + '\n');
+            "Customer Code: " + selectedItem1 + '\n' +
+            "Name: " + selectedItem2 + '\n' +
+            "Address: " + selectedItem3 + '\n' +
+            "City: " + selectedItem4 + '\n' +
+            "State: " + selectedItem5 + '\n' +
+            "ZIP: " + selectedItem6 + '\n');
 
-        axios.post('/Material/DeleteMaterial', {
-            type: selectedItem1,
-            subtype: selectedItem2,
+        axios.post('/CustomerMgmt/DeleteCustomer', {
+            id: selectedItem0,        
           })
           .then(function (response) {
             console.log(response);
