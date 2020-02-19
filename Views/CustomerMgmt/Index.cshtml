@@ -123,14 +123,24 @@ $(document).ready(function(){//begin document read jquery statements
     $(".btn.btn-primary.confirmButton").click(function () {//when a record's delete button is clicked...
         alert(
             "Selected for DELETE:"+ '\n' +
-            "Record: " + selectedItem0 + '\n' +
-            "Type: " + selectedItem1 + '\n' +
-            "Sub-type: " + selectedItem2 + '\n');
+            "id: " + selectedItem0 + '\n' +
+            "customerCode: " + selectedItem1 + '\n' +
+            "name: " + selectedItem2 + '\n' +
+            "address: " + selectedItem3 + '\n'+ 
+            "city: " + selectedItem4 + '\n' +
+            "state: " + selectedItem5 + '\n'+
+            "zipCode: " + selectedItem6 + '\n'
+        );
 
-        axios.post('/Material/DeleteMaterial', {
-            type: selectedItem1,
-            subtype: selectedItem2,
-          })
+        axios.post('/CustomerMgmt/DeleteCustomer', {
+            customerCode: selectedItem1,
+            name: selectedItem2,
+            address: selectedItem3,
+            city: selectedItem4,
+            state: selectedItem5,
+            zipCode: selectedItem6
+
+        })
           .then(function (response) {
             console.log(response);
           })

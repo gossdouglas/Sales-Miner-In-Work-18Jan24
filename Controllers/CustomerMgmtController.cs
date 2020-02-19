@@ -40,10 +40,20 @@ namespace allpax_sale_miner.Controllers
                     zipCode = customerAdd.zipCode,
                 });
 
+
                 entities.SaveChanges();
             }
 
             return new EmptyResult();
+        }
+
+        public ActionResult DeleteCustomer(tbl_customer customerDelete)
+        {
+           // Debug.WriteLine("yo");
+            tbl_customer tblCustomer = db.tbl_customer.Find(customerDelete.id);
+            db.tbl_customer.Remove(tblCustomer);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         //end CMPS 411 controller code
