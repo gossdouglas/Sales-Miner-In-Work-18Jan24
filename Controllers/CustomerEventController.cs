@@ -47,14 +47,14 @@ namespace allpax_sale_miner.Controllers
             return new EmptyResult();
         }
 
-        public ActionResult DeleteCustomer(tbl_customer customerDelete)
+        public ActionResult DeleteCustomer(tbl_customer custDelete)
         {
-            // Debug.WriteLine("yo");
-            tbl_customer tblCustomer = db.tbl_customer.Find(customerDelete.id);
-            db.tbl_customer.Remove(tblCustomer);
+            tbl_customer tbl_customer = db.tbl_customer.Find(custDelete.id);
+            db.tbl_customer.Remove(tbl_customer);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
         //end CMPS 411 controller code
 

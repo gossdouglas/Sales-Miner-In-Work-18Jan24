@@ -133,20 +133,14 @@ $(document).ready(function(){//begin document read jquery statements
         );
 
         axios.post('/CustomerEvent/DeleteCustomer', {
-            customerCode: selectedItem1,
-            name: selectedItem2,
-            address: selectedItem3,
-            city: selectedItem4,
-            state: selectedItem5,
-            zipCode: selectedItem6
-
-        })
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+                id: selectedItem0,        
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
     });
     //end axios confirm delete record
