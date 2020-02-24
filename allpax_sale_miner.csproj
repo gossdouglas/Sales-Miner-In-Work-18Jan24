@@ -286,6 +286,12 @@
     <Content Include="Views\CustomerMgmt\Edit.cshtml" />
     <Content Include="Views\CustomerMgmt\Index.cshtml" />
     <Content Include="Views\CustomerMgmt\Index-orig.cshtml" />
+    <Content Include="Views\EquipmentMgmt\Create.cshtml" />
+    <Content Include="Views\EquipmentMgmt\Delete.cshtml" />
+    <Content Include="Views\EquipmentMgmt\Details.cshtml" />
+    <Content Include="Views\EquipmentMgmt\Edit.cshtml" />
+    <Content Include="Views\EquipmentMgmt\Index-orig.cshtml" />
+    <Content Include="Views\EquipmentMgmt\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
