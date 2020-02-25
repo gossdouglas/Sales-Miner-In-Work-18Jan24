@@ -286,6 +286,11 @@
     <Content Include="Views\CustomerMgmt\Index.cshtml" />
     <Content Include="Views\CustomerMgmt\Index-orig.cshtml" />
     <Content Include="Views\CustomerEvent\Index.cshtml" />
+    <Content Include="Views\CustomerEvent\Create.cshtml" />
+    <Content Include="Views\CustomerEvent\Delete.cshtml" />
+    <Content Include="Views\CustomerEvent\Details.cshtml" />
+    <Content Include="Views\CustomerEvent\Edit.cshtml" />
+    <Content Include="Views\CustomerEvent\Index-orig.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

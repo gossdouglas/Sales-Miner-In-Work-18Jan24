@@ -14,11 +14,11 @@ namespace allpax_sale_miner.Controllers
     {
         private allpax_sale_minerEntities db = new allpax_sale_minerEntities();
 
-        // GET: CustomerEvents
+        // GET: CustomerEvent
         public ActionResult Index()
         {
             allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
-            List<tbl_customer> custEvent = entities.tbl_customer.ToList();
+            List<tbl_customer_event> custEvent = entities.tbl_customer_event.ToList();
 
             return View(custEvent.ToList());
             //return View(db.tbl_customer.ToList());
@@ -26,18 +26,17 @@ namespace allpax_sale_miner.Controllers
 
         //begin CMPS 411 controller code
         [HttpPost]
-        public ActionResult AddCustomer(tbl_customer customerAdd)
+        public ActionResult AddEvent(tbl_customer_event eventAdd)
         {
             using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
             {
-                entities.tbl_customer.Add(new tbl_customer
+                entities.tbl_customer_event.Add(new tbl_customer_event()
                 {
-                    customerCode = customerAdd.customerCode,
-                    name = customerAdd.name,
-                    address = customerAdd.address,
-                    city = customerAdd.city,
-                    state = customerAdd.state,
-                    zipCode = customerAdd.zipCode,
+                    customerCode = eventAdd.customerCode,
+                    eventID = eventAdd.eventID,
+                    eventType = eventAdd.eventType,
+                    startDate = eventAdd.startDate,
+                    endDate = eventAdd.endDate
                 });
 
 
@@ -47,14 +46,13 @@ namespace allpax_sale_miner.Controllers
             return new EmptyResult();
         }
 
-        public ActionResult DeleteCustomer(tbl_customer custDelete)
+        public ActionResult DeleteEvent(tbl_customer_event eventDelete)
         {
-            tbl_customer tbl_customer = db.tbl_customer.Find(custDelete.id);
-            db.tbl_customer.Remove(tbl_customer);
+            tbl_customer_event tbl_customer_event = db.tbl_customer_event.Find(eventDelete.id);
+            db.tbl_customer_event.Remove(tbl_customer_event);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
 
         //end CMPS 411 controller code
 
