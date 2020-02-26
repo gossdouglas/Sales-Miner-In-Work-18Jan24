@@ -120,27 +120,28 @@
                 });
                 //end confirm edit record
 
-                //begin axios confirm delete record
-                $(".btn.btn-primary.confirmButton").click(function () {//when a record's delete button is clicked...
-                    alert(
-                        "Selected for DELETE:" + '\n' +
-                        "Record: " + selectedItem0 + '\n' +
-                        "Customer Code: " + selectedItem1 + '\n' +
-                        "Name: " + selectedItem2 + '\n' +
-                        "Address: " + selectedItem3 + '\n' +
-                        "City: " + selectedItem4 + '\n' +
-                        "State: " + selectedItem5 + '\n' +
-                        "ZIP: " + selectedItem6 + '\n');
+    //begin axios confirm delete record
+    $(".btn.btn-primary.confirmButton").click(function () {//when a record's delete button is clicked...
+        alert(
+            "Selected for DELETE:"+ '\n' +
+            "id: " + selectedItem0 + '\n' +
+            "customerCode: " + selectedItem1 + '\n' +
+            "name: " + selectedItem2 + '\n' +
+            "address: " + selectedItem3 + '\n'+ 
+            "city: " + selectedItem4 + '\n' +
+            "state: " + selectedItem5 + '\n'+
+            "zipCode: " + selectedItem6 + '\n'
+        );
 
-                    axios.post('/CustomerMgmt/DeleteCustomer', {
-                        id: selectedItem0,
-                    })
-                        .then(function (response) {
-                            console.log(response);
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
+        axios.post('/CustomerMgmt/DeleteCustomer', {
+                id: selectedItem0,        
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
                 });
                 //end axios confirm delete record

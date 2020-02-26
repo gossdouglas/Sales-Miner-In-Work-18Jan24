@@ -171,6 +171,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomerEventController.cs" />
     <Compile Include="Controllers\CustomerMgmtController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -285,6 +286,12 @@
     <Content Include="Views\CustomerMgmt\Edit.cshtml" />
     <Content Include="Views\CustomerMgmt\Index.cshtml" />
     <Content Include="Views\CustomerMgmt\Index-orig.cshtml" />
+    <Content Include="Views\CustomerEvent\Index.cshtml" />
+    <Content Include="Views\CustomerEvent\Create.cshtml" />
+    <Content Include="Views\CustomerEvent\Delete.cshtml" />
+    <Content Include="Views\CustomerEvent\Details.cshtml" />
+    <Content Include="Views\CustomerEvent\Edit.cshtml" />
+    <Content Include="Views\CustomerEvent\Index-orig.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
