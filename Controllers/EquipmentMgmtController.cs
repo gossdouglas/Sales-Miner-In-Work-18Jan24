@@ -45,7 +45,7 @@ namespace allpax_sale_miner.Controllers
 
         public ActionResult DeleteEquipment(tbl_eqpmt_type eqpmtDelete)
         {
-            tbl_eqpmt_type tbl_eqpmt_type = db.tbl_eqpmt_type.Find(eqpmtDelete.id);
+            tbl_customer tbl_eqpmt_type = db.tbl_eqpmt_type.Find(eqpmtDelete.id);
             db.tbl_eqpmt_type.Remove(tbl_eqpmt_type);
             db.SaveChanges();
             return RedirectToAction("Index");
