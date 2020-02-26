@@ -28,9 +28,19 @@
           <Property Name="endDate" Type="date" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
+        <EntityType Name="tbl_kit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="kitID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="filePath" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="allpax_sale_minerModelStoreContainer">
           <EntitySet Name="tbl_customer" EntityType="Self.tbl_customer" Schema="cmps411" store:Type="Tables" />
           <EntitySet Name="tbl_customer_event" EntityType="Self.tbl_customer_event" Schema="cmps411" store:Type="Tables" />
+          <EntitySet Name="tbl_kit" EntityType="Self.tbl_kit" Schema="cmps411" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -62,7 +72,17 @@
         <EntityContainer Name="allpax_sale_minerEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tbl_customer" EntityType="Self.tbl_customer" />
           <EntitySet Name="tbl_customer_event" EntityType="Self.tbl_customer_event" />
+          <EntitySet Name="tbl_kit" EntityType="allpax_sale_minerModel.tbl_kit" />
         </EntityContainer>
+        <EntityType Name="tbl_kit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="kitID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="filePath" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -91,6 +111,16 @@
                 <ScalarProperty Name="startDate" ColumnName="startDate" />
                 <ScalarProperty Name="endDate" ColumnName="endDate" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_kit">
+            <EntityTypeMapping TypeName="allpax_sale_minerModel.tbl_kit">
+              <MappingFragment StoreEntitySet="tbl_kit">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="filePath" ColumnName="filePath" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="kitID" ColumnName="kitID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

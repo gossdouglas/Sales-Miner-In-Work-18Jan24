@@ -29,5 +29,7 @@ namespace allpax_sale_miner.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<allpax_sale_miner.Models.tbl_kit> tbl_kit { get; set; }
     }
 }

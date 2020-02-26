@@ -27,5 +27,6 @@ namespace allpax_sale_miner.Models
 
         public virtual DbSet<tbl_customer> tbl_customer { get; set; }
         public virtual DbSet<tbl_customer_event> tbl_customer_event { get; set; }
+        public virtual DbSet<tbl_kit> tbl_kit { get; set; }
     }
 }
