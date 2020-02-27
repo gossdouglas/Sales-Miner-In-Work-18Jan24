@@ -21,7 +21,6 @@ namespace allpax_sale_miner.Controllers
             List<tbl_customer> custMgmt = entities.tbl_customer.ToList();
 
             return View(custMgmt.ToList());
-            //return View(db.tbl_customer.ToList());
         }
                   
         //begin CMPS 411 controller code

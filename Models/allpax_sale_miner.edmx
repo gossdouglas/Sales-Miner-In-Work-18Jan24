@@ -28,6 +28,23 @@
           <Property Name="endDate" Type="date" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
+        <EntityType Name="tbl_eqpmt_kits_current">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="machineID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="kitID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_eqpmt_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="eqpmtType" Type="varchar" MaxLength="10" />
+          <Property Name="model" Type="varchar" MaxLength="10" />
+          <Property Name="description" Type="varchar" MaxLength="10" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="tbl_kit">
           <Key>
             <PropertyRef Name="id" />
@@ -40,6 +57,8 @@
         <EntityContainer Name="allpax_sale_minerModelStoreContainer">
           <EntitySet Name="tbl_customer" EntityType="Self.tbl_customer" Schema="cmps411" store:Type="Tables" />
           <EntitySet Name="tbl_customer_event" EntityType="Self.tbl_customer_event" Schema="cmps411" store:Type="Tables" />
+          <EntitySet Name="tbl_eqpmt_kits_current" EntityType="Self.tbl_eqpmt_kits_current" Schema="cmps411" store:Type="Tables" />
+          <EntitySet Name="tbl_eqpmt_type" EntityType="Self.tbl_eqpmt_type" Schema="cmps411" store:Type="Tables" />
           <EntitySet Name="tbl_kit" EntityType="Self.tbl_kit" Schema="cmps411" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -73,6 +92,8 @@
           <EntitySet Name="tbl_customer" EntityType="Self.tbl_customer" />
           <EntitySet Name="tbl_customer_event" EntityType="Self.tbl_customer_event" />
           <EntitySet Name="tbl_kit" EntityType="allpax_sale_minerModel.tbl_kit" />
+          <EntitySet Name="tbl_eqpmt_type" EntityType="allpax_sale_minerModel.tbl_eqpmt_type" />
+          <EntitySet Name="tbl_eqpmt_kits_current" EntityType="allpax_sale_minerModel.tbl_eqpmt_kits_current" />
         </EntityContainer>
         <EntityType Name="tbl_kit">
           <Key>
@@ -81,6 +102,23 @@
           <Property Name="kitID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="filePath" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="tbl_eqpmt_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="eqpmtType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="model" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="tbl_eqpmt_kits_current">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="machineID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="kitID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
       </Schema>
@@ -124,6 +162,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tbl_eqpmt_type">
+            <EntityTypeMapping TypeName="allpax_sale_minerModel.tbl_eqpmt_type">
+              <MappingFragment StoreEntitySet="tbl_eqpmt_type">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="eqpmtType" ColumnName="eqpmtType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_eqpmt_kits_current">
+            <EntityTypeMapping TypeName="allpax_sale_minerModel.tbl_eqpmt_kits_current">
+              <MappingFragment StoreEntitySet="tbl_eqpmt_kits_current">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kitID" ColumnName="kitID" />
+                <ScalarProperty Name="machineID" ColumnName="machineID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -139,7 +196,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

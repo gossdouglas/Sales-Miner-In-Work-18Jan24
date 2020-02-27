@@ -171,8 +171,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CurrentEqpmtKitsController.cs" />
     <Compile Include="Controllers\CustomerEventController.cs" />
     <Compile Include="Controllers\CustomerMgmtController.cs" />
+    <Compile Include="Controllers\EqpmtMgmtController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KitMgmtController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -203,6 +205,8 @@
     <Compile Include="Models\tbl_customer_event.cs">
       <DependentUpon>allpax_sale_miner.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbl_eqpmt_kits_current.cs" />
+    <Compile Include="Models\tbl_eqpmt_type.cs" />
     <Compile Include="Models\tbl_kit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -299,6 +303,18 @@
     <Content Include="Views\KitMgmt\Details.cshtml" />
     <Content Include="Views\KitMgmt\Edit.cshtml" />
     <Content Include="Views\KitMgmt\Index.cshtml" />
+    <Content Include="Views\EqpmtMgmt\Create.cshtml" />
+    <Content Include="Views\EqpmtMgmt\Delete.cshtml" />
+    <Content Include="Views\EqpmtMgmt\Details.cshtml" />
+    <Content Include="Views\EqpmtMgmt\Edit.cshtml" />
+    <Content Include="Views\EqpmtMgmt\Index.cshtml" />
+    <Content Include="Views\CurrentEqpmtKits\Create.cshtml" />
+    <Content Include="Views\CurrentEqpmtKits\Delete.cshtml" />
+    <Content Include="Views\CurrentEqpmtKits\Details.cshtml" />
+    <Content Include="Views\CurrentEqpmtKits\Edit.cshtml" />
+    <Content Include="Views\CurrentEqpmtKits\Index.cshtml" />
+    <Content Include="Views\CurrentEqpmtKits\Index -Orig.cshtml" />
+    <Content Include="Views\EqpmtMgmt\Index -Orig.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\GOSS-E5540\Documents\GitHub\Phantom217\sales-miner\Models\allpax_sale_miner.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Public\sales-miner\Models\allpax_sale_miner.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
