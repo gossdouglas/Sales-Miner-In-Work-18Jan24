@@ -142,129 +142,135 @@
         });//end document read jquery statements
     </script>
 </head>
+<style>
+    div.scroll {
+        width: auto;
+        height: 450px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: 0px;
+    }
+</style>
 
 <div class="container">
     <div class="row">
-        <h1>Customer Event</h1>
-        <h4>Add-Edit-Delete Customer Event</h4>
+        <div class="col-md-3">
+            <h4>Customer Event Management</h4>
+        </div>
+        <div class="col-md-2">
+            <!--add record begin-->
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Add Record</button>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Add Record</h4>
+                        </div>
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="addRecordItem1">Customer Code</label>
+                                    <input type="text" class="form-control" id="addRecordItem1" placeholder="" value="test add">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="addRecordItem2">Event ID</label>
+                                    <input type="text" class="form-control" id="addRecordItem2" placeholder="" value="test add">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="addRecordItem3">Event Type</label>
+                                    <input type="text" class="form-control" id="addRecordItem3" placeholder="" value="test add">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="addRecordItem4">Start Date</label>
+                                    <input type="text" class="form-control" id="addRecordItem4" value="test add">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="addRecordItem5">End Date</label>
+                                    <select id="addRecordItem5" class="form-control">
+                                        <option selected>Choose...</option>
+                                        <option>LA</option>
+                                    </select>
+                                </div>
+                               
+                                <div class="form-group col-md-2">
+                                    <button type="submit" class="btn btn-primary" id="addButton">Add</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--add record end-->
+        </div>
     </div>
 
+
+    <!--table begin-->
+    <!--
+
+    -->
+    <div class="scroll">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Customer Code</th>
+                    <th scope="col">Event ID</th>
+                    <th scope="col">Event Type</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
+                        <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
+                        <td id="record_item1" value=@Html.DisplayFor(modelItem => item.customerCode)>@Html.DisplayFor(modelItem => item.customerCode)</td>
+                        <td id="record_item2" value=@Html.DisplayFor(modelItem => item.eventID)>@Html.DisplayFor(modelItem => item.eventID)</td>
+                        <td id="record_item3" value=@Html.DisplayFor(modelItem => item.eventType)>@Html.DisplayFor(modelItem => item.eventType)</td>
+                        <td id="record_item4" value=@Html.DisplayFor(modelItem => item.startDate)>@Html.DisplayFor(modelItem => item.startDate)</td>
+                        <td id="record_item5" value=@Html.DisplayFor(modelItem => item.endDate)>@Html.DisplayFor(modelItem => item.endDate)</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm editButton">Edit</button>
+                            <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
+                            <button class="btn btn-primary btn-sm deleteButton">Delete</button>
+                            <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
+                            <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+
+        </table>
+        <!--
+
+        -->
+    </div>
+    <!--table end-->
     <!--click event begin-->
     <div>
         <div class="row">
-            <hr style="border: 1px solid red;">
-            <h4>Testing: Record selected for edit or delete via Axios</h4>
-        </div>
-
-        <div class="row">
-
-            <div class="col-md-2">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
+            <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
             <div class="col-md-2">C-Code: <input type="text" id="slctd_customerCode" value="slctd_customerCode"></div>
-            <div class="col-md-2">eventID: <input type="text" id="slctd_eventID" value="slctd_eventID"></div>
-            <div class="col-md-2">eventType: <input type="text" id="slctd_eventType" value="slctd_eventType"></div>
-            <div class="col-md-2">startDate: <input type="text" id="slctd_startDate" value="slctd_startDate"></div>
-            <div class="col-md-2">endDate: <input type="text" id="slctd_endDate" value="slctd_endDate"></div>
-        </div>
-        <div class="row">
-            <hr style="border: 1px solid red;">
+            <div class="col-md-2">NAME: <input type="text" id="slctd_eventID" value="slctd_eventID"></div>
+            <div class="col-md-2">address: <input type="text" id="slctd_eventType" value="slctd_eventType"></div>
+            <div class="col-md-2">city: <input type="text" id="slctd_startDate" value="slctd_startDate"></div>
+            <div class="col-md-1">state: <input type="text" id="slctd_endDate" value="slctd_endDate"></div>
         </div>
     </div>
     <!--click event end-->
-    <!--add record begin-->
-    <h4>Testing: Add Record via Axios</h4>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="record" id="">
-                <div class="col-md-1" id="yo">
-                    <h6>ID</h6>
-                    <p id="addRecord_item0" value="">AUTO</p>
-                </div>
-                <div class="col-md-2" id="">
-                    <h5>CUSTOMER CODE</h5>
-                    <input type="text" id="addRecordItem1" value="">
-                </div>
-                <div class="col-md-2">
-                    <h5>EVENT ID</h5>
-                    <input type="text" id="addRecordItem2" value="test add">
-                </div>
-                <div class="col-md-2">
-                    <h5>EVENT TYPE</h5>
-                    <input type="text" id="addRecordItem3" value="test add">
-                </div>
-                <div class="col-md-2">
-                    <h5>START DATE</h5>
-                    <input type="text" id="addRecordItem4" value="test add">
-                </div>
-                <div class="col-md-1">
-                    <h5>END DATE</h5>
-                    <input type="text" id="addRecordItem5" value="ts">
-                </div>
-               <!-- <div class="col-md-1">
-                    <h5>ZIP</h5>
-                    <input type="text" id="addRecordItem6" value="99999">
-                </div>-->
-                <div class="col-md-auto">
-                    <h5>ACTION</h5>
-                    <button class="btn btn-primary" id="addButton">Add</button>
-                </div>
-
-            </div>
-        </div>
-    </div><br />
-    <h4>Testing: Add Record via Axios</h4>
-    <hr style="border: 1px solid red;">
-    <!--add record end-->
-
-
-    @foreach (var item in Model)
-    {
-        <div class="row">
-            <div class="col-md-12">
-                <div class="record" id=@Html.DisplayFor(modelItem => item.id) style="border: 1px solid black; padding-bottom:10px;">
-
-                    <div class="col-md-1" id="yo">
-                        <h6>ID</h6>
-                        <p id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</p>
-                    </div>
-                    <div class="col-md-2 record_item1" id="record_item1_div">
-                        <h5>CUSTOMER CODE</h5>
-                        <!--<input type="text" id="record_item1" value=@Html.DisplayFor(modelItem => item.customerCode)>-->
-                        <p id="record_item1" value=@Html.DisplayFor(modelItem => item.customerCode)>@Html.DisplayFor(modelItem => item.customerCode)</p>
-                    </div>
-                    <div class="col-md-2">
-                        <h5>EVENT ID</h5>
-                        <!--<input type="text" id="record_item2" value=@Html.DisplayFor(modelItem => item.eventID)>-->
-                        <p id="record_item2" value=@Html.DisplayFor(modelItem => item.eventID)>@Html.DisplayFor(modelItem => item.eventID)</p>
-                    </div>
-                    <div class="col-md-2">
-                        <h5>EVENT TYPE</h5>
-                        <p id="record_item3" value=@Html.DisplayFor(modelItem => item.eventType)>@Html.DisplayFor(modelItem => item.eventType)</p>
-                    </div>
-                    <div class="col-md-2">
-                        <h5>START DATE</h5>
-                        <p id="record_item4" value=@Html.DisplayFor(modelItem => item.startDate)>@Html.DisplayFor(modelItem => item.startDate)</p>
-                    </div>
-                    <div class="col-md-1">
-                        <h5>END DATE</h5>
-                        <p id="record_item5" value=@Html.DisplayFor(modelItem => item.endDate)>@Html.DisplayFor(modelItem => item.endDate)</p>
-                    </div>
-                    
-
-                    <div class="col-md-auto">
-                        <h5>ACTION</h5>
-                        <button class="btn btn-primary editButton">Edit</button>
-                        <button class="btn btn-primary updateButton" style="display:none;">Update</button>
-                        <button class="btn btn-primary deleteButton">Delete</button>
-                        <button class="btn btn-primary confirmButton" style="display:none;">Confirm</button>
-                        <button class="btn btn-primary cancelButton" style="display:none;">Cancel</button>
-                    </div>
-
-                </div>
-            </div>
-        </div><br />
-    }
-
 </div>
-
-<!-- /container -->
