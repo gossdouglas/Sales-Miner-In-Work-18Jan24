@@ -299,6 +299,8 @@
     <Content Include="Views\KitMgmt\Details.cshtml" />
     <Content Include="Views\KitMgmt\Edit.cshtml" />
     <Content Include="Views\KitMgmt\Index.cshtml" />
+    <Content Include="Views\CustomerMgmt\Index-table.cshtml" />
+    <Content Include="Views\CustomerMgmt\Index-bkup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
