@@ -20,6 +20,9 @@ namespace allpax_sale_miner.Controllers
             allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
             List<tbl_customer_event> custEvent = entities.tbl_customer_event.ToList();
 
+            //ViewBag.eventType = new SelectList(db.tbl_event_type, "eventType", "eventType");
+            ViewBag.customerCode = new SelectList(db.tbl_customer, "customerCode", "customerCode");
+
             return View(custEvent.ToList());
             //return View(db.tbl_customer.ToList());
         }
