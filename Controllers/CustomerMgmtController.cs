@@ -54,6 +54,26 @@ namespace allpax_sale_miner.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult UpdateCustomer(tbl_customer custUpdate)
+        {
+            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
+            {
+                tbl_customer updatedCustomer = (from c in entities.tbl_customer
+                                                           where c.id == custUpdate.id
+                                                           select c).FirstOrDefault();
+                updatedCustomer.customerCode = custUpdate.customerCode;
+                updatedCustomer.name = custUpdate.name;
+                updatedCustomer.address = custUpdate.address;
+                updatedCustomer.city = custUpdate.city;
+                updatedCustomer.state = custUpdate.state;
+                updatedCustomer.zipCode = custUpdate.zipCode;
+
+                entities.SaveChanges();
+            }
+
+            return new EmptyResult();
+        }
+
 
         //end CMPS 411 controller code
 
