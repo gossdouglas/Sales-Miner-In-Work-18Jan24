@@ -13,7 +13,7 @@
             $(document).ready(function () {//begin document read jquery statements
 
                 //begin when a record class is clicked...
-                /*$(".record").click(function () {
+               $(".record").on('click keyup change', function () {
                     selectedItem0 = $(this).attr("id");//works
                     selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
                     selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
@@ -29,29 +29,8 @@
                     $("#slctd_city").val(selectedItem4);
                     $("#slctd_state").val(selectedItem5);
                     $("#slctd_zipCode").val(selectedItem6);
-
-                });*/
-                //end when a record class is clicked...
-
-                $(".record").on('click keyup change', function () {
-                    selectedItem0 = $(this).attr("id");//works
-                    selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
-                    selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
-                    selectedItem3 = $(this).find("#record_item3").html();//works valid for inner html only
-                    selectedItem4 = $(this).find("#record_item4").html();//works valid for inner html only
-                    selectedItem5 = $(this).find("#record_item5").html();//works valid for inner html only
-                    selectedItem6 = $(this).find("#record_item6").html();//works valid for inner html only
-
-                    $("#slctd_id").val(selectedItem0);
-                    $("#slctd_customerCode").val(selectedItem1);
-                    $("#slctd_name").val(selectedItem2);
-                    $("#slctd_address").val(selectedItem3);
-                    $("#slctd_city").val(selectedItem4);
-                    $("#slctd_state").val(selectedItem5);
-                    $("#slctd_zipCode").val(selectedItem6);
-
                 });
-
+                //end when a record class is clicked...                
                 $(".btn.btn-primary.editButton").click(function () {//when a record's edit button is clicked...
                     $(this).parent().find(".editButton").hide();
                     $(this).parent().find(".updateButton").show();
@@ -162,25 +141,7 @@
                     );
 
                      //begin axios add post
-                    axios.post('/CustomerMgmt/UpdateCustomer', {
-                        /*
-                        id: $("#selectedItem0").val(),
-                        customerCode: $("#selectedItem1").val(),
-                        name: $("#selectedItem2").val(),
-                        address: $("#selectedItem3").val(),
-                        city: $("#selectedItem4").val(),
-                        state: $("#selectedItem5").val(),
-                        zipCode: $("#selectedItem6").val(),*/
-
-                        /*
-                        id: '85',
-                        customerCode: '85',
-                        name: '85',
-                        address: '88',
-                        city: '84',
-                        state: 'tx',
-                        zipCode: '84',
-                        */
+                    axios.post('/CustomerMgmt/UpdateCustomer', {                        
                         id: editItem0,
                         customerCode: editItem1,
                         name: editItem2,
@@ -188,9 +149,6 @@
                         city: editItem4,
                         state: editItem5,
                         zipCode: editItem6,
-                        /*
-                        
-                      */
                     })
                         .then(function (response) {
                             console.log(response);
@@ -199,8 +157,6 @@
                             console.log(error);
                         });
                     //end axios add post
-
-
                 });
                 //end confirm edit record
 
@@ -229,7 +185,6 @@
 
                 });
                 //end axios confirm delete record
-
             });//end document read jquery statements
         </script>
     </head>
