@@ -13,22 +13,14 @@
             $(document).ready(function () {//begin document read jquery statements
 
                 //begin when a record class is clicked...
-                $(".record").click(function () {
-                    /*var selectedItem0 = $(this).attr("id");//works
-                    var selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
-                    var selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only*/
-
+                /*$(".record").click(function () {
                     selectedItem0 = $(this).attr("id");//works
                     selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
-                    //$(this).find("#record_item2").attr("contenteditable","true");
-                    //$(this).attr("contenteditable", "true");
-                    //$(this).css("background-color", "powderblue");
                     selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
                     selectedItem3 = $(this).find("#record_item3").html();//works valid for inner html only
                     selectedItem4 = $(this).find("#record_item4").html();//works valid for inner html only
                     selectedItem5 = $(this).find("#record_item5").html();//works valid for inner html only
                     selectedItem6 = $(this).find("#record_item6").html();//works valid for inner html only
-
 
                     $("#slctd_id").val(selectedItem0);
                     $("#slctd_customerCode").val(selectedItem1);
@@ -37,14 +29,28 @@
                     $("#slctd_city").val(selectedItem4);
                     $("#slctd_state").val(selectedItem5);
                     $("#slctd_zipCode").val(selectedItem6);
-                    /*alert(
-                        "Selected for Edit or Delete POST:"+ '\n' +
-                        "Record: " + selectedItem0 + '\n' +
-                        "Type: " + selectedItem1 + '\n' +
-                        "Sub-type: " + selectedItem2 + '\n'
-                    );*/
-                });
+
+                });*/
                 //end when a record class is clicked...
+
+                $(".record").on('click keyup change', function () {
+                    selectedItem0 = $(this).attr("id");//works
+                    selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
+                    selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
+                    selectedItem3 = $(this).find("#record_item3").html();//works valid for inner html only
+                    selectedItem4 = $(this).find("#record_item4").html();//works valid for inner html only
+                    selectedItem5 = $(this).find("#record_item5").html();//works valid for inner html only
+                    selectedItem6 = $(this).find("#record_item6").html();//works valid for inner html only
+
+                    $("#slctd_id").val(selectedItem0);
+                    $("#slctd_customerCode").val(selectedItem1);
+                    $("#slctd_name").val(selectedItem2);
+                    $("#slctd_address").val(selectedItem3);
+                    $("#slctd_city").val(selectedItem4);
+                    $("#slctd_state").val(selectedItem5);
+                    $("#slctd_zipCode").val(selectedItem6);
+
+                });
 
                 $(".btn.btn-primary.editButton").click(function () {//when a record's edit button is clicked...
                     $(this).parent().find(".editButton").hide();
@@ -100,7 +106,6 @@
                     $("#addRecordItem5").val('');
                     $("#addRecordItem6").val('');
                     //begin axios add post
-
                     axios.post('/CustomerMgmt/AddCustomer', {
                         customerCode: addItem1,
                         name: addItem2,
@@ -115,7 +120,6 @@
                         .catch(function (error) {
                             console.log(error);
                         });
-
                     //end axios add post
                 });
                 //end #addButton
@@ -128,7 +132,75 @@
                     $(this).parent().find(".deleteButton").hide();
                     $(this).parent().find(".cancelButton").show();
 
-                    $(this).parent().parent().css("background-color", "transparent");                   
+                    $(this).parent().parent().css("background-color", "transparent");
+                    /*
+                        var editItem0 = $("#selectedItem0").val();
+                        var editItem1 = $("#selectedItem1").val();
+                        var editItem2 = $("#selectedItem2").val();
+                        var editItem3 = $("#selectedItem3").val();
+                        var editItem4 = $("#selectedItem4").val();
+                        var editItem5 = $("#selectedItem5").val();
+                    var editItem6 = $("#selectedItem6").val();*/
+
+                    var editItem0 = $("#slctd_id").val();
+                        var editItem1 = $("#slctd_customerCode").val();
+                        var editItem2 = $("#slctd_name").val();
+                        var editItem3 = $("#slctd_address").val();
+                        var editItem4 = $("#slctd_city").val();
+                        var editItem5 = $("#slctd_state").val();
+                    var editItem6 = $("#slctd_zipCode").val();
+
+                    alert(
+                        "Selected for Edit POST:" + '\n' +
+                        "editItem0: " + editItem0 + '\n' +
+                        "editItem1: " + editItem1 + '\n' +
+                        "editItem2: " + editItem2 + '\n' +
+                        "editItem3: " + editItem3 + '\n' +
+                        "editItem4: " + editItem4 + '\n' +
+                        "editItem5: " + editItem5 + '\n' +
+                        "editItem6: " + editItem6 + '\n'
+                    );
+
+                     //begin axios add post
+                    axios.post('/CustomerMgmt/UpdateCustomer', {
+                        /*
+                        id: $("#selectedItem0").val(),
+                        customerCode: $("#selectedItem1").val(),
+                        name: $("#selectedItem2").val(),
+                        address: $("#selectedItem3").val(),
+                        city: $("#selectedItem4").val(),
+                        state: $("#selectedItem5").val(),
+                        zipCode: $("#selectedItem6").val(),*/
+
+                        /*
+                        id: '85',
+                        customerCode: '85',
+                        name: '85',
+                        address: '88',
+                        city: '84',
+                        state: 'tx',
+                        zipCode: '84',
+                        */
+                        id: editItem0,
+                        customerCode: editItem1,
+                        name: editItem2,
+                        address: editItem3,
+                        city: editItem4,
+                        state: editItem5,
+                        zipCode: editItem6,
+                        /*
+                        
+                      */
+                    })
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                    //end axios add post
+
+
                 });
                 //end confirm edit record
 
