@@ -37,7 +37,6 @@
                     $(this).parent().find(".deleteButton").hide();
                     $(this).parent().find(".cancelButton").show();
 
-                    //$(this).parent().find("#record_item1").hide();
                     $(this).parent().parent().css("background-color", "powderblue");//change bkgnd color
                     $(this).parent().parent().attr("contenteditable", "true");//set all <td> in the record to editable
                     $(this).parent().parent().find("#record_item0").attr("contenteditable", "false");//set the id <td> to not editable
@@ -112,21 +111,13 @@
                     $(this).parent().find(".cancelButton").show();
 
                     $(this).parent().parent().css("background-color", "transparent");
-                    /*
-                        var editItem0 = $("#selectedItem0").val();
-                        var editItem1 = $("#selectedItem1").val();
-                        var editItem2 = $("#selectedItem2").val();
-                        var editItem3 = $("#selectedItem3").val();
-                        var editItem4 = $("#selectedItem4").val();
-                        var editItem5 = $("#selectedItem5").val();
-                    var editItem6 = $("#selectedItem6").val();*/
 
                     var editItem0 = $("#slctd_id").val();
-                        var editItem1 = $("#slctd_customerCode").val();
-                        var editItem2 = $("#slctd_name").val();
-                        var editItem3 = $("#slctd_address").val();
-                        var editItem4 = $("#slctd_city").val();
-                        var editItem5 = $("#slctd_state").val();
+                    var editItem1 = $("#slctd_customerCode").val();
+                    var editItem2 = $("#slctd_name").val();
+                    var editItem3 = $("#slctd_address").val();
+                    var editItem4 = $("#slctd_city").val();
+                    var editItem5 = $("#slctd_state").val();
                     var editItem6 = $("#slctd_zipCode").val();
 
                     alert(
