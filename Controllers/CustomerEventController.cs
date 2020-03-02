@@ -22,6 +22,7 @@ namespace allpax_sale_miner.Controllers
 
             //ViewBag.eventType = new SelectList(db.tbl_event_type, "eventType", "eventType");
             ViewBag.customerCode = new SelectList(db.tbl_customer, "customerCode", "customerCode");
+            //ViewBag.customerName = new SelectList(db.tbl_customer, "name", "name");
 
             return View(custEvent.ToList());
             //return View(db.tbl_customer.ToList());
