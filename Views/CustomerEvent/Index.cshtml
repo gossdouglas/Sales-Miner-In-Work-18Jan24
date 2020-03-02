@@ -108,9 +108,46 @@
                 //begin confirm edit record
                 $(".btn.btn-primary.updateButton").click(function () {//when a record's edit button is clicked...
                     $(this).hide();
-                    $(this).parent().find(".updateButton").show();
+                    $(this).parent().find(".updateButton").hide();
+                    $(this).parent().find(".editButton").show();
                     $(this).parent().find(".deleteButton").hide();
                     $(this).parent().find(".cancelButton").show();
+
+                    $(this).parent().parent().css("background-color", "transparent");
+
+                    var editItem0 = $("#slctd_id").val();
+                    var editItem1 = $("#slctd_customerCode").val();
+                    var editItem2 = $("#slctd_eventID").val();
+                    var editItem3 = $("#slctd_eventType").val();
+                    var editItem4 = $("#slctd_startDate").val();
+                    var editItem5 = $("#slctd_endDate").val();
+
+                    alert(
+                        "Selected for Edit POST:" + '\n' +
+                        "editItem0: " + editItem0 + '\n' +
+                        "editItem1: " + editItem1 + '\n' +
+                        "editItem2: " + editItem2 + '\n' +
+                        "editItem3: " + editItem3 + '\n' +
+                        "editItem4: " + editItem4 + '\n' +
+                        "editItem5: " + editItem5 + '\n' 
+                    );
+
+                     //begin axios add post
+                    axios.post('/CustomerEvent/UpdateEvent', {                        
+                        id: editItem0,
+                        customerCode: editItem1,
+                        eventID: editItem2,
+                        eventType: editItem3,
+                        startDate: editItem4,
+                        endDate: editItem5
+                    })
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                    //end axios add post
                 });
                 //end confirm edit record
 
