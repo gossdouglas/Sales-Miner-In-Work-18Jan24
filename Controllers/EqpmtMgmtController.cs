@@ -51,6 +51,21 @@ namespace allpax_sale_miner.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult UpdateEqpmt(tbl_eqpmt_type eqpmtUpdate)
+        {
+            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
+            {
+                tbl_eqpmt_type updatedEqpmt = (from c in entities.tbl_eqpmt_type
+                    where c.id == eqpmtUpdate.id
+                    select c).FirstOrDefault();
+                updatedEqpmt.eqpmtType = eqpmtUpdate.eqpmtType;
+                updatedEqpmt.model = eqpmtUpdate.model;
+                updatedEqpmt.description = eqpmtUpdate.description;
+                entities.SaveChanges();
+            }
+
+            return new EmptyResult();
+        }
 
         //end CMPS 411 controller code
         protected override void Dispose(bool disposing)

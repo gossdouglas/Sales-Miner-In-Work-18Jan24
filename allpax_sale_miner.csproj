@@ -391,6 +391,18 @@
     <Content Include="Views\KitMgmt\Index.cshtml" />
     <Content Include="Views\CustomerMgmt\Index-table.cshtml" />
     <Content Include="Views\CustomerMgmt\Index-bkup.cshtml" />
+    <Content Include="Views\EqpmtMgmt\Create.cshtml" />
+    <Content Include="Views\EqpmtMgmt\Delete.cshtml" />
+    <Content Include="Views\EqpmtMgmt\Details.cshtml" />
+    <Content Include="Views\EqpmtMgmt\Edit.cshtml" />
+    <Content Include="Views\EqpmtMgmt\Index -Orig.cshtml" />
+    <Content Include="Views\EqpmtMgmt\Index.cshtml" />
+    <Content Include="Views\CurrentEqpmtKits\Create.cshtml" />
+    <Content Include="Views\CurrentEqpmtKits\Delete.cshtml" />
+    <Content Include="Views\CurrentEqpmtKits\Details.cshtml" />
+    <Content Include="Views\CurrentEqpmtKits\Edit.cshtml" />
+    <Content Include="Views\CurrentEqpmtKits\Index -Orig.cshtml" />
+    <Content Include="Views\CurrentEqpmtKits\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
