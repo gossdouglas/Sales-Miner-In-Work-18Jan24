@@ -49,6 +49,25 @@ namespace allpax_sale_miner.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult UpdateEvent(tbl_customer_event eventUpdate)
+        {
+            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
+            {
+                tbl_customer_event updatedEvent = (from c in entities.tbl_customer_event
+                                                     where c.id == eventUpdate.id
+                                                     select c).FirstOrDefault();
+                updatedEvent.customerCode = eventUpdate.customerCode;
+                updatedEvent.eventID = eventUpdate.eventID;
+                updatedEvent.eventType = eventUpdate.eventType;
+                updatedEvent.startDate = eventUpdate.startDate;
+                updatedEvent.endDate = eventUpdate.endDate;
+
+                entities.SaveChanges();
+            }
+
+            return new EmptyResult();
+        }
         //end CMPS 411 controller code
         protected override void Dispose(bool disposing)
         {
