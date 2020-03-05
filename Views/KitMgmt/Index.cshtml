@@ -137,6 +137,16 @@
     }
 </style>
 
+<style>
+    div.row {
+        width: auto;
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: 0px;
+    }
+</style>
+
 <div class="container">
     <div class="row">
         <div class="col-md-3">
@@ -193,7 +203,7 @@
     <!--
 
     -->
-    <div class="scroll">
+    <div class="row">
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -201,8 +211,13 @@
                     <th scope="col">Kit ID</th>
                     <th scope="col">Description</th>
                     <th scope="col">File Path</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
+        </table>
+    </div>
+    <div class="scroll">
+        <table class="table table-hover">
             <tbody>
                 @foreach (var item in Model)
                 {
