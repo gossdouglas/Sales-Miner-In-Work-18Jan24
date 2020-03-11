@@ -181,7 +181,7 @@
     </head>
 <style>
     div.scroll {
-        width: auto;
+        width: 100%;
         height: 450px;
         overflow-x: hidden;
         overflow-y: auto;
@@ -191,7 +191,7 @@
 
 <style>
     div.row {
-        width: auto;
+        width: 100%;
         height: auto;
         overflow-x: hidden;
         overflow-y: auto;
@@ -268,18 +268,17 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Customer Code</th>
-                    <th scope="col">Event ID</th>
-                    <th scope="col">Event Type</th>
-                    <th scope="col">Start Date</th>
-                    <th scope="col">End Date</th>
+                    <th width="40px"scope="col">ID</th>
+                    <th width="20px" scope="col">Customer Code</th>
+                    <th width="110px" scope="col">Event ID</th>
+                    <th width="200px" scope="col">Event Type</th>
+                    <th width="263px" scope="col">Start Date</th>
+                    <th width="265px" scope="col">End Date</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
         </table>
-    </div>
-    <div class="scroll">
+        <div class="scroll">
         <table class="table table-hover">
             <tbody>
                 @foreach (var item in Model)
@@ -307,6 +306,7 @@
         <!--
 
         -->
+        </div>
     </div>
     <!--table end-->
     <!--click event begin-->
