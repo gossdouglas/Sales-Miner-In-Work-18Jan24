@@ -172,34 +172,54 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-            <h4>Eqipment Management</h4>
-
-            <form class="form-inline">
-                <div class="form-row">
-                    <div class="form-group col-md-3">
-                        <label for="addRecordItem1">Type</label>
-                        <input type="text" class="form-control" id="addRecordItem1" placeholder="" value="test add">
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label for="addRecordItem2">Model</label>
-                        <input type="text" class="form-control" id="addRecordItem2" placeholder="" value="test add">
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label for="addRecordItem3">Descrip</label>
-                        <input type="text" class="form-control" id="addRecordItem3" placeholder="" value="test add">
-                    </div>
-
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-3">
-                        <button type="submit" class="btn btn-primary" id="addButton">Add</button>
-                    </div>
-
-                </div>
-            </form>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Equipment Management +</button>
         </div>
+        <div class="col-md-2">
+            <!--add record begin-->
+            <!-- Trigger the modal with a button -->
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-lg">
 
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Add Record</h4>
+                        </div>
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="addRecordItem1">Equipment Type</label>
+                                    <input type="text" class="form-control" id="addRecordItem1" placeholder="" value="test add">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="addRecordItem2">Model</label>
+                                    <input type="text" class="form-control" id="addRecordItem2" placeholder="" value="test add">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="addRecordItem3">Description</label>
+                                    <input type="text" class="form-control" id="addRecordItem3" placeholder="" value="test add">
+                                </div>
+                            </div>
+                            <div class="form-row">
+
+                               
+                                <div class="form-group col-md-2">
+                                    <button type="submit" class="btn btn-primary" id="addButton">Add</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--add record end-->
+        </div>
     </div>
     <!--table begin-->
     <!--
@@ -217,32 +237,32 @@
                 </tr>
             </thead>
         </table>
-        <div class="scroll">
-            <table class="table table-hover">
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
-                            <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
-                            <td id="record_item1" value=@Html.DisplayFor(modelItem => item.eqpmtType)>@Html.DisplayFor(modelItem => item.eqpmtType)</td>
-                            <td id="record_item2" value=@Html.DisplayFor(modelItem => item.model)>@Html.DisplayFor(modelItem => item.model)</td>
-                            <td id="record_item3" value=@Html.DisplayFor(modelItem => item.description)>@Html.DisplayFor(modelItem => item.description)</td>
-                            <td>
-                                <button class="btn btn-primary btn-sm editButton">Edit</button>
-                                <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
-                                <button class="btn btn-primary btn-sm deleteButton">Delete</button>
-                                <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
-                                <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            <!--
+    <div class="scroll">
+        <table class="table table-hover">
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
+                        <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
+                        <td id="record_item1" value=@Html.DisplayFor(modelItem => item.eqpmtType)>@Html.DisplayFor(modelItem => item.eqpmtType)</td>
+                        <td id="record_item2" value=@Html.DisplayFor(modelItem => item.model)>@Html.DisplayFor(modelItem => item.model)</td>
+                        <td id="record_item3" value=@Html.DisplayFor(modelItem => item.description)>@Html.DisplayFor(modelItem => item.description)</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm editButton">Edit</button>
+                            <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
+                            <button class="btn btn-primary btn-sm deleteButton">Delete</button>
+                            <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
+                            <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <!--
 
-            -->
-        </div>
+        -->
     </div>
+</div>
     <!--table end-->
     <!--click event begin-->
     <div>

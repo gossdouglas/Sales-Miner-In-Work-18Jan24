@@ -404,6 +404,7 @@
     <Content Include="Views\CurrentEqpmtKits\Index -Orig.cshtml" />
     <Content Include="Views\CurrentEqpmtKits\Index.cshtml" />
     <Content Include="Views\KitMgmt\Index - Copy.cshtml" />
+    <Content Include="Views\EqpmtMgmt\Index - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
