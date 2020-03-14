@@ -404,6 +404,7 @@
     <Content Include="Views\CurrentEqpmtKits\Index -Orig.cshtml" />
     <Content Include="Views\CurrentEqpmtKits\Index.cshtml" />
     <Content Include="Views\CustomerMgmt\Index-before inline add.cshtml" />
+    <Content Include="Views\KitMgmt\Index-before goss.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
