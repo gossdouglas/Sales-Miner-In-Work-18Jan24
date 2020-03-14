@@ -158,9 +158,6 @@
         padding: 0px;
         display: block;
     }
-</style>
-
-<style>
     div.row {
         width: auto;
         height: auto;
@@ -168,43 +165,32 @@
         overflow-y: auto;
         padding: 0px;
     }
+    .form-group {
+  margin: 5px;
+}
 </style>
-
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h4>Eqipment Management</h4>
-
+            <h4>Equipment Management</h4>
             <form class="form-inline">
-                <div class="form-row">
-                    <div class="form-group col-md-3">
+                    <div class="form-group">
                         <label for="addRecordItem1">Type</label>
                         <input type="text" class="form-control" id="addRecordItem1" placeholder="Equipment Type" value="">
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group">
                         <label for="addRecordItem2">Model</label>
                         <input type="text" class="form-control" id="addRecordItem2" placeholder="Model" value="">
                     </div>
-                    <div class="form-group col-md-3">
-                        <label for="addRecordItem3">Descrip</label>
+                    <div class="form-group">
+                        <label for="addRecordItem3">Description</label>
                         <input type="text" class="form-control" id="addRecordItem3" placeholder="Description" value="">
                     </div>
-
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-3">
                         <button type="submit" class="btn btn-primary" id="addButton">Add</button>
-                    </div>
-
-                </div>
-            </form>
+            </form><hr />
         </div>
-
     </div>
     <!--table begin-->
-    <!--
-
-    -->
     <div class="row">
         <table class="table table-hover">
             <thead>
