@@ -17,103 +17,57 @@ namespace allpax_sale_miner.Controllers
         // GET: KitMgmt
         public ActionResult Index()
         {
-            return View(db.tbl_kit.ToList());
-        }
+            allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
+            List<tbl_kit> kitMgmt = entities.tbl_kit.ToList();
 
-        // GET: KitMgmt/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbl_kit tbl_kit = db.tbl_kit.Find(id);
-            if (tbl_kit == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_kit);
+            return View(kitMgmt.ToList());
         }
-
-        // GET: KitMgmt/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: KitMgmt/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //begin CMPS 411 controller code
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "kitID,description,filePath,id")] tbl_kit tbl_kit)
+        public ActionResult AddKit(tbl_kit kitAdd)
         {
-            if (ModelState.IsValid)
+            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
             {
-                db.tbl_kit.Add(tbl_kit);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                entities.tbl_kit.Add(new tbl_kit
+                {
+                    kitID = kitAdd.kitID,
+                    description = kitAdd.description,
+                    filePath = kitAdd.filePath,
+                            });
+
+
+                entities.SaveChanges();
             }
 
-            return View(tbl_kit);
+            return new EmptyResult();
         }
 
-        // GET: KitMgmt/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult DeleteKit(tbl_kit kitDelete)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbl_kit tbl_kit = db.tbl_kit.Find(id);
-            if (tbl_kit == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_kit);
-        }
-
-        // POST: KitMgmt/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "kitID,description,filePath,id")] tbl_kit tbl_kit)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(tbl_kit).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(tbl_kit);
-        }
-
-        // GET: KitMgmt/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbl_kit tbl_kit = db.tbl_kit.Find(id);
-            if (tbl_kit == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_kit);
-        }
-
-        // POST: KitMgmt/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            tbl_kit tbl_kit = db.tbl_kit.Find(id);
+            tbl_kit tbl_kit = db.tbl_kit.Find(kitDelete.id);
             db.tbl_kit.Remove(tbl_kit);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult UpdateKit(tbl_kit kitUpdate)
+        {
+            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
+            {
+                tbl_kit updatedKit = (from c in entities.tbl_kit
+                                                where c.id == kitUpdate.id
+                                                select c).FirstOrDefault();
+                updatedKit.kitID = kitUpdate.kitID;
+                updatedKit.description = kitUpdate.description;
+                updatedKit.filePath = kitUpdate.filePath;
+                
+                entities.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
+        //end CMPS 411 controller code
 
         protected override void Dispose(bool disposing)
         {
