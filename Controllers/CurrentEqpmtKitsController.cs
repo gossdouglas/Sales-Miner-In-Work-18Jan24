@@ -39,7 +39,7 @@ namespace allpax_sale_miner.Controllers
                 entities.SaveChanges();
             }
 
-            return new EmptyResult();
+            return RedirectToAction("Index");
         }
 
         public ActionResult DeleteCurrentEqpmt(tbl_eqpmt_kits_current currentEqpmtDelete)
