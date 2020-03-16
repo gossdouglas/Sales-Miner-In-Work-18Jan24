@@ -40,7 +40,7 @@ namespace allpax_sale_miner.Controllers
                 });
                 entities.SaveChanges();
             }
-            return new EmptyResult();
+            return RedirectToAction("Index");
         }
         public ActionResult DeleteEvent(tbl_customer_event eventDelete)
         {
