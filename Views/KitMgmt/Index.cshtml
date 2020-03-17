@@ -33,9 +33,14 @@
                 $(this).parent().find(".deleteButton").hide();
                 $(this).parent().find(".cancelButton").show();
 
-                $(this).parent().parent().css("background-color", "powderblue");//change bkgnd color
+                $(this).parent().parent().css("background-color", "gainsboro");//change bkgnd color
                 $(this).parent().parent().attr("contenteditable", "true");//set all <td> in the record to editable
                 $(this).parent().parent().find("#record_item0").attr("contenteditable", "false");//set the id <td> to not editable
+                $(this).parent().parent().find(".cancelButton").css("background-color", "indianred");//change cancel buttn clr after edit is clicked
+                $(this).parent().parent().find(".cancelButton").css("border", "indianred");//change cancel buttn clr after edit is clicked
+                $(this).parent().parent().find(".updateButton").css("background-color", "steelblue");//change cancel buttn clr after edit is clicked
+                $(this).parent().parent().find(".updateButton").css("border", "steelblue");//change cancel buttn clr after edit is clicked
+
             });
             $(".btn.btn-primary.cancelButton").click(function () {//when a record's edit button is clicked...
                 $(this).parent().find(".editButton").show();
@@ -53,6 +58,13 @@
                 $(this).parent().find(".deleteButton").hide();
                 $(this).parent().find(".cancelButton").show();
                 $(this).parent().find(".confirmButton").show();
+
+                $(this).parent().parent().css("background-color", "gainsboro");//change bkgnd color
+                $(this).parent().parent().attr("contenteditable", "false");
+                $(this).parent().parent().find(".cancelButton").css("background-color", "indianred");//change cancel buttn clr after delete is clicked
+                $(this).parent().parent().find(".cancelButton").css("border", "indianred");//change cancel buttn clr after edit is clicked
+                $(this).parent().parent().find(".confirmButton").css("background-color", "steelblue");//change confirm buttn color after delete is clicked
+                $(this).parent().parent().find(".confirmButton").css("border", "steelblue")
             });
 
             //begin #addButton
@@ -96,7 +108,12 @@
                     $(this).parent().find(".deleteButton").hide();
                     $(this).parent().find(".cancelButton").show();
 
+                    $(this).parent().parent().attr("contenteditable", "false");
+
                     $(this).parent().parent().css("background-color", "transparent");
+                    $(this).parent().parent().find(".cancelButton").css("background-color","royalblue");//change cancel button color after update is clicked
+                    $(this).parent().find(".cancelButton").hide();
+                    $(this).parent().find(".deleteButton").show();
 
                     var editItem0 = $("#slctd_id").val();
                     var editItem1 = $("#slctd_kitID").val();
@@ -127,11 +144,13 @@
                             console.log(error);
                         });
                     //end axios add post
+
                 });
                 //end confirm edit record
-
+        
             //begin axios confirm delete record
-            $(".btn.btn-primary.confirmButton").click(function () {//when a record's delete button is clicked...
+                $(".btn.btn-primary.confirmButton").click(function () {//when a record's delete button is clicked...
+
                 alert(
                     "Selected for DELETE:" + '\n' +
                     "id: " + selectedItem0 + '\n' +
@@ -197,7 +216,7 @@
                     <label for="addRecordItem3">File Path</label>
                     <input type="text" class="form-control" id="addRecordItem3" placeholder="" value="test add">
                 </div>
-                <button type="submit" class="btn btn-primary" id="addButton">Add</button>
+                <button type="submit" class="btn btn-primary" id="addButton" style="background-color: royalblue">Add</button>
             </form><hr />
         </div>
     </div>
@@ -225,9 +244,9 @@
                             <td id="record_item2" value=@Html.DisplayFor(modelItem => item.description)>@Html.DisplayFor(modelItem => item.description)</td>
                             <td id="record_item3" value=@Html.DisplayFor(modelItem => item.filePath)>@Html.DisplayFor(modelItem => item.filePath)</td>
                             <td>
-                                <button class="btn btn-primary btn-sm editButton">Edit</button>
+                                <button class="btn btn-primary btn-sm editButton" style=" background-color: royalblue">Edit</button>
                                 <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
-                                <button class="btn btn-primary btn-sm deleteButton">Delete</button>
+                                <button class="btn btn-primary btn-sm deleteButton" style=" background-color: royalblue">Delete</button>
                                 <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
                                 <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
                             </td>
