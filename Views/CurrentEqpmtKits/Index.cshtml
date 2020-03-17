@@ -14,10 +14,7 @@
 
                 //begin when a record class is clicked...
                 $(".record").click(function () {
-                    /*var selectedItem0 = $(this).attr("id");//works
-                    var selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
-                    var selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only*/
-
+                   
                     selectedItem0 = $(this).attr("id");//works
                     selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
                     selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
@@ -37,7 +34,13 @@
                     $(this).parent().find(".deleteButton").hide();
                     $(this).parent().find(".cancelButton").show();
 
-                    $(this).parent().find("#record_item1").hide();
+                    $(this).parent().parent().css("background-color", "gainsboro");//change bkgnd color
+                    $(this).parent().parent().attr("contenteditable", "true");//set all <td> in the record to editable
+                    $(this).parent().parent().find("#record_item0").attr("contenteditable", "false");//set the id <td> to not editable
+                    $(this).parent().parent().find(".cancelButton").css("background-color", "indianred");//change cancel buttn clr after edit is clicked
+                    $(this).parent().parent().find(".cancelButton").css("border", "indianred");//change cancel buttn clr after edit is clicked
+                    $(this).parent().parent().find(".updateButton").css("background-color", "steelblue");//change cancel buttn clr after edit is clicked
+                    $(this).parent().parent().find(".updateButton").css("border", "steelblue");//change cancel buttn clr after edit is clicked               
                 });
                 $(".btn.btn-primary.cancelButton").click(function () {//when a record's edit button is clicked...
                     $(this).parent().find(".editButton").show();
@@ -45,6 +48,9 @@
                     $(this).parent().find(".deleteButton").show();
                     $(this).parent().find(".cancelButton").hide();
                     $(this).parent().find(".confirmButton").hide();
+
+                    $(this).parent().parent().css("background-color", "transparent");
+                    $(this).parent().parent().attr("contenteditable", "false");
                 });
                 $(".btn.btn-primary.deleteButton").click(function () {//when a record's edit button is clicked...
                     $(this).parent().find(".editButton").hide();
@@ -52,6 +58,13 @@
                     $(this).parent().find(".deleteButton").hide();
                     $(this).parent().find(".cancelButton").show();
                     $(this).parent().find(".confirmButton").show();
+
+                    $(this).parent().parent().css("background-color", "gainsboro");//change bkgnd color
+                    $(this).parent().parent().attr("contenteditable", "false");
+                    $(this).parent().parent().find(".cancelButton").css("background-color", "indianred");//change cancel buttn clr after delete is clicked
+                    $(this).parent().parent().find(".cancelButton").css("border", "indianred");//change cancel buttn clr after edit is clicked
+                    $(this).parent().parent().find(".confirmButton").css("background-color", "steelblue");//change confirm buttn color after delete is clicked
+                    $(this).parent().parent().find(".confirmButton").css("border", "steelblue");
                 });
 
                 //begin #addButton
@@ -93,6 +106,12 @@
                     $(this).parent().find(".updateButton").show();
                     $(this).parent().find(".deleteButton").hide();
                     $(this).parent().find(".cancelButton").show();
+
+                    $(this).parent().parent().attr("contenteditable", "false");
+                    $(this).parent().parent().css("background-color", "transparent");
+                    $(this).parent().parent().find(".cancelButton").css("background-color","royalblue");//change cancel button color after update is clicked
+                    $(this).parent().find(".cancelButton").hide();
+                    $(this).parent().find(".deleteButton").show();
                 });
                 //end confirm edit record
 
@@ -149,15 +168,15 @@
         <div class="col-md-12">
             <h4>Current Equipment Kits</h4>
             <form class="form-inline">
-                    <div class="form-group">
-                        <label for="addRecordItem1">Machine ID</label>
-                        <input type="text" class="form-control" id="addRecordItem1" placeholder="Machine ID" value="">
-                    </div>
-                    <div class="form-group">
-                        <label for="addRecordItem2">Kit ID</label>
-                        <input type="text" class="form-control" id="addRecordItem2" placeholder="Kit ID" value="">
-                    </div>
-                        <button type="submit" class="btn btn-primary" id="addButton">Add</button>
+                <div class="form-group">
+                    <label for="addRecordItem1">Machine ID</label>
+                    <input type="text" class="form-control" id="addRecordItem1" placeholder="Machine ID" value="">
+                </div>
+                <div class="form-group">
+                    <label for="addRecordItem2">Kit ID</label>
+                    <input type="text" class="form-control" id="addRecordItem2" placeholder="Kit ID" value="">
+                </div>
+                <button type="submit" class="btn btn-primary" id="addButton" style="background-color: royalblue">Add</button>
             </form><hr>
         </div>
     </div>
@@ -183,9 +202,9 @@
                     </div>
                     <div class="col-md-auto">
                         <h5>Action</h5>
-                        <button class="btn btn-primary btn-sm editButton">Edit</button>
+                        <button class="btn btn-primary btn-sm editButton" style="background-color: royalblue">Edit</button>
                         <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
-                        <button class="btn btn-primary btn-sm deleteButton">Delete</button>
+                        <button class="btn btn-primary btn-sm deleteButton" style="background-color: royalblue">Delete</button>
                         <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
                         <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
                     </div>

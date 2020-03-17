@@ -13,10 +13,7 @@
 
                 //begin when a record class is clicked...
                 $(".record").click(function () {
-                    /*var selectedItem0 = $(this).attr("id");//works
-                    var selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
-                    var selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only*/
-
+                   
                     selectedItem0 = $(this).attr("id");//works
                     selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
                     selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
@@ -31,13 +28,7 @@
                     $("#slctd_eventType").val(selectedItem3);
                     $("#slctd_startDate").val(selectedItem4);
                     $("#slctd_endDate").val(selectedItem5);
-                    //$("#slctd_zipCode").val(selectedItem6);
-                    /*alert(
-                        "Selected for Edit or Delete POST:"+ '\n' +
-                        "Record: " + selectedItem0 + '\n' +
-                        "Type: " + selectedItem1 + '\n' +
-                        "Sub-type: " + selectedItem2 + '\n'
-                    );*/
+                   
                 });
                 //end when a record class is clicked...
 
@@ -47,7 +38,13 @@
                     $(this).parent().find(".deleteButton").hide();
                     $(this).parent().find(".cancelButton").show();
 
-                    $(this).parent().find("#record_item1").hide();
+                    $(this).parent().parent().css("background-color", "gainsboro");//change bkgnd color
+                    $(this).parent().parent().attr("contenteditable", "true");//set all <td> in the record to editable
+                    $(this).parent().parent().find("#record_item0").attr("contenteditable", "false");//set the id <td> to not editable
+                    $(this).parent().parent().find(".cancelButton").css("background-color", "indianred");//change cancel buttn clr after edit is clicked
+                    $(this).parent().parent().find(".cancelButton").css("border", "indianred");//change cancel buttn clr after edit is clicked
+                    $(this).parent().parent().find(".updateButton").css("background-color", "steelblue");//change cancel buttn clr after edit is clicked
+                    $(this).parent().parent().find(".updateButton").css("border", "steelblue");//change cancel buttn clr after edit is clicked                
                 });
                 $(".btn.btn-primary.cancelButton").click(function () {//when a record's edit button is clicked...
                     $(this).parent().find(".editButton").show();
@@ -55,6 +52,9 @@
                     $(this).parent().find(".deleteButton").show();
                     $(this).parent().find(".cancelButton").hide();
                     $(this).parent().find(".confirmButton").hide();
+
+                    $(this).parent().parent().css("background-color", "transparent");
+                    $(this).parent().parent().attr("contenteditable", "false");
                 });
                 $(".btn.btn-primary.deleteButton").click(function () {//when a record's edit button is clicked...
                     $(this).parent().find(".editButton").hide();
@@ -62,6 +62,13 @@
                     $(this).parent().find(".deleteButton").hide();
                     $(this).parent().find(".cancelButton").show();
                     $(this).parent().find(".confirmButton").show();
+
+                    $(this).parent().parent().css("background-color", "gainsboro");//change bkgnd color
+                    $(this).parent().parent().attr("contenteditable", "false");
+                    $(this).parent().parent().find(".cancelButton").css("background-color", "indianred");//change cancel buttn clr after delete is clicked
+                    $(this).parent().parent().find(".cancelButton").css("border", "indianred");//change cancel buttn clr after edit is clicked
+                    $(this).parent().parent().find(".confirmButton").css("background-color", "steelblue");//change confirm buttn color after delete is clicked
+                    $(this).parent().parent().find(".confirmButton").css("border", "steelblue");
                 });
 
                 //begin #addButton
@@ -113,7 +120,11 @@
                     $(this).parent().find(".deleteButton").hide();
                     $(this).parent().find(".cancelButton").show();
 
+                    $(this).parent().parent().attr("contenteditable", "false");
                     $(this).parent().parent().css("background-color", "transparent");
+                    $(this).parent().parent().find(".cancelButton").css("background-color","royalblue");//change cancel button color after update is clicked
+                    $(this).parent().find(".cancelButton").hide();
+                    $(this).parent().find(".deleteButton").show();
 
                     var editItem0 = $("#slctd_id").val();
                     var editItem1 = $("#slctd_customerCode").val();
@@ -204,27 +215,27 @@
         <div class="col-md-12">
             <h4>Customer Event Management</h4>
             <form class="form-inline">
-                    <div class="form-group">
-                        <label for="addRecordItem1">Customer Code</label>
-                        @Html.DropDownList("customerCode", null, "Select Customer Code", new { @id = "addRecordItem1", @name = "addRecordItem1", @class = "form-control" })                     
-                    </div>
-                    <div class="form-group">
-                        <label for="addRecordItem2">Event ID</label>
-                        <input type="text" class="form-control" id="addRecordItem2" placeholder="Event ID" value="">
-                    </div>
-                    <div class="form-group">
-                        <label for="addRecordItem3">Event Type</label>
-                        <input type="text" class="form-control" id="addRecordItem3" placeholder="Event Type" value="">
-                    </div>
-                    <div class="form-group">
-                        <label for="addRecordItem4">Start Date</label>
-                        <input type="date" class="form-control" id="addRecordItem4" placeholder="Start Date" value="">
-                    </div>
-                    <div class="form-group">
-                        <label for="addRecordItem5">End Date</label>
-                        <input type="date" class="form-control" id="addRecordItem5" placeholder="End Date" value="">
-                    </div>
-                        <button type="submit" class="btn btn-primary" id="addButton">Add</button>
+                <div class="form-group">
+                    <label for="addRecordItem1">Customer Code</label>
+                    @Html.DropDownList("customerCode", null, "Select Customer Code", new { @id = "addRecordItem1", @name = "addRecordItem1", @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label for="addRecordItem2">Event ID</label>
+                    <input type="text" class="form-control" id="addRecordItem2" placeholder="Event ID" value="">
+                </div>
+                <div class="form-group">
+                    <label for="addRecordItem3">Event Type</label>
+                    <input type="text" class="form-control" id="addRecordItem3" placeholder="Event Type" value="">
+                </div>
+                <div class="form-group">
+                    <label for="addRecordItem4">Start Date</label>
+                    <input type="date" class="form-control" id="addRecordItem4" placeholder="Start Date" value="">
+                </div>
+                <div class="form-group">
+                    <label for="addRecordItem5">End Date</label>
+                    <input type="date" class="form-control" id="addRecordItem5" placeholder="End Date" value="">
+                </div>
+                <button type="submit" class="btn btn-primary" id="addButton" style="background-color: royalblue">Add</button>
             </form><hr />
         </div>
 
@@ -260,9 +271,9 @@
                         <td id="record_item4" value=@Html.DisplayFor(modelItem => item.startDate)>@Html.DisplayFor(modelItem => item.startDate)</td>
                         <td id="record_item5" value=@Html.DisplayFor(modelItem => item.endDate)>@Html.DisplayFor(modelItem => item.endDate)</td>
                         <td>
-                            <button class="btn btn-primary btn-sm editButton">Edit</button>
+                            <button class="btn btn-primary btn-sm editButton"style=" background-color: royalblue">Edit</button>
                             <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
-                            <button class="btn btn-primary btn-sm deleteButton">Delete</button>
+                            <button class="btn btn-primary btn-sm deleteButton"style=" background-color: royalblue">Delete</button>
                             <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
                             <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
                         </td>
