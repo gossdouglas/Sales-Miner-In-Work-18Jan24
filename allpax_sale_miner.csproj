@@ -172,6 +172,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CurrentEqpmtKitsController.cs" />
+    <Compile Include="Controllers\CustomerEqpmtMgmtController.cs" />
     <Compile Include="Controllers\CustomerEventController.cs" />
     <Compile Include="Controllers\CustomerMgmtController.cs" />
     <Compile Include="Controllers\EqpmtMgmtController.cs" />
@@ -204,6 +205,7 @@
     <Compile Include="Models\tbl_customer.cs">
       <DependentUpon>allpax_sale_miner.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbl_customer_eqpmt.cs" />
     <Compile Include="Models\tbl_customer_event.cs">
       <DependentUpon>allpax_sale_miner.tt</DependentUpon>
     </Compile>
@@ -419,6 +421,11 @@
     <Content Include="Views\KitsAvlblMgmt\Details.cshtml" />
     <Content Include="Views\KitsAvlblMgmt\Edit.cshtml" />
     <Content Include="Views\KitsAvlblMgmt\Index.cshtml" />
+    <Content Include="Views\CustomerEqpmtMgmt\Create.cshtml" />
+    <Content Include="Views\CustomerEqpmtMgmt\Delete.cshtml" />
+    <Content Include="Views\CustomerEqpmtMgmt\Details.cshtml" />
+    <Content Include="Views\CustomerEqpmtMgmt\Edit.cshtml" />
+    <Content Include="Views\CustomerEqpmtMgmt\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

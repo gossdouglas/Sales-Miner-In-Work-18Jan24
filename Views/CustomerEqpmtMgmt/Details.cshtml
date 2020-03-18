@@ -1,0 +1,51 @@
+﻿@model allpax_sale_miner.Models.tbl_customer_eqpmt
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_customer_eqpmt</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.customerCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.machineID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.machineID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jobNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jobNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eqpmtType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eqpmtType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

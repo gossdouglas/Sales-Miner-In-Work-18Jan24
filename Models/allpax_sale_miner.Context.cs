@@ -22,5 +22,6 @@
         public virtual DbSet<tbl_event_type> tbl_event_type { get; set; }
         public virtual DbSet<tbl_eqpmt_type> tbl_eqpmt_type { get; set; }
         public virtual DbSet<tbl_eqpmt_kits_avlbl> tbl_eqpmt_kits_avlbl { get; set; }
+        public virtual DbSet<tbl_customer_eqpmt> tbl_customer_eqpmt { get; set; }
     }
 }
