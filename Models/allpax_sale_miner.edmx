@@ -23,7 +23,7 @@
           </Key>
           <Property Name="customerCode" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="machineID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="jobNum" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="jobNum" Type="varchar" MaxLength="50" />
           <Property Name="eqpmtType" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
@@ -63,6 +63,13 @@
           <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
+        <EntityType Name="tbl_eqpmt_type_mgmt">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="eqpmtType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="tbl_event_type">
           <Key>
             <PropertyRef Name="id" />
@@ -81,9 +88,6 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6035: The relationship 'FK_tbl_eqpmt_kits_avlbl_tbl_eqpmt_type' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK_tbl_eqpmt_kits_avlbl_tbl_eqpmt_type" />-->
-        <!--Errors Found During Generation:
 warning 6035: The relationship 'FK_tbl_eqpmt_kits_avlbl_tbl_kit' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="FK_tbl_eqpmt_kits_avlbl_tbl_kit" />-->
         <EntityContainer Name="allpax_sale_minerModelStoreContainer">
@@ -93,6 +97,7 @@ warning 6035: The relationship 'FK_tbl_eqpmt_kits_avlbl_tbl_kit' has columns tha
           <EntitySet Name="tbl_eqpmt_kits_avlbl" EntityType="Self.tbl_eqpmt_kits_avlbl" Schema="cmps411" store:Type="Tables" />
           <EntitySet Name="tbl_eqpmt_kits_current" EntityType="Self.tbl_eqpmt_kits_current" Schema="cmps411" store:Type="Tables" />
           <EntitySet Name="tbl_eqpmt_type" EntityType="Self.tbl_eqpmt_type" Schema="cmps411" store:Type="Tables" />
+          <EntitySet Name="tbl_eqpmt_type_mgmt" EntityType="Self.tbl_eqpmt_type_mgmt" Schema="cmps411" store:Type="Tables" />
           <EntitySet Name="tbl_event_type" EntityType="Self.tbl_event_type" Schema="cmps411" store:Type="Tables" />
           <EntitySet Name="tbl_kit" EntityType="Self.tbl_kit" Schema="cmps411" store:Type="Tables" />
         </EntityContainer>
@@ -132,6 +137,7 @@ warning 6035: The relationship 'FK_tbl_eqpmt_kits_avlbl_tbl_kit' has columns tha
           <EntitySet Name="tbl_event_type" EntityType="allpax_sale_minerModel.tbl_event_type" />
           <EntitySet Name="tbl_eqpmt_kits_avlbl" EntityType="allpax_sale_minerModel.tbl_eqpmt_kits_avlbl" />
           <EntitySet Name="tbl_customer_eqpmt" EntityType="allpax_sale_minerModel.tbl_customer_eqpmt" />
+          <EntitySet Name="tbl_eqpmt_type_mgmt" EntityType="allpax_sale_minerModel.tbl_eqpmt_type_mgmt" />
         </EntityContainer>
         <EntityType Name="tbl_kit">
           <Key>
@@ -181,7 +187,14 @@ warning 6035: The relationship 'FK_tbl_eqpmt_kits_avlbl_tbl_kit' has columns tha
           </Key>
           <Property Name="customerCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="machineID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="jobNum" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="jobNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="eqpmtType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="tbl_eqpmt_type_mgmt">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
           <Property Name="eqpmtType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
@@ -271,6 +284,14 @@ warning 6035: The relationship 'FK_tbl_eqpmt_kits_avlbl_tbl_kit' has columns tha
                 <ScalarProperty Name="jobNum" ColumnName="jobNum" />
                 <ScalarProperty Name="machineID" ColumnName="machineID" />
                 <ScalarProperty Name="customerCode" ColumnName="customerCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_eqpmt_type_mgmt">
+            <EntityTypeMapping TypeName="allpax_sale_minerModel.tbl_eqpmt_type_mgmt">
+              <MappingFragment StoreEntitySet="tbl_eqpmt_type_mgmt">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="eqpmtType" ColumnName="eqpmtType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

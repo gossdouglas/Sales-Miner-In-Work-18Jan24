@@ -176,6 +176,7 @@
     <Compile Include="Controllers\CustomerEventController.cs" />
     <Compile Include="Controllers\CustomerMgmtController.cs" />
     <Compile Include="Controllers\EqpmtMgmtController.cs" />
+    <Compile Include="Controllers\EqpmtTypeMgmtController.cs" />
     <Compile Include="Controllers\EventTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KitMgmtController.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Models\tbl_eqpmt_kits_avlbl.cs" />
     <Compile Include="Models\tbl_eqpmt_kits_current.cs" />
     <Compile Include="Models\tbl_eqpmt_type.cs" />
+    <Compile Include="Models\tbl_eqpmt_type_mgmt.cs" />
     <Compile Include="Models\tbl_event_type.cs" />
     <Compile Include="Models\tbl_kit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -426,6 +428,11 @@
     <Content Include="Views\CustomerEqpmtMgmt\Details.cshtml" />
     <Content Include="Views\CustomerEqpmtMgmt\Edit.cshtml" />
     <Content Include="Views\CustomerEqpmtMgmt\Index.cshtml" />
+    <Content Include="Views\EqpmtTypeMgmt\Create.cshtml" />
+    <Content Include="Views\EqpmtTypeMgmt\Delete.cshtml" />
+    <Content Include="Views\EqpmtTypeMgmt\Details.cshtml" />
+    <Content Include="Views\EqpmtTypeMgmt\Edit.cshtml" />
+    <Content Include="Views\EqpmtTypeMgmt\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
