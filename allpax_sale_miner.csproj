@@ -178,6 +178,7 @@
     <Compile Include="Controllers\EventTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KitMgmtController.cs" />
+    <Compile Include="Controllers\KitsAvlblMgmtController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -206,6 +207,7 @@
     <Compile Include="Models\tbl_customer_event.cs">
       <DependentUpon>allpax_sale_miner.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbl_eqpmt_kits_avlbl.cs" />
     <Compile Include="Models\tbl_eqpmt_kits_current.cs" />
     <Compile Include="Models\tbl_eqpmt_type.cs" />
     <Compile Include="Models\tbl_event_type.cs" />
@@ -412,6 +414,11 @@
     <Content Include="Views\EventType\Details.cshtml" />
     <Content Include="Views\EventType\Edit.cshtml" />
     <Content Include="Views\EventType\Index.cshtml" />
+    <Content Include="Views\KitsAvlblMgmt\Create.cshtml" />
+    <Content Include="Views\KitsAvlblMgmt\Delete.cshtml" />
+    <Content Include="Views\KitsAvlblMgmt\Details.cshtml" />
+    <Content Include="Views\KitsAvlblMgmt\Edit.cshtml" />
+    <Content Include="Views\KitsAvlblMgmt\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
