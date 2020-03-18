@@ -21,7 +21,8 @@ namespace allpax_sale_miner.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            //: base("DefaultConnection", throwIfV1Schema: false)
+            : base("allpax_sale_minerEntities", throwIfV1Schema: false)
         {
         }
 
@@ -31,5 +32,7 @@ namespace allpax_sale_miner.Models
         }
 
         public System.Data.Entity.DbSet<allpax_sale_miner.Models.tbl_kit> tbl_kit { get; set; }
+
+        public System.Data.Entity.DbSet<allpax_sale_miner.Models.tbl_event_type> tbl_event_type { get; set; }
     }
 }

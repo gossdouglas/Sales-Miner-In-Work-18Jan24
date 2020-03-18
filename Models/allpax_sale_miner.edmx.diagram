@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="allpax_sale_minerModel.tbl_kit" Width="1.5" PointX="4.5" PointY="0.5" />
         <EntityTypeShape EntityType="allpax_sale_minerModel.tbl_eqpmt_type" Width="1.5" PointX="6.125" PointY="0.5" />
         <EntityTypeShape EntityType="allpax_sale_minerModel.tbl_eqpmt_kits_current" Width="1.5" PointX="7.875" PointY="0.5" />
+        <EntityTypeShape EntityType="allpax_sale_minerModel.tbl_event_type" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
