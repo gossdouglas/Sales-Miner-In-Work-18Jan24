@@ -17,104 +17,55 @@ namespace allpax_sale_miner.Controllers
         // GET: EqpmtTypeMgmt
         public ActionResult Index()
         {
-            return View(db.tbl_eqpmt_type_mgmt.ToList());
+            allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
+            List<tbl_eqpmt_type_mgmt> eqpmtTypeMgmt = entities.tbl_eqpmt_type_mgmt.ToList();
+
+            return View(eqpmtTypeMgmt.ToList());
         }
 
-        // GET: EqpmtTypeMgmt/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbl_eqpmt_type_mgmt tbl_eqpmt_type_mgmt = db.tbl_eqpmt_type_mgmt.Find(id);
-            if (tbl_eqpmt_type_mgmt == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_eqpmt_type_mgmt);
-        }
-
-        // GET: EqpmtTypeMgmt/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: EqpmtTypeMgmt/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //begin CMPS 411 controller code
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "eqpmtType,id")] tbl_eqpmt_type_mgmt tbl_eqpmt_type_mgmt)
+        public ActionResult AddEqpmtType(tbl_eqpmt_type_mgmt eqpmtTypeAdd)
         {
-            if (ModelState.IsValid)
+            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
             {
-                db.tbl_eqpmt_type_mgmt.Add(tbl_eqpmt_type_mgmt);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                entities.tbl_eqpmt_type_mgmt.Add(new tbl_eqpmt_type_mgmt
+                {
+                    eqpmtType = eqpmtTypeAdd.eqpmtType
+                });
+
+
+                entities.SaveChanges();
             }
 
-            return View(tbl_eqpmt_type_mgmt);
+            return new EmptyResult();
         }
 
-        // GET: EqpmtTypeMgmt/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult DeleteEqpmtType(tbl_eqpmt_type_mgmt eqpmtTypeDelete)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbl_eqpmt_type_mgmt tbl_eqpmt_type_mgmt = db.tbl_eqpmt_type_mgmt.Find(id);
-            if (tbl_eqpmt_type_mgmt == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_eqpmt_type_mgmt);
-        }
-
-        // POST: EqpmtTypeMgmt/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "eqpmtType,id")] tbl_eqpmt_type_mgmt tbl_eqpmt_type_mgmt)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(tbl_eqpmt_type_mgmt).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(tbl_eqpmt_type_mgmt);
-        }
-
-        // GET: EqpmtTypeMgmt/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbl_eqpmt_type_mgmt tbl_eqpmt_type_mgmt = db.tbl_eqpmt_type_mgmt.Find(id);
-            if (tbl_eqpmt_type_mgmt == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_eqpmt_type_mgmt);
-        }
-
-        // POST: EqpmtTypeMgmt/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            tbl_eqpmt_type_mgmt tbl_eqpmt_type_mgmt = db.tbl_eqpmt_type_mgmt.Find(id);
+            tbl_eqpmt_type_mgmt tbl_eqpmt_type_mgmt = db.tbl_eqpmt_type_mgmt.Find(eqpmtTypeDelete.id);
             db.tbl_eqpmt_type_mgmt.Remove(tbl_eqpmt_type_mgmt);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
+        public ActionResult UpdateEqpmtType(tbl_eqpmt_type_mgmt eqpmtTypeUpdate)
+        {
+            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
+            {
+                tbl_eqpmt_type_mgmt UpdatedEqpmtType = (from c in entities.tbl_eqpmt_type_mgmt
+                                                where c.id == eqpmtTypeUpdate.id
+                                                select c).FirstOrDefault();
+                UpdatedEqpmtType.eqpmtType = eqpmtTypeUpdate.eqpmtType;
+
+                entities.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
+        //end CMPS 411 controller code
         protected override void Dispose(bool disposing)
         {
             if (disposing)
