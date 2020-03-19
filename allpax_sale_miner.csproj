@@ -433,6 +433,7 @@
     <Content Include="Views\EqpmtTypeMgmt\Details.cshtml" />
     <Content Include="Views\EqpmtTypeMgmt\Edit.cshtml" />
     <Content Include="Views\EqpmtTypeMgmt\Index.cshtml" />
+    <Content Include="Views\KitsAvlblMgmt\Index-Orig.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

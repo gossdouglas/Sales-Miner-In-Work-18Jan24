@@ -14,106 +14,56 @@ namespace allpax_sale_miner.Controllers
     {
         private allpax_sale_minerEntities db = new allpax_sale_minerEntities();
 
-        // GET: KitsAvlblMgmt
         public ActionResult Index()
         {
-            return View(db.tbl_eqpmt_kits_avlbl.ToList());
+            allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
+            List<tbl_eqpmt_kits_avlbl> kitAvlbl = entities.tbl_eqpmt_kits_avlbl.ToList();
+
+            ViewBag.eqpmtType = new SelectList(db.tbl_eqpmt_type_mgmt, "eqpmtType", "eqpmtType");
+            ViewBag.kitID = new SelectList(db.tbl_kit, "kitID", "kitID");
+
+            return View(kitAvlbl.ToList());
         }
 
-        // GET: KitsAvlblMgmt/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbl_eqpmt_kits_avlbl tbl_eqpmt_kits_avlbl = db.tbl_eqpmt_kits_avlbl.Find(id);
-            if (tbl_eqpmt_kits_avlbl == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_eqpmt_kits_avlbl);
-        }
-
-        // GET: KitsAvlblMgmt/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: KitsAvlblMgmt/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //begin CMPS 411 controller code
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "eqpmtType,kitID,id")] tbl_eqpmt_kits_avlbl tbl_eqpmt_kits_avlbl)
+        public ActionResult AddAvlblKit(tbl_eqpmt_kits_avlbl avlblKitAdd)
         {
-            if (ModelState.IsValid)
+            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
             {
-                db.tbl_eqpmt_kits_avlbl.Add(tbl_eqpmt_kits_avlbl);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                entities.tbl_eqpmt_kits_avlbl.Add(new tbl_eqpmt_kits_avlbl()
+                {
+                    eqpmtType = avlblKitAdd.eqpmtType,
+                    kitID = avlblKitAdd.kitID
+                });
+                entities.SaveChanges();
             }
-
-            return View(tbl_eqpmt_kits_avlbl);
+            return RedirectToAction("Index");
         }
 
-        // GET: KitsAvlblMgmt/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult DeleteAvlblKit(tbl_eqpmt_kits_avlbl avlblKitDelete)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbl_eqpmt_kits_avlbl tbl_eqpmt_kits_avlbl = db.tbl_eqpmt_kits_avlbl.Find(id);
-            if (tbl_eqpmt_kits_avlbl == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_eqpmt_kits_avlbl);
-        }
-
-        // POST: KitsAvlblMgmt/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "eqpmtType,kitID,id")] tbl_eqpmt_kits_avlbl tbl_eqpmt_kits_avlbl)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(tbl_eqpmt_kits_avlbl).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(tbl_eqpmt_kits_avlbl);
-        }
-
-        // GET: KitsAvlblMgmt/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbl_eqpmt_kits_avlbl tbl_eqpmt_kits_avlbl = db.tbl_eqpmt_kits_avlbl.Find(id);
-            if (tbl_eqpmt_kits_avlbl == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_eqpmt_kits_avlbl);
-        }
-
-        // POST: KitsAvlblMgmt/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            tbl_eqpmt_kits_avlbl tbl_eqpmt_kits_avlbl = db.tbl_eqpmt_kits_avlbl.Find(id);
+            tbl_eqpmt_kits_avlbl tbl_eqpmt_kits_avlbl = db.tbl_eqpmt_kits_avlbl.Find(avlblKitDelete.id);
             db.tbl_eqpmt_kits_avlbl.Remove(tbl_eqpmt_kits_avlbl);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult UpdateAvlblKit(tbl_eqpmt_kits_avlbl avlblKitUpdate)
+        {
+            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
+            {
+                tbl_eqpmt_kits_avlbl updatedAvlblKit = (from c in entities.tbl_eqpmt_kits_avlbl
+                                                   where c.id == avlblKitUpdate.id
+                                                   select c).FirstOrDefault();
+                updatedAvlblKit.eqpmtType = avlblKitUpdate.eqpmtType;
+                updatedAvlblKit.kitID = avlblKitUpdate.kitID;
+                entities.SaveChanges();
+            }
+
+            return new EmptyResult();
+        }
+        //end CMPS 411 controller code
 
         protected override void Dispose(bool disposing)
         {
