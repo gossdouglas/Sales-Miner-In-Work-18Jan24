@@ -35,7 +35,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>@Html.ActionLink("Kit Management", "index", "kitMgmt")</li>
-                                <li>@Html.ActionLink("Available Kits", "Available Kits", "Available Kits")</li>
+                                <li>@Html.ActionLink("Available Kits", "index", "KitsAvlblMgmt")</li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -44,6 +44,7 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Equipment Type Management", "index", "EqpmtTypeMgmt")</li>
                                 <li>@Html.ActionLink("Equipment Management", "index", "EqpmtMgmt")</li>
                                 <li>@Html.ActionLink("Current Equipment Kits", "index", "CurrentEqpmtKits")</li>
                             </ul>
@@ -55,7 +56,9 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>@Html.ActionLink("Customer Management", "index", "customerMgmt")</li>
+                                <li>@Html.ActionLink("Customer Equipment Management", "index", "CustomerEqpmtMgmt")</li>
                                 <li>@Html.ActionLink("Customer Events", "index", "customerEvent")</li>
+                                <li>@Html.ActionLink("Customer Event Types", "index", "EventType")</li>
                             </ul>
                         </li>
                     </ul>
