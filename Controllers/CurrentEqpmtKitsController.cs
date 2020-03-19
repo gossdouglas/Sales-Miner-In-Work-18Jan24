@@ -20,6 +20,9 @@ namespace allpax_sale_miner.Controllers
             allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
             List<tbl_eqpmt_kits_current> eqpmtKitsCurrent = entities.tbl_eqpmt_kits_current.ToList();
 
+            ViewBag.kitID = new SelectList(db.tbl_kit, "kitID", "kitID");
+
+
             return View(eqpmtKitsCurrent.ToList());
         }
 
@@ -48,6 +51,22 @@ namespace allpax_sale_miner.Controllers
             db.tbl_eqpmt_kits_current.Remove(tbl_eqpmt_kits_current);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult UpdateCurrentEqpmt(tbl_eqpmt_kits_current currentEqpmtUpdate)
+        {
+            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
+            {
+                tbl_eqpmt_kits_current UpdateCurrentEqpmt = (from c in entities.tbl_eqpmt_kits_current
+                                                   where c.id == currentEqpmtUpdate.id
+                                                   select c).FirstOrDefault();
+                UpdateCurrentEqpmt.machineID = currentEqpmtUpdate.machineID;
+                UpdateCurrentEqpmt.kitID = currentEqpmtUpdate.kitID;
+
+                entities.SaveChanges();
+            }
+
+            return new EmptyResult();
         }
 
         //end CMPS 411 controller code
