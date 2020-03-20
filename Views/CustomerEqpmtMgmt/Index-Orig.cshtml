@@ -1,0 +1,52 @@
+﻿@model IEnumerable<allpax_sale_miner.Models.tbl_customer_eqpmt>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.customerCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.machineID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jobNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.eqpmtType)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.machineID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.jobNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.eqpmtType)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

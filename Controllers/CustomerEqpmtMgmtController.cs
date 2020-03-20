@@ -14,107 +14,61 @@ namespace allpax_sale_miner.Controllers
     {
         private allpax_sale_minerEntities db = new allpax_sale_minerEntities();
 
-        // GET: CustomerEqpmtMgmt
+        // GET: CustomerEvent
         public ActionResult Index()
         {
-            return View(db.tbl_customer_eqpmt.ToList());
-        }
+            allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
+            List<tbl_customer_eqpmt> custEqpmt = entities.tbl_customer_eqpmt.ToList();
 
-        // GET: CustomerEqpmtMgmt/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbl_customer_eqpmt tbl_customer_eqpmt = db.tbl_customer_eqpmt.Find(id);
-            if (tbl_customer_eqpmt == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_customer_eqpmt);
-        }
+            ViewBag.customerCode = new SelectList(db.tbl_customer, "customerCode", "customerCode");
+            ViewBag.eqpmtType = new SelectList(db.tbl_eqpmt_type, "eqpmtType", "eqpmtType");
 
-        // GET: CustomerEqpmtMgmt/Create
-        public ActionResult Create()
-        {
-            return View();
+            return View(custEqpmt.ToList());
         }
-
-        // POST: CustomerEqpmtMgmt/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //begin CMPS 411 controller code
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "customerCode,machineID,jobNum,eqpmtType,id")] tbl_customer_eqpmt tbl_customer_eqpmt)
+        public ActionResult AddCustEqpmt(tbl_customer_eqpmt custEqpmtAdd)
         {
-            if (ModelState.IsValid)
+            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
             {
-                db.tbl_customer_eqpmt.Add(tbl_customer_eqpmt);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                entities.tbl_customer_eqpmt.Add(new tbl_customer_eqpmt()
+                {
+                    customerCode = custEqpmtAdd.customerCode,
+                    machineID = custEqpmtAdd.machineID,
+                    jobNum = custEqpmtAdd.jobNum,
+                    eqpmtType = custEqpmtAdd.eqpmtType
+                });
+                entities.SaveChanges();
             }
-
-            return View(tbl_customer_eqpmt);
+            return RedirectToAction("Index");
         }
 
-        // GET: CustomerEqpmtMgmt/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult DeleteCustEqpmt(tbl_customer_eqpmt custEqpmtDelete)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbl_customer_eqpmt tbl_customer_eqpmt = db.tbl_customer_eqpmt.Find(id);
-            if (tbl_customer_eqpmt == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_customer_eqpmt);
-        }
-
-        // POST: CustomerEqpmtMgmt/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "customerCode,machineID,jobNum,eqpmtType,id")] tbl_customer_eqpmt tbl_customer_eqpmt)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(tbl_customer_eqpmt).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(tbl_customer_eqpmt);
-        }
-
-        // GET: CustomerEqpmtMgmt/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbl_customer_eqpmt tbl_customer_eqpmt = db.tbl_customer_eqpmt.Find(id);
-            if (tbl_customer_eqpmt == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_customer_eqpmt);
-        }
-
-        // POST: CustomerEqpmtMgmt/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            tbl_customer_eqpmt tbl_customer_eqpmt = db.tbl_customer_eqpmt.Find(id);
+            tbl_customer_eqpmt tbl_customer_eqpmt = db.tbl_customer_eqpmt.Find(custEqpmtDelete.id);
             db.tbl_customer_eqpmt.Remove(tbl_customer_eqpmt);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
+        public ActionResult UpdateCustEqpmt(tbl_customer_eqpmt custEqpmtUpdate)
+        {
+            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
+            {
+                tbl_customer_eqpmt updatedCustEqpmt = (from c in entities.tbl_customer_eqpmt
+                                                   where c.id == custEqpmtUpdate.id
+                                                   select c).FirstOrDefault();
+                updatedCustEqpmt.customerCode = custEqpmtUpdate.customerCode;
+                updatedCustEqpmt.machineID = custEqpmtUpdate.machineID;
+                updatedCustEqpmt.jobNum = custEqpmtUpdate.jobNum;
+                updatedCustEqpmt.eqpmtType = custEqpmtUpdate.eqpmtType;
+
+                entities.SaveChanges();
+            }
+
+            return new EmptyResult();
+        }
+        //end CMPS 411 controller code
         protected override void Dispose(bool disposing)
         {
             if (disposing)

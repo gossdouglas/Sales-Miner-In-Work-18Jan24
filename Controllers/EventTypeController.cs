@@ -14,110 +14,55 @@ namespace allpax_sale_miner.Controllers
     {
         private allpax_sale_minerEntities db = new allpax_sale_minerEntities();
 
-        // GET: KitMgmt
         public ActionResult Index()
         {
             allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
-            List<tbl_event_type> eventTypeMgmt = entities.tbl_event_type.ToList();
+            List<tbl_event_type> eventType = entities.tbl_event_type.ToList();
 
-            return View(eventTypeMgmt.ToList());
+            return View(eventType.ToList());
         }
 
-        // GET: KitsAvlblMgmt/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbl_event_type tbl_event_type = db.tbl_event_type.Find(id);
-            if (tbl_event_type == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_event_type);
-        }
-
-        // GET: KitsAvlblMgmt/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: KitsAvlblMgmt/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //begin CMPS 411 controller code
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "eventID,eventType,id")] tbl_event_type tbl_event_type)
+        public ActionResult AddEvent(tbl_event_type eventAdd)
         {
-            if (ModelState.IsValid)
+            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
             {
-                db.tbl_event_type.Add(tbl_event_type);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                entities.tbl_event_type.Add(new tbl_event_type()
+                {
+                    eventID = eventAdd.eventID,
+                    eventType = eventAdd.eventType
+                   
+                });
+                entities.SaveChanges();
             }
-
-            return View(tbl_event_type);
+            return RedirectToAction("Index");
         }
 
-        // GET: KitsAvlblMgmt/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult DeleteEvent(tbl_event_type eventDelete)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbl_event_type tbl_event_type = db.tbl_event_type.Find(id);
-            if (tbl_event_type == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_event_type);
-        }
-
-        // POST: KitsAvlblMgmt/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "eventID,eventType,id")] tbl_event_type tbl_event_type)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(tbl_event_type).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(tbl_event_type);
-        }
-
-        // GET: KitsAvlblMgmt/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbl_event_type tbl_event_type = db.tbl_event_type.Find(id);
-            if (tbl_event_type == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbl_event_type);
-        }
-
-        // POST: KitsAvlblMgmt/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            tbl_event_type tbl_event_type = db.tbl_event_type.Find(id);
+            tbl_event_type tbl_event_type = db.tbl_event_type.Find(eventDelete.id);
             db.tbl_event_type.Remove(tbl_event_type);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
+        public ActionResult UpdateEvent(tbl_event_type eventUpdate)
+        {
+            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
+            {
+                tbl_event_type updatedEvent = (from c in entities.tbl_event_type
+                                                   where c.id == eventUpdate.id
+                                                   select c).FirstOrDefault();
+                updatedEvent.eventID = eventUpdate.eventID;
+                updatedEvent.eventType = eventUpdate.eventType;
+               
+                entities.SaveChanges();
+            }
+
+            return new EmptyResult();
+        }
+        //end CMPS 411 controller code
         protected override void Dispose(bool disposing)
         {
             if (disposing)

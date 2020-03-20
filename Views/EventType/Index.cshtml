@@ -5,36 +5,248 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+            $(document).ready(function () {//begin document read jquery statements
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.eventID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.eventType)
-        </th>
-        <th></th>
-    </tr>
+                //begin when a record class is clicked...
+               $(".record").on('click keyup change', function () {
+                selectedItem0 = $(this).attr("id");//works
+                selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
+                selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.eventID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.eventType)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+                $("#slctd_id").val(selectedItem0);
+                $("#slctd_eventID").val(selectedItem1);
+                $("#slctd_eventType").val(selectedItem2);
 
-</table>
+            });
+            //end when a record class is clicked...
+
+            $(".btn.btn-primary.editButton").click(function () {//when a record's edit button is clicked...
+                $(this).parent().find(".editButton").hide();
+                $(this).parent().find(".updateButton").show();
+                $(this).parent().find(".deleteButton").hide();
+                $(this).parent().find(".cancelButton").show();
+
+                $(this).parent().parent().css("background-color", "gainsboro");//change bkgnd color
+                $(this).parent().parent().attr("contenteditable", "true");//set all <td> in the record to editable
+                $(this).parent().parent().find("#record_item0").attr("contenteditable", "false");//set the id <td> to not editable
+                $(this).parent().parent().find(".cancelButton").css("background-color", "indianred");//change cancel buttn clr after edit is clicked
+                $(this).parent().parent().find(".cancelButton").css("border", "indianred");//change cancel buttn clr after edit is clicked
+                $(this).parent().parent().find(".updateButton").css("background-color", "steelblue");//change cancel buttn clr after edit is clicked
+                $(this).parent().parent().find(".updateButton").css("border", "steelblue");//change cancel buttn clr after edit is clicked
+
+            });
+            $(".btn.btn-primary.cancelButton").click(function () {//when a record's edit button is clicked...
+                $(this).parent().find(".editButton").show();
+                $(this).parent().find(".updateButton").hide();
+                $(this).parent().find(".deleteButton").show();
+                $(this).parent().find(".cancelButton").hide();
+                $(this).parent().find(".confirmButton").hide();
+
+                $(this).parent().parent().css("background-color", "transparent");
+                $(this).parent().parent().attr("contenteditable", "false");
+            });
+            $(".btn.btn-primary.deleteButton").click(function () {//when a record's edit button is clicked...
+                $(this).parent().find(".editButton").hide();
+                $(this).parent().find(".updateButton").hide();
+                $(this).parent().find(".deleteButton").hide();
+                $(this).parent().find(".cancelButton").show();
+                $(this).parent().find(".confirmButton").show();
+
+                $(this).parent().parent().css("background-color", "gainsboro");//change bkgnd color
+                $(this).parent().parent().attr("contenteditable", "false");
+                $(this).parent().parent().find(".cancelButton").css("background-color", "indianred");//change cancel buttn clr after delete is clicked
+                $(this).parent().parent().find(".cancelButton").css("border", "indianred");//change cancel buttn clr after edit is clicked
+                $(this).parent().parent().find(".confirmButton").css("background-color", "steelblue");//change confirm buttn color after delete is clicked
+                $(this).parent().parent().find(".confirmButton").css("border", "steelblue");
+            });
+
+            //begin #addButton
+            $("#addButton").click(function () {//when the add button is clicked...
+                var addItem1 = $("#addRecordItem1").val();
+                var addItem2 = $("#addRecordItem2").val();
+
+                alert(
+                    "Selected for Add POST:" + '\n' +
+                    "addItem1: " + addItem1 + '\n' +
+                    "addItem2: " + addItem2 + '\n' 
+                );
+                $("#addRecordItem1").val('');
+                $("#addRecordItem2").val('');
+                //begin axios add post
+
+                axios.post('/EventType/AddEvent', {
+                    eventID: addItem1,
+                    eventType: addItem2
+                })
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+                //end axios add post
+            });
+            //end #addButton
+
+                //begin confirm edit record
+                $(".btn.btn-primary.updateButton").click(function () {//when a record's edit button is clicked...
+                    $(this).hide();
+                    $(this).parent().find(".updateButton").hide();
+                    $(this).parent().find(".editButton").show();
+                    $(this).parent().find(".deleteButton").hide();
+                    $(this).parent().find(".cancelButton").show();
+
+                    $(this).parent().parent().attr("contenteditable", "false");
+
+                    $(this).parent().parent().css("background-color", "transparent");
+                    $(this).parent().parent().find(".cancelButton").css("background-color","royalblue");//change cancel button color after update is clicked
+                    $(this).parent().find(".cancelButton").hide();
+                    $(this).parent().find(".deleteButton").show();
+
+                    var editItem0 = $("#slctd_id").val();
+                    var editItem1 = $("#slctd_eventID").val();
+                    var editItem2 = $("#slctd_eventType").val();
+
+                    alert(
+                        "Selected for Edit POST:" + '\n' +
+                        "editItem0: " + editItem0 + '\n' +
+                        "editItem1: " + editItem1 + '\n' +
+                        "editItem2: " + editItem2 + '\n'
+                    );
+
+                     //begin axios add post
+                    axios.post('/EventType/UpdateEvent', {
+                        id: editItem0,
+                        eventID: editItem1,
+                        eventType: editItem2
+
+                    })
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                    //end axios add post
+
+                });
+                //end confirm edit record
+
+            //begin axios confirm delete record
+                $(".btn.btn-primary.confirmButton").click(function () {//when a record's delete button is clicked...
+
+                alert(
+                    "Selected for DELETE:" + '\n' +
+                    "id: " + selectedItem0 + '\n' +
+                    "eventID: " + selectedItem1 + '\n' +
+                    "eventType: " + selectedItem2 + '\n' 
+                );
+
+                axios.post('/EventType/DeleteEvent', {
+                    id: selectedItem0,
+                })
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+            });
+            //end axios confirm delete record
+
+        });//end document read jquery statements
+    </script>
+</head>
+<style>
+    div.scroll {
+        width: auto;
+        height: 450px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: 0px;
+    }
+
+    div.row {
+        width: auto;
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: 0px;
+    }
+
+    .form-group {
+        margin: 5px;
+    }
+</style>
+
+<style>
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Customer Event Type</h4>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="addRecordItem1">Event ID</label>
+                    <input type="text" class="form-control" id="addRecordItem1" placeholder="" value="test add">
+                </div>
+                <div class="form-group">
+                    <label for="addRecordItem2">Event Type</label>
+                    <input type="text" class="form-control" id="addRecordItem2" placeholder="" value="test add">
+                </div>
+                <button type="submit" class="btn btn-primary" id="addButton" style="background-color: royalblue">Add</button>
+            </form><hr />
+        </div>
+    </div>
+    <!--table begin-->
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th width="5%" scope="col">ID</th>
+                    <th width="14%" scope="col">Event ID</th>
+                    <th width="31%" scope="col">Event Type</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+        </table>
+        <div class="scroll">
+            <table class="table table-hover">
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
+                            <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
+                            <td id="record_item1" value=@Html.DisplayFor(modelItem => item.eventID)>@Html.DisplayFor(modelItem => item.eventID)</td>
+                            <td id="record_item2" value=@Html.DisplayFor(modelItem => item.eventType)>@Html.DisplayFor(modelItem => item.eventType)</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm editButton" style=" background-color: royalblue">Edit</button>
+                                <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
+                                <button class="btn btn-primary btn-sm deleteButton" style=" background-color: royalblue">Delete</button>
+                                <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
+                                <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--table end-->
+    <!--click event begin-->
+    <div>
+        <div class="row">
+            <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
+            <div class="col-md-2">Event ID: <input type="text" id="slctd_eventID" value="slctd_eventID"></div>
+            <div class="col-md-2">Event Type: <input type="text" id="slctd_eventType" value="slctd_eventType"></div>
+        </div>
+    </div>
+    <!--click event end-->
+</div>
