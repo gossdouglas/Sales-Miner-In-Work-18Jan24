@@ -85,35 +85,33 @@
 
     </nav>
     <!--/.Navbar-->
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - MDB in ASP.NET</p>
-        </footer>
+    @*<div class="container body-content">*@
+    <div class="">
+      @RenderBody()
+      <hr />
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
 
-    <!-- jQuery -->
-    <script type="text/javascript" src="~/Content/MDBootstrap/js/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="~/Content/MDBootstrap/js/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="~/Content/MDBootstrap/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="~/Content/MDBootstrap/js/mdb.min.js"></script>
-    <!-- Your custom scripts (optional) -->
-    <script type="text/javascript"></script>
-    <!-- MDBootstrap Datatables  -->
-    <script type="text/javascript" src="~/Content/MDBootstrap/js/addons/datatables.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#dtBasicExample').DataTable();
-            $('.dataTables_length').addClass('bs-select');
-        });
-    </script>
+        <!-- jQuery -->
+        <script type="text/javascript" src="~/Content/MDBootstrap/js/jquery.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="~/Content/MDBootstrap/js/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="~/Content/MDBootstrap/js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="~/Content/MDBootstrap/js/mdb.min.js"></script>
+        <!-- Your custom scripts (optional) -->
+        <script type="text/javascript"></script>
+        <!-- MDBootstrap Datatables  -->
+        <script type="text/javascript" src="~/Content/MDBootstrap/js/addons/datatables.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dtBasicExample').DataTable();
+                $('.dataTables_length').addClass('bs-select');
+            });
+        </script>
 </body>
 </html>
