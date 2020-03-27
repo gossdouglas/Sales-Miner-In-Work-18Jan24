@@ -15,25 +15,14 @@ namespace allpax_sale_miner.Controllers
         private allpax_sale_minerEntities db = new allpax_sale_minerEntities();
 
         // GET: CustomerMgmt
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index()
         {
             allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
             List<tbl_customer> custMgmt = entities.tbl_customer.ToList();
-            ViewBag.CCodeSortParm = sortOrder == "customerCode" ? "customerCode" : "CCode";
-            var customers = from c in db.tbl_customer
-                            select c;
-            switch (sortOrder)
-            {
-                case "customerCode":
-                    customers = customers.OrderBy(c => c.customerCode);
-                    break;
-                case "CCode":
-                    customers = customers.OrderBy(c => c.customerCode);
-                    break;
-            }
-            
+
             return View(custMgmt.ToList());
-        }        
+        }
+                  
         //begin CMPS 411 controller code
         [HttpPost]
         public ActionResult AddCustomer(tbl_customer customerAdd)
