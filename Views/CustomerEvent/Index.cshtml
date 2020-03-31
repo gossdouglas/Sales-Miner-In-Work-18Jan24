@@ -15,7 +15,7 @@
                 $(".record").click(function () {
                    
                     selectedItem0 = $(this).attr("id");//works
-                    selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
+                    selectedItem1 = $(this).find("#record_item1" + "|" + "record_item2").html();//works valid for inner html only
                     selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
                     selectedItem3 = $(this).find("#record_item3").html();//works valid for inner html only
                     selectedItem4 = $(this).find("#record_item4").html();//works valid for inner html only
@@ -23,7 +23,7 @@
 
 
                     $("#slctd_id").val(selectedItem0);
-                    $("#slctd_customerCode").val(selectedItem1);
+                    $("#slctd_customerCode").val(selectedItem1 + "|" + selectedItem2); //concatenate customerCode and eventID when displaying records
                     $("#slctd_eventID").val(selectedItem2);
                     $("#slctd_eventType").val(selectedItem3);
                     $("#slctd_startDate").val(selectedItem4);
@@ -73,7 +73,7 @@
 
                 //begin #addButton
                 $("#addButton").click(function () {//when the add button is clicked...
-                    var addItem1 = $("#addRecordItem1").val();
+                    var addItem1 = $("#addRecordItem1" + "|" + "#addRecordItem2").val(); //concatenate customerCode and EventID when creating new records
                     var addItem2 = $("#addRecordItem2").val();
                     var addItem3 = $("#addRecordItem3").val();
                     var addItem4 = $("#addRecordItem4").val();
@@ -87,7 +87,7 @@
                         "addItem4: " + addItem4 + '\n' +
                         "addItem5: " + addItem5 + '\n'
                     );
-                    $("#addRecordItem1").val('');
+                    $("#addRecordItem1" + "|" + "#addRecordItem2").val('');
                     $("#addRecordItem2").val('');
                     $("#addRecordItem3").val('');
                     $("#addRecordItem4").val('');
@@ -127,7 +127,7 @@
                     $(this).parent().find(".deleteButton").show();
 
                     var editItem0 = $("#slctd_id").val();
-                    var editItem1 = $("#slctd_customerCode").val();
+                    var editItem1 = $("#slctd_customerCode" + "|" + "#slctd_eventID").val(); //concatenate customerCode and EventID
                     var editItem2 = $("#slctd_eventID").val();
                     var editItem3 = $("#slctd_eventType").val();
                     var editItem4 = $("#slctd_startDate").val();
@@ -186,8 +186,8 @@
 
                 });
                 //end axios confirm delete record
-
             });//end document read jquery statements
+            
         </script>
     </head>
 <style>
@@ -221,6 +221,7 @@
                 </div>
                 <div class="form-group">
                     <label for="addRecordItem2">Event ID</label>
+
                     <input type="text" class="form-control" id="addRecordItem2" placeholder="Event ID" value="">
                 </div>
                 <div class="form-group">
