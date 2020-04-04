@@ -21,7 +21,7 @@ namespace allpax_sale_miner.Controllers
             List<tbl_customer_eqpmt> custEqpmt = entities.tbl_customer_eqpmt.ToList();
 
             ViewBag.customerCode = new SelectList(db.tbl_customer, "customerCode", "customerCode");
-            ViewBag.eqpmtType = new SelectList(db.tbl_eqpmt_type, "eqpmtType", "eqpmtType");
+            ViewBag.eqpmtType = new SelectList(db.tbl_eqpmt_type_mgmt, "eqpmtType", "eqpmtType");
 
             return View(custEqpmt.ToList());
         }
