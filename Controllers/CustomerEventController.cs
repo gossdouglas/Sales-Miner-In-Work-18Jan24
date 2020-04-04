@@ -21,6 +21,7 @@ namespace allpax_sale_miner.Controllers
             List<tbl_customer_event> custEvent = entities.tbl_customer_event.ToList();
 
             ViewBag.customerCode = new SelectList(db.tbl_customer, "customerCode", "customerCode");
+            ViewBag.eventID = new SelectList(db.tbl_event_type, "eventID", "eventID");
 
             return View(custEvent.ToList());
         }
