@@ -19,7 +19,6 @@
     <link href="~/Content/MDBootstrap/css/addons/datatables.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="" rel="stylesheet">
-  
 
 
     @*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>//works, but causes the nav dpdowns to die.*@
@@ -47,38 +46,41 @@
                 aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
+        
         <!-- Collapsible content -->
         <div class="collapse navbar-collapse" id="basicExampleNav">
             <!-- Links -->
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="/KitMgmt">Kit Mgmt</a>
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">Kit</a>
+                    <div class="dropdown-menu dropdown-primary">
+                        <a class="dropdown-item disabled" href="#">Kit Management-causes a dpdwn fail</a>
+                        <a class="dropdown-item" href="/KitsAvlblMgmt">Kits Available</a>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/KitsAvlblMgmt">Kits Available</a>
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">Equipment</a>
+                    <div class="dropdown-menu dropdown-primary">
+                        <a class="dropdown-item" href="/EqpmtTypeMgmt">Equipment Type Management</a>
+                        <a class="dropdown-item" href="/EqpmtMgmt">Equipment Management</a>
+                        <a class="dropdown-item disabled" href="#">CurrentEqpmtKits-causes a fail</a>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/EqpmtTypeMgmt">Equipment Type Management</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/EqpmtMgmt">Equipment Management</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/CurrentEqpmtKits">Current Eqpmt Kits</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/customerMgmt">Customers</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/CustomerEqpmtMgmt">Customer Equipment</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/EventType">Event Types</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/customerEvent">Customer Events</a>
-                </li>               
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">Customer</a>
+                    <div class="dropdown-menu dropdown-primary">
+                        <a class="dropdown-item" href="/customerMgmt">Customers</a>
+                        <a class="dropdown-item" href="/CustomerEqpmtMgmt">Customer Equipment</a>
+                        <a class="dropdown-item " href="/EventType">Event Types</a>
+                        <a class="dropdown-item disabled" href="/customerEvent">Customer Events-fails</a>
+                    </div>
+                </li>                            
             </ul>
             <!-- Links -->
         </div>
@@ -87,32 +89,32 @@
     </nav>
     <!--/.Navbar-->
     <div class="container body-content">
-
-        @RenderBody()
-        <hr />
+    
+      @RenderBody()
+      <hr />
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
 
-    <!-- jQuery -->
-    <script type="text/javascript" src="~/Content/MDBootstrap/js/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="~/Content/MDBootstrap/js/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="~/Content/MDBootstrap/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="~/Content/MDBootstrap/js/mdb.min.js"></script>
-    <!-- Your custom scripts (optional) -->
-    <script type="text/javascript"></script>
-    <!-- MDBootstrap Datatables  -->
-    <script type="text/javascript" src="~/Content/MDBootstrap/js/addons/datatables.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#dtBasicExample').DataTable();
-            $('.dataTables_length').addClass('bs-select');
-        });
-    </script>
+        <!-- jQuery -->
+        <script type="text/javascript" src="~/Content/MDBootstrap/js/jquery.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="~/Content/MDBootstrap/js/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="~/Content/MDBootstrap/js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="~/Content/MDBootstrap/js/mdb.min.js"></script>
+        <!-- Your custom scripts (optional) -->
+        <script type="text/javascript"></script>
+        <!-- MDBootstrap Datatables  -->
+        <script type="text/javascript" src="~/Content/MDBootstrap/js/addons/datatables.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dtBasicExample').DataTable();
+                $('.dataTables_length').addClass('bs-select');
+            });
+        </script>
 </body>
 </html>

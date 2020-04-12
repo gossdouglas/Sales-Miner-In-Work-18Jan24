@@ -7,11 +7,13 @@
 
     <head>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <!-- JQuery -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script>
             $(document).ready(function () {//begin document read jquery statements
 
                 //begin when a record class is clicked...
-               $(".record").on('click keyup change', function () {
+                $(".record").on('click keyup change', function () {
                     selectedItem0 = $(this).attr("id");//works
                     selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
                     selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
@@ -28,7 +30,7 @@
                     $("#slctd_state").val(selectedItem5);
                     $("#slctd_zipCode").val(selectedItem6);
                 });
-                //end when a record class is clicked...                
+                //end when a record class is clicked...
                 $(".btn.btn-primary.editButton").click(function () {//when a record's edit button is clicked...
                     $(this).parent().find(".editButton").hide();
                     $(this).parent().find(".updateButton").show();
@@ -129,8 +131,8 @@
                         "editItem6: " + editItem6 + '\n'
                     );
 
-                     //begin axios add post
-                    axios.post('/CustomerMgmt/UpdateCustomer', {                        
+                    //begin axios add post
+                    axios.post('/CustomerMgmt/UpdateCustomer', {
                         id: editItem0,
                         customerCode: editItem1,
                         name: editItem2,
