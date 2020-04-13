@@ -288,50 +288,7 @@
                 </form><hr />
             </div>
         </div>
-        <!--end inline add-->
-        <!--table begin-->
-        @*<div class="row">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th width="4%" scope="col">ID</th>
-                        <th width="4%" scope="col">Customer Code</th>
-                        <th width="27%" scope="col">Name</th>
-                        <th width="23%" scope="col">Address</th>
-                        <th width="13%" scope="col">City</th>
-                        <th width="5%" scope="col">State</th>
-                        <th width="7%" scope="col">Zip Code</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-            </table>
-            <div class="scroll">
-                <table class="table table-hover">
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
-                                <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
-                                <td id="record_item1" value=@Html.DisplayFor(modelItem => item.customerCode)>@Html.DisplayFor(modelItem => item.customerCode)</td>
-                                <td id="record_item2" value=@Html.DisplayFor(modelItem => item.name)>@Html.DisplayFor(modelItem => item.name)</td>
-                                <td id="record_item3" value=@Html.DisplayFor(modelItem => item.address)>@Html.DisplayFor(modelItem => item.address)</td>
-                                <td id="record_item4" value=@Html.DisplayFor(modelItem => item.city)>@Html.DisplayFor(modelItem => item.city)</td>
-                                <td id="record_item5" value=@Html.DisplayFor(modelItem => item.state)>@Html.DisplayFor(modelItem => item.state)</td>
-                                <td id="record_item6" value=@Html.DisplayFor(modelItem => item.zipCode)>@Html.DisplayFor(modelItem => item.zipCode)</td>
-                                <td>
-                                    <button class="btn btn-primary btn-sm editButton">Edit</button>
-                                    <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
-                                    <button class="btn btn-primary btn-sm deleteButton">Delete</button>
-                                    <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
-                                    <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>*@
-        <!--table end-->
+        <!--end inline add-->       
         <!--click event begin-->
         <div>
             <div class="row">
@@ -396,7 +353,7 @@
                             </td>
                         </tr>
                     }
-</table>
+            </table>
         </div>
         <!-- End your project here-->
     </div>

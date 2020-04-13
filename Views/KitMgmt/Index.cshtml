@@ -5,88 +5,89 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
             $(document).ready(function () {//begin document read jquery statements
-
+                $('#dtBasicExample2').DataTable();
+                $('.dataTables_length').addClass('bs-select');
                 //begin when a record class is clicked...
-               $(".record").on('click keyup change', function () {
-                selectedItem0 = $(this).attr("id");//works
-                selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
-                selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
-                selectedItem3 = $(this).find("#record_item3").html();//works valid for inner html only
+                $(".record").on('click keyup change', function () {
+                    selectedItem0 = $(this).attr("id");//works
+                    selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
+                    selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
+                    selectedItem3 = $(this).find("#record_item3").html();//works valid for inner html only
 
 
-                $("#slctd_id").val(selectedItem0);
-                $("#slctd_kitID").val(selectedItem1);
-                $("#slctd_description").val(selectedItem2);
-                $("#slctd_filePath").val(selectedItem3);
+                    $("#slctd_id").val(selectedItem0);
+                    $("#slctd_kitID").val(selectedItem1);
+                    $("#slctd_description").val(selectedItem2);
+                    $("#slctd_filePath").val(selectedItem3);
 
-            });
-            //end when a record class is clicked...
+                });
+                //end when a record class is clicked...
 
-            $(".btn.btn-primary.editButton").click(function () {//when a record's edit button is clicked...
-                $(this).parent().find(".editButton").hide();
-                $(this).parent().find(".updateButton").show();
-                $(this).parent().find(".deleteButton").hide();
-                $(this).parent().find(".cancelButton").show();
+                $(".btn.btn-primary.editButton").click(function () {//when a record's edit button is clicked...
+                    $(this).parent().find(".editButton").hide();
+                    $(this).parent().find(".updateButton").show();
+                    $(this).parent().find(".deleteButton").hide();
+                    $(this).parent().find(".cancelButton").show();
 
-                $(this).parent().parent().css("background-color", "powderblue");//change bkgnd color
-                $(this).parent().parent().attr("contenteditable", "true");//set all <td> in the record to editable
-                $(this).parent().parent().find("#record_item0").attr("contenteditable", "false");//set the id <td> to not editable
-            });
-            $(".btn.btn-primary.cancelButton").click(function () {//when a record's edit button is clicked...
-                $(this).parent().find(".editButton").show();
-                $(this).parent().find(".updateButton").hide();
-                $(this).parent().find(".deleteButton").show();
-                $(this).parent().find(".cancelButton").hide();
-                $(this).parent().find(".confirmButton").hide();
+                    $(this).parent().parent().css("background-color", "powderblue");//change bkgnd color
+                    $(this).parent().parent().attr("contenteditable", "true");//set all <td> in the record to editable
+                    $(this).parent().parent().find("#record_item0").attr("contenteditable", "false");//set the id <td> to not editable
+                });
+                $(".btn.btn-primary.cancelButton").click(function () {//when a record's edit button is clicked...
+                    $(this).parent().find(".editButton").show();
+                    $(this).parent().find(".updateButton").hide();
+                    $(this).parent().find(".deleteButton").show();
+                    $(this).parent().find(".cancelButton").hide();
+                    $(this).parent().find(".confirmButton").hide();
 
-                $(this).parent().parent().css("background-color", "transparent");
-                $(this).parent().parent().attr("contenteditable", "false");
-            });
-            $(".btn.btn-primary.deleteButton").click(function () {//when a record's edit button is clicked...
-                $(this).parent().find(".editButton").hide();
-                $(this).parent().find(".updateButton").hide();
-                $(this).parent().find(".deleteButton").hide();
-                $(this).parent().find(".cancelButton").show();
-                $(this).parent().find(".confirmButton").show();
-            });
+                    $(this).parent().parent().css("background-color", "transparent");
+                    $(this).parent().parent().attr("contenteditable", "false");
+                });
+                $(".btn.btn-primary.deleteButton").click(function () {//when a record's edit button is clicked...
+                    $(this).parent().find(".editButton").hide();
+                    $(this).parent().find(".updateButton").hide();
+                    $(this).parent().find(".deleteButton").hide();
+                    $(this).parent().find(".cancelButton").show();
+                    $(this).parent().find(".confirmButton").show();
+                });
 
-            //begin #addButton
-            $("#addButton").click(function () {//when the add button is clicked...
-                var addItem1 = $("#addRecordItem1").val();
-                var addItem2 = $("#addRecordItem2").val();
-                var addItem3 = $("#addRecordItem3").val();
+                //begin #addButton
+                $("#addButton").click(function () {//when the add button is clicked...
+                    var addItem1 = $("#addRecordItem1").val();
+                    var addItem2 = $("#addRecordItem2").val();
+                    var addItem3 = $("#addRecordItem3").val();
 
-                alert(
-                    "Selected for Add POST:" + '\n' +
-                    "addItem1: " + addItem1 + '\n' +
-                    "addItem2: " + addItem2 + '\n' +
-                    "addItem3: " + addItem3 + '\n'
-                );
-                $("#addRecordItem1").val('');
-                $("#addRecordItem2").val('');
-                $("#addRecordItem3").val('');
-                //begin axios add post
+                    alert(
+                        "Selected for Add POST:" + '\n' +
+                        "addItem1: " + addItem1 + '\n' +
+                        "addItem2: " + addItem2 + '\n' +
+                        "addItem3: " + addItem3 + '\n'
+                    );
+                    $("#addRecordItem1").val('');
+                    $("#addRecordItem2").val('');
+                    $("#addRecordItem3").val('');
+                    //begin axios add post
 
-                axios.post('/KitMgmt/AddKit', {
-                    kitID: addItem1,
-                    description: addItem2,
-                    filePath: addItem3,
-                })
-                    .then(function (response) {
-                        console.log(response);
+                    axios.post('/KitMgmt/AddKit', {
+                        kitID: addItem1,
+                        description: addItem2,
+                        filePath: addItem3,
                     })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
 
-                //end axios add post
-            });
-            //end #addButton
+                    //end axios add post
+                });
+                //end #addButton
 
                 //begin confirm edit record
                 $(".btn.btn-primary.updateButton").click(function () {//when a record's edit button is clicked...
@@ -112,13 +113,13 @@
                         "editItem3: " + editItem3 + '\n'
                     );
 
-                     //begin axios add post
-                    axios.post('/KitMgmt/UpdateKit', {                        
+                    //begin axios add post
+                    axios.post('/KitMgmt/UpdateKit', {
                         id: editItem0,
                         kitID: editItem1,
                         description: editItem2,
                         filePath: editItem3,
-                       
+
                     })
                         .then(function (response) {
                             console.log(response);
@@ -130,32 +131,44 @@
                 });
                 //end confirm edit record
 
-            //begin axios confirm delete record
-            $(".btn.btn-primary.confirmButton").click(function () {//when a record's delete button is clicked...
-                alert(
-                    "Selected for DELETE:" + '\n' +
-                    "id: " + selectedItem0 + '\n' +
-                    "kitID: " + selectedItem1 + '\n' +
-                    "description: " + selectedItem2 + '\n' +
-                    "filePath: " + selectedItem3 + '\n'
-                );
+                //begin axios confirm delete record
+                $(".btn.btn-primary.confirmButton").click(function () {//when a record's delete button is clicked...
+                    alert(
+                        "Selected for DELETE:" + '\n' +
+                        "id: " + selectedItem0 + '\n' +
+                        "kitID: " + selectedItem1 + '\n' +
+                        "description: " + selectedItem2 + '\n' +
+                        "filePath: " + selectedItem3 + '\n'
+                    );
 
-                axios.post('/KitMgmt/DeleteKit', {
-                    id: selectedItem0,
-                })
-                    .then(function (response) {
-                        console.log(response);
+                    axios.post('/KitMgmt/DeleteKit', {
+                        id: selectedItem0,
                     })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
 
-            });
-            //end axios confirm delete record
+                });
+                //end axios confirm delete record
 
-        });//end document read jquery statements
-    </script>
-</head>
+            });//end document read jquery statements
+        </script>
+        <!--md bootstrap additions begin-->
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <!-- Bootstrap core CSS -->
+        <link href="~/Content/bootstrap.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="~/Content/mdb.min.css" rel="stylesheet">
+        <!-- MDBootstrap Datatables  -->
+        <link href="~/Content/MDBootstrap/css/addons/datatables.min.css" rel="stylesheet">
+        <!-- Your custom styles (optional) -->
+        <link href="" rel="stylesheet">
+
+    </head>
 <style>
     div.scroll {
         width: auto;
@@ -181,6 +194,7 @@
 </style>
 
 <div class="container">
+    <!--begin inline add-->
     <div class="row">
         <div class="col-md-12">
             <h4>Kit Management</h4>
@@ -201,43 +215,7 @@
             </form><hr />
         </div>
     </div>
-    <!--table begin-->
-    <div class="row">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th width="5%" scope="col">ID</th>
-                    <th width="14%" scope="col">Kit ID</th>
-                    <th width="31%" scope="col">Description</th>
-                    <th width="31%" scope="col">File Path</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-        </table>
-        <div class="scroll">
-            <table class="table table-hover">
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
-                            <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
-                            <td id="record_item1" value=@Html.DisplayFor(modelItem => item.kitID)>@Html.DisplayFor(modelItem => item.kitID)</td>
-                            <td id="record_item2" value=@Html.DisplayFor(modelItem => item.description)>@Html.DisplayFor(modelItem => item.description)</td>
-                            <td id="record_item3" value=@Html.DisplayFor(modelItem => item.filePath)>@Html.DisplayFor(modelItem => item.filePath)</td>
-                            <td>
-                                <button class="btn btn-primary btn-sm editButton">Edit</button>
-                                <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
-                                <button class="btn btn-primary btn-sm deleteButton">Delete</button>
-                                <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
-                                <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <!--table end-->
+    <!--end inline add-->
     <!--click event begin-->
     <div>
         <div class="row">
@@ -248,4 +226,48 @@
         </div>
     </div>
     <!--click event end-->
+    <!--table begin-->
+    <!-- Start your project here-->
+    <div style="height: 100vh">
+        <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th class="th-sm">
+                        ID
+                    </th>
+                    <th class="th-sm">
+                        Kit ID
+                    </th>
+                    <th class="th-sm">
+                        Description
+                    </th>
+                    <th class="th-sm">
+                        File Path
+                    </th>
+                    <th class="th-sm">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
+                        <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
+                        <td id="record_item1" value=@Html.DisplayFor(modelItem => item.kitID)>@Html.DisplayFor(modelItem => item.kitID)</td>
+                        <td id="record_item2" value=@Html.DisplayFor(modelItem => item.description)>@Html.DisplayFor(modelItem => item.description)</td>
+                        <td id="record_item3" value=@Html.DisplayFor(modelItem => item.filePath)>@Html.DisplayFor(modelItem => item.filePath)</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm editButton">Edit</button>
+                            <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
+                            <button class="btn btn-primary btn-sm deleteButton">Delete</button>
+                            <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
+                            <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
+                        </td>
+                    </tr>
+                }
+        </table>
+    </div>
+    <!-- End your project here-->
+    <!--table end-->
 </div>
