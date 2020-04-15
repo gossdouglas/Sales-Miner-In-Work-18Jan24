@@ -110,8 +110,9 @@
     <script type="text/javascript" src="~/Content/MDBootstrap/js/addons/datatables.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#dtBasicExample').DataTable();
-            $('#dtBasicExample2').DataTable();
+            $('#dtBasicExample').DataTable({
+                "searching": false // false to disable search (or any other option)
+            });
             $('.dataTables_length').addClass('bs-select');
         });
     </script>
