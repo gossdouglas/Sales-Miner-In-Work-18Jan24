@@ -546,6 +546,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_Layout-orig.cshtml" />
     <Content Include="Views\Shared\_Layout-tshting mdbootstrap.cshtml" />
+    <Content Include="Views\EqpmtTypeMgmt\Index-bkup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
