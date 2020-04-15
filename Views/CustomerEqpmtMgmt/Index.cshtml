@@ -245,6 +245,7 @@
                 <tr>
                     <th width="5%" scope="col">ID</th>
                     <th width="14%" scope="col">Customer Code</th>
+                    <th width="14%" scope="col">Customer Code</th>
                     <th width="31%" scope="col">Machine ID</th>
                     <th width="31%" scope="col">Job Number</th>
                     <th width="31%" scope="col">Equipment Type</th>
@@ -257,20 +258,21 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
-                            <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
-                            <td id="record_item1" value=@Html.DisplayFor(modelItem => item.customerCode)>@Html.DisplayFor(modelItem => item.customerCode)</td>
-                            <td id="record_item2" value=@Html.DisplayFor(modelItem => item.machineID)>@Html.DisplayFor(modelItem => item.machineID)</td>
-                            <td id="record_item3" value=@Html.DisplayFor(modelItem => item.jobNum)>@Html.DisplayFor(modelItem => item.jobNum)</td>
-                            <td id="record_item4" value=@Html.DisplayFor(modelItem => item.eqpmtType)>@Html.DisplayFor(modelItem => item.eqpmtType)</td>
-                            <td>
-                                <button class="btn btn-primary btn-sm editButton" style=" background-color: royalblue">Edit</button>
-                                <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
-                                <button class="btn btn-primary btn-sm deleteButton" style=" background-color: royalblue">Delete</button>
-                                <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
-                                <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
-                            </td>
-                        </tr>
+                    <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
+                        <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
+                        <td id="record_item1" value=@Html.DisplayFor(modelItem => item.customerCode)>@Html.DisplayFor(modelItem => item.customerCode)</td>
+                        <td id="record_item2" value=@Html.DisplayFor(modelItem => item.machineID)>@Html.DisplayFor(modelItem => item.machineID)</td>
+                        <td id="record_item3" value=@Html.DisplayFor(modelItem => item.jobNum)>@Html.DisplayFor(modelItem => item.jobNum)</td>
+                        <td id="record_item4" value=@Html.DisplayFor(modelItem => item.eqpmtType)>@Html.DisplayFor(modelItem => item.eqpmtType)</td>
+                        <td id="record_item5" value=@Html.DisplayFor(modelItem => item.name)>@Html.DisplayFor(modelItem => item.name)</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm editButton" style=" background-color: royalblue">Edit</button>
+                            <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
+                            <button class="btn btn-primary btn-sm deleteButton" style=" background-color: royalblue">Delete</button>
+                            <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
+                            <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

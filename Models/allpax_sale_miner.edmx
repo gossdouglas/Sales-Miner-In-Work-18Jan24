@@ -88,8 +88,14 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_tbl_customer_eqpmt_tbl_customer' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_tbl_customer_eqpmt_tbl_customer" />-->
+        <!--Errors Found During Generation:
 warning 6035: The relationship 'FK_tbl_eqpmt_kits_avlbl_tbl_kit' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="FK_tbl_eqpmt_kits_avlbl_tbl_kit" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_tbl_eqpmt_type_tbl_eqpmt_type_mgmt' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_tbl_eqpmt_type_tbl_eqpmt_type_mgmt" />-->
         <EntityContainer Name="allpax_sale_minerModelStoreContainer">
           <EntitySet Name="tbl_customer" EntityType="Self.tbl_customer" Schema="cmps411" store:Type="Tables" />
           <EntitySet Name="tbl_customer_eqpmt" EntityType="Self.tbl_customer_eqpmt" Schema="cmps411" store:Type="Tables" />
