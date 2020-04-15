@@ -206,40 +206,16 @@
             </form><hr />
         </div>
     </div>
-    <!--table begin-->
-    <div class="row">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th width="5%" scope="col">ID</th>
-                    <th width="14%" scope="col">Machine ID</th>
-                    <th width="31%" scope="col">Kit ID</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-        </table>
-        <div class="scroll">
-            <table class="table table-hover">
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
-                            <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
-                            <td id="record_item1" value=@Html.DisplayFor(modelItem => item.machineID)>@Html.DisplayFor(modelItem => item.machineID)</td>
-                            <td id="record_item2" value=@Html.DisplayFor(modelItem => item.kitID)>@Html.DisplayFor(modelItem => item.kitID)</td>
-                            <td>
-                                <button class="btn btn-primary btn-sm editButton" style=" background-color: royalblue">Edit</button>
-                                <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
-                                <button class="btn btn-primary btn-sm deleteButton" style=" background-color: royalblue">Delete</button>
-                                <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
-                                <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+    <!--click event begin-->
+    <div>
+        <div class="row">
+            <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
+            <div class="col-md-2">Machine ID: <input type="text" id="slctd_machineID" value="slctd_machineID"></div>
+            <div class="col-md-2">Kit ID: <input type="text" id="slctd_kitID" value="slctd_kitID"></div>
         </div>
     </div>
+    <!--click event end-->
+    <!--table begin-->
     <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
@@ -276,13 +252,4 @@
         </tbody>
     </table>
     <!--table end-->
-    <!--click event begin-->
-    <div>
-        <div class="row">
-            <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
-            <div class="col-md-2">Machine ID: <input type="text" id="slctd_machineID" value="slctd_machineID"></div>
-            <div class="col-md-2">Kit ID: <input type="text" id="slctd_kitID" value="slctd_kitID"></div>
-        </div>
-    </div>
-    <!--click event end-->
 </div>
