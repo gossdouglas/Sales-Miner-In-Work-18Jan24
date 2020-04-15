@@ -5,177 +5,177 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script>
-            $(document).ready(function () {//begin document read jquery statements
-                $('#datable_eqpmgmt').DataTable();
-                $('.dataTables_length').addClass('bs-select');
-                //begin when a record class is clicked...
-                $(".record").on('click keyup change', function () {
-                    selectedItem0 = $(this).attr("id");//works
-                    selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
-                    selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
-                    selectedItem3 = $(this).find("#record_item3").html();//works valid for inner html only
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        $(document).ready(function () {//begin document read jquery statements
+            $('#datable_eqpmgmt').DataTable();
+            $('.dataTables_length').addClass('bs-select');
+            //begin when a record class is clicked...
+            $(".record").on('click keyup change', function () {
+                selectedItem0 = $(this).attr("id");//works
+                selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
+                selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
+                selectedItem3 = $(this).find("#record_item3").html();//works valid for inner html only
 
-                    $("#slctd_id").val(selectedItem0);
-                    $("#slctd_eqpmtType").val(selectedItem1);
-                    $("#slctd_model").val(selectedItem2);
-                    $("#slctd_description").val(selectedItem3);
+                $("#slctd_id").val(selectedItem0);
+                $("#slctd_eqpmtType").val(selectedItem1);
+                $("#slctd_model").val(selectedItem2);
+                $("#slctd_description").val(selectedItem3);
 
-                });
-                //end when a record class is clicked...
-                $(".btn.btn-primary.editButton").click(function () {//when a record's edit button is clicked...
-                    $(this).parent().find(".editButton").hide();
-                    $(this).parent().find(".updateButton").show();
-                    $(this).parent().find(".deleteButton").hide();
-                    $(this).parent().find(".cancelButton").show();
+            });
+            //end when a record class is clicked...
+            $(".btn.btn-primary.editButton").click(function () {//when a record's edit button is clicked...
+                $(this).parent().find(".editButton").hide();
+                $(this).parent().find(".updateButton").show();
+                $(this).parent().find(".deleteButton").hide();
+                $(this).parent().find(".cancelButton").show();
 
-                    $(this).parent().parent().css("background-color", "gainsboro");//change bkgnd color
-                    $(this).parent().parent().attr("contenteditable", "true");//set all <td> in the record to editable
-                    $(this).parent().parent().find("#record_item0").attr("contenteditable", "false");//set the id <td> to not editable
-                    $(this).parent().parent().find(".cancelButton").css("background-color", "indianred");//change cancel buttn clr after edit is clicked
-                    $(this).parent().parent().find(".cancelButton").css("border", "indianred");//change cancel buttn clr after edit is clicked
-                    $(this).parent().parent().find(".updateButton").css("background-color", "steelblue");//change cancel buttn clr after edit is clicked
-                    $(this).parent().parent().find(".updateButton").css("border", "steelblue");//change cancel buttn clr after edit is clicked
-                });
-                $(".btn.btn-primary.cancelButton").click(function () {//when a record's edit button is clicked...
-                    $(this).parent().find(".editButton").show();
-                    $(this).parent().find(".updateButton").hide();
-                    $(this).parent().find(".deleteButton").show();
-                    $(this).parent().find(".cancelButton").hide();
-                    $(this).parent().find(".confirmButton").hide();
+                $(this).parent().parent().css("background-color", "gainsboro");//change bkgnd color
+                $(this).parent().parent().attr("contenteditable", "true");//set all <td> in the record to editable
+                $(this).parent().parent().find("#record_item0").attr("contenteditable", "false");//set the id <td> to not editable
+                $(this).parent().parent().find(".cancelButton").css("background-color", "indianred");//change cancel buttn clr after edit is clicked
+                $(this).parent().parent().find(".cancelButton").css("border", "indianred");//change cancel buttn clr after edit is clicked
+                $(this).parent().parent().find(".updateButton").css("background-color", "steelblue");//change cancel buttn clr after edit is clicked
+                $(this).parent().parent().find(".updateButton").css("border", "steelblue");//change cancel buttn clr after edit is clicked
+            });
+            $(".btn.btn-primary.cancelButton").click(function () {//when a record's edit button is clicked...
+                $(this).parent().find(".editButton").show();
+                $(this).parent().find(".updateButton").hide();
+                $(this).parent().find(".deleteButton").show();
+                $(this).parent().find(".cancelButton").hide();
+                $(this).parent().find(".confirmButton").hide();
 
-                    $(this).parent().parent().css("background-color", "transparent");
-                    $(this).parent().parent().attr("contenteditable", "false");
-                });
-                $(".btn.btn-primary.deleteButton").click(function () {//when a record's edit button is clicked...
-                    $(this).parent().find(".editButton").hide();
-                    $(this).parent().find(".updateButton").hide();
-                    $(this).parent().find(".deleteButton").hide();
-                    $(this).parent().find(".cancelButton").show();
-                    $(this).parent().find(".confirmButton").show();
+                $(this).parent().parent().css("background-color", "transparent");
+                $(this).parent().parent().attr("contenteditable", "false");
+            });
+            $(".btn.btn-primary.deleteButton").click(function () {//when a record's edit button is clicked...
+                $(this).parent().find(".editButton").hide();
+                $(this).parent().find(".updateButton").hide();
+                $(this).parent().find(".deleteButton").hide();
+                $(this).parent().find(".cancelButton").show();
+                $(this).parent().find(".confirmButton").show();
 
-                    $(this).parent().parent().css("background-color", "gainsboro");//change bkgnd color
-                    $(this).parent().parent().attr("contenteditable", "false");
-                    $(this).parent().parent().find(".cancelButton").css("background-color", "indianred");//change cancel buttn clr after delete is clicked
-                    $(this).parent().parent().find(".cancelButton").css("border", "indianred");//change cancel buttn clr after edit is clicked
-                    $(this).parent().parent().find(".confirmButton").css("background-color", "steelblue");//change confirm buttn color after delete is clicked
-                    $(this).parent().parent().find(".confirmButton").css("border", "steelblue")
-                });
+                $(this).parent().parent().css("background-color", "gainsboro");//change bkgnd color
+                $(this).parent().parent().attr("contenteditable", "false");
+                $(this).parent().parent().find(".cancelButton").css("background-color", "indianred");//change cancel buttn clr after delete is clicked
+                $(this).parent().parent().find(".cancelButton").css("border", "indianred");//change cancel buttn clr after edit is clicked
+                $(this).parent().parent().find(".confirmButton").css("background-color", "steelblue");//change confirm buttn color after delete is clicked
+                $(this).parent().parent().find(".confirmButton").css("border", "steelblue")
+            });
 
-                //begin #addButton
-                $("#addButton").click(function () {//when the add button is clicked...
-                    var addItem1 = $("#addRecordItem1").val();
-                    var addItem2 = $("#addRecordItem2").val();
-                    var addItem3 = $("#addRecordItem3").val();
+            //begin #addButton
+            $("#addButton").click(function () {//when the add button is clicked...
+                var addItem1 = $("#addRecordItem1").val();
+                var addItem2 = $("#addRecordItem2").val();
+                var addItem3 = $("#addRecordItem3").val();
 
-                    alert(
-                        "Selected for Add POST:" + '\n' +
-                        "addItem1: " + addItem1 + '\n' +
-                        "addItem2: " + addItem2 + '\n' +
-                        "addItem3: " + addItem3 + '\n'
-                    );
-                    $("#addRecordItem1").val('');
-                    $("#addRecordItem2").val('');
-                    $("#addRecordItem3").val('');
-                    //begin axios add post
-                    axios.post('/EqpmtMgmt/AddEqpmt', {
-                        eqpmtType: addItem1,
-                        model: addItem2,
-                        description: addItem3
+                alert(
+                    "Selected for Add POST:" + '\n' +
+                    "addItem1: " + addItem1 + '\n' +
+                    "addItem2: " + addItem2 + '\n' +
+                    "addItem3: " + addItem3 + '\n'
+                );
+                $("#addRecordItem1").val('');
+                $("#addRecordItem2").val('');
+                $("#addRecordItem3").val('');
+                //begin axios add post
+                axios.post('/EqpmtMgmt/AddEqpmt', {
+                    eqpmtType: addItem1,
+                    model: addItem2,
+                    description: addItem3
+                })
+                    .then(function (response) {
+                        console.log(response);
                     })
-                        .then(function (response) {
-                            console.log(response);
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                    //end axios add post
-                });
-                //end #addButton
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                //end axios add post
+            });
+            //end #addButton
 
-                //begin confirm edit record
-                $(".btn.btn-primary.updateButton").click(function () {//when a record's edit button is clicked...
-                    $(this).hide();
-                    $(this).parent().find(".updateButton").hide();
-                    $(this).parent().find(".editButton").show();
-                    $(this).parent().find(".deleteButton").hide();
-                    $(this).parent().find(".cancelButton").show();
+            //begin confirm edit record
+            $(".btn.btn-primary.updateButton").click(function () {//when a record's edit button is clicked...
+                $(this).hide();
+                $(this).parent().find(".updateButton").hide();
+                $(this).parent().find(".editButton").show();
+                $(this).parent().find(".deleteButton").hide();
+                $(this).parent().find(".cancelButton").show();
 
-                    $(this).parent().parent().attr("contenteditable", "false");
-                    $(this).parent().parent().css("background-color", "transparent");
-                    $(this).parent().parent().find(".cancelButton").css("background-color", "royalblue");//change cancel button color after update is clicked
-                    $(this).parent().find(".cancelButton").hide();
-                    $(this).parent().find(".deleteButton").show();
+                $(this).parent().parent().attr("contenteditable", "false");
+                $(this).parent().parent().css("background-color", "transparent");
+                $(this).parent().parent().find(".cancelButton").css("background-color", "royalblue");//change cancel button color after update is clicked
+                $(this).parent().find(".cancelButton").hide();
+                $(this).parent().find(".deleteButton").show();
 
-                    var editItem0 = $("#slctd_id").val();
-                    var editItem1 = $("#slctd_eqpmtType").val();
-                    var editItem2 = $("#slctd_model").val();
-                    var editItem3 = $("#slctd_description").val();
+                var editItem0 = $("#slctd_id").val();
+                var editItem1 = $("#slctd_eqpmtType").val();
+                var editItem2 = $("#slctd_model").val();
+                var editItem3 = $("#slctd_description").val();
 
-                    alert(
-                        "Selected for Edit POST:" + '\n' +
-                        "editItem0: " + editItem0 + '\n' +
-                        "editItem1: " + editItem1 + '\n' +
-                        "editItem2: " + editItem2 + '\n' +
-                        "editItem3: " + editItem3 + '\n'
-                    );
+                alert(
+                    "Selected for Edit POST:" + '\n' +
+                    "editItem0: " + editItem0 + '\n' +
+                    "editItem1: " + editItem1 + '\n' +
+                    "editItem2: " + editItem2 + '\n' +
+                    "editItem3: " + editItem3 + '\n'
+                );
 
-                    //begin axios add post
-                    axios.post('/EqpmtMgmt/UpdateEqpmt', {
-                        id: editItem0,
-                        eqpmtType: editItem1,
-                        model: editItem2,
-                        description: editItem3
+                //begin axios add post
+                axios.post('/EqpmtMgmt/UpdateEqpmt', {
+                    id: editItem0,
+                    eqpmtType: editItem1,
+                    model: editItem2,
+                    description: editItem3
+                })
+                    .then(function (response) {
+                        console.log(response);
                     })
-                        .then(function (response) {
-                            console.log(response);
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                    //end axios add post
-                });
-                //end confirm edit record
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                //end axios add post
+            });
+            //end confirm edit record
 
-                //begin axios confirm delete record
-                $(".btn.btn-primary.confirmButton").click(function () {//when a record's delete button is clicked...
-                    alert(
-                        "Selected for DELETE:" + '\n' +
-                        "id: " + selectedItem0 + '\n' +
-                        "eqpmtType: " + selectedItem1 + '\n' +
-                        "model: " + selectedItem2 + '\n' +
-                        "description: " + selectedItem3 + '\n'
-                    );
+            //begin axios confirm delete record
+            $(".btn.btn-primary.confirmButton").click(function () {//when a record's delete button is clicked...
+                alert(
+                    "Selected for DELETE:" + '\n' +
+                    "id: " + selectedItem0 + '\n' +
+                    "eqpmtType: " + selectedItem1 + '\n' +
+                    "model: " + selectedItem2 + '\n' +
+                    "description: " + selectedItem3 + '\n'
+                );
 
-                    axios.post('/EqpmtMgmt/DeleteEqpmt', {
-                        id: selectedItem0
+                axios.post('/EqpmtMgmt/DeleteEqpmt', {
+                    id: selectedItem0
+                })
+                    .then(function (response) {
+                        console.log(response);
                     })
-                        .then(function (response) {
-                            console.log(response);
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
+                    .catch(function (error) {
+                        console.log(error);
+                    });
 
-                });
-                //end axios confirm delete record
-            });//end document read jquery statements
-        </script>
-        <!--md bootstrap additions begin-->
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-        <!-- Bootstrap core CSS -->
-        <link href="~/Content/bootstrap.css" rel="stylesheet">
-        <!-- Material Design Bootstrap -->
-        <link href="~/Content/mdb.min.css" rel="stylesheet">
-        <!-- MDBootstrap Datatables  -->
-        <link href="~/Content/MDBootstrap/css/addons/datatables.min.css" rel="stylesheet">
-        <!-- Your custom styles (optional) -->
-        <link href="" rel="stylesheet">
-    </head>
+            });
+            //end axios confirm delete record
+        });//end document read jquery statements
+    </script>
+    <!--md bootstrap additions begin-->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="~/Content/mdb.min.css" rel="stylesheet">
+    <!-- MDBootstrap Datatables  -->
+    <link href="~/Content/MDBootstrap/css/addons/datatables.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="" rel="stylesheet">
+</head>
 <style>
     div.scroll {
         width: auto;
@@ -185,6 +185,7 @@
         padding: 0px;
         display: block;
     }
+
     div.row {
         width: auto;
         height: auto;
@@ -192,11 +193,14 @@
         overflow-y: auto;
         padding: 0px;
     }
+
     .form-group {
-  margin: 5px;
-}
+        margin: 5px;
+    }
 </style>
-<div class="container">
+@*<div class="container">*@
+<div class="body-content">
+    <!--begin inline add-->
     <div class="row">
         <div class="col-md-12">
             <h4>Equipment Management</h4>
@@ -269,47 +273,47 @@
             }
         </tbody>
     </table>
-    <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th class="th-sm">
-                    Name
-                </th>
-                <th class="th-sm">
-                    Position
-                </th>
-                <th class="th-sm">
-                    Office
-                </th>
-                <th class="th-sm">
-                    Age
-                </th>
-                <th class="th-sm">
-                    Start date
-                </th>
-                <th class="th-sm">
-                    Salary
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011/04/25</td>
-                <td>$320,800</td>
-            </tr>
-            <tr>
-                <td>Garrett Winters</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>63</td>
-                <td>2011/07/25</td>
-                <td>$170,750</td>
-            </tr>
+    @*<table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th class="th-sm">
+                        Name
+                    </th>
+                    <th class="th-sm">
+                        Position
+                    </th>
+                    <th class="th-sm">
+                        Office
+                    </th>
+                    <th class="th-sm">
+                        Age
+                    </th>
+                    <th class="th-sm">
+                        Start date
+                    </th>
+                    <th class="th-sm">
+                        Salary
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>$320,800</td>
+                </tr>
+                <tr>
+                    <td>Garrett Winters</td>
+                    <td>Accountant</td>
+                    <td>Tokyo</td>
+                    <td>63</td>
+                    <td>2011/07/25</td>
+                    <td>$170,750</td>
+                </tr>
 
-    </table>
+        </table>*@
 </div>
-    <!--table end-->
+<!--table end-->

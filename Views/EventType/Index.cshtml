@@ -9,10 +9,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-            $(document).ready(function () {//begin document read jquery statements
+        $(document).ready(function () {//begin document read jquery statements
 
-                //begin when a record class is clicked...
-               $(".record").on('click keyup change', function () {
+            //begin when a record class is clicked...
+            $(".record").on('click keyup change', function () {
                 selectedItem0 = $(this).attr("id");//works
                 selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
                 selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
@@ -72,7 +72,7 @@
                 alert(
                     "Selected for Add POST:" + '\n' +
                     "addItem1: " + addItem1 + '\n' +
-                    "addItem2: " + addItem2 + '\n' 
+                    "addItem2: " + addItem2 + '\n'
                 );
                 $("#addRecordItem1").val('');
                 $("#addRecordItem2").val('');
@@ -93,58 +93,58 @@
             });
             //end #addButton
 
-                //begin confirm edit record
-                $(".btn.btn-primary.updateButton").click(function () {//when a record's edit button is clicked...
-                    $(this).hide();
-                    $(this).parent().find(".updateButton").hide();
-                    $(this).parent().find(".editButton").show();
-                    $(this).parent().find(".deleteButton").hide();
-                    $(this).parent().find(".cancelButton").show();
+            //begin confirm edit record
+            $(".btn.btn-primary.updateButton").click(function () {//when a record's edit button is clicked...
+                $(this).hide();
+                $(this).parent().find(".updateButton").hide();
+                $(this).parent().find(".editButton").show();
+                $(this).parent().find(".deleteButton").hide();
+                $(this).parent().find(".cancelButton").show();
 
-                    $(this).parent().parent().attr("contenteditable", "false");
+                $(this).parent().parent().attr("contenteditable", "false");
 
-                    $(this).parent().parent().css("background-color", "transparent");
-                    $(this).parent().parent().find(".cancelButton").css("background-color","royalblue");//change cancel button color after update is clicked
-                    $(this).parent().find(".cancelButton").hide();
-                    $(this).parent().find(".deleteButton").show();
+                $(this).parent().parent().css("background-color", "transparent");
+                $(this).parent().parent().find(".cancelButton").css("background-color", "royalblue");//change cancel button color after update is clicked
+                $(this).parent().find(".cancelButton").hide();
+                $(this).parent().find(".deleteButton").show();
 
-                    var editItem0 = $("#slctd_id").val();
-                    var editItem1 = $("#slctd_eventID").val();
-                    var editItem2 = $("#slctd_eventType").val();
+                var editItem0 = $("#slctd_id").val();
+                var editItem1 = $("#slctd_eventID").val();
+                var editItem2 = $("#slctd_eventType").val();
 
-                    alert(
-                        "Selected for Edit POST:" + '\n' +
-                        "editItem0: " + editItem0 + '\n' +
-                        "editItem1: " + editItem1 + '\n' +
-                        "editItem2: " + editItem2 + '\n'
-                    );
+                alert(
+                    "Selected for Edit POST:" + '\n' +
+                    "editItem0: " + editItem0 + '\n' +
+                    "editItem1: " + editItem1 + '\n' +
+                    "editItem2: " + editItem2 + '\n'
+                );
 
-                     //begin axios add post
-                    axios.post('/EventType/UpdateEvent', {
-                        id: editItem0,
-                        eventID: editItem1,
-                        eventType: editItem2
+                //begin axios add post
+                axios.post('/EventType/UpdateEvent', {
+                    id: editItem0,
+                    eventID: editItem1,
+                    eventType: editItem2
 
+                })
+                    .then(function (response) {
+                        console.log(response);
                     })
-                        .then(function (response) {
-                            console.log(response);
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                    //end axios add post
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                //end axios add post
 
-                });
-                //end confirm edit record
+            });
+            //end confirm edit record
 
             //begin axios confirm delete record
-                $(".btn.btn-primary.confirmButton").click(function () {//when a record's delete button is clicked...
+            $(".btn.btn-primary.confirmButton").click(function () {//when a record's delete button is clicked...
 
                 alert(
                     "Selected for DELETE:" + '\n' +
                     "id: " + selectedItem0 + '\n' +
                     "eventID: " + selectedItem1 + '\n' +
-                    "eventType: " + selectedItem2 + '\n' 
+                    "eventType: " + selectedItem2 + '\n'
                 );
 
                 axios.post('/EventType/DeleteEvent', {
@@ -185,10 +185,9 @@
     }
 </style>
 
-<style>
-</style>
-
-<div class="container">
+@*<div class="container">*@
+<div class="body-content">
+    <!--begin inline add-->
     <div class="row">
         <div class="col-md-12">
             <h4>Customer Event Type</h4>

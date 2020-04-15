@@ -71,7 +71,7 @@
                 alert(
                     "Selected for Add POST:" + '\n' +
                     "addItem1: " + addItem1 + '\n' +
-                    "addItem2: " + addItem2 + '\n' 
+                    "addItem2: " + addItem2 + '\n'
                 );
                 $("#addRecordItem1").val('');
                 $("#addRecordItem2").val('');
@@ -115,7 +115,7 @@
                     "Selected for Edit POST:" + '\n' +
                     "editItem0: " + editItem0 + '\n' +
                     "editItem1: " + editItem1 + '\n' +
-                    "editItem2: " + editItem2 + '\n' 
+                    "editItem2: " + editItem2 + '\n'
                 );
 
                 //begin axios add post
@@ -143,7 +143,7 @@
                     "Selected for DELETE:" + '\n' +
                     "id: " + selectedItem0 + '\n' +
                     "machineID: " + selectedItem1 + '\n' +
-                    "kitId: " + selectedItem2 + '\n' 
+                    "kitId: " + selectedItem2 + '\n'
                 );
 
                 axios.post('/CurrentEqpmtKits/DeleteCurrentEqpmt', {
@@ -187,7 +187,9 @@
 <style>
 </style>
 
-<div class="container">
+@*<div class="container">*@
+<div class="body-content">
+    <!--begin inline add-->
     <div class="row">
         <div class="col-md-12">
             <h4>Current Equipment Kits</h4>
