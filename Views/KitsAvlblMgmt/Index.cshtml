@@ -11,7 +11,8 @@
     <script>
         $(document).ready(function () {//begin document read jquery statements
             $('#datatable_kitsAvlblMgmt').DataTable({
-                "searching": false // false to disable search (or any other option)
+                "searching": false, // false to disable search (or any other option)
+                "order": [[1, "asc"]]
             });
             $('.dataTables_length').addClass('bs-select');
             //begin when a record class is clicked...

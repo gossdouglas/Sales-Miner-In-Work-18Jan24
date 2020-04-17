@@ -20,6 +20,8 @@ namespace allpax_sale_miner.Controllers
             allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
             List<tbl_eqpmt_type> eqpmtMgmt = entities.tbl_eqpmt_type.ToList();
 
+            ViewBag.eqpmtType = new SelectList(db.tbl_eqpmt_type_mgmt.OrderBy(x => x.eqpmtType), "eqpmtType", "eqpmtType");
+
             return View(eqpmtMgmt.ToList());
 
         }

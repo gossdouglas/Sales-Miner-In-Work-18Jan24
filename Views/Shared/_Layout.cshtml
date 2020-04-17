@@ -99,7 +99,8 @@
     <script>
         $(document).ready(function () {
             $('#dtBasicExample').DataTable({
-                "searching": false // false to disable search (or any other option)
+                "searching": false, // false to disable search (or any other option)
+                "order": [[1, "asc"]]
             });
             $('.dataTables_length').addClass('bs-select');
         });
