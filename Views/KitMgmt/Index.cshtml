@@ -39,6 +39,8 @@
                 $(this).parent().parent().css("background-color", "powderblue");//change bkgnd color
                 $(this).parent().parent().attr("contenteditable", "true");//set all <td> in the record to editable
                 $(this).parent().parent().find("#record_item0").attr("contenteditable", "false");//set the id <td> to not editable
+                $(this).parent().parent().find(".cancelButton").css("background-color", "indianred");//change cancel buttn clr after edit is clicked
+
             });
             $(".btn.btn-primary.cancelButton").click(function () {//when a record's edit button is clicked...
                 $(this).parent().find(".editButton").show();
@@ -56,6 +58,8 @@
                 $(this).parent().find(".deleteButton").hide();
                 $(this).parent().find(".cancelButton").show();
                 $(this).parent().find(".confirmButton").show();
+                $(this).parent().parent().css("background-color", "powderblue");//change bkgnd color
+
             });
 
             //begin #addButton
