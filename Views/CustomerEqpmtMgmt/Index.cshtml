@@ -11,6 +11,32 @@
     <script>
         $(document).ready(function () {//begin document read jquery statements
 
+                   // Setup - add a text input to each footer cell
+         $('#datatable_customer_eqpmt thead tr').clone(true).appendTo( '#datatable_customer_eqpmt thead' );
+         $('#datatable_customer_eqpmt thead tr:eq(1) th').each( function (i) {
+             var title = $(this).text();
+             $(this).html( '<input type="text" placeholder=" " />' );
+ 
+             $( 'input', this ).on( 'keyup change', function () {
+                 if ( table.column(i).search() !== this.value ) {
+                     table
+                         .column(i)
+                            .search( this.value )
+                             .draw();
+                 }
+             } );
+         } );
+ 
+            var table = $('#datatable_customer_eqpmt').DataTable({
+                orderCellsTop: true,
+                fixedHeader: true
+            });
+
+          
+               // "searching": false, // false to disable search (or any other option)
+               // "order": [[1, "asc"]]
+            
+            $('.dataTables_length').addClass('bs-select');
             //begin when a record class is clicked...
             $(".record").on('click keyup change', function () {
                 selectedItem0 = $(this).attr("id");//works
@@ -239,18 +265,18 @@
         </div>
     </div>
     <!--click event begin-->
-    <div>
-        <div class="row">
-            <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
-            <div class="col-md-2">Customer Code: <input type="text" id="slctd_customerCode" value="slctd_CustomerCode"></div>
-            <div class="col-md-2">Machine ID: <input type="text" id="slctd_machineID" value="slctd_machineID"></div>
-            <div class="col-md-2">Job Number: <input type="text" id="slctd_jobNum" value="slctd_jobNum"></div>
-            <div class="col-md-2">Equipment Type: <input type="text" id="slctd_eqpmtType" value="slctd_eqpmtType"></div>
-        </div>
-    </div>
+    <!-- <div>
+          <div class="row">
+              <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
+              <div class="col-md-2">Customer Code: <input type="text" id="slctd_customerCode" value="slctd_CustomerCode"></div>
+              <div class="col-md-2">Machine ID: <input type="text" id="slctd_machineID" value="slctd_machineID"></div>
+              <div class="col-md-2">Job Number: <input type="text" id="slctd_jobNum" value="slctd_jobNum"></div>
+              <div class="col-md-2">Equipment Type: <input type="text" id="slctd_eqpmtType" value="slctd_eqpmtType"></div>
+          </div>
+      </div>-->
     <!--click event end-->
     <!--table begin-->
-    <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <table id="datatable_customer_eqpmt" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th class="th-sm">

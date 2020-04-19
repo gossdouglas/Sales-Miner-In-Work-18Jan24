@@ -10,10 +10,32 @@
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script>
             $(document).ready(function () {//begin document read jquery statements
-                $('#datable_eventType').DataTable({
-                    "searching": false, // false to disable search (or any other option)
-                    "order": [[2, "asc"]]
-                });
+                      // Setup - add a text input to each footer cell
+         $('#datable_eventType thead tr').clone(true).appendTo( '#datable_eventType thead' );
+         $('#datable_eventType thead tr:eq(1) th').each( function (i) {
+             var title = $(this).text();
+             $(this).html( '<input type="text" placeholder=" " />' );
+ 
+             $( 'input', this ).on( 'keyup change', function () {
+                 if ( table.column(i).search() !== this.value ) {
+                     table
+                         .column(i)
+                            .search( this.value )
+                             .draw();
+                 }
+             } );
+         } );
+ 
+            var table = $('#datable_eventType').DataTable({
+                orderCellsTop: true,
+                fixedHeader: true
+            });
+
+          
+               // "searching": false, // false to disable search (or any other option)
+               // "order": [[1, "asc"]]
+            
+            $('.dataTables_length').addClass('bs-select');
                 //begin when a record class is clicked...
                 $(".record").on('click keyup change', function () {
                     selectedItem0 = $(this).attr("id");//works

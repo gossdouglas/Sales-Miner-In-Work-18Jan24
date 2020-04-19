@@ -12,6 +12,32 @@
         <script>
             $(document).ready(function () {//begin document read jquery statements
 
+                       // Setup - add a text input to each footer cell
+         $('#datatable_customers thead tr').clone(true).appendTo( '#datatable_customers thead' );
+         $('#datatable_customers thead tr:eq(1) th').each( function (i) {
+             var title = $(this).text();
+             $(this).html( '<input type="text" placeholder=" " />' );
+ 
+             $( 'input', this ).on( 'keyup change', function () {
+                 if ( table.column(i).search() !== this.value ) {
+                     table
+                         .column(i)
+                            .search( this.value )
+                             .draw();
+                 }
+             } );
+         } );
+ 
+            var table = $('#datatable_customers').DataTable({
+                orderCellsTop: true,
+                fixedHeader: true
+            });
+
+          
+               // "searching": false, // false to disable search (or any other option)
+               // "order": [[1, "asc"]]
+            
+            $('.dataTables_length').addClass('bs-select');
                 //begin when a record class is clicked...
                 $(".record").on('click keyup change', function () {
                     selectedItem0 = $(this).attr("id");//works
@@ -313,7 +339,7 @@
             <!--click event end-->
             <!-- Start your project here-->
             <div style="height: 100vh">
-                <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <table id="datatable_customers" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                             <th class="th-sm">
