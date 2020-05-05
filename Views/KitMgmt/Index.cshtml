@@ -28,7 +28,9 @@
  
             var table = $('#datatable_kitmgmt').DataTable({
                 orderCellsTop: true,
-                fixedHeader: true
+                fixedHeader: true,
+                paging: false,
+                order: [[1, "asc"]]
             });
 
                // "searching": false, // false to disable search (or any other option)
