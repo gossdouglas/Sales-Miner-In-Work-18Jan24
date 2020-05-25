@@ -210,27 +210,6 @@
         });//end document read jquery statements
     </script>
 </head>
-<style>
-    div.scroll {
-        width: auto;
-        height: 450px;
-        overflow-x: hidden;
-        overflow-y: auto;
-        padding: 0px;
-    }
-
-    div.row {
-        width: auto;
-        height: auto;
-        overflow-x: hidden;
-        overflow-y: auto;
-        padding: 0px;
-    }
-
-    .form-group {
-        margin: 5px;
-    }
-</style>
 
 <div class="container-fluid"> <hr />  
     <!--begin inline add-->
@@ -254,7 +233,7 @@
                     @*<label for="addRecordItem3">Equipment Type</label>*@
                     @Html.DropDownList("eqpmtType", null, "Select Equipment Type", new { @id = "addRecordItem4", @name = "addRecordItem4", @class = "form-control form-control-sm" })
                 </div>
-                <button type="submit" class="btn btn-primary btn-sm id="addButton" style="background-color: royalblue">Add</button>
+                <button type="submit" class="btn btn-primary btn-sm" id="addButton" style="background-color: royalblue">Add</button>
             </form><hr />
         </div>
     </div>
