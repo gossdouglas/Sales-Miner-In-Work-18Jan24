@@ -275,7 +275,7 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
+                <tr class="record" id=@Html.DisplayFor(modelItem => item.id) >
                     <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
                     <td id="record_item1" value=@Html.DisplayFor(modelItem => item.customerCode)>@Html.DisplayFor(modelItem => item.customerCode)</td>
                     <td id="record_item2" value=@Html.DisplayFor(modelItem => item.machineID)>@Html.DisplayFor(modelItem => item.machineID)</td>
