@@ -10,32 +10,30 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         $(document).ready(function () {//begin document read jquery statements
-      // Setup - add a text input to each footer cell
-         $('#datatable_kitmgmt thead tr').clone(true).appendTo( '#datatable_kitmgmt thead' );
-         $('#datatable_kitmgmt thead tr:eq(1) th').each( function (i) {
-             var title = $(this).text();
-             $(this).html( '<input type="text" placeholder=" " />' );
+
+         //$('#datatable_kitmgmt thead tr').clone(true).appendTo( '#datatable_kitmgmt thead' );
+         //$('#datatable_kitmgmt thead tr:eq(1) th').each( function (i) {
+         //    var title = $(this).text();
+         //    $(this).html( '<input type="text" placeholder=" " />' );
  
-             $( 'input', this ).on( 'keyup change', function () {
-                 if ( table.column(i).search() !== this.value ) {
-                     table
-                         .column(i)
-                            .search( this.value )
-                             .draw();
-                 }
-             } );
-         } );
+         //    $( 'input', this ).on( 'keyup change', function () {
+         //        if ( table.column(i).search() !== this.value ) {
+         //            table
+         //                .column(i)
+         //                   .search( this.value )
+         //                    .draw();
+         //        }
+         //    } );
+         //} );
  
             var table = $('#datatable_kitmgmt').DataTable({
                 orderCellsTop: true,
                 fixedHeader: true,
                 paging: false,
-                order: [[1, "asc"]]
+                order: [[1, "asc"]],
+                searching: false
             });
-
-               // "searching": false, // false to disable search (or any other option)
-              //  "order": [[1, "asc"]]
-            
+           
             $('.dataTables_length').addClass('bs-select');
             //begin when a record class is clicked...
             $(".record").on('click keyup change', function () {
@@ -218,26 +216,26 @@
     }
 </style>
 
-@*<div class="container">*@
-<div class="body-content">
+<div class="container-fluid">
+    <hr />
     <!--begin inline add-->
     <div class="row">
         <div class="col-md-12">
-            <h4>Kit Management</h4>
+            <h5>Kit Management</h5>
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="addRecordItem1">Kit ID</label>
-                    <input type="text" class="form-control" id="addRecordItem1" placeholder="" value="">
+                    @*<label for="addRecordItem1">Kit ID</label>*@
+                    <input type="text" class="form-control form-control-sm" id="addRecordItem1" placeholder="Kit ID" value="">
                 </div>
                 <div class="form-group">
-                    <label for="addRecordItem2">Description</label>
-                    <input type="text" class="form-control" id="addRecordItem2" placeholder="" value="">
+                    @*<label for="addRecordItem2">Description</label>*@
+                    <input type="text" class="form-control form-control-sm" id="addRecordItem2" placeholder="Description" value="">
                 </div>
                 <div class="form-group">
-                    <label for="addRecordItem3">File Path</label>
-                    <input type="text" class="form-control" id="addRecordItem3" placeholder="" value="">
+                    @*<label for="addRecordItem3">File Path</label>*@
+                    <input type="text" class="form-control form-control-sm" id="addRecordItem3" placeholder="File Path" value="">
                 </div>
-                <button type="submit" class="btn btn-primary" id="addButton" style="background-color: royalblue">Add</button>
+                <button type="submit" class="btn btn-primary btn-sm" id="addButton" style="background-color: royalblue">Add</button>
             </form><hr />
         </div>
     </div>
