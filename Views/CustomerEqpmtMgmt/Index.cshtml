@@ -11,33 +11,29 @@
     <script>
         $(document).ready(function () {//begin document read jquery statements
 
-                   // Setup - add a text input to each footer cell
-         $('#datatable_customer_eqpmt thead tr').clone(true).appendTo( '#datatable_customer_eqpmt thead' );
-         $('#datatable_customer_eqpmt thead tr:eq(1) th').each( function (i) {
-             var title = $(this).text();
-             $(this).html( '<input type="text" placeholder=" " />' );
- 
-             $( 'input', this ).on( 'keyup change', function () {
-                 if ( table.column(i).search() !== this.value ) {
-                     table
-                         .column(i)
-                            .search( this.value )
-                             .draw();
-                 }
-             } );
-         } );
- 
+            //$('#datatable_customer_eqpmt thead tr').clone(true).appendTo( '#datatable_customer_eqpmt thead' );
+            //$('#datatable_customer_eqpmt thead tr:eq(1) th').each( function (i) {
+            //    var title = $(this).text();
+            //    $(this).html( '<input type="text" placeholder=" " />' );
+
+            //    $( 'input', this ).on( 'keyup change', function () {
+            //        if ( table.column(i).search() !== this.value ) {
+            //            table
+            //                .column(i)
+            //                   .search( this.value )
+            //                    .draw();
+            //        }
+            //    } );
+            //} );
+
             var table = $('#datatable_customer_eqpmt').DataTable({
                 orderCellsTop: true,
                 fixedHeader: true,
                 paging: false,
-                order: [[1, "asc"]]
+                order: [[1, "asc"]],
+                searching: false
             });
 
-          
-               // "searching": false, // false to disable search (or any other option)
-               // "order": [[1, "asc"]]
-            
             $('.dataTables_length').addClass('bs-select');
             //begin when a record class is clicked...
             $(".record").on('click keyup change', function () {
@@ -236,45 +232,41 @@
     }
 </style>
 
-<style>
-</style>
-
-@*<div class="container">*@
-<div class="body-content">
+<div class="container-fluid"> <hr />  
     <!--begin inline add-->
     <div class="row">
         <div class="col-md-12">
-            <h4>Customer Equipment Management</h4>
+            <h5>Customer Equipment Management</h5>
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="addRecordItem1">Customer Code</label>
-                    @Html.DropDownList("customerCode", null, "Select Customer Code", new { @id = "addRecordItem1", @name = "addRecordItem1", @class = "form-control" })
+                    @*<label for="addRecordItem1">Customer Code</label>*@
+                    @Html.DropDownList("customerCode", null, "Select Customer Code", new { @id = "addRecordItem1", @name = "addRecordItem1", @class = "form-control form-control-sm" })
                 </div>
                 <div class="form-group">
-                    <label for="addRecordItem2">Machine ID</label>
-                    <input type="text" class="form-control" id="addRecordItem2" placeholder="" value="">
+                    @*<label for="addRecordItem2">Machine ID</label>*@
+                    <input type="text" class="form-control form-control-sm" id="addRecordItem2" placeholder="Machine ID" value="">
                 </div>
                 <div class="form-group">
-                    <label for="addRecordItem3">Job Number</label>
-                    <input type="text" class="form-control" id="addRecordItem3" placeholder="" value="">
+                    @*<label for="addRecordItem3">Job Number</label>*@
+                    <input type="text" class="form-control form-control-sm" id="addRecordItem3" placeholder="Job Number" value="">
                 </div>
                 <div class="form-group">
-                    <label for="addRecordItem3">Equipment Type</label>
-                    @Html.DropDownList("eqpmtType", null, "Select Equipment Type", new { @id = "addRecordItem4", @name = "addRecordItem4", @class = "form-control" })
+                    @*<label for="addRecordItem3">Equipment Type</label>*@
+                    @Html.DropDownList("eqpmtType", null, "Select Equipment Type", new { @id = "addRecordItem4", @name = "addRecordItem4", @class = "form-control form-control-sm" })
                 </div>
-                <button type="submit" class="btn btn-primary" id="addButton" style="background-color: royalblue">Add</button>
+                <button type="submit" class="btn btn-primary btn-sm id="addButton" style="background-color: royalblue">Add</button>
             </form><hr />
         </div>
     </div>
     <!--click event begin-->
     <div>
-          <div class="row">
-              <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
-              <div class="col-md-2">Customer Code: <input type="text" id="slctd_customerCode" value="slctd_CustomerCode"></div>
-              <div class="col-md-2">Machine ID: <input type="text" id="slctd_machineID" value="slctd_machineID"></div>
-              <div class="col-md-2">Job Number: <input type="text" id="slctd_jobNum" value="slctd_jobNum"></div>
-              <div class="col-md-2">Equipment Type: <input type="text" id="slctd_eqpmtType" value="slctd_eqpmtType"></div>
-          </div>
+        <div class="row">
+            <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
+            <div class="col-md-2">Customer Code: <input type="text" id="slctd_customerCode" value="slctd_CustomerCode"></div>
+            <div class="col-md-2">Machine ID: <input type="text" id="slctd_machineID" value="slctd_machineID"></div>
+            <div class="col-md-2">Job Number: <input type="text" id="slctd_jobNum" value="slctd_jobNum"></div>
+            <div class="col-md-2">Equipment Type: <input type="text" id="slctd_eqpmtType" value="slctd_eqpmtType"></div>
+        </div>
     </div>
     <!--click event end-->
     <!--table begin-->

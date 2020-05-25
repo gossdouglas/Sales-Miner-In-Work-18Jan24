@@ -524,10 +524,6 @@
     <Content Include="Views\KitsAvlblMgmt\Details.cshtml" />
     <Content Include="Views\KitsAvlblMgmt\Edit.cshtml" />
     <Content Include="Views\KitsAvlblMgmt\Index.cshtml" />
-    <Content Include="Views\CustomerEqpmtMgmt\Create.cshtml" />
-    <Content Include="Views\CustomerEqpmtMgmt\Delete.cshtml" />
-    <Content Include="Views\CustomerEqpmtMgmt\Details.cshtml" />
-    <Content Include="Views\CustomerEqpmtMgmt\Edit.cshtml" />
     <Content Include="Views\CustomerEqpmtMgmt\Index.cshtml" />
     <Content Include="Views\EqpmtTypeMgmt\Create.cshtml" />
     <Content Include="Views\EqpmtTypeMgmt\Delete.cshtml" />
