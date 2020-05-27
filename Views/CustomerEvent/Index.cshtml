@@ -11,38 +11,35 @@
     <script>
         $(document).ready(function () {//begin document read jquery statements
                   // Setup - add a text input to each footer cell
-         $('#datatable_customerevent thead tr').clone(true).appendTo( '#datatable_customerevent thead' );
-         $('#datatable_customerevent thead tr:eq(1) th').each( function (i) {
-             var title = $(this).text();
-             $(this).html( '<input type="text" placeholder=" " />' );
+         //$('#datatable_customerevent thead tr').clone(true).appendTo( '#datatable_customerevent thead' );
+         //$('#datatable_customerevent thead tr:eq(1) th').each( function (i) {
+         //    var title = $(this).text();
+         //    $(this).html( '<input type="text" placeholder=" " />' );
  
-             $( 'input', this ).on( 'keyup change', function () {
-                 if ( table.column(i).search() !== this.value ) {
-                     table
-                         .column(i)
-                            .search( this.value )
-                             .draw();
-                 }
-             } );
-         } );
+         //    $( 'input', this ).on( 'keyup change', function () {
+         //        if ( table.column(i).search() !== this.value ) {
+         //            table
+         //                .column(i)
+         //                   .search( this.value )
+         //                    .draw();
+         //        }
+         //    } );
+         //} );
  
             var table = $('#datatable_customerevent').DataTable({
                 orderCellsTop: true,
                 fixedHeader: true,
                 paging: false,
-                order: [[1, "asc"]]
+                order: [[1, "asc"]],
+                searching: false
             });
-
-          
-               // "searching": false, // false to disable search (or any other option)
-               // "order": [[1, "asc"]]
-            
+           
             $('.dataTables_length').addClass('bs-select');
             //begin when a record class is clicked...
             $(".record").on('click keyup change', function () {
                 selectedItem0 = $(this).attr("id");//works
                 selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
-                selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
+                /*selectedItem2 = $(this).find("#record_item2").html();*///works valid for inner html only
                 selectedItem3 = $(this).find("#record_item3").html();//works valid for inner html only
                 selectedItem4 = $(this).find("#record_item4").html();//works valid for inner html only
                 selectedItem5 = $(this).find("#record_item5").html();//works valid for inner html only
@@ -50,7 +47,7 @@
 
                 $("#slctd_id").val(selectedItem0);
                 $("#slctd_customerCode").val(selectedItem1);
-                $("#slctd_eventID").val(selectedItem2);
+                //$("#slctd_eventID").val(selectedItem2);
                 $("#slctd_eventType").val(selectedItem3);
                 $("#slctd_startDate").val(selectedItem4);
                 $("#slctd_endDate").val(selectedItem5);
@@ -91,7 +88,7 @@
             //begin #addButton
             $("#addButton").click(function () {//when the add button is clicked...
                 var addItem1 = $("#addRecordItem1").val();
-                var addItem2 = $("#addRecordItem2").val();
+                //var addItem2 = $("#addRecordItem2").val();
                 var addItem3 = $("#addRecordItem3").val();
                 var addItem4 = $("#addRecordItem4").val();
                 var addItem5 = $("#addRecordItem5").val();
@@ -99,13 +96,13 @@
                 alert(
                     "Selected for Add POST:" + '\n' +
                     "addItem1: " + addItem1 + '\n' +
-                    "addItem2: " + addItem2 + '\n' +
+                    //"addItem2: " + addItem2 + '\n' +
                     "addItem3: " + addItem3 + '\n' +
                     "addItem4: " + addItem4 + '\n' +
                     "addItem5: " + addItem5 + '\n' 
                 );
                 $("#addRecordItem1").val('');
-                $("#addRecordItem2").val('');
+                //$("#addRecordItem2").val('');
                 $("#addRecordItem3").val('');
                 $("#addRecordItem4").val('');
                 $("#addRecordItem5").val('');
@@ -113,7 +110,7 @@
 
                 axios.post('/KitMgmt/AddKit', {
                     customerCode: addItem1,
-                    eventID: addItem2,
+                    //eventID: addItem2,
                     eventType: addItem3,
                     startDate: addItem4,
                     endDate: addItem5
@@ -146,7 +143,7 @@
 
                 var editItem0 = $("#slctd_id").val();
                 var editItem1 = $("#slctd_customerCode").val();
-                var editItem2 = $("#slctd_eventID").val();
+                //var editItem2 = $("#slctd_eventID").val();
                 var editItem3 = $("#slctd_eventType").val();
                 var editItem4 = $("#slctd_startDate").val();
                 var editItem5 = $("#slctd_endDate").val();
@@ -157,7 +154,7 @@
                     "Selected for Edit POST:" + '\n' +
                     "editItem0: " + editItem0 + '\n' +
                     "editItem1: " + editItem1 + '\n' +
-                    "editItem2: " + editItem2 + '\n' +
+                    //"editItem2: " + editItem2 + '\n' +
                     "editItem3: " + editItem3 + '\n' +
                     "editItem4: " + editItem4 + '\n' +
                     "editItem5: " + editItem5 + '\n' 
@@ -167,7 +164,7 @@
                 axios.post('/KitMgmt/UpdateKit', {
                     id: editItem0,
                     customerCode: editItem1,
-                    eventID: editItem2,
+                    //eventID: editItem2,
                     eventType: editItem3,
                     startDate: editItem4,
                     endDate: editItem5
@@ -189,7 +186,7 @@
                     "Selected for DELETE:" + '\n' +
                     "id: " + selectedItem0 + '\n' +
                     "customerCode: " + selectedItem1 + '\n' +
-                    "eventID: " + selectedItem2 + '\n' +
+                    //"eventID: " + selectedItem2 + '\n' +
                     "eventType: " + selectedItem3 + '\n' +
                     "startDate: " + selectedItem4 + '\n' +
                     "endDate: " + selectedItem5 + '\n' 
@@ -237,34 +234,34 @@
     }
 </style>
 
-@*<div class="container">*@
-<div class="body-content">
+<div class="container-fluid">
+    <hr />
     <!--begin inline add-->
     <div class="row">
         <div class="col-md-12">
-            <h4>Customer Events</h4>
+            <h5>Customer Events</h5>
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="addRecordItem1">Customer Code</label>
-                    @Html.DropDownList("customerCode", null, "Select Customer Code", new { @id = "addRecordItem1", @name = "addRecordItem1", @class = "form-control" })
+                    @*<label for="addRecordItem1">Customer Code</label>*@
+                    @Html.DropDownList("customerCode", null, "Select Customer Code", new { @id = "addRecordItem1", @name = "addRecordItem1", @class = "form-control form-control-sm" })
                 </div>
                 <div class="form-group">
-                    <label for="addRecordItem2">Event ID</label>
-                    <input type="text" class="form-control" id="addRecordItem2" placeholder="" value="">
+                    @*<label for="addRecordItem2">Event ID</label>*@
+                    <input type="text" class="form-control form-control-sm" id="addRecordItem2" placeholder="Event ID" value="">
                 </div>
                 <div class="form-group">
-                    <label for="addRecordItem3">Event Type</label>
-                    <input type="text" class="form-control" id="addRecordItem3" placeholder="" value="">
+                    @*<label for="addRecordItem3">Event Type</label>*@
+                    <input type="text" class="form-control form-control-sm" id="addRecordItem3" placeholder="Event Type" value="">
                 </div>
                 <div class="form-group">
-                    <label for="addRecordItem4">Start Date</label>
-                    <input type="text" class="form-control" id="addRecordItem3" placeholder="" value="">
+                    @*<label for="addRecordItem4">Start Date</label>*@
+                    <input type="date" class="form-control form-control-sm" id="addRecordItem3" placeholder="Start Date" value="">
                 </div>
                 <div class="form-group">
-                    <label for="addRecordItem5">End Date</label>
-                    <input type="text" class="form-control" id="addRecordItem3" placeholder="" value="">
+                    @*<label for="addRecordItem5">End Date</label>*@
+                    <input type="date" class="form-control form-control-sm" id="addRecordItem3" placeholder="End Date" value="">
                 </div>
-                <button type="submit" class="btn btn-primary" id="addButton" style="background-color: royalblue">Add</button>
+                <button type="submit" class="btn btn-primary btn-sm" id="addButton" style="background-color: royalblue">Add</button>
             </form><hr />
         </div>
     </div>
@@ -313,21 +310,21 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
-                    <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
-                    <td id="record_item1" value=@Html.DisplayFor(modelItem => item.customerCode)>@Html.DisplayFor(modelItem => item.customerCode)</td>
-                    <td id="record_item2" value=@Html.DisplayFor(modelItem => item.eventID)>@Html.DisplayFor(modelItem => item.eventID)</td>
-                    <td id="record_item3" value=@Html.DisplayFor(modelItem => item.eventType)>@Html.DisplayFor(modelItem => item.eventType)</td>
-                    <td id="record_item4" value=@Html.DisplayFor(modelItem => item.startDate)>@Html.DisplayFor(modelItem => item.startDate)</td>
-                    <td id="record_item5" value=@Html.DisplayFor(modelItem => item.endDate)>@Html.DisplayFor(modelItem => item.endDate)</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm editButton">Edit</button>
-                        <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
-                        <button class="btn btn-primary btn-sm deleteButton">Delete</button>
-                        <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
-                        <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
-                    </td>
-                </tr>
+                    <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
+                        <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
+                        <td id="record_item1" value=@Html.DisplayFor(modelItem => item.customerCode)>@Html.DisplayFor(modelItem => item.customerCode)</td>
+                        <td id="record_item2" value=@Html.DisplayFor(modelItem => item.eventID)>@Html.DisplayFor(modelItem => item.eventID)</td>
+                        <td id="record_item3" value=@Html.DisplayFor(modelItem => item.eventType)>@Html.DisplayFor(modelItem => item.eventType)</td>
+                        <td id="record_item4" value=@Html.DisplayFor(modelItem => item.startDate)>@Html.DisplayFor(modelItem => item.startDate)</td>
+                        <td id="record_item5" value=@Html.DisplayFor(modelItem => item.endDate)>@Html.DisplayFor(modelItem => item.endDate)</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm editButton">Edit</button>
+                            <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
+                            <button class="btn btn-primary btn-sm deleteButton">Delete</button>
+                            <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
+                            <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
+                        </td>
+                    </tr>
                 }
         </table>
     </div>
