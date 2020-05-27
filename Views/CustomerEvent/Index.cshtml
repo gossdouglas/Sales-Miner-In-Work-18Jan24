@@ -47,7 +47,7 @@
 
                 $("#slctd_id").val(selectedItem0);
                 $("#slctd_customerCode").val(selectedItem1);
-                //$("#slctd_eventID").val(selectedItem2);
+                $("#slctd_eventID").val(selectedItem2);
                 $("#slctd_eventType").val(selectedItem3);
                 $("#slctd_startDate").val(selectedItem4);
                 $("#slctd_endDate").val(selectedItem5);
@@ -192,7 +192,7 @@
                     "endDate: " + selectedItem5 + '\n' 
                 );
 
-                axios.post('/CustomerEvent/DeleteKit', {
+                axios.post('/CustomerEvent/DeleteEvent', {
                     id: selectedItem0,
                 })
                     .then(function (response) {
@@ -269,7 +269,7 @@
     <!--end inline add-->
     <!--click event begin-->
     <div>
-        <div class="row">
+        <div class="row" style="display:nonel">
             <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
             <div class="col-md-2">Customer Code: <input type="text" id="slctd_customerCode" value="slctd_customerCode"></div>
             <div class="col-md-2">Event ID: <input type="text" id="slctd_eventID" value="slctd_eventID"></div>
