@@ -20,7 +20,13 @@ namespace allpax_sale_miner.Controllers
             allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
             List<tbl_customer_eqpmt> custEqpmt = entities.tbl_customer_eqpmt.ToList();
 
+            //tbl_customer_eqpmt custEqpmtVM = new tbl_customer_eqpmt();
+            //List<tbl_customer_eqpmt> custEqpmtVMList= custEqpmt.Select(x=>new tbl_customer_eqpmt{
+            //    customerCode=x.customerCode,machineID=x.machineID, 
+            //    eqpmtType=x.eqpmtType, id=x.id, jobNum=x.jobNum, )
+
             ViewBag.customerCode = new SelectList(db.tbl_customer, "customerCode", "customerCode");
+            ViewBag.customerName = new SelectList(db.tbl_customer, "name", "name");
             ViewBag.eqpmtType = new SelectList(db.tbl_eqpmt_type_mgmt, "eqpmtType", "eqpmtType");
 
             return View(custEqpmt.ToList());

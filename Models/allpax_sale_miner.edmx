@@ -7,9 +7,9 @@
     <Schema Namespace="allpax_sale_minerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tbl_customer">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="customerCode" />
           </Key>
-          <Property Name="customerCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="customerCode" Type="varchar" MaxLength="3" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="address" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="city" Type="varchar" MaxLength="50" Nullable="false" />
@@ -19,20 +19,21 @@
         </EntityType>
         <EntityType Name="tbl_customer_eqpmt">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="customerCode" />
+            <PropertyRef Name="machineID" />
           </Key>
-          <Property Name="customerCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="customerCode" Type="varchar" MaxLength="3" Nullable="false" />
           <Property Name="machineID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="jobNum" Type="varchar" MaxLength="50" />
           <Property Name="eqpmtType" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="jobNum" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tbl_customer_event">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="customerCode" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="eventID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="eventID" Type="varchar" MaxLength="50" />
           <Property Name="eventType" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="startDate" Type="date" Nullable="false" />
           <Property Name="endDate" Type="date" Nullable="false" />
@@ -87,9 +88,18 @@
           <Property Name="filePath" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK_tbl_customer_eqpmt_tbl_customer' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK_tbl_customer_eqpmt_tbl_customer" />-->
+        <Association Name="FK_tbl_customer_eqpmt_tbl_customer">
+          <End Role="tbl_customer" Type="Self.tbl_customer" Multiplicity="1" />
+          <End Role="tbl_customer_eqpmt" Type="Self.tbl_customer_eqpmt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_customer">
+              <PropertyRef Name="customerCode" />
+            </Principal>
+            <Dependent Role="tbl_customer_eqpmt">
+              <PropertyRef Name="customerCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <!--Errors Found During Generation:
 warning 6035: The relationship 'FK_tbl_eqpmt_kits_avlbl_tbl_kit' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="FK_tbl_eqpmt_kits_avlbl_tbl_kit" />-->
@@ -106,6 +116,10 @@ warning 6035: The relationship 'FK_tbl_eqpmt_type_tbl_eqpmt_type_mgmt' has colum
           <EntitySet Name="tbl_eqpmt_type_mgmt" EntityType="Self.tbl_eqpmt_type_mgmt" Schema="cmps411" store:Type="Tables" />
           <EntitySet Name="tbl_event_type" EntityType="Self.tbl_event_type" Schema="cmps411" store:Type="Tables" />
           <EntitySet Name="tbl_kit" EntityType="Self.tbl_kit" Schema="cmps411" store:Type="Tables" />
+          <AssociationSet Name="FK_tbl_customer_eqpmt_tbl_customer" Association="Self.FK_tbl_customer_eqpmt_tbl_customer">
+            <End Role="tbl_customer" EntitySet="tbl_customer" />
+            <End Role="tbl_customer_eqpmt" EntitySet="tbl_customer_eqpmt" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -113,22 +127,23 @@ warning 6035: The relationship 'FK_tbl_eqpmt_type_tbl_eqpmt_type_mgmt' has colum
       <Schema Namespace="allpax_sale_minerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="tbl_customer">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="customerCode" />
           </Key>
-          <Property Name="customerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="customerCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="state" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="zipCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="tbl_customer_eqpmt" Relationship="allpax_sale_minerModel.FK_tbl_customer_eqpmt_tbl_customer" FromRole="tbl_customer" ToRole="tbl_customer_eqpmt" />
         </EntityType>
         <EntityType Name="tbl_customer_event">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="customerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="eventID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="eventID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="eventType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="endDate" Type="DateTime" Nullable="false" Precision="0" />
@@ -144,6 +159,10 @@ warning 6035: The relationship 'FK_tbl_eqpmt_type_tbl_eqpmt_type_mgmt' has colum
           <EntitySet Name="tbl_eqpmt_kits_avlbl" EntityType="allpax_sale_minerModel.tbl_eqpmt_kits_avlbl" />
           <EntitySet Name="tbl_customer_eqpmt" EntityType="allpax_sale_minerModel.tbl_customer_eqpmt" />
           <EntitySet Name="tbl_eqpmt_type_mgmt" EntityType="allpax_sale_minerModel.tbl_eqpmt_type_mgmt" />
+          <AssociationSet Name="FK_tbl_customer_eqpmt_tbl_customer" Association="allpax_sale_minerModel.FK_tbl_customer_eqpmt_tbl_customer">
+            <End Role="tbl_customer" EntitySet="tbl_customer" />
+            <End Role="tbl_customer_eqpmt" EntitySet="tbl_customer_eqpmt" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tbl_kit">
           <Key>
@@ -189,13 +208,15 @@ warning 6035: The relationship 'FK_tbl_eqpmt_type_tbl_eqpmt_type_mgmt' has colum
         </EntityType>
         <EntityType Name="tbl_customer_eqpmt">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="customerCode" />
+            <PropertyRef Name="machineID" />
           </Key>
-          <Property Name="customerCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customerCode" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="machineID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="jobNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="eqpmtType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="tbl_customer" Relationship="allpax_sale_minerModel.FK_tbl_customer_eqpmt_tbl_customer" FromRole="tbl_customer_eqpmt" ToRole="tbl_customer" />
         </EntityType>
         <EntityType Name="tbl_eqpmt_type_mgmt">
           <Key>
@@ -204,6 +225,18 @@ warning 6035: The relationship 'FK_tbl_eqpmt_type_tbl_eqpmt_type_mgmt' has colum
           <Property Name="eqpmtType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
+        <Association Name="FK_tbl_customer_eqpmt_tbl_customer">
+          <End Type="allpax_sale_minerModel.tbl_customer" Role="tbl_customer" Multiplicity="1" />
+          <End Type="allpax_sale_minerModel.tbl_customer_eqpmt" Role="tbl_customer_eqpmt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_customer">
+              <PropertyRef Name="customerCode" />
+            </Principal>
+            <Dependent Role="tbl_customer_eqpmt">
+              <PropertyRef Name="customerCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
