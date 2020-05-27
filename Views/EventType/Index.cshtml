@@ -11,32 +11,29 @@
         <script>
             $(document).ready(function () {//begin document read jquery statements
                       // Setup - add a text input to each footer cell
-         $('#datable_eventType thead tr').clone(true).appendTo( '#datable_eventType thead' );
-         $('#datable_eventType thead tr:eq(1) th').each( function (i) {
-             var title = $(this).text();
-             $(this).html( '<input type="text" placeholder=" " />' );
+         //$('#datable_eventType thead tr').clone(true).appendTo( '#datable_eventType thead' );
+         //$('#datable_eventType thead tr:eq(1) th').each( function (i) {
+         //    var title = $(this).text();
+         //    $(this).html( '<input type="text" placeholder=" " />' );
  
-             $( 'input', this ).on( 'keyup change', function () {
-                 if ( table.column(i).search() !== this.value ) {
-                     table
-                         .column(i)
-                            .search( this.value )
-                             .draw();
-                 }
-             } );
-         } );
+         //    $( 'input', this ).on( 'keyup change', function () {
+         //        if ( table.column(i).search() !== this.value ) {
+         //            table
+         //                .column(i)
+         //                   .search( this.value )
+         //                    .draw();
+         //        }
+         //    } );
+         //} );
  
             var table = $('#datable_eventType').DataTable({
                 orderCellsTop: true,
                 fixedHeader: true,
                 paging: false,
-                order: [[2, "asc"]]
+                order: [[2, "asc"]],
+                searching: false
             });
-
-          
-               // "searching": false, // false to disable search (or any other option)
-               // "order": [[1, "asc"]]
-            
+                     
             $('.dataTables_length').addClass('bs-select');
                 //begin when a record class is clicked...
                 $(".record").on('click keyup change', function () {
@@ -93,20 +90,20 @@
 
                 //begin #addButton
                 $("#addButton").click(function () {//when the add button is clicked...
-                    var addItem1 = $("#addRecordItem1").val();
+                    //var addItem1 = $("#addRecordItem1").val();
                     var addItem2 = $("#addRecordItem2").val();
 
                     alert(
                         "Selected for Add POST:" + '\n' +
-                        "addItem1: " + addItem1 + '\n' +
+                        //"addItem1: " + addItem1 + '\n' +
                         "addItem2: " + addItem2 + '\n'
                     );
-                    $("#addRecordItem1").val('');
+                    //$("#addRecordItem1").val('');
                     $("#addRecordItem2").val('');
                     //begin axios add post
 
                     axios.post('/EventType/AddEvent', {
-                        eventID: addItem1,
+                        //eventID: addItem1,
                         eventType: addItem2
                     })
                         .then(function (response) {
@@ -136,20 +133,20 @@
                     $(this).parent().find(".deleteButton").show();
 
                     var editItem0 = $("#slctd_id").val();
-                    var editItem1 = $("#slctd_eventID").val();
+                    //var editItem1 = $("#slctd_eventID").val();
                     var editItem2 = $("#slctd_eventType").val();
 
                     alert(
                         "Selected for Edit POST:" + '\n' +
                         "editItem0: " + editItem0 + '\n' +
-                        "editItem1: " + editItem1 + '\n' +
+                        //"editItem1: " + editItem1 + '\n' +
                         "editItem2: " + editItem2 + '\n'
                     );
 
                     //begin axios add post
                     axios.post('/EventType/UpdateEvent', {
                         id: editItem0,
-                        eventID: editItem1,
+                        //eventID: editItem1,
                         eventType: editItem2
 
                     })
@@ -170,7 +167,7 @@
                     alert(
                         "Selected for DELETE:" + '\n' +
                         "id: " + selectedItem0 + '\n' +
-                        "eventID: " + selectedItem1 + '\n' +
+                        //"eventID: " + selectedItem1 + '\n' +
                         "eventType: " + selectedItem2 + '\n'
                     );
 
@@ -223,68 +220,62 @@
     }
 </style>
 
-@*<div class="container">*@
-<div class="body-content">
+<div class="container-fluid"><hr />
     <!--begin inline add-->
     <div class="row">
         <div class="col-md-12">
-            <h4>Customer Event Type</h4>
+            <h5>Customer Event Type</h5>
             <form class="form-inline">
-                @*<div class="form-group">
-                        <label for="addRecordItem1">Event ID</label>
-                        <input type="text" class="form-control" id="addRecordItem1" placeholder="" value="">
-                    </div>*@
                 <div class="form-group">
-                    <label for="addRecordItem2">Event Type</label>
-                    <input type="text" class="form-control" id="addRecordItem2" placeholder="" value="">
+                    @*<label for="addRecordItem2">Event Type</label>*@
+                    <input type="text" class="form-control form-control-sm" id="addRecordItem2" placeholder="Event Type" value="">
                 </div>
-                <button type="submit" class="btn btn-primary" id="addButton" style="background-color: royalblue">Add</button>
+                <button type="submit" class="btn btn-primary btn-sm" id="addButton" style="background-color: royalblue">Add</button>
             </form><hr />
         </div>
     </div>
+</div>
     <!--click event begin-->
     <div>
-        <div class="row">
+        <div class="row" style="display:none">
             <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
-            <div class="col-md-2">Event ID: <input type="text" id="slctd_eventID" value="slctd_eventID"></div>
             <div class="col-md-2">Event Type: <input type="text" id="slctd_eventType" value="slctd_eventType"></div>
         </div>
     </div>
     <!--click event end-->
     <!--table begin-->
-    <table id="datable_eventType" class="table table-striped table-bordered" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th class="th-sm">
-                    ID
-                </th>
-                <th class="th-sm">
-                    Event ID (kill full mvc)
-                </th>
-                <th class="th-sm">
-                    Event Type
-                </th>
-                <th class="th-sm">
-                    Action
-                </th>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
-                    <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
-                    <td id="record_item1" value=@Html.DisplayFor(modelItem => item.eventID)>@Html.DisplayFor(modelItem => item.eventID)</td>
-                    <td id="record_item2" value=@Html.DisplayFor(modelItem => item.eventType)>@Html.DisplayFor(modelItem => item.eventType)</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm editButton" style=" background-color: royalblue">Edit</button>
-                        <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
-                        <button class="btn btn-primary btn-sm deleteButton" style=" background-color: royalblue">Delete</button>
-                        <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
-                        <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <!--table end-->
+<div class="container-fluid">
+    <div class="col-md-12" style="border:none">
+        <table id="datable_eventType" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th class="th-sm">
+                        ID
+                    </th>
+                    <th class="th-sm">
+                        Event Type
+                    </th>
+                    <th class="th-sm">
+                        Action
+                    </th>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
+                        <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>                     
+                        <td id="record_item2" value=@Html.DisplayFor(modelItem => item.eventType)>@Html.DisplayFor(modelItem => item.eventType)</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm editButton" style=" background-color: royalblue">Edit</button>
+                            <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
+                            <button class="btn btn-primary btn-sm deleteButton" style=" background-color: royalblue">Delete</button>
+                            <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
+                            <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <!--table end-->
+    </div>
 </div>
