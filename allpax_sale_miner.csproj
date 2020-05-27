@@ -488,11 +488,6 @@
     <Content Include="Views\CustomerMgmt\Index.cshtml" />
     <Content Include="Views\CustomerMgmt\Index-orig.cshtml" />
     <Content Include="Views\CustomerEvent\Index.cshtml" />
-    <Content Include="Views\CustomerEvent\Create.cshtml" />
-    <Content Include="Views\CustomerEvent\Delete.cshtml" />
-    <Content Include="Views\CustomerEvent\Details.cshtml" />
-    <Content Include="Views\CustomerEvent\Edit.cshtml" />
-    <Content Include="Views\CustomerEvent\Index-orig.cshtml" />
     <Content Include="Views\KitMgmt\Create.cshtml" />
     <Content Include="Views\KitMgmt\Delete.cshtml" />
     <Content Include="Views\KitMgmt\Details.cshtml" />
@@ -514,10 +509,6 @@
     <Content Include="Views\CurrentEqpmtKits\Index.cshtml" />
     <Content Include="Views\CustomerMgmt\Index-before inline add.cshtml" />
     <Content Include="Views\KitMgmt\Index-before goss.cshtml" />
-    <Content Include="Views\EventType\Create.cshtml" />
-    <Content Include="Views\EventType\Delete.cshtml" />
-    <Content Include="Views\EventType\Details.cshtml" />
-    <Content Include="Views\EventType\Edit.cshtml" />
     <Content Include="Views\EventType\Index.cshtml" />
     <Content Include="Views\KitsAvlblMgmt\Create.cshtml" />
     <Content Include="Views\KitsAvlblMgmt\Delete.cshtml" />

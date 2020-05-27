@@ -39,7 +39,7 @@
             $(".record").on('click keyup change', function () {
                 selectedItem0 = $(this).attr("id");//works
                 selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
-                /*selectedItem2 = $(this).find("#record_item2").html();*///works valid for inner html only
+                selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
                 selectedItem3 = $(this).find("#record_item3").html();//works valid for inner html only
                 selectedItem4 = $(this).find("#record_item4").html();//works valid for inner html only
                 selectedItem5 = $(this).find("#record_item5").html();//works valid for inner html only
@@ -88,7 +88,7 @@
             //begin #addButton
             $("#addButton").click(function () {//when the add button is clicked...
                 var addItem1 = $("#addRecordItem1").val();
-                //var addItem2 = $("#addRecordItem2").val();
+                var addItem2 = $("#addRecordItem2").val();
                 var addItem3 = $("#addRecordItem3").val();
                 var addItem4 = $("#addRecordItem4").val();
                 var addItem5 = $("#addRecordItem5").val();
@@ -96,21 +96,21 @@
                 alert(
                     "Selected for Add POST:" + '\n' +
                     "addItem1: " + addItem1 + '\n' +
-                    //"addItem2: " + addItem2 + '\n' +
+                    "addItem2: " + addItem2 + '\n' +
                     "addItem3: " + addItem3 + '\n' +
                     "addItem4: " + addItem4 + '\n' +
                     "addItem5: " + addItem5 + '\n' 
                 );
                 $("#addRecordItem1").val('');
-                //$("#addRecordItem2").val('');
+                $("#addRecordItem2").val('');
                 $("#addRecordItem3").val('');
                 $("#addRecordItem4").val('');
                 $("#addRecordItem5").val('');
                 //begin axios add post
 
-                axios.post('/KitMgmt/AddKit', {
+                axios.post('/CustomerEvent/AddEvent', {
                     customerCode: addItem1,
-                    //eventID: addItem2,
+                    eventID: addItem2,
                     eventType: addItem3,
                     startDate: addItem4,
                     endDate: addItem5
@@ -143,7 +143,7 @@
 
                 var editItem0 = $("#slctd_id").val();
                 var editItem1 = $("#slctd_customerCode").val();
-                //var editItem2 = $("#slctd_eventID").val();
+                var editItem2 = $("#slctd_eventID").val();
                 var editItem3 = $("#slctd_eventType").val();
                 var editItem4 = $("#slctd_startDate").val();
                 var editItem5 = $("#slctd_endDate").val();
@@ -154,17 +154,17 @@
                     "Selected for Edit POST:" + '\n' +
                     "editItem0: " + editItem0 + '\n' +
                     "editItem1: " + editItem1 + '\n' +
-                    //"editItem2: " + editItem2 + '\n' +
+                    "editItem2: " + editItem2 + '\n' +
                     "editItem3: " + editItem3 + '\n' +
                     "editItem4: " + editItem4 + '\n' +
                     "editItem5: " + editItem5 + '\n' 
                 );
 
                 //begin axios add post
-                axios.post('/KitMgmt/UpdateKit', {
+                axios.post('/CustomerEvent/UpdateEvent', {
                     id: editItem0,
                     customerCode: editItem1,
-                    //eventID: editItem2,
+                    eventID: editItem2,
                     eventType: editItem3,
                     startDate: editItem4,
                     endDate: editItem5
@@ -186,13 +186,13 @@
                     "Selected for DELETE:" + '\n' +
                     "id: " + selectedItem0 + '\n' +
                     "customerCode: " + selectedItem1 + '\n' +
-                    //"eventID: " + selectedItem2 + '\n' +
+                    "eventID: " + selectedItem2 + '\n' +
                     "eventType: " + selectedItem3 + '\n' +
                     "startDate: " + selectedItem4 + '\n' +
                     "endDate: " + selectedItem5 + '\n' 
                 );
 
-                axios.post('/KitMgmt/DeleteKit', {
+                axios.post('/CustomerEvent/DeleteKit', {
                     id: selectedItem0,
                 })
                     .then(function (response) {
@@ -251,15 +251,16 @@
                 </div>
                 <div class="form-group">
                     @*<label for="addRecordItem3">Event Type</label>*@
-                    <input type="text" class="form-control form-control-sm" id="addRecordItem3" placeholder="Event Type" value="">
+                    @Html.DropDownList("eventType", null, "Select Event Type", new { @id = "addRecordItem3", @name = "addRecordItem3", @class = "form-control form-control-sm" })
+                    @*<input type="text" class="form-control form-control-sm" id="addRecordItem3" placeholder="Event Type" value="">*@
                 </div>
                 <div class="form-group">
                     @*<label for="addRecordItem4">Start Date</label>*@
-                    <input type="date" class="form-control form-control-sm" id="addRecordItem3" placeholder="Start Date" value="">
+                    <input type="date" class="form-control form-control-sm" id="addRecordItem4" placeholder="Start Date" value="">
                 </div>
                 <div class="form-group">
                     @*<label for="addRecordItem5">End Date</label>*@
-                    <input type="date" class="form-control form-control-sm" id="addRecordItem3" placeholder="End Date" value="">
+                    <input type="date" class="form-control form-control-sm" id="addRecordItem5" placeholder="End Date" value="">
                 </div>
                 <button type="submit" class="btn btn-primary btn-sm" id="addButton" style="background-color: royalblue">Add</button>
             </form><hr />
