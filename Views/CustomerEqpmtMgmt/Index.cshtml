@@ -225,10 +225,10 @@
                     @*<label for="addRecordItem2">Machine ID</label>*@
                     <input type="text" class="form-control form-control-sm" id="addRecordItem2" placeholder="Machine ID" value="">
                 </div>
-                <div class="form-group">
-                    @*<label for="addRecordItem3">Job Number</label>*@
+                @*<div class="form-group">
+                    <label for="addRecordItem3">Job Number</label>
                     <input type="text" class="form-control form-control-sm" id="addRecordItem3" placeholder="Job Number" value="">
-                </div>
+                </div>*@
                 <div class="form-group">
                     @*<label for="addRecordItem3">Equipment Type</label>*@
                     @Html.DropDownList("eqpmtType", null, "Select Equipment Type", new { @id = "addRecordItem4", @name = "addRecordItem4", @class = "form-control form-control-sm" })
@@ -263,9 +263,9 @@
                     <th class="th-sm">
                         Machine ID
                     </th>
-                    <th class="th-sm">
+                    @*<th class="th-sm">
                         Job Number
-                    </th>
+                    </th>*@
                     <th class="th-sm">
                         Equipment Type
                     </th>
@@ -281,7 +281,7 @@
                         <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
                         <td id="record_item1" value=@Html.DisplayFor(modelItem => item.customerCode)>@Html.DisplayFor(modelItem => item.customerCode)</td>
                         <td id="record_item2" value=@Html.DisplayFor(modelItem => item.machineID)>@Html.DisplayFor(modelItem => item.machineID)</td>
-                        <td id="record_item3" value=@Html.DisplayFor(modelItem => item.jobNum)>@Html.DisplayFor(modelItem => item.jobNum)</td>
+                        @*<td id="record_item3" value=@Html.DisplayFor(modelItem => item.jobNum)>@Html.DisplayFor(modelItem => item.jobNum)</td>*@
                         <td id="record_item4" value=@Html.DisplayFor(modelItem => item.eqpmtType)>@Html.DisplayFor(modelItem => item.eqpmtType)</td>
                         <td>
                             <button class="btn btn-primary btn-sm editButton" style=" background-color: royalblue">Edit</button>
