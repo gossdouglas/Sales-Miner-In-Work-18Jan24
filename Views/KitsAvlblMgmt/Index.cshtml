@@ -30,7 +30,8 @@
                 orderCellsTop: true,
                 fixedHeader: true,
                 paging: false,
-                order: [[1, "asc"]]
+                order: [[1, "asc"]],
+                searching: false
             });
            
             $('.dataTables_length').addClass('bs-select');
@@ -211,28 +212,28 @@
 </style>
 
 
-@*<div class="container">*@
-<div class="body-content">
+<div class="container-fluid">
+    <hr />
     <!--begin inline add-->
     <div class="row">
         <div class="col-md-12">
-            <h4>Available Kits</h4>
+            <h5>Available Kits</h5>
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="addRecordItem1">Equipment Type</label>
-                    @Html.DropDownList("eqpmtType", null, "Select Equipment Type", new { @id = "addRecordItem1", @name = "addRecordItem1", @class = "form-control" })
+                    @*<label for="addRecordItem1">Equipment Type</label>*@
+                    @Html.DropDownList("eqpmtType", null, "Select Equipment Type", new { @id = "addRecordItem1", @name = "addRecordItem1", @class = "form-control form-control-sm"})
                 </div>
                 <div class="form-group">
-                    <label for="addRecordItem2">Kit ID</label>
-                    @Html.DropDownList("kitID", null, "Select Kit ID", new { @id = "addRecordItem2", @name = "addRecordItem2", @class = "form-control" })
+                    @*<label for="addRecordItem2">Kit ID</label>*@
+                    @Html.DropDownList("kitID", null, "Select Kit ID", new { @id = "addRecordItem2", @name = "addRecordItem2", @class = "form-control form-control-sm" })
                 </div>
-                <button type="submit" class="btn btn-primary" id="addButton" style="background-color: royalblue">Add</button>
+                <button type="submit" class="btn btn-primary btn-sm" id="addButton" style="background-color: royalblue">Add</button>
             </form><hr />
         </div>
     </div>
     <!--click event begin-->
     <div>
-        <div class="row">
+        <div class="row" style="display:none">
             <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
             <div class="col-md-2">Equipment Type: <input type="text" id="slctd_eqpmtType" value="slctd_eqpmtType"></div>
             <div class="col-md-2">Kit ID: <input type="text" id="slctd_kitID" value="slctd_kitID"></div>
