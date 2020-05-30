@@ -10,33 +10,29 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         $(document).ready(function () {//begin document read jquery statements
-               // Setup - add a text input to each footer cell
-         $('#datable_eqpmgmt thead tr').clone(true).appendTo( '#datable_eqpmgmt thead' );
-         $('#datable_eqpmgmt thead tr:eq(1) th').each( function (i) {
-             var title = $(this).text();
-             $(this).html( '<input type="text" placeholder=" " />' );
+         //$('#datable_eqpmgmt thead tr').clone(true).appendTo( '#datable_eqpmgmt thead' );
+         //$('#datable_eqpmgmt thead tr:eq(1) th').each( function (i) {
+         //    var title = $(this).text();
+         //    $(this).html( '<input type="text" placeholder=" " />' );
  
-             $( 'input', this ).on( 'keyup change', function () {
-                 if ( table.column(i).search() !== this.value ) {
-                     table
-                         .column(i)
-                            .search( this.value )
-                             .draw();
-                 }
-             } );
-         } );
+         //    $( 'input', this ).on( 'keyup change', function () {
+         //        if ( table.column(i).search() !== this.value ) {
+         //            table
+         //                .column(i)
+         //                   .search( this.value )
+         //                    .draw();
+         //        }
+         //    } );
+         //} );
  
             var table = $('#datable_eqpmgmt').DataTable({
                 orderCellsTop: true,
                 fixedHeader: true,
                 paging: false,
-                order: [[1, "asc"]]
+                order: [[1, "asc"]],
+                "searching": false,
             });
-
           
-               // "searching": false, // false to disable search (or any other option)
-               // "order": [[1, "asc"]]
-            
             $('.dataTables_length').addClass('bs-select');
             //begin when a record class is clicked...
             $(".record").on('click keyup change', function () {
@@ -215,128 +211,84 @@
         margin: 5px;
     }
 </style>
-@*<div class="container">*@
-<div class="body-content">
+<div class="container-fluid">
+    <hr />
     <!--begin inline add-->
     <div class="row">
         <div class="col-md-12">
-            <h4>Equipment Management</h4>
+            <h5>Equipment Management</h5>
             <form class="form-inline">
                 <div class="form-group">
                     @*<label for="addRecordItem1">Type</label>
-                    <input type="text" class="form-control" id="addRecordItem1" placeholder="Equipment Type" value="">*@
-                    <label for="addRecordItem1">Equipment Type</label>
-                    @Html.DropDownList("eqpmtType", null, "Select Equipment Type", new { @id = "addRecordItem1", @name = "addRecordItem1", @class = "form-control" })
+                        <input type="text" class="form-control" id="addRecordItem1" placeholder="Equipment Type" value="">*@
+                    @*<label for="addRecordItem1">Equipment Type</label>*@
+                    @Html.DropDownList("eqpmtType", null, "Select Equipment Type", new { @id = "addRecordItem1", @name = "addRecordItem1", @class = "form-control form-control-sm" })
                 </div>
                 <div class="form-group">
-                    <label for="addRecordItem2">Model</label>
-                    <input type="text" class="form-control" id="addRecordItem2" placeholder="Model" value="">
+                    @*<label for="addRecordItem2">Model</label>*@
+                    <input type="text" class="form-control form-control" id="addRecordItem2" placeholder="Model" value="">
                 </div>
                 <div class="form-group">
-                    <label for="addRecordItem3">Description</label>
-                    <input type="text" class="form-control" id="addRecordItem3" placeholder="Description" value="">
+                    @*<label for="addRecordItem3">Description</label>*@
+                    <input type="text" class="form-control form-control" id="addRecordItem3" placeholder="Description" value="">
                 </div>
-                <button type="submit" class="btn btn-primary" id="addButton" style="background-color: royalblue">Add</button>
+                <button type="submit" class="btn btn-primary btn-sm" id="addButton" style="background-color: royalblue">Add</button>
             </form><hr />
         </div>
     </div>
-    <!--click event begin-->
-    <div>
-        <div class="row">
-            <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
-            <div class="col-md-2">EquipmentType: <input type="text" id="slctd_eqpmtType" value="slctd_eqpmtType"></div>
-            <div class="col-md-2">Model: <input type="text" id="slctd_model" value="slctd_model"></div>
-            <div class="col-md-2">description: <input type="text" id="slctd_description" value="slctd_description"></div>
-        </div>
+</div>
+<!--click event begin-->
+<div>
+    <div class="row" style="display:none">
+        <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
+        <div class="col-md-2">EquipmentType: <input type="text" id="slctd_eqpmtType" value="slctd_eqpmtType"></div>
+        <div class="col-md-2">Model: <input type="text" id="slctd_model" value="slctd_model"></div>
+        <div class="col-md-2">description: <input type="text" id="slctd_description" value="slctd_description"></div>
     </div>
+</div>
     <!--click event end-->
     <!--table begin-->
-    <div class="row">
-    </div>
-    <table id="datable_eqpmgmt" class="table table-striped table-bordered" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th class="th-sm">
-                    ID
-                </th>
-                <th class="th-sm">
-                    Equipment Type
-                </th>
-                <th class="th-sm">
-                    Model
-                </th>
-                <th class="th-sm">
-                    Description
-                </th>
-                <th class="th-sm">
-                    Action
-                </th>
-            </tr>
-        </thead>
-
-
-
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
-                    <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
-                    <td id="record_item1" value=@Html.DisplayFor(modelItem => item.eqpmtType)>@Html.DisplayFor(modelItem => item.eqpmtType)</td>
-                    <td id="record_item2" value=@Html.DisplayFor(modelItem => item.model)>@Html.DisplayFor(modelItem => item.model)</td>
-                    <td id="record_item3" value=@Html.DisplayFor(modelItem => item.description)>@Html.DisplayFor(modelItem => item.description)</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm editButton" style=" background-color: royalblue">Edit</button>
-                        <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
-                        <button class="btn btn-primary btn-sm deleteButton" style=" background-color: royalblue">Delete</button>
-                        <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
-                        <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-       
-    </table>
-    @*<table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
+<div class="container-fluid">
+    <div class="col-md-12" style="border:none">
+        <table id="datable_eqpmgmt" class="table table-striped table-bordered">
             <thead>
                 <tr>
                     <th class="th-sm">
-                        Name
+                        ID
                     </th>
                     <th class="th-sm">
-                        Position
+                        Equipment Type
                     </th>
                     <th class="th-sm">
-                        Office
+                        Model
                     </th>
                     <th class="th-sm">
-                        Age
+                        Description
                     </th>
                     <th class="th-sm">
-                        Start date
-                    </th>
-                    <th class="th-sm">
-                        Salary
+                        Action
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
-                </tr>
-                <tr>
-                    <td>Garrett Winters</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>63</td>
-                    <td>2011/07/25</td>
-                    <td>$170,750</td>
-                </tr>
-
-        </table>*@
+                @foreach (var item in Model)
+                {
+                    <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
+                        <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
+                        <td id="record_item1" value=@Html.DisplayFor(modelItem => item.eqpmtType)>@Html.DisplayFor(modelItem => item.eqpmtType)</td>
+                        <td id="record_item2" value=@Html.DisplayFor(modelItem => item.model)>@Html.DisplayFor(modelItem => item.model)</td>
+                        <td id="record_item3" value=@Html.DisplayFor(modelItem => item.description)>@Html.DisplayFor(modelItem => item.description)</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm editButton" style=" background-color: royalblue">Edit</button>
+                            <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
+                            <button class="btn btn-primary btn-sm deleteButton" style=" background-color: royalblue">Delete</button>
+                            <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
+                            <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>       
+    </div>
 </div>
-<!--table end-->
+    <!--table end-->
