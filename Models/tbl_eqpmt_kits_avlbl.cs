@@ -1,14 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 namespace allpax_sale_miner.Models
 {
-    public class tbl_eqpmt_kits_avlbl
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    public partial class tbl_eqpmt_kits_avlbl
     {
-        public string eqpmtType { get; set; }
-        public string kitID { get; set; }
         public int id { get; set; }
+
+        public string eqpmtType { get; set; }
+
+        public string kitID { get; set; }
     }
 }

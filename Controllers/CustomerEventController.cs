@@ -34,7 +34,7 @@ namespace allpax_sale_miner.Controllers
                 entities.tbl_customer_event.Add(new tbl_customer_event()
                 {
                     customerCode = eventAdd.customerCode,
-                    eventID = eventAdd.eventID,
+                    //eventID = eventAdd.eventID,
                     eventType = eventAdd.eventType,
                     startDate = eventAdd.startDate,
                     endDate = eventAdd.endDate
@@ -59,7 +59,7 @@ namespace allpax_sale_miner.Controllers
                                                      where c.id == eventUpdate.id
                                                      select c).FirstOrDefault();
                 updatedEvent.customerCode = eventUpdate.customerCode;
-                updatedEvent.eventID = eventUpdate.eventID;
+                //updatedEvent.eventID = eventUpdate.eventID;
                 updatedEvent.eventType = eventUpdate.eventType;
                 updatedEvent.startDate = eventUpdate.startDate;
                 updatedEvent.endDate = eventUpdate.endDate;

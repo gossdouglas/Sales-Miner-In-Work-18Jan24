@@ -1,16 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 namespace allpax_sale_miner.Models
 {
-    public class tbl_customer_eqpmt
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    public partial class tbl_customer_eqpmt
     {
-        public string customerCode { get; set; }
-        public string machineID { get; set; }
-        public string jobNum { get; set; }
-        public string eqpmtType { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
+
+        [Required]
+        public string customerCode { get; set; }
+
+        [Required]
+        public string eqpmtType { get; set; }
+
+        [Key]
+        [StringLength(50)]
+        public string machineID { get; set; }
+
+        public virtual tbl_customer_eqpmt tbl_customer_eqpmt1 { get; set; }
+
+        public virtual tbl_customer_eqpmt tbl_customer_eqpmt2 { get; set; }
     }
 }

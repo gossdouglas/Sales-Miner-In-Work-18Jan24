@@ -1,12 +1,17 @@
-﻿namespace allpax_sale_miner.Models
+namespace allpax_sale_miner.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
 
     public partial class tbl_eqpmt_kits_current
     {
-        public string machineID { get; set; }
-        public string kitID { get; set; }
         public int id { get; set; }
+
+        public string machineID { get; set; }
+
+        public string kitID { get; set; }
     }
 }
