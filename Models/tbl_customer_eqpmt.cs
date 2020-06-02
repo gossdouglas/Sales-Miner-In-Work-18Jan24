@@ -6,23 +6,23 @@ namespace allpax_sale_miner.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("cmps411.tbl_customer_eqpmt")]
     public partial class tbl_customer_eqpmt
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
-
-        [Required]
+        [Key]
+        [Column(Order = 0)]
+        [StringLength(3)]
         public string customerCode { get; set; }
 
-        [Required]
-        public string eqpmtType { get; set; }
-
         [Key]
+        [Column(Order = 1)]
         [StringLength(50)]
         public string machineID { get; set; }
 
-        public virtual tbl_customer_eqpmt tbl_customer_eqpmt1 { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string eqpmtType { get; set; }
 
-        public virtual tbl_customer_eqpmt tbl_customer_eqpmt2 { get; set; }
+        public int id { get; set; }
     }
 }

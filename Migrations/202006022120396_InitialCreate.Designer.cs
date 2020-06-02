@@ -13,7 +13,7 @@ namespace allpax_sale_miner.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202006021815382_InitialCreate"; }
+            get { return "202006022120396_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

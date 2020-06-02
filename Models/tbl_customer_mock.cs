@@ -6,33 +6,37 @@ namespace allpax_sale_miner.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("cmps411.tbl_customer")]
-    public partial class tbl_customer
+    [Table("cmps411.tbl_customer_mock")]
+    public partial class tbl_customer_mock
     {
         [Key]
-        [StringLength(3)]
+        [Column(Order = 0)]
+        [StringLength(50)]
         public string customerCode { get; set; }
 
-        [Required]
+        [Key]
+        [Column(Order = 1)]
         [StringLength(50)]
         public string name { get; set; }
 
-        [Required]
+        [Key]
+        [Column(Order = 2)]
         [StringLength(50)]
         public string address { get; set; }
 
-        [Required]
+        [Key]
+        [Column(Order = 3)]
         [StringLength(50)]
         public string city { get; set; }
 
-        [Required]
+        [Key]
+        [Column(Order = 4)]
         [StringLength(2)]
         public string state { get; set; }
 
-        [Required]
+        [Key]
+        [Column(Order = 5)]
         [StringLength(5)]
         public string zipCode { get; set; }
-
-        public int id { get; set; }
     }
 }
