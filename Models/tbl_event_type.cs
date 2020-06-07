@@ -9,7 +9,10 @@ namespace allpax_sale_miner.Models
     [Table("cmps411.tbl_event_type")]
     public partial class tbl_event_type
     {
-        [Key]
+        [StringLength(50)]
+        public string eventID { get; set; }
+
+        [Required]
         [StringLength(50)]
         public string eventType { get; set; }
 

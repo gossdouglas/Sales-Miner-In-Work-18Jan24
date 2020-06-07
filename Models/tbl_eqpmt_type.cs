@@ -19,10 +19,14 @@ namespace allpax_sale_miner.Models
         [StringLength(50)]
         public string model { get; set; }
 
-        [Required]
+        [Key]
+        [Column(Order = 2)]
         [StringLength(50)]
         public string description { get; set; }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
+
+        public virtual tbl_eqpmt_type_mgmt tbl_eqpmt_type_mgmt { get; set; }
     }
 }

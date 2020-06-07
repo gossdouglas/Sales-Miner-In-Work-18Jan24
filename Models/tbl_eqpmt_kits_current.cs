@@ -19,6 +19,7 @@ namespace allpax_sale_miner.Models
         [StringLength(50)]
         public string kitID { get; set; }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
     }
 }

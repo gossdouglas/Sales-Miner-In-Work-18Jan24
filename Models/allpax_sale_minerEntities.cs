@@ -14,14 +14,13 @@ namespace allpax_sale_miner.Models
 
         public virtual DbSet<tbl_customer> tbl_customer { get; set; }
         public virtual DbSet<tbl_customer_eqpmt> tbl_customer_eqpmt { get; set; }
+        public virtual DbSet<tbl_customer_event> tbl_customer_event { get; set; }
         public virtual DbSet<tbl_eqpmt_kits_avlbl> tbl_eqpmt_kits_avlbl { get; set; }
         public virtual DbSet<tbl_eqpmt_kits_current> tbl_eqpmt_kits_current { get; set; }
         public virtual DbSet<tbl_eqpmt_type> tbl_eqpmt_type { get; set; }
         public virtual DbSet<tbl_eqpmt_type_mgmt> tbl_eqpmt_type_mgmt { get; set; }
         public virtual DbSet<tbl_event_type> tbl_event_type { get; set; }
         public virtual DbSet<tbl_kit> tbl_kit { get; set; }
-        public virtual DbSet<tbl_customer_event> tbl_customer_event { get; set; }
-        //public virtual DbSet<tbl_sales_opportunities> tbl_sales_opportunities { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -49,6 +48,16 @@ namespace allpax_sale_miner.Models
                 .Property(e => e.zipCode)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<tbl_customer>()
+                .HasMany(e => e.tbl_customer_eqpmt)
+                .WithRequired(e => e.tbl_customer)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<tbl_customer>()
+                .HasMany(e => e.tbl_customer_event)
+                .WithRequired(e => e.tbl_customer)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<tbl_customer_eqpmt>()
                 .Property(e => e.customerCode)
                 .IsUnicode(false);
@@ -59,6 +68,22 @@ namespace allpax_sale_miner.Models
 
             modelBuilder.Entity<tbl_customer_eqpmt>()
                 .Property(e => e.eqpmtType)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_customer_eqpmt>()
+                .Property(e => e.jobNum)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_customer_event>()
+                .Property(e => e.customerCode)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_customer_event>()
+                .Property(e => e.eventType)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_customer_event>()
+                .Property(e => e.eventID)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_eqpmt_kits_avlbl>()
@@ -93,6 +118,25 @@ namespace allpax_sale_miner.Models
                 .Property(e => e.eqpmtType)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<tbl_eqpmt_type_mgmt>()
+                .HasMany(e => e.tbl_customer_eqpmt)
+                .WithRequired(e => e.tbl_eqpmt_type_mgmt)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<tbl_eqpmt_type_mgmt>()
+                .HasMany(e => e.tbl_eqpmt_kits_avlbl)
+                .WithRequired(e => e.tbl_eqpmt_type_mgmt)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<tbl_eqpmt_type_mgmt>()
+                .HasMany(e => e.tbl_eqpmt_type)
+                .WithRequired(e => e.tbl_eqpmt_type_mgmt)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<tbl_event_type>()
+                .Property(e => e.eventID)
+                .IsUnicode(false);
+
             modelBuilder.Entity<tbl_event_type>()
                 .Property(e => e.eventType)
                 .IsUnicode(false);
@@ -109,33 +153,10 @@ namespace allpax_sale_miner.Models
                 .Property(e => e.filePath)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<tbl_customer_event>()
-                .Property(e => e.customerCode)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tbl_customer_event>()
-                .Property(e => e.eventType)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tbl_sales_opportunities>()
-                .Property(e => e.customerCode)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tbl_sales_opportunities>()
-                .Property(e => e.machineID)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tbl_sales_opportunities>()
-                .Property(e => e.kitID)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tbl_sales_opportunities>()
-                .Property(e => e.description)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tbl_sales_opportunities>()
-                .Property(e => e.supportFiles)
-                .IsUnicode(false);
+            modelBuilder.Entity<tbl_kit>()
+                .HasMany(e => e.tbl_eqpmt_kits_avlbl)
+                .WithRequired(e => e.tbl_kit)
+                .WillCascadeOnDelete(false);
         }
     }
 }

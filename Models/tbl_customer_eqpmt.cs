@@ -23,6 +23,14 @@ namespace allpax_sale_miner.Models
         [StringLength(50)]
         public string eqpmtType { get; set; }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
+
+        [StringLength(50)]
+        public string jobNum { get; set; }
+
+        public virtual tbl_customer tbl_customer { get; set; }
+
+        public virtual tbl_eqpmt_type_mgmt tbl_eqpmt_type_mgmt { get; set; }
     }
 }

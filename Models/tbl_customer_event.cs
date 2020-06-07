@@ -27,9 +27,12 @@ namespace allpax_sale_miner.Models
         [Column(Order = 3, TypeName = "date")]
         public DateTime endDate { get; set; }
 
-        [Key]
-        [Column(Order = 4)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [StringLength(50)]
+        public string eventID { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
+
+        public virtual tbl_customer tbl_customer { get; set; }
     }
 }
