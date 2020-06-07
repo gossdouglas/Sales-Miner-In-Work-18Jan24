@@ -19,11 +19,13 @@ namespace allpax_sale_miner.Controllers
         {
             allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
             //List<tbl_customer> custMgmt = entities.tbl_customer.ToList();
+            
 
-            var data = entities.tbl_customer.SqlQuery("select * from cmps411.tbl_customer").ToList();
+            var sql = entities.tbl_customer.SqlQuery("select * from cmps411.tbl_customer").ToList();
 
             //return View(custMgmt.ToList());
-            return View(data.ToList());
+            return View(sql.ToList());
+            
         }
                   
         //begin CMPS 411 controller code
@@ -45,6 +47,7 @@ namespace allpax_sale_miner.Controllers
 
                 entities.SaveChanges();
             }
+
 
             return new EmptyResult();
         }
