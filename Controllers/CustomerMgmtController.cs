@@ -32,24 +32,22 @@ namespace allpax_sale_miner.Controllers
         [HttpPost]
         public ActionResult AddCustomer(tbl_customer customerAdd)
         {
-            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
-            {
-                entities.tbl_customer.Add(new tbl_customer
-                {
-                    customerCode = customerAdd.customerCode,
-                    name = customerAdd.name,
-                    address = customerAdd.address,
-                    city = customerAdd.city,
-                    state = customerAdd.state,
-                    zipCode = customerAdd.zipCode,
-                });
+            //using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
+            //{
+            //    entities.tbl_customer.Add(new tbl_customer
+            //    {
+            //        customerCode = customerAdd.customerCode,
+            //        name = customerAdd.name,
+            //        address = customerAdd.address,
+            //        city = customerAdd.city,
+            //        state = customerAdd.state,
+            //        zipCode = customerAdd.zipCode,
+            //    });
 
 
-                entities.SaveChanges();
-            }
-
-            //db.Database.ExecuteSqlCommand("INSERT into cmps411.tbl_customer(customerCode, name, address, city, state, zipCode) VALUES(@p0, @p1, @p2, @p3, @p4, @p5, @p6)", @customerAdd.customerCode, @customerAdd.name, @customerAdd.address, @customerAdd.city, @customerAdd.state, @customerAdd.zipCode);
-            //db.Database.ExecuteSqlCommand("INSERT into cmps411.tbl_customer(customerCode, name, address, city, state, zipCode) VALUES(@p0, @p1, @p2, @p3, @p4, @p5, @p6)", customerAdd);
+            //    entities.SaveChanges();
+            //}
+           
             db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_customer Values({0},{1},{2}, {3}, {4}, {5})", customerAdd.customerCode, customerAdd.name, customerAdd.address, customerAdd.city, customerAdd.state, customerAdd.zipCode);
             return new EmptyResult();
         }
