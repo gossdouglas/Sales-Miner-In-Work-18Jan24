@@ -18,9 +18,12 @@ namespace allpax_sale_miner.Controllers
         public ActionResult Index()
         {
             allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
-            List<tbl_customer> custMgmt = entities.tbl_customer.ToList();
+            //List<tbl_customer> custMgmt = entities.tbl_customer.ToList();
 
-            return View(custMgmt.ToList());
+            var data = entities.tbl_customer.SqlQuery("select * from cmps411.tbl_customer").ToList();
+
+            //return View(custMgmt.ToList());
+            return View(data.ToList());
         }
                   
         //begin CMPS 411 controller code
