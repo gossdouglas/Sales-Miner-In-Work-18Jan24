@@ -19,14 +19,10 @@ namespace allpax_sale_miner.Models
         [StringLength(50)]
         public string model { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
+        [Required]
         [StringLength(50)]
         public string description { get; set; }
 
-        [Key]
-        [Column(Order = 3)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
     }
 }

@@ -14,15 +14,14 @@ namespace allpax_sale_miner.Models
 
         public virtual DbSet<tbl_customer> tbl_customer { get; set; }
         public virtual DbSet<tbl_customer_eqpmt> tbl_customer_eqpmt { get; set; }
-        public virtual DbSet<tbl_customer_event> tbl_customer_event { get; set; }
-        public virtual DbSet<tbl_customer_mock> tbl_customer_mock { get; set; }
         public virtual DbSet<tbl_eqpmt_kits_avlbl> tbl_eqpmt_kits_avlbl { get; set; }
         public virtual DbSet<tbl_eqpmt_kits_current> tbl_eqpmt_kits_current { get; set; }
         public virtual DbSet<tbl_eqpmt_type> tbl_eqpmt_type { get; set; }
         public virtual DbSet<tbl_eqpmt_type_mgmt> tbl_eqpmt_type_mgmt { get; set; }
         public virtual DbSet<tbl_event_type> tbl_event_type { get; set; }
         public virtual DbSet<tbl_kit> tbl_kit { get; set; }
-        public virtual DbSet<tbl_sales_opportunities> tbl_sales_opportunities { get; set; }
+        public virtual DbSet<tbl_customer_event> tbl_customer_event { get; set; }
+        //public virtual DbSet<tbl_sales_opportunities> tbl_sales_opportunities { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -62,38 +61,6 @@ namespace allpax_sale_miner.Models
                 .Property(e => e.eqpmtType)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<tbl_customer_event>()
-                .Property(e => e.customerCode)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tbl_customer_event>()
-                .Property(e => e.eventType)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tbl_customer_mock>()
-                .Property(e => e.customerCode)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tbl_customer_mock>()
-                .Property(e => e.name)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tbl_customer_mock>()
-                .Property(e => e.address)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tbl_customer_mock>()
-                .Property(e => e.city)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tbl_customer_mock>()
-                .Property(e => e.state)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tbl_customer_mock>()
-                .Property(e => e.zipCode)
-                .IsUnicode(false);
-
             modelBuilder.Entity<tbl_eqpmt_kits_avlbl>()
                 .Property(e => e.eqpmtType)
                 .IsUnicode(false);
@@ -127,10 +94,6 @@ namespace allpax_sale_miner.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_event_type>()
-                .Property(e => e.eventID)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tbl_event_type>()
                 .Property(e => e.eventType)
                 .IsUnicode(false);
 
@@ -144,6 +107,14 @@ namespace allpax_sale_miner.Models
 
             modelBuilder.Entity<tbl_kit>()
                 .Property(e => e.filePath)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_customer_event>()
+                .Property(e => e.customerCode)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_customer_event>()
+                .Property(e => e.eventType)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_sales_opportunities>()
