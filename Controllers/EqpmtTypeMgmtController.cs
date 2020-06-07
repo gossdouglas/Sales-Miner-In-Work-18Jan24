@@ -39,7 +39,7 @@ namespace allpax_sale_miner.Controllers
 
 
             //}
-            db.Database.ExecuteSqlCommand("insert into cmps411.tbl_eqpmt_type_mgmt(eqpmtType) values(@p0)", @eqpmtTypeAdd.eqpmtType);
+            db.Database.ExecuteSqlCommand("INSERT into cmps411.tbl_eqpmt_type_mgmt(eqpmtType) VALUES(@p0)", @eqpmtTypeAdd.eqpmtType);
 
             return new EmptyResult();
         }

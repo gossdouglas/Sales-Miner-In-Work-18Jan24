@@ -17,11 +17,11 @@ namespace allpax_sale_miner.Controllers
         // GET: CustomerMgmt
         public ActionResult Index()
         {
-            allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
+            //allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
             //List<tbl_customer> custMgmt = entities.tbl_customer.ToList();
             
 
-            var sql = entities.tbl_customer.SqlQuery("select * from cmps411.tbl_customer").ToList();
+            var sql = db.tbl_customer.SqlQuery("SELECT * from cmps411.tbl_customer").ToList();
 
             //return View(custMgmt.ToList());
             return View(sql.ToList());
@@ -48,7 +48,9 @@ namespace allpax_sale_miner.Controllers
                 entities.SaveChanges();
             }
 
-
+            //db.Database.ExecuteSqlCommand("INSERT into cmps411.tbl_customer(customerCode, name, address, city, state, zipCode) VALUES(@p0, @p1, @p2, @p3, @p4, @p5, @p6)", @customerAdd.customerCode, @customerAdd.name, @customerAdd.address, @customerAdd.city, @customerAdd.state, @customerAdd.zipCode);
+            //db.Database.ExecuteSqlCommand("INSERT into cmps411.tbl_customer(customerCode, name, address, city, state, zipCode) VALUES(@p0, @p1, @p2, @p3, @p4, @p5, @p6)", customerAdd);
+            db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_customer Values({0},{1},{2}, {3}, {4}, {5})", customerAdd.customerCode, customerAdd.name, customerAdd.address, customerAdd.city, customerAdd.state, customerAdd.zipCode);
             return new EmptyResult();
         }
 
