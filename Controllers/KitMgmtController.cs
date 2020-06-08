@@ -38,8 +38,6 @@ namespace allpax_sale_miner.Controllers
 
             //    entities.SaveChanges();
             //}
-            //db.Database.ExecuteSqlCommand("INSERT into cmps411.tbl_kit(kitID, description, filePath) VALUES(@p0, @p1, @p2)");
-            //db.Database.ExecuteSqlCommand("INSERT into cmps411.tbl_kit(kitID, description, filePath) VALUES({0}, {1}, {2})");
             db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_kit Values({0},{1},{2})", kitAdd.kitID, kitAdd.description, kitAdd.filePath);
             return new EmptyResult();
         }

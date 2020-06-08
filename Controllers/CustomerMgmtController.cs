@@ -54,11 +54,14 @@ namespace allpax_sale_miner.Controllers
 
         public ActionResult DeleteCustomer(tbl_customer custDelete)
         {
-            tbl_customer tbl_customer = db.tbl_customer.Find(custDelete.id);
-            db.tbl_customer.Remove(tbl_customer);
-            db.SaveChanges();
+            //tbl_customer tbl_customer = db.tbl_customer.Find(custDelete.id);
+            //db.tbl_customer.Remove(tbl_customer);
+            //db.SaveChanges();
+            db.Database.ExecuteSqlCommand("DELETE FROM cmps411.tbl_customer WHERE id=({0})", custDelete.id);
+
+
             return RedirectToAction("Index");
-        }
+        } 
         public ActionResult UpdateCustomer(tbl_customer custUpdate)
         {
             using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())

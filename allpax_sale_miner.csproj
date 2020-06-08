@@ -199,7 +199,6 @@
     <Compile Include="Models\tbl_customer.cs" />
     <Compile Include="Models\tbl_customer_eqpmt.cs" />
     <Compile Include="Models\tbl_customer_event.cs" />
-    <Compile Include="Models\tbl_customer_mock.cs" />
     <Compile Include="Models\tbl_eqpmt_kits_avlbl.cs" />
     <Compile Include="Models\tbl_eqpmt_kits_current.cs" />
     <Compile Include="Models\tbl_eqpmt_type.cs" />
