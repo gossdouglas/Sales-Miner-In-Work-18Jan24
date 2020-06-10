@@ -211,7 +211,8 @@
     </script>
 </head>
 
-<div class="container-fluid"> <hr />  
+<div class="container-fluid">
+    <hr />
     <!--begin inline add-->
     <div class="row">
         <div class="col-md-12">
@@ -226,9 +227,9 @@
                     <input type="text" class="form-control form-control-sm" id="addRecordItem2" placeholder="Machine ID" value="">
                 </div>
                 @*<div class="form-group">
-                    <label for="addRecordItem3">Job Number</label>
-                    <input type="text" class="form-control form-control-sm" id="addRecordItem3" placeholder="Job Number" value="">
-                </div>*@
+                        <label for="addRecordItem3">Job Number</label>
+                        <input type="text" class="form-control form-control-sm" id="addRecordItem3" placeholder="Job Number" value="">
+                    </div>*@
                 <div class="form-group">
                     @*<label for="addRecordItem3">Equipment Type</label>*@
                     @Html.DropDownList("eqpmtType", null, "Select Equipment Type", new { @id = "addRecordItem4", @name = "addRecordItem4", @class = "form-control form-control-sm" })
@@ -238,18 +239,18 @@
         </div>
     </div>
 </div>
-    <!--click event begin-->
-    @*<div>
-        <div class="row">
+<!--click event begin-->
+<div>
+        <div class="row" style="display:none">
             <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
             <div class="col-md-2">Customer Code: <input type="text" id="slctd_customerCode" value="slctd_CustomerCode"></div>
             <div class="col-md-2">Machine ID: <input type="text" id="slctd_machineID" value="slctd_machineID"></div>
             <div class="col-md-2">Job Number: <input type="text" id="slctd_jobNum" value="slctd_jobNum"></div>
             <div class="col-md-2">Equipment Type: <input type="text" id="slctd_eqpmtType" value="slctd_eqpmtType"></div>
         </div>
-    </div>*@
-    <!--click event end-->
-    <!--table begin-->
+    </div>
+<!--click event end-->
+<!--table begin-->
 <div class="container-fluid">
     <div class="col-md-12" style="border:none">
         <table id="datatable_customer_eqpmt" class="table table-striped table-bordered">
@@ -265,8 +266,8 @@
                         Machine ID
                     </th>
                     @*<th class="th-sm">
-                        Job Number
-                    </th>*@
+                            Job Number
+                        </th>*@
                     <th class="th-sm">
                         Equipment Type
                     </th>
