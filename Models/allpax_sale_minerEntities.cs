@@ -71,6 +71,10 @@ namespace allpax_sale_miner.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_customer_eqpmt>()
+                .Property(e => e.model)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_customer_eqpmt>()
                 .Property(e => e.jobNum)
                 .IsUnicode(false);
 
@@ -88,6 +92,10 @@ namespace allpax_sale_miner.Models
 
             modelBuilder.Entity<tbl_eqpmt_kits_avlbl>()
                 .Property(e => e.eqpmtType)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_eqpmt_kits_avlbl>()
+                .Property(e => e.model)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_eqpmt_kits_avlbl>()
@@ -120,11 +128,6 @@ namespace allpax_sale_miner.Models
 
             modelBuilder.Entity<tbl_eqpmt_type_mgmt>()
                 .HasMany(e => e.tbl_customer_eqpmt)
-                .WithRequired(e => e.tbl_eqpmt_type_mgmt)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<tbl_eqpmt_type_mgmt>()
-                .HasMany(e => e.tbl_eqpmt_kits_avlbl)
                 .WithRequired(e => e.tbl_eqpmt_type_mgmt)
                 .WillCascadeOnDelete(false);
 

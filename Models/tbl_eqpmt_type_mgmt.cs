@@ -13,7 +13,6 @@ namespace allpax_sale_miner.Models
         public tbl_eqpmt_type_mgmt()
         {
             tbl_customer_eqpmt = new HashSet<tbl_customer_eqpmt>();
-            tbl_eqpmt_kits_avlbl = new HashSet<tbl_eqpmt_kits_avlbl>();
             tbl_eqpmt_type = new HashSet<tbl_eqpmt_type>();
         }
 
@@ -26,9 +25,6 @@ namespace allpax_sale_miner.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_customer_eqpmt> tbl_customer_eqpmt { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_eqpmt_kits_avlbl> tbl_eqpmt_kits_avlbl { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_eqpmt_type> tbl_eqpmt_type { get; set; }

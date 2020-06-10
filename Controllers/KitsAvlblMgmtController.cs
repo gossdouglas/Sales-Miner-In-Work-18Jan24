@@ -19,7 +19,8 @@ namespace allpax_sale_miner.Controllers
             allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
             List<tbl_eqpmt_kits_avlbl> kitAvlbl = entities.tbl_eqpmt_kits_avlbl.ToList();
 
-            ViewBag.eqpmtType = new SelectList(db.tbl_eqpmt_type_mgmt.OrderBy(x => x.eqpmtType), "eqpmtType", "eqpmtType");
+            ViewBag.eqpmtType = new SelectList(db.tbl_eqpmt_type.OrderBy(x => x.eqpmtType), "eqpmtType", "eqpmtType");
+            ViewBag.model = new SelectList(db.tbl_eqpmt_type.OrderBy(x => x.model), "model", "model");
             ViewBag.kitID = new SelectList(db.tbl_kit.OrderBy(x => x.kitID), "kitID", "kitID");
 
             return View(kitAvlbl.ToList());
@@ -34,6 +35,7 @@ namespace allpax_sale_miner.Controllers
                 entities.tbl_eqpmt_kits_avlbl.Add(new tbl_eqpmt_kits_avlbl()
                 {
                     eqpmtType = avlblKitAdd.eqpmtType,
+                    model = avlblKitAdd.model,
                     kitID = avlblKitAdd.kitID
                 });
                 entities.SaveChanges();

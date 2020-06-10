@@ -23,6 +23,10 @@ namespace allpax_sale_miner.Models
         [StringLength(50)]
         public string eqpmtType { get; set; }
 
+        [Required]
+        [StringLength(50)]
+        public string model { get; set; }
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
 
