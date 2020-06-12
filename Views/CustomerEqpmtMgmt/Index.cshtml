@@ -42,6 +42,7 @@
                 selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
                 selectedItem3 = $(this).find("#record_item3").html();//works valid for inner html only
                 selectedItem4 = $(this).find("#record_item4").html();//works valid for inner html only
+                selectedItem5 = $(this).find("#record_item5").html();//works valid for inner html only
 
 
 
@@ -50,6 +51,7 @@
                 $("#slctd_machineID").val(selectedItem2);
                 $("#slctd_jobNum").val(selectedItem3);
                 $("#slctd_eqpmtType").val(selectedItem4);
+                $("#slctd_model").val(selectedItem4);
 
             });
             //end when a record class is clicked...
@@ -100,27 +102,31 @@
                 var addItem2 = $("#addRecordItem2").val();
                 var addItem3 = $("#addRecordItem3").val();
                 var addItem4 = $("#addRecordItem4").val();
+                var addItem5 = $("#addRecordItem5").val();
 
                 alert(
                     "Selected for Add POST:" + '\n' +
                     "addItem1: " + addItem1 + '\n' +
                     "addItem2: " + addItem2 + '\n' +
                     "addItem3: " + addItem3 + '\n' +
-                    "addItem4: " + addItem4 + '\n'
-
+                    "addItem4: " + addItem4 + '\n' +
+                    "addItem5: " + addItem5 + '\n'
 
                 );
                 $("#addRecordItem1").val('');
                 $("#addRecordItem2").val('');
                 $("#addRecordItem3").val('');
                 $("#addRecordItem4").val('');
+                $("#addRecordItem5").val('');
                 //begin axios add post
 
                 axios.post('/CustomerEqpmtMgmt/AddCustEqpmt', {
                     customerCode: addItem1,
+                    eqpmtType: addItem4,
+                    model: addItem5,
                     machineID: addItem2,
-                    jobNum: addItem3,
-                    eqpmtType: addItem4
+                    jobNum: addItem3
+                    
                 })
                     .then(function (response) {
                         console.log(response);
@@ -153,6 +159,7 @@
                 var editItem2 = $("#slctd_machineID").val();
                 var editItem3 = $("#slctd_jobNum").val();
                 var editItem4 = $("#slctd_eqpmtType").val();
+                var editItem5 = $("#slctd_model").val();
 
                 alert(
                     "Selected for Edit POST:" + '\n' +
@@ -160,7 +167,8 @@
                     "editItem1: " + editItem1 + '\n' +
                     "editItem2: " + editItem2 + '\n' +
                     "editItem3: " + editItem3 + '\n' +
-                    "editItem4: " + editItem4 + '\n'
+                    "editItem4: " + editItem4 + '\n' +
+                    "editItem5: " + editItem5 + '\n'
                 );
 
                 //begin axios add post
@@ -169,7 +177,8 @@
                     customerCode: editItem1,
                     machineID: editItem2,
                     jobNum: editItem3,
-                    eqpmtType: editItem4
+                    eqpmtType: editItem4,
+                    model: editItem5
                 })
                     .then(function (response) {
                         console.log(response);
@@ -191,7 +200,8 @@
                     "customerCode: " + selectedItem1 + '\n' +
                     "machineID: " + selectedItem2 + '\n' +
                     "Job Num: " + selectedItem3 + '\n' +
-                    "Equipment Type: " + selectedItem4 + '\n'
+                    "Equipment Type: " + selectedItem4 + '\n' +
+                    "Equipment Model: " + selectedItem5 + '\n'
                 );
 
                 axios.post('/CustomerEqpmtMgmt/DeleteCustEqpmt', {
@@ -223,16 +233,20 @@
                     @Html.DropDownList("customerCode", null, "Select Customer Code", new { @id = "addRecordItem1", @name = "addRecordItem1", @class = "form-control form-control-sm" })
                 </div>
                 <div class="form-group">
+                    @*<label for="addRecordItem3">Equipment Type</label>*@
+                    @Html.DropDownList("eqpmtType", null, "Select Equipment Type", new { @id = "addRecordItem4", @name = "addRecordItem4", @class = "form-control form-control-sm" })
+                </div>
+                <div class="form-group">
+                    @*<label for="addRecordItem3">Equipment Type</label>*@
+                    @Html.DropDownList("model", null, "Select Equipment Model", new { @id = "addRecordItem5", @name = "addRecordItem5", @class = "form-control form-control-sm" })
+                </div>
+                <div class="form-group">
                     @*<label for="addRecordItem2">Machine ID</label>*@
                     <input type="text" class="form-control form-control-sm" id="addRecordItem2" placeholder="Machine ID" value="">
                 </div>
-                @*<div class="form-group">
-                        <label for="addRecordItem3">Job Number</label>
-                        <input type="text" class="form-control form-control-sm" id="addRecordItem3" placeholder="Job Number" value="">
-                    </div>*@
                 <div class="form-group">
-                    @*<label for="addRecordItem3">Equipment Type</label>*@
-                    @Html.DropDownList("eqpmtType", null, "Select Equipment Type", new { @id = "addRecordItem4", @name = "addRecordItem4", @class = "form-control form-control-sm" })
+                    @*<label for="addRecordItem3">Job Number</label>*@
+                    <input type="text" class="form-control form-control-sm" id="addRecordItem3" placeholder="Job Number" value="">
                 </div>
                 <button type="submit" class="btn btn-primary btn-sm" id="addButton" style="background-color: royalblue">Add</button>
             </form><hr />
@@ -241,13 +255,14 @@
 </div>
 <!--click event begin-->
 <div>
-        <div class="row" style="display:none">
-            <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
-            <div class="col-md-2">Customer Code: <input type="text" id="slctd_customerCode" value="slctd_CustomerCode"></div>
-            <div class="col-md-2">Machine ID: <input type="text" id="slctd_machineID" value="slctd_machineID"></div>
-            <div class="col-md-2">Job Number: <input type="text" id="slctd_jobNum" value="slctd_jobNum"></div>
-            <div class="col-md-2">Equipment Type: <input type="text" id="slctd_eqpmtType" value="slctd_eqpmtType"></div>
-        </div>
+    <div class="row" style="display:">
+        <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
+        <div class="col-md-2">Customer Code: <input type="text" id="slctd_customerCode" value="slctd_CustomerCode"></div>
+        <div class="col-md-2">Machine ID: <input type="text" id="slctd_machineID" value="slctd_machineID"></div>
+        <div class="col-md-2">Job Number: <input type="text" id="slctd_jobNum" value="slctd_jobNum"></div>
+        <div class="col-md-2">Equipment Type: <input type="text" id="slctd_eqpmtType" value="slctd_eqpmtType"></div>
+        <div class="col-md-2">Equipment Model: <input type="text" id="slctd_model" value="slctd_model"></div>
+    </div>
     </div>
 <!--click event end-->
 <!--table begin-->
@@ -263,13 +278,16 @@
                         Customer Code
                     </th>
                     <th class="th-sm">
+                        Equipment Type
+                    </th>
+                    <th class="th-sm">
+                        Model
+                    </th>
+                    <th class="th-sm">
                         Machine ID
                     </th>
-                    @*<th class="th-sm">
-                            Job Number
-                        </th>*@
                     <th class="th-sm">
-                        Equipment Type
+                        Job Number
                     </th>
                     <th class="th-sm">
                         Action
@@ -279,20 +297,22 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
-                        <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
-                        <td id="record_item1" value=@Html.DisplayFor(modelItem => item.customerCode)>@Html.DisplayFor(modelItem => item.customerCode)</td>
-                        <td id="record_item2" value=@Html.DisplayFor(modelItem => item.machineID)>@Html.DisplayFor(modelItem => item.machineID)</td>
-                        @*<td id="record_item3" value=@Html.DisplayFor(modelItem => item.jobNum)>@Html.DisplayFor(modelItem => item.jobNum)</td>*@
-                        <td id="record_item4" value=@Html.DisplayFor(modelItem => item.eqpmtType)>@Html.DisplayFor(modelItem => item.eqpmtType)</td>
-                        <td>
-                            <button class="btn btn-primary btn-sm editButton" style=" background-color: royalblue">Edit</button>
-                            <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
-                            <button class="btn btn-primary btn-sm deleteButton" style=" background-color: royalblue">Delete</button>
-                            <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
-                            <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
-                        </td>
-                    </tr>
+                <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
+                    <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
+                    <td id="record_item1" value=@Html.DisplayFor(modelItem => item.customerCode)>@Html.DisplayFor(modelItem => item.customerCode)</td>
+                    <td id="record_item4" value=@Html.DisplayFor(modelItem => item.eqpmtType)>@Html.DisplayFor(modelItem => item.eqpmtType)</td>
+                    <td id="record_item5" value=@Html.DisplayFor(modelItem => item.model)>@Html.DisplayFor(modelItem => item.model)</td>
+                    <td id="record_item2" value=@Html.DisplayFor(modelItem => item.machineID)>@Html.DisplayFor(modelItem => item.machineID)</td>
+                    <td id="record_item3" value=@Html.DisplayFor(modelItem => item.jobNum)>@Html.DisplayFor(modelItem => item.jobNum)</td>
+
+                    <td>
+                        <button class="btn btn-primary btn-sm editButton" style=" background-color: royalblue">Edit</button>
+                        <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
+                        <button class="btn btn-primary btn-sm deleteButton" style=" background-color: royalblue">Delete</button>
+                        <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
+                        <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

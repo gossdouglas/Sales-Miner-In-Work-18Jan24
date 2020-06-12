@@ -17,59 +17,37 @@ namespace allpax_sale_miner.Controllers
         // GET: CustomerEvent
         public ActionResult Index()
         {
-            allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
-            List<tbl_customer_eqpmt> custEqpmt = entities.tbl_customer_eqpmt.ToList();
 
             ViewBag.customerCode = new SelectList(db.tbl_customer, "customerCode", "customerCode");
             ViewBag.eqpmtType = new SelectList(db.tbl_eqpmt_type_mgmt, "eqpmtType", "eqpmtType");
-            ViewBag.model = new SelectList(db.tbl_eqpmt_type_mgmt, "model", "model");
+            ViewBag.model = new SelectList(db.tbl_eqpmt_type, "model", "model");
 
-            return View(custEqpmt.ToList());
+            var sql = db.tbl_customer_eqpmt.SqlQuery("SELECT * from cmps411.tbl_customer_eqpmt").ToList();
+
+            return View(sql.ToList());
         }
         //begin CMPS 411 controller code
         [HttpPost]
         public ActionResult AddCustEqpmt(tbl_customer_eqpmt custEqpmtAdd)
         {
-            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
-            {
-                entities.tbl_customer_eqpmt.Add(new tbl_customer_eqpmt()
-                {
-                    customerCode = custEqpmtAdd.customerCode,
-                    machineID = custEqpmtAdd.machineID,
-                    eqpmtType = custEqpmtAdd.eqpmtType,
-                    model= custEqpmtAdd.model,
-                    jobNum= custEqpmtAdd.jobNum
-
-                });
-                entities.SaveChanges();
-            }
+            //make sure that the sql db fields are lined up as shown here in the logic.  i think the line below is just doing a dump.
+            //i think this applies only sql adds
+            db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_customer_eqpmt Values({0},{1},{2}, {3}, {4})",
+                custEqpmtAdd.customerCode, custEqpmtAdd.eqpmtType, custEqpmtAdd.model, custEqpmtAdd.machineID, custEqpmtAdd.jobNum);
             return RedirectToAction("Index");
         }
 
         public ActionResult DeleteCustEqpmt(tbl_customer_eqpmt custEqpmtDelete)
         {
-            tbl_customer_eqpmt tbl_customer_eqpmt = db.tbl_customer_eqpmt.Find(custEqpmtDelete.id);
-            db.tbl_customer_eqpmt.Remove(tbl_customer_eqpmt);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            db.Database.ExecuteSqlCommand("DELETE FROM cmps411.tbl_customer_eqpmt WHERE id=({0})", custEqpmtDelete.id);
+            //return RedirectToAction("Index");
+            return new EmptyResult();
         }
 
         public ActionResult UpdateCustEqpmt(tbl_customer_eqpmt custEqpmtUpdate)
         {
-            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
-            {
-                tbl_customer_eqpmt updatedCustEqpmt = (from c in entities.tbl_customer_eqpmt
-                                                   where c.id == custEqpmtUpdate.id
-                                                   select c).FirstOrDefault();
-                updatedCustEqpmt.customerCode = custEqpmtUpdate.customerCode;
-                updatedCustEqpmt.machineID = custEqpmtUpdate.machineID;
-                updatedCustEqpmt.eqpmtType = custEqpmtUpdate.eqpmtType;
-                updatedCustEqpmt.model = custEqpmtUpdate.model;
-                updatedCustEqpmt.jobNum = custEqpmtUpdate.jobNum;
-
-
-                entities.SaveChanges();
-            }
+            db.Database.ExecuteSqlCommand("UPDATE cmps411.tbl_customer_eqpmt SET customerCode={1},machineID={2}, jobNum={3}, eqpmtType={4}, model={5}  WHERE id={0}",
+                custEqpmtUpdate.id, custEqpmtUpdate.customerCode, custEqpmtUpdate.machineID, custEqpmtUpdate.jobNum, custEqpmtUpdate.eqpmtType, custEqpmtUpdate.model);
 
             return new EmptyResult();
         }
