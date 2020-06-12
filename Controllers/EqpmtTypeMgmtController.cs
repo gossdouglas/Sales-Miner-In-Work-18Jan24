@@ -27,16 +27,19 @@ namespace allpax_sale_miner.Controllers
         [HttpPost]
         public ActionResult AddEqpmtType(tbl_eqpmt_type_mgmt eqpmtTypeAdd)
         {
-            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
-            {
-                entities.tbl_eqpmt_type_mgmt.Add(new tbl_eqpmt_type_mgmt
-                {
-                    eqpmtType = eqpmtTypeAdd.eqpmtType
-                });
+            //using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
+            //{
+            //    entities.tbl_eqpmt_type_mgmt.Add(new tbl_eqpmt_type_mgmt
+            //    {
+            //        eqpmtType = eqpmtTypeAdd.eqpmtType
+            //    });
 
 
-                entities.SaveChanges();
-            }
+            //    entities.SaveChanges();
+
+
+            //}
+            db.Database.ExecuteSqlCommand("INSERT into cmps411.tbl_eqpmt_type_mgmt(eqpmtType) VALUES(@p0)", @eqpmtTypeAdd.eqpmtType);
 
             return new EmptyResult();
         }

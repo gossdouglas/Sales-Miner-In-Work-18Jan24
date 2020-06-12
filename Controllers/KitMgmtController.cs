@@ -26,19 +26,19 @@ namespace allpax_sale_miner.Controllers
         [HttpPost]
         public ActionResult AddKit(tbl_kit kitAdd)
         {
-            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
-            {
-                entities.tbl_kit.Add(new tbl_kit
-                {
-                    kitID = kitAdd.kitID,
-                    description = kitAdd.description,
-                    filePath = kitAdd.filePath,
-                            });
+            //using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
+            //{
+            //    entities.tbl_kit.Add(new tbl_kit
+            //    {
+            //        kitID = kitAdd.kitID,
+            //        description = kitAdd.description,
+            //        filePath = kitAdd.filePath,
+            //                });
 
 
-                entities.SaveChanges();
-            }
-
+            //    entities.SaveChanges();
+            //}
+            db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_kit Values({0},{1},{2})", kitAdd.kitID, kitAdd.description, kitAdd.filePath);
             return new EmptyResult();
         }
 

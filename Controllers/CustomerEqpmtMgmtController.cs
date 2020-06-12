@@ -35,7 +35,7 @@ namespace allpax_sale_miner.Controllers
                 {
                     customerCode = custEqpmtAdd.customerCode,
                     machineID = custEqpmtAdd.machineID,
-                    jobNum = custEqpmtAdd.jobNum,
+                    //jobNum = custEqpmtAdd.jobNum,
                     eqpmtType = custEqpmtAdd.eqpmtType
                 });
                 entities.SaveChanges();
@@ -60,7 +60,7 @@ namespace allpax_sale_miner.Controllers
                                                    select c).FirstOrDefault();
                 updatedCustEqpmt.customerCode = custEqpmtUpdate.customerCode;
                 updatedCustEqpmt.machineID = custEqpmtUpdate.machineID;
-                updatedCustEqpmt.jobNum = custEqpmtUpdate.jobNum;
+                //updatedCustEqpmt.jobNum = custEqpmtUpdate.jobNum;
                 updatedCustEqpmt.eqpmtType = custEqpmtUpdate.eqpmtType;
 
                 entities.SaveChanges();

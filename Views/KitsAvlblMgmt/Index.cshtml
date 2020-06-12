@@ -40,11 +40,13 @@
                 selectedItem0 = $(this).attr("id");//works
                 selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
                 selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
+                selectedItem3 = $(this).find("#record_item3").html();//works valid for inner html only
 
 
                 $("#slctd_id").val(selectedItem0);
                 $("#slctd_eqpmtType").val(selectedItem1);
                 $("#slctd_kitID").val(selectedItem2);
+                $("#slctd_model").val(selectedItem3);
             });
             //end when a record class is clicked...
 
@@ -92,19 +94,23 @@
             $("#addButton").click(function () {//when the add button is clicked...
                 var addItem1 = $("#addRecordItem1").val();
                 var addItem2 = $("#addRecordItem2").val();
+                var addItem3 = $("#addRecordItem3").val();
 
                 alert(
                     "Selected for Add POST:" + '\n' +
                     "addItem1: " + addItem1 + '\n' +
-                    "addItem2: " + addItem2 + '\n'
+                    "addItem2: " + addItem2 + '\n' +
+                    "addItem3: " + addItem3 + '\n'
                 );
                 $("#addRecordItem1").val('');
                 $("#addRecordItem2").val('');
+                $("#addRecordItem3").val('');
                 //begin axios add post
 
                 axios.post('/KitsAvlblMgmt/AddAvlblKit', {
                     eqpmtType: addItem1,
                     kitID: addItem2,
+                    model: addItem3,
                 })
                     .then(function (response) {
                         console.log(response);
@@ -143,7 +149,7 @@
                     "editItem2: " + editItem2 + '\n'
                 );
 
-                //begin axios add post
+                //begin axios update post
                 axios.post('/KitsAvlblMgmt/UpdateAvlblKit', {
                     id: editItem0,
                     eqpmtType: editItem1,
@@ -155,7 +161,7 @@
                     .catch(function (error) {
                         console.log(error);
                     });
-                //end axios add post
+                //end axios update post
 
             });
             //end confirm edit record
@@ -221,7 +227,11 @@
             <form class="form-inline">
                 <div class="form-group">
                     @*<label for="addRecordItem1">Equipment Type</label>*@
-                    @Html.DropDownList("eqpmtType", null, "Select Equipment Type", new { @id = "addRecordItem1", @name = "addRecordItem1", @class = "form-control form-control-sm"})
+                    @Html.DropDownList("eqpmtType", null, "Select Equipment Type", new { @id = "addRecordItem1", @name = "addRecordItem1", @class = "form-control form-control-sm" })
+                </div>
+                <div class="form-group">
+                    @*<label for="addRecordItem1">Equipment Type</label>*@
+                    @Html.DropDownList("model", null, "Select Equipment Model", new { @id = "addRecordItem3", @name = "addRecordItem3", @class = "form-control form-control-sm" })
                 </div>
                 <div class="form-group">
                     @*<label for="addRecordItem2">Kit ID</label>*@
@@ -233,9 +243,10 @@
     </div>
     <!--click event begin-->
     <div>
-        <div class="row" style="display:none">
+        <div class="row" style="display:">
             <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
             <div class="col-md-2">Equipment Type: <input type="text" id="slctd_eqpmtType" value="slctd_eqpmtType"></div>
+            <div class="col-md-2">Equipment Model: <input type="text" id="slctd_model" value="slctd_model"></div>
             <div class="col-md-2">Kit ID: <input type="text" id="slctd_kitID" value="slctd_kitID"></div>
         </div>
     </div>
@@ -253,6 +264,9 @@
                         Equipment Type
                     </th>
                     <th class="th-sm">
+                        Equipment Model
+                    </th>
+                    <th class="th-sm">
                         Kit ID
                     </th>
                     <th class="th-sm">
@@ -263,18 +277,19 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
-                        <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
-                        <td id="record_item1" value=@Html.DisplayFor(modelItem => item.eqpmtType)>@Html.DisplayFor(modelItem => item.eqpmtType)</td>
-                        <td id="record_item2" value=@Html.DisplayFor(modelItem => item.kitID)>@Html.DisplayFor(modelItem => item.kitID)</td>
-                        <td>
-                            <button class="btn btn-primary btn-sm editButton" style=" background-color: royalblue">Edit</button>
-                            <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
-                            <button class="btn btn-primary btn-sm deleteButton" style=" background-color: royalblue">Delete</button>
-                            <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
-                            <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
-                        </td>
-                    </tr>
+                <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
+                    <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
+                    <td id="record_item1" value=@Html.DisplayFor(modelItem => item.eqpmtType)>@Html.DisplayFor(modelItem => item.eqpmtType)</td>
+                    <td id="record_item1" value=@Html.DisplayFor(modelItem => item.model)>@Html.DisplayFor(modelItem => item.model)</td>
+                    <td id="record_item2" value=@Html.DisplayFor(modelItem => item.kitID)>@Html.DisplayFor(modelItem => item.kitID)</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm editButton" style=" background-color: royalblue">Edit</button>
+                        <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
+                        <button class="btn btn-primary btn-sm deleteButton" style=" background-color: royalblue">Delete</button>
+                        <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
+                        <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

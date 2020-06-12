@@ -30,7 +30,7 @@ namespace allpax_sale_miner.Controllers
             {
                 entities.tbl_event_type.Add(new tbl_event_type()
                 {
-                    eventID = eventAdd.eventID,
+                    //eventID = eventAdd.eventID,
                     eventType = eventAdd.eventType
                    
                 });
@@ -54,7 +54,7 @@ namespace allpax_sale_miner.Controllers
                 tbl_event_type updatedEvent = (from c in entities.tbl_event_type
                                                    where c.id == eventUpdate.id
                                                    select c).FirstOrDefault();
-                updatedEvent.eventID = eventUpdate.eventID;
+                //updatedEvent.eventID = eventUpdate.eventID;
                 updatedEvent.eventType = eventUpdate.eventType;
                
                 entities.SaveChanges();

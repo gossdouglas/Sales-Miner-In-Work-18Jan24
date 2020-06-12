@@ -17,58 +17,72 @@ namespace allpax_sale_miner.Controllers
         // GET: CustomerMgmt
         public ActionResult Index()
         {
-            allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
-            List<tbl_customer> custMgmt = entities.tbl_customer.ToList();
+            //allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
+            //List<tbl_customer> custMgmt = entities.tbl_customer.ToList();
 
-            return View(custMgmt.ToList());
+            //return View(custMgmt.ToList());
+
+
+            var sql = db.tbl_customer.SqlQuery("SELECT * from cmps411.tbl_customer").ToList();
+          
+            return View(sql.ToList());
+            
         }
                   
         //begin CMPS 411 controller code
         [HttpPost]
         public ActionResult AddCustomer(tbl_customer customerAdd)
         {
-            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
-            {
-                entities.tbl_customer.Add(new tbl_customer
-                {
-                    customerCode = customerAdd.customerCode,
-                    name = customerAdd.name,
-                    address = customerAdd.address,
-                    city = customerAdd.city,
-                    state = customerAdd.state,
-                    zipCode = customerAdd.zipCode,
-                });
+            //using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
+            //{
+            //    entities.tbl_customer.Add(new tbl_customer
+            //    {
+            //        customerCode = customerAdd.customerCode,
+            //        name = customerAdd.name,
+            //        address = customerAdd.address,
+            //        city = customerAdd.city,
+            //        state = customerAdd.state,
+            //        zipCode = customerAdd.zipCode,
+            //    });
 
 
-                entities.SaveChanges();
-            }
-
+            //    entities.SaveChanges();
+            //}
+           
+            db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_customer Values({0},{1},{2}, {3}, {4}, {5})", 
+                customerAdd.customerCode, customerAdd.name, customerAdd.address, customerAdd.city, customerAdd.state, customerAdd.zipCode);
             return new EmptyResult();
         }
 
         public ActionResult DeleteCustomer(tbl_customer custDelete)
         {
-            tbl_customer tbl_customer = db.tbl_customer.Find(custDelete.id);
-            db.tbl_customer.Remove(tbl_customer);
-            db.SaveChanges();
+            //tbl_customer tbl_customer = db.tbl_customer.Find(custDelete.id);
+            //db.tbl_customer.Remove(tbl_customer);
+            //db.SaveChanges();
+
+            db.Database.ExecuteSqlCommand("DELETE FROM cmps411.tbl_customer WHERE id=({0})", custDelete.id);
+
             return RedirectToAction("Index");
-        }
+        } 
         public ActionResult UpdateCustomer(tbl_customer custUpdate)
         {
-            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
-            {
-                tbl_customer updatedCustomer = (from c in entities.tbl_customer
-                                                           where c.id == custUpdate.id
-                                                           select c).FirstOrDefault();
-                updatedCustomer.customerCode = custUpdate.customerCode;
-                updatedCustomer.name = custUpdate.name;
-                updatedCustomer.address = custUpdate.address;
-                updatedCustomer.city = custUpdate.city;
-                updatedCustomer.state = custUpdate.state;
-                updatedCustomer.zipCode = custUpdate.zipCode;
+            //using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
+            //{
+            //    tbl_customer updatedCustomer = (from c in entities.tbl_customer
+            //                                               where c.id == custUpdate.id
+            //                                               select c).FirstOrDefault();
+            //    updatedCustomer.customerCode = custUpdate.customerCode;
+            //    updatedCustomer.name = custUpdate.name;
+            //    updatedCustomer.address = custUpdate.address;
+            //    updatedCustomer.city = custUpdate.city;
+            //    updatedCustomer.state = custUpdate.state;
+            //    updatedCustomer.zipCode = custUpdate.zipCode;
 
-                entities.SaveChanges();
-            }
+            //    entities.SaveChanges();
+            //}
+
+            db.Database.ExecuteSqlCommand("UPDATE cmps411.tbl_customer SET customerCode={0},name={1},address={2}, city={3}, state={4}, zipCode={5} WHERE id={6}", 
+                custUpdate.customerCode, custUpdate.name, custUpdate.address, custUpdate.city, custUpdate.state, custUpdate.zipCode, custUpdate.id);
 
             return RedirectToAction("Index");
         }
