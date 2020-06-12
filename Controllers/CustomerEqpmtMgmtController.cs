@@ -22,6 +22,7 @@ namespace allpax_sale_miner.Controllers
 
             ViewBag.customerCode = new SelectList(db.tbl_customer, "customerCode", "customerCode");
             ViewBag.eqpmtType = new SelectList(db.tbl_eqpmt_type_mgmt, "eqpmtType", "eqpmtType");
+            ViewBag.model = new SelectList(db.tbl_eqpmt_type_mgmt, "model", "model");
 
             return View(custEqpmt.ToList());
         }
@@ -35,8 +36,10 @@ namespace allpax_sale_miner.Controllers
                 {
                     customerCode = custEqpmtAdd.customerCode,
                     machineID = custEqpmtAdd.machineID,
-                    //jobNum = custEqpmtAdd.jobNum,
-                    eqpmtType = custEqpmtAdd.eqpmtType
+                    eqpmtType = custEqpmtAdd.eqpmtType,
+                    model= custEqpmtAdd.model,
+                    jobNum= custEqpmtAdd.jobNum
+
                 });
                 entities.SaveChanges();
             }
@@ -60,8 +63,10 @@ namespace allpax_sale_miner.Controllers
                                                    select c).FirstOrDefault();
                 updatedCustEqpmt.customerCode = custEqpmtUpdate.customerCode;
                 updatedCustEqpmt.machineID = custEqpmtUpdate.machineID;
-                //updatedCustEqpmt.jobNum = custEqpmtUpdate.jobNum;
                 updatedCustEqpmt.eqpmtType = custEqpmtUpdate.eqpmtType;
+                updatedCustEqpmt.model = custEqpmtUpdate.model;
+                updatedCustEqpmt.jobNum = custEqpmtUpdate.jobNum;
+
 
                 entities.SaveChanges();
             }
