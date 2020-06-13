@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*Sales Landing Page*@
+
     <head>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <!-- JQuery -->
@@ -43,7 +43,88 @@
                     $("#slctd_zipCode").val(selectedItem6);
                 });
                 //end when a record class is clicked...
-              
+                $(".btn.btn-primary.editButton").click(function () {//when a record's edit button is clicked...
+                    $(this).parent().find(".editButton").hide();
+                    $(this).parent().find(".updateButton").show();
+                    $(this).parent().find(".deleteButton").hide();
+                    $(this).parent().find(".cancelButton").show();
+
+                    $(this).parent().parent().css("background-color", "powderblue");//change bkgnd color
+                    $(this).parent().parent().attr("contenteditable", "true");//set all <td> in the record to editable
+                    $(this).parent().parent().find("#record_item0").attr("contenteditable", "false");//set the id <td> to not editable
+                    $(this).parent().parent().find(".cancelButton").css("background-color", "indianred");//change cancel buttn clr after edit is clicked
+                    $(this).parent().parent().find(".cancelButton").css("border", "indianred");//change cancel buttn clr after edit is clicked
+                    $(this).parent().parent().find(".updateButton").css("background-color", "steelblue");//change cancel buttn clr after edit is clicked
+                    $(this).parent().parent().find(".updateButton").css("border", "steelblue");//change cancel buttn clr after edit is clicked
+                });
+                $(".btn.btn-primary.cancelButton").click(function () {//when a record's edit button is clicked...
+                    $(this).parent().find(".editButton").show();
+                    $(this).parent().find(".updateButton").hide();
+                    $(this).parent().find(".deleteButton").show();
+                    $(this).parent().find(".cancelButton").hide();
+                    $(this).parent().find(".confirmButton").hide();
+
+                    $(this).parent().parent().css("background-color", "transparent");
+                    $(this).parent().parent().attr("contenteditable", "false");
+                });
+                $(".btn.btn-primary.deleteButton").click(function () {//when a record's edit button is clicked...
+                    $(this).parent().find(".editButton").hide();
+                    $(this).parent().find(".updateButton").hide();
+                    $(this).parent().find(".deleteButton").hide();
+                    $(this).parent().find(".cancelButton").show();
+                    $(this).parent().find(".confirmButton").show();
+
+                    $(this).parent().parent().css("background-color", "powderblue");//change bkgnd color
+                    $(this).parent().parent().attr("contenteditable", "false");
+                    $(this).parent().parent().find(".cancelButton").css("background-color", "indianred");//change cancel buttn clr after delete is clicked
+                    $(this).parent().parent().find(".cancelButton").css("border", "indianred");//change cancel buttn clr after edit is clicked
+                    $(this).parent().parent().find(".confirmButton").css("background-color", "steelblue");//change confirm buttn color after delete is clicked
+                    $(this).parent().parent().find(".confirmButton").css("border", "steelblue");
+                });
+
+                //begin #addButton
+                $("#addButton").click(function () {//when the add button is clicked...
+                    var addItem1 = $("#addRecordItem1").val();
+                    var addItem2 = $("#addRecordItem2").val();
+                    var addItem3 = $("#addRecordItem3").val();
+                    var addItem4 = $("#addRecordItem4").val();
+                    var addItem5 = $("#addRecordItem5").val();
+                    var addItem6 = $("#addRecordItem6").val();
+
+                    alert(
+                        "Selected for Add POST:" + '\n' +
+                        "addItem1: " + addItem1 + '\n' +
+                        "addItem2: " + addItem2 + '\n' +
+                        "addItem3: " + addItem3 + '\n' +
+                        "addItem4: " + addItem4 + '\n' +
+                        "addItem5: " + addItem5 + '\n' +
+                        "addItem6: " + addItem6 + '\n'
+                    );
+                    $("#addRecordItem1").val('');
+                    $("#addRecordItem2").val('');
+                    $("#addRecordItem3").val('');
+                    $("#addRecordItem4").val('');
+                    $("#addRecordItem5").val('');
+                    $("#addRecordItem6").val('');
+                    //begin axios add post
+                    axios.post('/CustomerMgmt/AddCustomer', {
+                        customerCode: addItem1,
+                        name: addItem2,
+                        address: addItem3,
+                        city: addItem4,
+                        state: addItem5,
+                        zipCode: addItem6,
+                    })
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                    //end axios add post
+                });
+                //end #addButton
+
                 //begin confirm edit record
                 $(".btn.btn-primary.updateButton").click(function () {//when a record's edit button is clicked...
                     $(this).hide();
@@ -96,21 +177,33 @@
                         });
                     //end axios add post
                 });
-                //end confirm edit record   
-                //begin go to salesCustomer page
-                $(".btn.btn-primary.eqpmtButton").click(function () {//when a record's edit button is clicked...
-
-                    var editItem0 = $("#slctd_id").val();
-                    var editItem1 = $("#slctd_customerCode").val();
-                    var editItem2 = $("#slctd_name").val();
-                    var editItem3 = $("#slctd_address").val();
-                    var editItem4 = $("#slctd_city").val();
-                    var editItem5 = $("#slctd_state").val();
-                    var editItem6 = $("#slctd_zipCode").val();
-                   
-                    window.location = '/SalesCustomer';
-                });
                 //end confirm edit record
+
+                //begin axios confirm delete record
+                $(".btn.btn-primary.confirmButton").click(function () {//when a record's delete button is clicked...
+                    alert(
+                        "Selected for DELETE:" + '\n' +
+                        "id: " + selectedItem0 + '\n' +
+                        "customerCode: " + selectedItem1 + '\n' +
+                        "name: " + selectedItem2 + '\n' +
+                        "address: " + selectedItem3 + '\n' +
+                        "city: " + selectedItem4 + '\n' +
+                        "state: " + selectedItem5 + '\n' +
+                        "zipCode: " + selectedItem6 + '\n'
+                    );
+
+                    axios.post('/CustomerMgmt/DeleteCustomer', {
+                        id: selectedItem0,
+                    })
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+
+                });
+                //end axios confirm delete record
             });//end document read jquery statements
         </script>
     </head>
@@ -132,7 +225,7 @@
             <!--begin inline add-->
             <div class="row">
                 <div class="col-md-12">
-                    <h5>Customer Selection</h5>
+                    <h5>Sales Customer</h5>
                     <hr />
                 </div>
             </div>

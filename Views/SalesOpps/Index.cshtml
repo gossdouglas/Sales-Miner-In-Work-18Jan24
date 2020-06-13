@@ -1,10 +1,10 @@
-﻿@model IEnumerable<allpax_sale_miner.Models.tbl_customer>
+﻿@model IEnumerable<allpax_sale_miner.Models.salesOppsModel>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*Sales Landing Page*@
+@*Sales Opps Page*@
     <head>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <!-- JQuery -->
@@ -187,7 +187,7 @@
                 {
                     <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
                         <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
-                        <td id="record_item1" value=@Html.DisplayFor(modelItem => item.customerCode)>@Html.DisplayFor(modelItem => item.customerCode)</td>
+                        <td id="record_item1" value=@Html.DisplayFor(modelItem => item.tbl_)>@Html.DisplayFor(modelItem => item.customerCode)</td>
                         <td id="record_item2" value=@Html.DisplayFor(modelItem => item.name)>@Html.DisplayFor(modelItem => item.name)</td>
                         <td id="record_item3" value=@Html.DisplayFor(modelItem => item.address)>@Html.DisplayFor(modelItem => item.address)</td>
                         <td id="record_item4" value=@Html.DisplayFor(modelItem => item.city)>@Html.DisplayFor(modelItem => item.city)</td>
