@@ -173,9 +173,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CurrentEqpmtKitsController.cs" />
+    <Compile Include="Controllers\CurrentEqpmtKitsController - Copy.cs" />
     <Compile Include="Controllers\CustomerEqpmtMgmtController.cs" />
     <Compile Include="Controllers\CustomerEventController.cs" />
+    <Compile Include="Controllers\SalesLandingController.cs" />
     <Compile Include="Controllers\CustomerMgmtController.cs" />
     <Compile Include="Controllers\EqpmtMgmtController.cs" />
     <Compile Include="Controllers\EqpmtTypeMgmtController.cs" />
@@ -471,8 +472,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Shared\_Layout-orig.cshtml" />
-    <Content Include="Views\Shared\_Layout-tshting mdbootstrap.cshtml" />
+    <Content Include="Views\SalesLanding\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
