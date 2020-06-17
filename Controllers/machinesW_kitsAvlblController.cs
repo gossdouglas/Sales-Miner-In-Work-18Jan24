@@ -31,6 +31,7 @@ namespace allpax_sale_miner.Controllers
             foreach(DataRow dr in dt.Rows)
             {
                 machinesW_kitsAvlbl mWkitsAvlbl = new machinesW_kitsAvlbl();
+
                 mWkitsAvlbl.customerCode = dr["cmps411.tbl_customer_eqpmt.customerCode"].ToString();
                 mWkitsAvlbl.eqpmtType = dr["cmps411.tbl_customer_eqpmt.eqpmtType"].ToString();
                 mWkitsAvlbl.model = dr["cmps411.tbl_customer_eqpmt.model"].ToString();
@@ -38,10 +39,9 @@ namespace allpax_sale_miner.Controllers
                 mWkitsAvlbl.machineID2 = dr["tbl_eqpmt_kits_current.machineID"].ToString();
                 mWkitsAvlbl.kitID = dr["tbl_eqpmt_kits_current.kitID"].ToString();
 
+                mWka.Add(mWkitsAvlbl);
             }
-
-
-            return View();
+            return View(mWka);
         }
     }
 }
