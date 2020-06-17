@@ -32,12 +32,12 @@ namespace allpax_sale_miner.Controllers
             {
                 machinesW_kitsAvlbl mWkitsAvlbl = new machinesW_kitsAvlbl();
 
-                mWkitsAvlbl.customerCode = dr["cmps411.tbl_customer_eqpmt.customerCode"].ToString();
-                mWkitsAvlbl.eqpmtType = dr["cmps411.tbl_customer_eqpmt.eqpmtType"].ToString();
-                mWkitsAvlbl.model = dr["cmps411.tbl_customer_eqpmt.model"].ToString();
-                mWkitsAvlbl.machineID = dr["cmps411.tbl_customer_eqpmt.machineID"].ToString();
-                mWkitsAvlbl.machineID2 = dr["tbl_eqpmt_kits_current.machineID"].ToString();
-                mWkitsAvlbl.kitID = dr["tbl_eqpmt_kits_current.kitID"].ToString();
+                mWkitsAvlbl.customerCode = dr["customerCode"].ToString();
+                mWkitsAvlbl.eqpmtType = dr["eqpmtType"].ToString();
+                mWkitsAvlbl.model = dr["model"].ToString();
+                mWkitsAvlbl.machineID = dr["machineID"].ToString();
+                mWkitsAvlbl.machineID2 = dr["machineID"].ToString();
+                mWkitsAvlbl.kitID = dr["kitID"].ToString();
 
                 mWka.Add(mWkitsAvlbl);
             }
