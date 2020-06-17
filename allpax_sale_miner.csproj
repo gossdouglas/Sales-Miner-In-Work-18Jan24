@@ -183,6 +183,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KitMgmtController.cs" />
     <Compile Include="Controllers\KitsAvlblMgmtController.cs" />
+    <Compile Include="Controllers\machinesW_kitsAvlbl_BnotInstalledController.cs" />
     <Compile Include="Controllers\machinesW_kitsAvlblController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -209,6 +210,7 @@
     <Compile Include="Models\tbl_sales_opportunities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\machinesW_kitsAvlbl_BnotInstalled.cs" />
     <Compile Include="ViewModels\machinesW_kitsAvlbl.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -476,6 +478,7 @@
     <Content Include="Views\Shared\_Layout-orig.cshtml" />
     <Content Include="Views\Shared\_Layout-tshting mdbootstrap.cshtml" />
     <Content Include="Views\machinesW_kitsAvlbl\Index.cshtml" />
+    <Content Include="Views\machinesW_kitsAvlbl_BnotInstalled\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
