@@ -43,60 +43,7 @@
                     $("#slctd_zipCode").val(selectedItem6);
                 });
                 //end when a record class is clicked...
-              
-                //begin confirm edit record
-                $(".btn.btn-primary.updateButton").click(function () {//when a record's edit button is clicked...
-                    $(this).hide();
-                    $(this).parent().find(".updateButton").hide();
-                    $(this).parent().find(".editButton").show();
-                    $(this).parent().find(".deleteButton").hide();
-                    $(this).parent().find(".cancelButton").show();
-
-                    $(this).parent().parent().attr("contenteditable", "false");
-
-                    $(this).parent().parent().css("background-color", "transparent");
-                    $(this).parent().parent().find(".cancelButton").css("background-color","royalblue");//change cancel button color after update is clicked
-                    $(this).parent().find(".cancelButton").hide();
-                    $(this).parent().find(".deleteButton").show();
-
-                    var editItem0 = $("#slctd_id").val();
-                    var editItem1 = $("#slctd_customerCode").val();
-                    var editItem2 = $("#slctd_name").val();
-                    var editItem3 = $("#slctd_address").val();
-                    var editItem4 = $("#slctd_city").val();
-                    var editItem5 = $("#slctd_state").val();
-                    var editItem6 = $("#slctd_zipCode").val();
-
-                    alert(
-                        "Selected for Edit POST:" + '\n' +
-                        "editItem0: " + editItem0 + '\n' +
-                        "editItem1: " + editItem1 + '\n' +
-                        "editItem2: " + editItem2 + '\n' +
-                        "editItem3: " + editItem3 + '\n' +
-                        "editItem4: " + editItem4 + '\n' +
-                        "editItem5: " + editItem5 + '\n' +
-                        "editItem6: " + editItem6 + '\n'
-                    );
-
-                    //begin axios add post
-                    axios.post('/CustomerMgmt/UpdateCustomer', {
-                        id: editItem0,
-                        customerCode: editItem1,
-                        name: editItem2,
-                        address: editItem3,
-                        city: editItem4,
-                        state: editItem5,
-                        zipCode: editItem6,
-                    })
-                        .then(function (response) {
-                            console.log(response);
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                    //end axios add post
-                });
-                //end confirm edit record   
+                 
                 //begin go to salesCustomer page
                 $(".btn.btn-primary.eqpmtButton").click(function () {//when a record's edit button is clicked...
 
@@ -110,24 +57,24 @@
                    
                     window.location = '/SalesCustomer';
                 });
-                //end confirm edit record
+                //end go to salesCustomer page
+                //begin go to salesCustomer page
+                $(".btn.btn-primary.salesButton").click(function () {//when a record's edit button is clicked...
+
+                    var editItem0 = $("#slctd_id").val();
+                    var editItem1 = $("#slctd_customerCode").val();
+                    var editItem2 = $("#slctd_name").val();
+                    var editItem3 = $("#slctd_address").val();
+                    var editItem4 = $("#slctd_city").val();
+                    var editItem5 = $("#slctd_state").val();
+                    var editItem6 = $("#slctd_zipCode").val();
+
+                    window.location = '/SalesOpps';
+                });
+                //end go to salesCustomer page
             });//end document read jquery statements
         </script>
-    </head>
-    <style>
-        div.row {
-            width: auto;
-            height: auto;
-            overflow-x: hidden;
-            overflow-y: auto;
-            padding: 0px;
-        }
-        .form-group {
-            margin: 5px;
-        }
-        
-    </style>
-
+    </head>    
     <div class="container-fluid"><hr />
             <!--begin inline add-->
             <div class="row">
@@ -194,11 +141,6 @@
                         <td id="record_item5" value=@Html.DisplayFor(modelItem => item.state)>@Html.DisplayFor(modelItem => item.state)</td>
                         <td id="record_item6" value=@Html.DisplayFor(modelItem => item.zipCode)>@Html.DisplayFor(modelItem => item.zipCode)</td>
                         <td>
-                            @*<button class="btn btn-primary btn-sm editButton">Edit</button>
-                            <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
-                            <button class="btn btn-primary btn-sm deleteButton">Delete</button>
-                            <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
-                            <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>*@
                             <button class="btn btn-primary btn-sm eqpmtButton">Equipment</button>
                             <button class="btn btn-primary btn-sm salesButton">Sales</button>
                         </td>

@@ -172,27 +172,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
-                    {
+                    
                         <tr class="table">
-                            <td id="" value=>@item.tbl_customer_eqpmt.customerCode</td>
-                            <td id="" value=>@item.tbl_customer_eqpmt.eqpmtType</td>
-                            <td id="" value=>@item.tbl_customer_eqpmt.model</td>
-                            <td id="" value=>@item.tbl_customer_eqpmt.machineID</td>
-                            @*<td id="" value=>@item.tbl_eqpmt_kits_current.machineID</td>
-                                <td id="" value=>@item.tbl_eqpmt_kits_current.kitID</td>*@
-                            @*<td id="" value=>@item.tbl_eqpmt_kits_avlbl.model</td>
-                                <td id="" value=>@item.tbl_eqpmt_kits_avlbl.kitID</td>*@
+                            <td id="" value=>item.tbl_customer_eqpmt.customerCode</td>
+                            <td id="" value=>item.tbl_customer_eqpmt.eqpmtType</td>
+                            <td id="" value=>item.tbl_customer_eqpmt.model</td>
+                            <td id="" value=>item.tbl_customer_eqpmt.machineID</td>
+                            <td id="" value=>item.tbl_eqpmt_kits_current.machineID</td>
+                            <td id="" value=>item.tbl_eqpmt_kits_current.kitID</td>
+                            <td id="" value=>item.tbl_eqpmt_kits_avlbl.model</td>
+                            <td id="" value=>item.tbl_eqpmt_kits_avlbl.kitID</td>
                             <td>
                                 <button class="btn btn-primary btn-sm eqpmtButton">Equipment</button>
                                 <button class="btn btn-primary btn-sm salesButton">Sales</button>
                             </td>
-
                         </tr>
-                    }
+
             </table>
         </div>
     </div>
+</div>
 
 
 

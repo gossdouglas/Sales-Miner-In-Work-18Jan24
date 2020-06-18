@@ -4,10 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>All Sales Opportunities</h2>
 
 <table class="table">
     <tr>
+        @*<th>
+            Job Number
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.customerCode)
         </th>
@@ -36,32 +39,35 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.customerCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.eqpmtType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.model)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.machineID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.kitsCurrent_machineID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.kitsCurrent_kitID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.kitsAvlbl_model)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.kitsAvlbl_kitID)
-        </td>
-    </tr>
+<tr>
+    @*<td>
+        jobNo
+    </td>*@
+    <td>
+        @Html.DisplayFor(modelItem => item.customerCode)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.eqpmtType)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.model)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.machineID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.kitsCurrent_machineID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.kitsCurrent_kitID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.kitsAvlbl_model)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.kitsAvlbl_kitID)
+    </td>
+</tr>
 }
 
 </table>
