@@ -173,9 +173,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CurrentEqpmtKitsController.cs" />
+    <Compile Include="Controllers\CurrentEqpmtKitsController - Copy.cs" />
     <Compile Include="Controllers\CustomerEqpmtMgmtController.cs" />
     <Compile Include="Controllers\CustomerEventController.cs" />
+    <Compile Include="Controllers\SalesOppsController.cs" />
+    <Compile Include="Controllers\SalesCustomerController.cs" />
+    <Compile Include="Controllers\SalesLandingController.cs" />
     <Compile Include="Controllers\CustomerMgmtController.cs" />
     <Compile Include="Controllers\EqpmtMgmtController.cs" />
     <Compile Include="Controllers\EqpmtTypeMgmtController.cs" />
@@ -198,6 +201,7 @@
     <Compile Include="Models\allpax_sale_minerEntities.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\salesOppsModel.cs" />
     <Compile Include="Models\tbl_customer.cs" />
     <Compile Include="Models\tbl_customer_eqpmt.cs" />
     <Compile Include="Models\tbl_customer_event.cs" />
