@@ -39,14 +39,14 @@ namespace allpax_sale_miner.Controllers
             {
                 machinesW_kitsAvlbl_BnotInstalled mWkitsAvlblBnotInstalled = new machinesW_kitsAvlbl_BnotInstalled();
 
-                mWkitsAvlblBnotInstalled.customerCode = dr["customerCode"].ToString();
-                mWkitsAvlblBnotInstalled.eqpmtType = dr["eqpmtType"].ToString();
-                mWkitsAvlblBnotInstalled.model = dr["model"].ToString();
-                mWkitsAvlblBnotInstalled.machineID = dr["machineID"].ToString();
-                mWkitsAvlblBnotInstalled.kitsCurrent_machineID = dr["machineID"].ToString();
-                mWkitsAvlblBnotInstalled.kitsCurrent_kitID = dr["kitID"].ToString();
-                mWkitsAvlblBnotInstalled.kitsAvlbl_model = dr["model"].ToString();
-                mWkitsAvlblBnotInstalled.kitsAvlbl_kitID = dr["kitID"].ToString();
+                mWkitsAvlblBnotInstalled.customerCode = dr[0].ToString();
+                mWkitsAvlblBnotInstalled.eqpmtType = dr[1].ToString();
+                mWkitsAvlblBnotInstalled.model = dr[2].ToString();
+                mWkitsAvlblBnotInstalled.machineID = dr[3].ToString();
+                mWkitsAvlblBnotInstalled.kitsCurrent_machineID = dr[4].ToString();
+                mWkitsAvlblBnotInstalled.kitsCurrent_kitID = dr[5].ToString();
+                mWkitsAvlblBnotInstalled.kitsAvlbl_model = dr[6].ToString();
+                mWkitsAvlblBnotInstalled.kitsAvlbl_kitID = dr[7].ToString();
 
                 mWkaBni.Add(mWkitsAvlblBnotInstalled);
             }
