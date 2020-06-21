@@ -145,10 +145,9 @@
 
                 //begin axios add post
                 axios.post('/EventType/UpdateEvent', {
-                    id: editItem0,
-                    //eventID: editItem1,
-                    eventType: editItem2
-
+                    eventID: '99',//needs to be deleted at some point
+                    eventType: editItem2,
+                    id: editItem0                                      
                 })
                     .then(function (response) {
                         console.log(response);

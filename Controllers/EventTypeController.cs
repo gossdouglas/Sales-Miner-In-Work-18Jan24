@@ -16,49 +16,29 @@ namespace allpax_sale_miner.Controllers
 
         public ActionResult Index()
         {
-            allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
-            List<tbl_event_type> eventType = entities.tbl_event_type.ToList();
-
-            return View(eventType.ToList());
+            var sql = db.tbl_event_type.SqlQuery("SELECT * from cmps411.tbl_event_type").ToList();
+            return View(sql.ToList());
         }
 
         //begin CMPS 411 controller code
         [HttpPost]
         public ActionResult AddEvent(tbl_event_type eventAdd)
         {
-            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
-            {
-                entities.tbl_event_type.Add(new tbl_event_type()
-                {
-                    //eventID = eventAdd.eventID,
-                    eventType = eventAdd.eventType
-                   
-                });
-                entities.SaveChanges();
-            }
+            db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_event_type Values({0},{1})",
+                eventAdd.eventID, eventAdd.eventType);
             return RedirectToAction("Index");
         }
 
         public ActionResult DeleteEvent(tbl_event_type eventDelete)
         {
-            tbl_event_type tbl_event_type = db.tbl_event_type.Find(eventDelete.id);
-            db.tbl_event_type.Remove(tbl_event_type);
-            db.SaveChanges();
+            db.Database.ExecuteSqlCommand("DELETE FROM cmps411.tbl_event_type WHERE id=({0})", eventDelete.id);
             return RedirectToAction("Index");
         }
 
         public ActionResult UpdateEvent(tbl_event_type eventUpdate)
         {
-            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
-            {
-                tbl_event_type updatedEvent = (from c in entities.tbl_event_type
-                                                   where c.id == eventUpdate.id
-                                                   select c).FirstOrDefault();
-                //updatedEvent.eventID = eventUpdate.eventID;
-                updatedEvent.eventType = eventUpdate.eventType;
-               
-                entities.SaveChanges();
-            }
+            db.Database.ExecuteSqlCommand("UPDATE cmps411.tbl_event_type SET eventID={0}, eventType={1} WHERE id={2}",
+                eventUpdate.eventID, eventUpdate.eventType, eventUpdate.id);
 
             return new EmptyResult();
         }

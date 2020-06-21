@@ -109,11 +109,11 @@
                 //begin axios add post
 
                 axios.post('/CustomerEvent/AddEvent', {
-                    customerCode: addItem1,
-                    eventID: '99',//need to delete eventID at some point
+                    customerCode: addItem1,                    
                     eventType: addItem3,
                     startDate: addItem4,
-                    endDate: addItem5
+                    endDate: addItem5,
+                    eventID: '99',//need to delete eventID at some point
                 })
                     .then(function (response) {
                         console.log(response);
@@ -161,13 +161,13 @@
                 );
 
                 //begin axios add post
-                axios.post('/CustomerEvent/UpdateEvent', {
-                    id: editItem0,
-                    customerCode: editItem1,
-                    eventID: '99', //need to delete eventID at some point
+                axios.post('/CustomerEvent/UpdateEvent', {                   
+                    customerCode: editItem1,                   
                     eventType: editItem3,
                     startDate: editItem4,
-                    endDate: editItem5
+                    endDate: editItem5,
+                    eventID: '99', //need to delete eventID at some point
+                    id: editItem0
                 })
                     .then(function (response) {
                         console.log(response);
@@ -270,7 +270,7 @@
 <!--end inline add-->
 <!--click event begin-->
 <div>
-    <div class="row" style="display:none">
+    <div class="row" style="display:">
         <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
         <div class="col-md-2">Customer Code: <input type="text" id="slctd_customerCode" value="slctd_customerCode"></div>
         @*<div class="col-md-2">Event ID: <input type="text" id="slctd_eventID" value="slctd_eventID"></div>*@

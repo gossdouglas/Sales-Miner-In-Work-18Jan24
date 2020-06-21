@@ -17,55 +17,31 @@ namespace allpax_sale_miner.Controllers
         // GET: CustomerEvent
         public ActionResult Index()
         {
-            allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
-            List<tbl_customer_event> custEvent = entities.tbl_customer_event.ToList();
+            var sql = db.tbl_customer_event.SqlQuery("SELECT * from cmps411.tbl_customer_event").ToList();
 
             ViewBag.customerCode = new SelectList(db.tbl_customer, "customerCode", "customerCode");
             ViewBag.eventType = new SelectList(db.tbl_event_type, "eventType", "eventType");
 
-            return View(custEvent.ToList());
+            return View(sql.ToList());
         }
         //begin CMPS 411 controller code
         [HttpPost]
         public ActionResult AddEvent(tbl_customer_event eventAdd)
         {
-            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
-            {
-                entities.tbl_customer_event.Add(new tbl_customer_event()
-                {
-                    customerCode = eventAdd.customerCode,
-                    //eventID = eventAdd.eventID,
-                    eventType = eventAdd.eventType,
-                    startDate = eventAdd.startDate,
-                    endDate = eventAdd.endDate
-                });
-                entities.SaveChanges();
-            }
+            db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_customer_event Values({0},{1},{2},{3},{4})",
+                eventAdd.customerCode, eventAdd.eventType, eventAdd.startDate, eventAdd.endDate, eventAdd.eventID);
             return RedirectToAction("Index");
         }
         public ActionResult DeleteEvent(tbl_customer_event eventDelete)
         {
-            tbl_customer_event tbl_customer_event = db.tbl_customer_event.Find(eventDelete.id);
-            db.tbl_customer_event.Remove(tbl_customer_event);
-            db.SaveChanges();
+            db.Database.ExecuteSqlCommand("DELETE FROM cmps411.tbl_customer_event WHERE id=({0})", eventDelete.id);
             return RedirectToAction("Index");
         }
 
         public ActionResult UpdateEvent(tbl_customer_event eventUpdate)
-        {
-            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
-            {
-                tbl_customer_event updatedEvent = (from c in entities.tbl_customer_event
-                                                     where c.id == eventUpdate.id
-                                                     select c).FirstOrDefault();
-                updatedEvent.customerCode = eventUpdate.customerCode;
-                //updatedEvent.eventID = eventUpdate.eventID;
-                updatedEvent.eventType = eventUpdate.eventType;
-                updatedEvent.startDate = eventUpdate.startDate;
-                updatedEvent.endDate = eventUpdate.endDate;
-
-                entities.SaveChanges();
-            }
+        {          
+            db.Database.ExecuteSqlCommand("UPDATE cmps411.tbl_customer_event SET customerCode={0},eventType={1},startDate={2}, endDate={3}, eventID={4} WHERE id={5}",
+                eventUpdate.customerCode, eventUpdate.eventType, eventUpdate.startDate, eventUpdate.endDate, eventUpdate.eventID, eventUpdate.id);
 
             return new EmptyResult();
         }
