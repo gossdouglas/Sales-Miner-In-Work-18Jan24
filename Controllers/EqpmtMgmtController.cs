@@ -17,54 +17,31 @@ namespace allpax_sale_miner.Controllers
         // GET: EqpmtMgmt
         public ActionResult Index()
         {
-            allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
-            List<tbl_eqpmt_type> eqpmtMgmt = entities.tbl_eqpmt_type.ToList();
-
+            var sql = db.tbl_eqpmt_type.SqlQuery("SELECT * from cmps411.tbl_eqpmt_type").ToList();
             ViewBag.eqpmtType = new SelectList(db.tbl_eqpmt_type_mgmt.OrderBy(x => x.eqpmtType), "eqpmtType", "eqpmtType");
 
-            return View(eqpmtMgmt.ToList());
-
+            return View(sql.ToList());
         }
 
         //begin CMPS 411 controller code
         [HttpPost]
         public ActionResult AddEqpmt(tbl_eqpmt_type eqpmtAdd)
         {
-            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
-            {
-                entities.tbl_eqpmt_type.Add(new tbl_eqpmt_type
-                {
-                    eqpmtType = eqpmtAdd.eqpmtType,
-                    model = eqpmtAdd.model,
-                    description = eqpmtAdd.description
-                });
-
-
-                entities.SaveChanges();
-            }
+            db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_eqpmt_type Values({0},{1},{2})",
+                eqpmtAdd.eqpmtType, eqpmtAdd.model, eqpmtAdd.description);
 
             return RedirectToAction("Index");
         }
 
         public ActionResult DeleteEqpmt(tbl_eqpmt_type eqpmtDelete)
         {
-            tbl_eqpmt_type tbl_eqpmt_type = db.tbl_eqpmt_type.Find(eqpmtDelete.id);
-            db.tbl_eqpmt_type.Remove(tbl_eqpmt_type);
-            db.SaveChanges();
+            db.Database.ExecuteSqlCommand("DELETE FROM cmps411.tbl_eqpmt_type WHERE id=({0})", eqpmtDelete.id);
             return RedirectToAction("Index");
         }
         public ActionResult UpdateEqpmt(tbl_eqpmt_type eqpmtUpdate)
         {
-            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
-            {
-                tbl_eqpmt_type updatedEqpmt = (from c in entities.tbl_eqpmt_type
-                    where c.id == eqpmtUpdate.id
-                    select c).FirstOrDefault();
-                updatedEqpmt.eqpmtType = eqpmtUpdate.eqpmtType;
-                updatedEqpmt.model = eqpmtUpdate.model;
-                updatedEqpmt.description = eqpmtUpdate.description;
-                entities.SaveChanges();
-            }
+            db.Database.ExecuteSqlCommand("UPDATE cmps411.tbl_eqpmt_type SET eqpmtType={0},model={1},description={2} WHERE id={3}",
+                eqpmtUpdate.eqpmtType, eqpmtUpdate.model, eqpmtUpdate.description, eqpmtUpdate.id);
 
             return new EmptyResult();
         }

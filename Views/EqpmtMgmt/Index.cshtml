@@ -146,11 +146,11 @@
                 );
 
                 //begin axios add post
-                axios.post('/EqpmtMgmt/UpdateEqpmt', {
-                    id: editItem0,
+                axios.post('/EqpmtMgmt/UpdateEqpmt', {                   
                     eqpmtType: editItem1,
                     model: editItem2,
-                    description: editItem3
+                    description: editItem3,
+                    id: editItem0
                 })
                     .then(function (response) {
                         console.log(response);
