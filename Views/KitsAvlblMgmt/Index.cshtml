@@ -141,19 +141,22 @@
                 var editItem0 = $("#slctd_id").val();
                 var editItem1 = $("#slctd_eqpmtType").val();
                 var editItem2 = $("#slctd_kitID").val();
+                var editItem3 = $("#slctd_model").val();
 
                 alert(
                     "Selected for Edit POST:" + '\n' +
                     "editItem0: " + editItem0 + '\n' +
                     "editItem1: " + editItem1 + '\n' +
-                    "editItem2: " + editItem2 + '\n'
+                    "editItem2: " + editItem2 + '\n' +
+                    "editItem3: " + editItem3 + '\n'
                 );
 
                 //begin axios update post
                 axios.post('/KitsAvlblMgmt/UpdateAvlblKit', {
-                    id: editItem0,
                     eqpmtType: editItem1,
-                    kitID: editItem2
+                    model: editItem3,
+                    kitID: editItem2,
+                    id: editItem0
                 })
                     .then(function (response) {
                         console.log(response);
@@ -280,7 +283,7 @@
                 <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
                     <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
                     <td id="record_item1" value=@Html.DisplayFor(modelItem => item.eqpmtType)>@Html.DisplayFor(modelItem => item.eqpmtType)</td>
-                    <td id="record_item1" value=@Html.DisplayFor(modelItem => item.model)>@Html.DisplayFor(modelItem => item.model)</td>
+                    <td id="record_item3" value=@Html.DisplayFor(modelItem => item.model)>@Html.DisplayFor(modelItem => item.model)</td>
                     <td id="record_item2" value=@Html.DisplayFor(modelItem => item.kitID)>@Html.DisplayFor(modelItem => item.kitID)</td>
                     <td>
                         <button class="btn btn-primary btn-sm editButton" style=" background-color: royalblue">Edit</button>

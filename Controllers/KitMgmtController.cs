@@ -42,7 +42,6 @@ namespace allpax_sale_miner.Controllers
             return RedirectToAction("Index");
         }
 
-
         //end CMPS 411 controller code
 
         protected override void Dispose(bool disposing)
