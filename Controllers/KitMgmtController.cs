@@ -17,51 +17,27 @@ namespace allpax_sale_miner.Controllers
         // GET: KitMgmt
         public ActionResult Index()
         {
-            allpax_sale_minerEntities entities = new allpax_sale_minerEntities();
-            List<tbl_kit> kitMgmt = entities.tbl_kit.ToList();
+            var sql = db.tbl_kit.SqlQuery("SELECT * from cmps411.tbl_kit").ToList();
 
-            return View(kitMgmt.ToList());
+            return View(sql.ToList());
         }
         //begin CMPS 411 controller code
         [HttpPost]
         public ActionResult AddKit(tbl_kit kitAdd)
         {
-            //using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
-            //{
-            //    entities.tbl_kit.Add(new tbl_kit
-            //    {
-            //        kitID = kitAdd.kitID,
-            //        description = kitAdd.description,
-            //        filePath = kitAdd.filePath,
-            //                });
-
-
-            //    entities.SaveChanges();
-            //}
             db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_kit Values({0},{1},{2})", kitAdd.kitID, kitAdd.description, kitAdd.filePath);
             return new EmptyResult();
         }
 
         public ActionResult DeleteKit(tbl_kit kitDelete)
         {
-            tbl_kit tbl_kit = db.tbl_kit.Find(kitDelete.id);
-            db.tbl_kit.Remove(tbl_kit);
-            db.SaveChanges();
+            db.Database.ExecuteSqlCommand("DELETE FROM cmps411.tbl_kit WHERE id=({0})", kitDelete.id);
             return RedirectToAction("Index");
         }
         public ActionResult UpdateKit(tbl_kit kitUpdate)
         {
-            using (allpax_sale_minerEntities entities = new allpax_sale_minerEntities())
-            {
-                tbl_kit updatedKit = (from c in entities.tbl_kit
-                                                where c.id == kitUpdate.id
-                                                select c).FirstOrDefault();
-                updatedKit.kitID = kitUpdate.kitID;
-                updatedKit.description = kitUpdate.description;
-                updatedKit.filePath = kitUpdate.filePath;
-                
-                entities.SaveChanges();
-            }
+            db.Database.ExecuteSqlCommand("UPDATE cmps411.tbl_kit SET kitID={0},description={1},filePath={2} WHERE id={3}",
+                kitUpdate.kitID, kitUpdate.description, kitUpdate.filePath, kitUpdate.id);
 
             return RedirectToAction("Index");
         }
