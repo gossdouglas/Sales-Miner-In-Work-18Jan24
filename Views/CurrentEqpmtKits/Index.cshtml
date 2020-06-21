@@ -143,10 +143,10 @@
                 );
 
                 //begin axios add post
-                axios.post('/CurrentEqpmtKits/UpdateCurrentEqpmt', {
-                    id: editItem0,
+                axios.post('/CurrentEqpmtKits/UpdateCurrentEqpmt', {                   
                     machineID: editItem1,
-                    kitID: editItem2
+                    kitID: editItem2,
+                    id: editItem0
 
                 })
                     .then(function (response) {
