@@ -7,6 +7,7 @@ namespace allpax_sale_miner.ViewModels
 {
     public class machinesW_kitsAvlbl_BnotInstalled
     {
+        public string jobNo { get; set; }
         public string customerCode { get; set; }
         public string eqpmtType { get; set; }
         public string model { get; set; }

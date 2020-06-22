@@ -26,10 +26,11 @@ namespace allpax_sale_miner.Controllers
 
                 "FROM cmps411.tbl_customer_eqpmt " +
 
-                "LEFT JOIN cmps411.tbl_eqpmt_kits_current ON cmps411.tbl_customer_eqpmt.machineID = tbl_eqpmt_kits_current.machineID " +
-                "LEFT JOIN cmps411.tbl_eqpmt_kits_avlbl ON cmps411.tbl_customer_eqpmt.model = tbl_eqpmt_kits_avlbl.model " +
+                "FULL JOIN cmps411.tbl_eqpmt_kits_current ON cmps411.tbl_customer_eqpmt.machineID = tbl_eqpmt_kits_current.machineID " +
+                "FULL JOIN cmps411.tbl_eqpmt_kits_avlbl ON cmps411.tbl_customer_eqpmt.model = tbl_eqpmt_kits_avlbl.model " +
 
-                "WHERE cmps411.tbl_eqpmt_kits_current.machineID is null AND cmps411.tbl_eqpmt_kits_current.kitID is null";
+                "WHERE (cmps411.tbl_eqpmt_kits_current.machineID is null AND cmps411.tbl_eqpmt_kits_current.kitID is null) " +
+                "OR cmps411.tbl_eqpmt_kits_current.kitID != tbl_eqpmt_kits_avlbl.kitID";
 
             SqlCommand sqlcomm = new SqlCommand(sqlquery, sqlconn);
             SqlDataAdapter sda = new SqlDataAdapter(sqlcomm);
