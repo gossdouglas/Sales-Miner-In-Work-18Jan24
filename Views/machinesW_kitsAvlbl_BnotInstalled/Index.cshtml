@@ -9,7 +9,7 @@
 <table class="table">
     <tr>
         <th>
-            Job Number
+            @Html.DisplayNameFor(model => model.jobNo)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.customerCode)
@@ -41,7 +41,7 @@
 @foreach (var item in Model) {
 <tr>
     <td>
-        jobNo
+        @Html.DisplayFor(modelItem => item.jobNo)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.customerCode)

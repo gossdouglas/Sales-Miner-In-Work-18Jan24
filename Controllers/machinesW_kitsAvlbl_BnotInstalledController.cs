@@ -18,7 +18,7 @@ namespace allpax_sale_miner.Controllers
             List<machinesW_kitsAvlbl_BnotInstalled> mWkaBni = new List<machinesW_kitsAvlbl_BnotInstalled>();
             string mainconn = ConfigurationManager.ConnectionStrings["allpax_sale_minerEntities"].ConnectionString;
             SqlConnection sqlconn = new SqlConnection(mainconn);
-            string sqlquery = "SELECT cmps411.tbl_customer_eqpmt.customerCode, cmps411.tbl_customer_eqpmt.eqpmtType, cmps411.tbl_customer_eqpmt.model, cmps411.tbl_customer_eqpmt.machineID," +
+            string sqlquery = "SELECT cmps411.tbl_customer_eqpmt.jobNum, cmps411.tbl_customer_eqpmt.customerCode, cmps411.tbl_customer_eqpmt.eqpmtType, cmps411.tbl_customer_eqpmt.model, cmps411.tbl_customer_eqpmt.machineID," +
 
                 "cmps411.tbl_eqpmt_kits_current.machineID, cmps411.tbl_eqpmt_kits_current.kitID," +
 
@@ -40,14 +40,15 @@ namespace allpax_sale_miner.Controllers
             {
                 machinesW_kitsAvlbl_BnotInstalled mWkitsAvlblBnotInstalled = new machinesW_kitsAvlbl_BnotInstalled();
 
-                mWkitsAvlblBnotInstalled.customerCode = dr[0].ToString();
-                mWkitsAvlblBnotInstalled.eqpmtType = dr[1].ToString();
-                mWkitsAvlblBnotInstalled.model = dr[2].ToString();
-                mWkitsAvlblBnotInstalled.machineID = dr[3].ToString();
-                mWkitsAvlblBnotInstalled.kitsCurrent_machineID = dr[4].ToString();
-                mWkitsAvlblBnotInstalled.kitsCurrent_kitID = dr[5].ToString();
-                mWkitsAvlblBnotInstalled.kitsAvlbl_model = dr[6].ToString();
-                mWkitsAvlblBnotInstalled.kitsAvlbl_kitID = dr[7].ToString();
+                mWkitsAvlblBnotInstalled.jobNo = dr[0].ToString();
+                mWkitsAvlblBnotInstalled.customerCode = dr[1].ToString();
+                mWkitsAvlblBnotInstalled.eqpmtType = dr[2].ToString();
+                mWkitsAvlblBnotInstalled.model = dr[3].ToString();
+                mWkitsAvlblBnotInstalled.machineID = dr[4].ToString();
+                mWkitsAvlblBnotInstalled.kitsCurrent_machineID = dr[5].ToString();
+                mWkitsAvlblBnotInstalled.kitsCurrent_kitID = dr[6].ToString();
+                mWkitsAvlblBnotInstalled.kitsAvlbl_model = dr[7].ToString();
+                mWkitsAvlblBnotInstalled.kitsAvlbl_kitID = dr[8].ToString();
 
                 mWkaBni.Add(mWkitsAvlblBnotInstalled);
             }
