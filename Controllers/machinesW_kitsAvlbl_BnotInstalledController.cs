@@ -20,6 +20,8 @@ namespace allpax_sale_miner.Controllers
             SqlConnection sqlconn = new SqlConnection(mainconn);
 
             // begin empty and build custEqpmtWkitsAvlbl 
+
+            /*
             string custEqpmtWkitsAvlbl =
                 @"DELETE FROM cmps411.custEqpmtWkitsAvlbl " +
 
@@ -42,10 +44,14 @@ namespace allpax_sale_miner.Controllers
             sqlcomm1.ExecuteNonQuery();
             sqlcomm1.Connection = sqlconn;
             sqlcomm1.ExecuteNonQuery();
+
             //sqlcomm1.Connection.Close();
             // end empty and build custEqpmtWkitsAvlbl
+            */
 
             //begin empty and build custEqpmtWkitsInstld
+
+            /*
             string custEqpmtWkitsInstld =
                 "DELETE FROM cmps411.custEqpmtWkitsInstld"+
 
@@ -68,6 +74,9 @@ namespace allpax_sale_miner.Controllers
             sqlcomm2.Connection.Open();
             sqlcomm2.ExecuteNonQuery();
             //end empty and build custEqpmtWkitsInstld
+
+            */
+    
 
             //begin query for kits available, but not installed
             string sqlquery = 
