@@ -7,11 +7,14 @@ using allpax_sale_miner.ViewModels;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using allpax_sale_miner.Models;
 
 namespace allpax_sale_miner.Controllers
 {
     public class machinesW_kitsAvlbl_BnotInstalledController : Controller
     {
+        private allpax_sale_minerEntities db = new allpax_sale_minerEntities();
+
         // GET: machinesW_kitsAvlbl
         public ActionResult Index()
         {
@@ -22,37 +25,39 @@ namespace allpax_sale_miner.Controllers
             // begin empty and build custEqpmtWkitsAvlbl 
 
             /*
-            string custEqpmtWkitsAvlbl =
-                @"DELETE FROM cmps411.custEqpmtWkitsAvlbl " +
+                string custEqpmtWkitsAvlbl =
+                    @"DELETE FROM cmps411.custEqpmtWkitsAvlbl " +
 
-                "INSERT INTO cmps411.custEqpmtWkitsAvlbl" +
+                    "INSERT INTO cmps411.custEqpmtWkitsAvlbl" +
 
-                "(customerCode_cEqpmt, eqpmtType_cEqpmt, model_cEqpmt, machineID_cEqpmt, jobNum_cEqpmt, eqpmtType_kitsAvlbl, model_kitsAvlbl, kitID_kitsAvlbl) " +
+                    "(customerCode_cEqpmt, eqpmtType_cEqpmt, model_cEqpmt, machineID_cEqpmt, jobNum_cEqpmt, eqpmtType_kitsAvlbl, model_kitsAvlbl, kitID_kitsAvlbl) " +
 
-                "SELECT cmps411.tbl_customer_eqpmt.customerCode, cmps411.tbl_customer_eqpmt.eqpmtType, cmps411.tbl_customer_eqpmt.model, " +
-                "cmps411.tbl_customer_eqpmt.machineID, cmps411.tbl_customer_eqpmt.jobNum, cmps411.tbl_eqpmt_kits_avlbl.model, " +
-                "cmps411.tbl_eqpmt_kits_avlbl.model, cmps411.tbl_eqpmt_kits_avlbl.kitID"+ 
+                    "SELECT cmps411.tbl_customer_eqpmt.customerCode, cmps411.tbl_customer_eqpmt.eqpmtType, cmps411.tbl_customer_eqpmt.model, " +
+                    "cmps411.tbl_customer_eqpmt.machineID, cmps411.tbl_customer_eqpmt.jobNum, cmps411.tbl_eqpmt_kits_avlbl.model, " +
+                    "cmps411.tbl_eqpmt_kits_avlbl.model, cmps411.tbl_eqpmt_kits_avlbl.kitID"+ 
 
-                "FROM cmps411.tbl_customer_eqpmt " +
-                "INNER JOIN cmps411.tbl_eqpmt_kits_avlbl " +
-                "ON cmps411.tbl_customer_eqpmt.model = tbl_eqpmt_kits_avlbl.model " +
-                "ORDER BY cmps411.tbl_customer_eqpmt.customerCode";
+                    "FROM cmps411.tbl_customer_eqpmt " +
+                    "INNER JOIN cmps411.tbl_eqpmt_kits_avlbl " +
+                    "ON cmps411.tbl_customer_eqpmt.model = tbl_eqpmt_kits_avlbl.model " +
+                    "ORDER BY cmps411.tbl_customer_eqpmt.customerCode";
 
-            SqlCommand sqlcomm1 = new SqlCommand();
-            sqlcomm1.Connection.Open();
-            sqlcomm1.CommandText = custEqpmtWkitsAvlbl;
-            sqlcomm1.ExecuteNonQuery();
-            sqlcomm1.Connection = sqlconn;
-            sqlcomm1.ExecuteNonQuery();
+                SqlCommand sqlcomm1 = new SqlCommand();
+                sqlcomm1.Connection.Open();
+                sqlcomm1.CommandText = custEqpmtWkitsAvlbl;
+                sqlcomm1.ExecuteNonQuery();
+                sqlcomm1.Connection = sqlconn;
+                sqlcomm1.ExecuteNonQuery();
 
-            //sqlcomm1.Connection.Close();
-            // end empty and build custEqpmtWkitsAvlbl
+                sqlcomm1.Connection.Close();
             */
+
+            db.Database.ExecuteSqlCommand("DELETE FROM cmps411.custEqpmtWkitsAvlbl");
+
+            // end empty and build custEqpmtWkitsAvlbl          
 
             //begin empty and build custEqpmtWkitsInstld
 
-            /*
-            string custEqpmtWkitsInstld =
+            /*string custEqpmtWkitsInstld =
                 "DELETE FROM cmps411.custEqpmtWkitsInstld"+
 
                 "INSERT INTO cmps411.custEqpmtWkitsInstld"+
@@ -72,11 +77,11 @@ namespace allpax_sale_miner.Controllers
 
             SqlCommand sqlcomm2 = new SqlCommand(custEqpmtWkitsInstld, sqlconn);
             sqlcomm2.Connection.Open();
-            sqlcomm2.ExecuteNonQuery();
-            //end empty and build custEqpmtWkitsInstld
+            sqlcomm2.ExecuteNonQuery();*/
 
-            */
-    
+            db.Database.ExecuteSqlCommand("DELETE FROM cmps411.custEqpmtWkitsInstld");
+
+            //end empty and build custEqpmtWkitsInstld
 
             //begin query for kits available, but not installed
             string sqlquery = 
