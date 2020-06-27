@@ -22,65 +22,12 @@ namespace allpax_sale_miner.Controllers
             string mainconn = ConfigurationManager.ConnectionStrings["allpax_sale_minerEntities"].ConnectionString;
             SqlConnection sqlconn = new SqlConnection(mainconn);
 
-            // begin empty and build custEqpmtWkitsAvlbl 
-
-            /*
-                string custEqpmtWkitsAvlbl =
-                    @"DELETE FROM cmps411.custEqpmtWkitsAvlbl " +
-
-                    "INSERT INTO cmps411.custEqpmtWkitsAvlbl" +
-
-                    "(customerCode_cEqpmt, eqpmtType_cEqpmt, model_cEqpmt, machineID_cEqpmt, jobNum_cEqpmt, eqpmtType_kitsAvlbl, model_kitsAvlbl, kitID_kitsAvlbl) " +
-
-                    "SELECT cmps411.tbl_customer_eqpmt.customerCode, cmps411.tbl_customer_eqpmt.eqpmtType, cmps411.tbl_customer_eqpmt.model, " +
-                    "cmps411.tbl_customer_eqpmt.machineID, cmps411.tbl_customer_eqpmt.jobNum, cmps411.tbl_eqpmt_kits_avlbl.model, " +
-                    "cmps411.tbl_eqpmt_kits_avlbl.model, cmps411.tbl_eqpmt_kits_avlbl.kitID"+ 
-
-                    "FROM cmps411.tbl_customer_eqpmt " +
-                    "INNER JOIN cmps411.tbl_eqpmt_kits_avlbl " +
-                    "ON cmps411.tbl_customer_eqpmt.model = tbl_eqpmt_kits_avlbl.model " +
-                    "ORDER BY cmps411.tbl_customer_eqpmt.customerCode";
-
-                SqlCommand sqlcomm1 = new SqlCommand();
-                sqlcomm1.Connection.Open();
-                sqlcomm1.CommandText = custEqpmtWkitsAvlbl;
-                sqlcomm1.ExecuteNonQuery();
-                sqlcomm1.Connection = sqlconn;
-                sqlcomm1.ExecuteNonQuery();
-
-                sqlcomm1.Connection.Close();
-            */
-
-            db.Database.ExecuteSqlCommand("DELETE FROM cmps411.custEqpmtWkitsAvlbl");
-
+            // begin empty and build custEqpmtWkitsAvlbl         
+                /*db.Database.ExecuteSqlCommand("DELETE FROM cmps411.custEqpmtWkitsAvlbl");*/
             // end empty and build custEqpmtWkitsAvlbl          
 
-            //begin empty and build custEqpmtWkitsInstld
-
-            /*string custEqpmtWkitsInstld =
-                "DELETE FROM cmps411.custEqpmtWkitsInstld"+
-
-                "INSERT INTO cmps411.custEqpmtWkitsInstld"+
-                "(customerCode_cEqpmt, eqpmtType_cEqpmt, model_cEqpmt, machineID_cEqpmt, jobNum_cEqpmt,"+
-
-                "machineID_kitsCurrent, kitID_kitsCurrent)"+
-
-                "SELECT"+
-                "cmps411.tbl_customer_eqpmt.customerCode, cmps411.tbl_customer_eqpmt.eqpmtType, cmps411.tbl_customer_eqpmt.model, " +
-                "cmps411.tbl_customer_eqpmt.machineID, cmps411.tbl_customer_eqpmt.jobNum, cmps411.tbl_eqpmt_kits_current.machineID, cmps411.tbl_eqpmt_kits_current.kitID"+
-
-                "FROM cmps411.tbl_customer_eqpmt"+
-                "INNER JOIN cmps411.tbl_eqpmt_kits_current ON cmps411.tbl_customer_eqpmt.machineID = tbl_eqpmt_kits_current.machineID"+
-
-                "ORDER BY"+
-                "cmps411.tbl_customer_eqpmt.customerCode";
-
-            SqlCommand sqlcomm2 = new SqlCommand(custEqpmtWkitsInstld, sqlconn);
-            sqlcomm2.Connection.Open();
-            sqlcomm2.ExecuteNonQuery();*/
-
-            db.Database.ExecuteSqlCommand("DELETE FROM cmps411.custEqpmtWkitsInstld");
-
+            //begin empty and build custEqpmtWkitsInstld            
+                /*db.Database.ExecuteSqlCommand("DELETE FROM cmps411.custEqpmtWkitsInstld");*/
             //end empty and build custEqpmtWkitsInstld
 
             //begin query for kits available, but not installed
