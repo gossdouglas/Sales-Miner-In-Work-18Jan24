@@ -22,13 +22,14 @@ namespace allpax_sale_miner.Controllers
             string mainconn = ConfigurationManager.ConnectionStrings["allpax_sale_minerEntities"].ConnectionString;
             SqlConnection sqlconn = new SqlConnection(mainconn);
 
-            // begin empty and build custEqpmtWkitsAvlbl         
-                /*db.Database.ExecuteSqlCommand("DELETE FROM cmps411.custEqpmtWkitsAvlbl");*/
-            // end empty and build custEqpmtWkitsAvlbl          
-
-            //begin empty and build custEqpmtWkitsInstld            
-                /*db.Database.ExecuteSqlCommand("DELETE FROM cmps411.custEqpmtWkitsInstld");*/
-            //end empty and build custEqpmtWkitsInstld
+            // begin empty and build custEqpmtWkitsAvlbl and custEqpmtWkitsInstld tables  
+            //this is handled by a stored procedure on the sql server named dbo.bldSalesOppsTables
+            sqlconn.Open();
+            SqlCommand sqlcomm1 = new SqlCommand("dbo.bldSalesOppsTables", sqlconn);
+            sqlcomm1.CommandType = System.Data.CommandType.StoredProcedure;
+            sqlcomm1.ExecuteNonQuery();
+            sqlconn.Close();
+            //end empty and build custEqpmtWkitsAvlbl and custEqpmtWkitsInstld tables 
 
             //begin query for kits available, but not installed
             string sqlquery = 
