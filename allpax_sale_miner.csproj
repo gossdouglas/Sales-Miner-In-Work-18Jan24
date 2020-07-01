@@ -483,6 +483,7 @@
     <Content Include="Views\machinesW_kitsAvlbl_BnotInstalled\Index.cshtml" />
     <Content Include="Views\SalesCustomer\Index.cshtml" />
     <Content Include="Views\SalesLanding\Index.cshtml" />
+    <Content Include="Views\SalesOpps\Index-old.cshtml" />
     <Content Include="Views\SalesOpps\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

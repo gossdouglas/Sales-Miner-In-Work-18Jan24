@@ -25,7 +25,7 @@
             
             $('.dataTables_length').addClass('bs-select');
                 //begin when a record class is clicked...
-                $(".record").on('click keyup change', function () {
+                $(".record").on('click keyup change mouseover', function () {
                     selectedItem0 = $(this).attr("id");//works
                     selectedItem1 = $(this).find("#record_item1").html();//works valid for inner html only
                     selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
@@ -69,7 +69,24 @@
                     var editItem5 = $("#slctd_state").val();
                     var editItem6 = $("#slctd_zipCode").val();
 
-                    window.location = '/SalesOpps';
+                    window.location = '/SalesOpps?customerCode='+selectedItem1;
+
+                    //begin axios add post
+                    //axios.post('/SalesOpps/CustSalesOpps', {
+                    //    //id: editItem0,
+                    //    customerCode: selectedItem1,
+                    //    //machineID: editItem2,
+                    //    //jobNum: editItem3,
+                    //    //eqpmtType: editItem4,
+                    //    //model: editItem5
+                    //})
+                    //    .then(function (response) {
+                    //        console.log(response);
+                    //    })
+                    //    .catch(function (error) {
+                    //        console.log(error);
+                    //    });
+                //end axios add post
                 });
                 //end go to salesCustomer page
             });//end document read jquery statements

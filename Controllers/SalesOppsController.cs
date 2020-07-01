@@ -1,53 +1,71 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Dynamic;
 using System.Linq;
-using System.Net;
-using System.Web; 
+using System.Web;
 using System.Web.Mvc;
+using allpax_sale_miner.ViewModels;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 using allpax_sale_miner.Models;
 
 namespace allpax_sale_miner.Controllers
 {
     public class SalesOppsController : Controller
     {
-     
-        // GET: CustomerMgmt
-        public ActionResult Index()
+        private allpax_sale_minerEntities db = new allpax_sale_minerEntities();
+        public ActionResult Index(String customerCode)
         {
-              allpax_sale_minerEntities db = new allpax_sale_minerEntities();
+            List<machinesW_kitsAvlbl_BnotInstalled> mWkaBni = new List<machinesW_kitsAvlbl_BnotInstalled>();
+            string mainconn = ConfigurationManager.ConnectionStrings["allpax_sale_minerEntities"].ConnectionString;
+            SqlConnection sqlconn = new SqlConnection(mainconn);
 
-            // begin https://www.youtube.com/watch?v=EXimdPaGkDw this works
-            List<tbl_customer_eqpmt> custEqpmt = db.tbl_customer_eqpmt.ToList();
-            List<tbl_eqpmt_kits_current> kitsCurrent = db.tbl_eqpmt_kits_current.ToList();
-            List<tbl_eqpmt_kits_avlbl> kitsAvlbl = db.tbl_eqpmt_kits_avlbl.ToList();         
+            // begin empty and build custEqpmtWkitsAvlbl and custEqpmtWkitsInstld tables  
+            //this is handled by a stored procedure on the sql server named dbo.bldSalesOppsTables
+            sqlconn.Open();
+            SqlCommand sqlcomm1 = new SqlCommand("dbo.bldSalesOppsTables", sqlconn);
+            sqlcomm1.CommandType = System.Data.CommandType.StoredProcedure;
+            sqlcomm1.ExecuteNonQuery();
+            sqlconn.Close();
+            //end empty and build custEqpmtWkitsAvlbl and custEqpmtWkitsInstld tables 
 
-            //var multipleTable = from ce in custEqpmt
-            //                    join kc in kitsCurrent on ce.machineID equals kc.machineID
-            //                    select new salesOppsModel { tbl_customer_eqpmt = ce, tbl_eqpmt_kits_current = kc };
-            //return View(multipleTable);
-            //end https://www.youtube.com/watch?v=EXimdPaGkDw this works
+            //begin query for kits available, but not installed
+            string sqlquery =
+                "SELECT custEqpmtWkitsAvlbl.customerCode_cEqpmt, custEqpmtWkitsAvlbl.jobNum_cEqpmt, custEqpmtWkitsAvlbl.eqpmtType_cEqpmt, " +
+                "cmps411.custEqpmtWkitsAvlbl.model_cEqpmt, cmps411.custEqpmtWkitsAvlbl.machineID_cEqpmt, kitID_kitsAvlbl " +
 
-            //string query = "SELECT cmps411.tbl_customer_eqpmt.customerCode, cmps411.tbl_customer_eqpmt.eqpmtType, " +
-            //        "cmps411.tbl_customer_eqpmt.model, cmps411.tbl_customer_eqpmt.machineID, cmps411.tbl_eqpmt_kits_current.machineID, " +
-            //        "cmps411.tbl_eqpmt_kits_current.kitID, cmps411.tbl_eqpmt_kits_avlbl.model, cmps411.tbl_eqpmt_kits_avlbl.kitID " +
-            //        "FROM cmps411.tbl_customer_eqpmt " +
-            //        "LEFT JOIN cmps411.tbl_eqpmt_kits_current ON cmps411.tbl_customer_eqpmt.machineID = tbl_eqpmt_kits_current.machineID " +
-            //        "LEFT JOIN cmps411.tbl_eqpmt_kits_avlbl ON cmps411.tbl_customer_eqpmt.model = tbl_eqpmt_kits_avlbl.model " +
-            //        "WHERE cmps411.tbl_eqpmt_kits_current.machineID is null AND cmps411.tbl_eqpmt_kits_current.kitID is null";
+                "FROM cmps411.custEqpmtWkitsAvlbl " +
+                "LEFT JOIN cmps411.custEqpmtWkitsInstld ON " +
+                "cmps411.custEqpmtWkitsAvlbl.machineID_cEqpmt = cmps411.custEqpmtWkitsInstld.machineID_kitsCurrent " +
+                "AND cmps411.custEqpmtWkitsAvlbl.kitID_kitsAvlbl = cmps411.custEqpmtWkitsInstld.kitID_kitsCurrent " +
+                "WHERE " +
+                "custEqpmtWkitsInstld.machineID_kitsCurrent is NULL " +
+                "AND " +
+                "cmps411.custEqpmtWkitsInstld.kitID_kitsCurrent is NULL "+
 
-            
-            var query = "SELECT * FROM cmps411.tbl_customer_eqpmt";           
-            var data = db.Database.SqlQuery<salesOppsModel>(query).ToList();
- 
-            return View(data);
-            //return View(multipleTable);
-            //return View(tables);
+                "AND custEqpmtWkitsAvlbl.customerCode_cEqpmt=@customerCode";
+           
+            SqlCommand sqlcomm3 = new SqlCommand(sqlquery, sqlconn);
+            sqlcomm3.Parameters.AddWithValue("@customerCode", customerCode);
+            SqlDataAdapter sda = new SqlDataAdapter(sqlcomm3);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            foreach (DataRow dr in dt.Rows)
+            {
+                machinesW_kitsAvlbl_BnotInstalled mWkitsAvlblBnotInstalled = new machinesW_kitsAvlbl_BnotInstalled();
 
+                mWkitsAvlblBnotInstalled.customerCode = dr[0].ToString();
+                mWkitsAvlblBnotInstalled.jobNo = dr[1].ToString();
+                mWkitsAvlblBnotInstalled.eqpmtType = dr[2].ToString();
+                mWkitsAvlblBnotInstalled.model = dr[3].ToString();
+                mWkitsAvlblBnotInstalled.machineID = dr[4].ToString();
+                mWkitsAvlblBnotInstalled.kitsAvlbl_kitID = dr[5].ToString();
+
+                mWkaBni.Add(mWkitsAvlblBnotInstalled);
+            }
+            //end query for kits available, but not installed
+            return View(mWkaBni);
         }
-
 
     }
 }
