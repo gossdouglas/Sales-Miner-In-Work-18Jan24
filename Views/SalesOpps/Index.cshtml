@@ -3,37 +3,29 @@
 @{
     ViewBag.Title = "Index";
 }
+    <h3>@ViewBag.Message</h3>
 
-<h2>Customer Sales Opportunities</h2>
+    <h2>Customer Sales Opportunities-</h2>
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.jobNo)
+            Job Number
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.customerCode)
+            Customer Code
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.eqpmtType)
+            Equipment Type
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.model)
+            Model
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.machineID)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.kitsCurrent_machineID)
+            Machine ID
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.kitsCurrent_kitID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.kitsAvlbl_model)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.kitsAvlbl_kitID)
+            Kit ID
         </th>
         <th></th>
     </tr>
@@ -55,15 +47,6 @@
     <td>
         @Html.DisplayFor(modelItem => item.machineID)
     </td>
-    @*<td>
-        @Html.DisplayFor(modelItem => item.kitsCurrent_machineID)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.kitsCurrent_kitID)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.kitsAvlbl_model)
-    </td>*@
     <td>
         @Html.DisplayFor(modelItem => item.kitsAvlbl_kitID)
     </td>

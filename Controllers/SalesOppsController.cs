@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using allpax_sale_miner.Models;
+using System.Dynamic;
 
 namespace allpax_sale_miner.Controllers
 {
@@ -63,6 +64,7 @@ namespace allpax_sale_miner.Controllers
 
                 mWkaBni.Add(mWkitsAvlblBnotInstalled);
             }
+
             //end query for kits available, but not installed
             return View(mWkaBni);
         }
