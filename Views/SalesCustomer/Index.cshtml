@@ -1,4 +1,6 @@
-﻿@model IEnumerable<allpax_sale_miner.ViewModels.vm_SalesCustomer>
+﻿@model List<allpax_sale_miner.ViewModels.vm_SalesCustomer>
+
+@*@model IEnumerable<allpax_sale_miner.ViewModels.vm_SalesCustomer>*@
 
 @{
     ViewBag.Title = "Index";
@@ -21,39 +23,41 @@
             Customer Code
         </th>
         <th>
-            Equipment Type
-        </th>
-        <th>
             Model
         </th>
         <th>
             Machine ID
         </th>
+
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.jobNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.customerCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.eqpmtType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.machineID)
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.jobNo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.customerCode)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.model)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.machineID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.kitsCurrent.Count)
+    </td>
+
+</tr>
     }
 
 </table>
+
+
+
 
 
 

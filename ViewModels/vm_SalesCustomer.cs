@@ -1,4 +1,5 @@
-﻿using System;
+﻿using allpax_sale_miner.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,9 +13,6 @@ namespace allpax_sale_miner.ViewModels
         public string eqpmtType { get; set; }
         public string model { get; set; }
         public string machineID { get; set; }
-        //public string kitsCurrent_machineID { get; set; }
-        //public string kitsCurrent_kitID { get; set; }
-        //public string kitsAvlbl_model { get; set; }
-        //public string kitsAvlbl_kitID { get; set; }
+        public List<string> kitsCurrent { get; internal set; }
     }
 }
