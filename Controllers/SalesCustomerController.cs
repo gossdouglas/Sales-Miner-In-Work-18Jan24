@@ -65,11 +65,10 @@ namespace allpax_sale_miner.Controllers
         private List<string> test ()
         {
             List<string> testKitList = new List<string>();
-            testKitList.Add("rr");
-            testKitList.Add("ss");
-            testKitList.Add("tt");
             testKitList.Add("aa");
-            return testKitList;
+            testKitList.Add("bb");
+            testKitList.Add("cc");           
+            return testKitList; 
         }
 
     }
