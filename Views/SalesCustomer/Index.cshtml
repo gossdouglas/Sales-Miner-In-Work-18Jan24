@@ -28,30 +28,55 @@
         <th>
             Machine ID
         </th>
-
-        <th></th>
+        <th>
+            Number of Current Kits
+        </th>
+        <th>
+            Current Kits
+        </th>
+        <th>
+            Number of Available Kits
+        </th>
+        <th>
+            Available Kits
+        </th>
     </tr>
 
     @foreach (var item in Model)
     {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.jobNo)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.customerCode)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.model)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.machineID)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.kitsCurrent.Count)
-    </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.jobNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.customerCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.machineID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kitsCurrent.Count)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kitsCurrent[0])
+                @Html.DisplayFor(modelItem => item.kitsCurrent[1])
+                @Html.DisplayFor(modelItem => item.kitsCurrent[2])
+                @Html.DisplayFor(modelItem => item.kitsCurrent[3])
+            </td>
 
-</tr>
+            <td>
+                @for (var i = 0; i < (item.kitsCurrent.Count); i++)
+                {@*<p>Line @i</p>*@
+                 @Html.DisplayFor(modelItem => item.kitsCurrent[@i])<br />
+               }
+            </td>
+            <td>
+            </td>
+
+        </tr>
     }
 
 </table>
