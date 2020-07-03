@@ -57,37 +57,7 @@ namespace allpax_sale_miner.Controllers
             }
             sqlconn.Close();
             //end query for .....
-
-            //begin query for .....
-            //sqlconn.Open();
-            //string sqlquery2 =
-            //    "SELECT cmps411.tbl_customer_eqpmt.jobNum, cmps411.tbl_customer_eqpmt.customerCode, " +
-            //    "cmps411.tbl_customer_eqpmt.model, cmps411.tbl_customer_eqpmt.machineID " +
-            //    "FROM cmps411.tbl_customer_eqpmt " +
-            //    "WHERE cmps411.tbl_customer_eqpmt.customerCode = 'AHV'";
-
-            //SqlCommand sqlcomm2 = new SqlCommand(sqlquery2, sqlconn);
-            //SqlDataAdapter sda2 = new SqlDataAdapter(sqlcomm2);
-            //DataTable dt2 = new DataTable();
-            //sda2.Fill(dt2);
           
-            //foreach (DataRow dr2 in dt2.Rows)
-            //{
-            //    vm_SalesCustomer vm_SalesCustomer2 = new vm_SalesCustomer();
-
-            //    vm_SalesCustomer2.jobNo = dr2[0].ToString();
-            //    vm_SalesCustomer2.customerCode = dr2[1].ToString();
-            //    vm_SalesCustomer2.model = dr2[2].ToString();
-            //    vm_SalesCustomer2.machineID = dr2[3].ToString();
-
-            //    vm_SalesCustomer2.kitsCurrent = testKitList;
-
-
-            //    SalesCustomer2.Add(vm_SalesCustomer2);
-            //}
-
-            //end query for .....
-
             return View(SalesCustomer1);
         }
     }
