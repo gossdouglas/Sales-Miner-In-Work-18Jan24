@@ -44,15 +44,8 @@ namespace allpax_sale_miner.Controllers
                 vm_SalesCustomer1.model = dr[2].ToString();
                 vm_SalesCustomer1.machineID = dr[3].ToString();
 
-                //begin add KitList
-
-                //List<string> testKitList = new List<string>();
-                //testKitList.Add("aa");
-                //testKitList.Add("bb");
-                //testKitList.Add("cc");
-                //testKitList.Add("dd");
+                //begin add KitList;
                 vm_SalesCustomer1.kitsCurrent = test();
-
                 //end add KitList
 
                 SalesCustomer1.Add(vm_SalesCustomer1);
