@@ -14,5 +14,6 @@ namespace allpax_sale_miner.ViewModels
         public string model { get; set; }
         public string machineID { get; set; }
         public List<string> kitsCurrent { get; internal set; }
+        public List<string> kitsAvlblbNotInstld { get; internal set; }
     }
 }

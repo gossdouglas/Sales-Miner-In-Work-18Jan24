@@ -14,7 +14,7 @@ namespace allpax_sale_miner.Controllers
 {
     public class SalesCustomerController : Controller
     {
-        private allpax_sale_minerEntities db = new allpax_sale_minerEntities();
+        public allpax_sale_minerEntities db = new allpax_sale_minerEntities();
 
         // GET: machinesW_kitsAvlbl
         public ActionResult Index()
@@ -30,7 +30,8 @@ namespace allpax_sale_miner.Controllers
                 "cmps411.tbl_customer_eqpmt.model, cmps411.tbl_customer_eqpmt.machineID " +
                 "FROM " +
                 "cmps411.tbl_customer_eqpmt";
-
+            //end query for .....
+           
             SqlCommand sqlcomm = new SqlCommand(sqlquery, sqlconn);
             SqlDataAdapter sda = new SqlDataAdapter(sqlcomm);
             DataTable dt = new DataTable();
@@ -44,24 +45,31 @@ namespace allpax_sale_miner.Controllers
                 vm_SalesCustomer1.model = dr[2].ToString();
                 vm_SalesCustomer1.machineID = dr[3].ToString();
 
-                //begin add KitList;
-                vm_SalesCustomer1.kitsCurrent = test();
-                //end add KitList
-
+                //begin add kitsCurrent;
+                //vm_SalesCustomer1.kitsCurrent = kitsCurrent();
+                //end add kitsCurrent
+                //test
+                var sql = db.tbl_customer_eqpmt.SqlQuery
+                    ("SELECT cmps411.tbl_customer_eqpmt.customerCode, cmps411.tbl_customer_eqpmt.eqpmtType, " +
+                    "cmps411.tbl_customer_eqpmt.model, cmps411.tbl_customer_eqpmt.machineID, cmps411.tbl_eqpmt_kits_current.machineID, " +
+                    "cmps411.tbl_eqpmt_kits_current.kitID " +
+                    "FROM cmps411.tbl_customer_eqpmt " +
+                    "INNER JOIN cmps411.tbl_eqpmt_kits_current ON cmps411.tbl_customer_eqpmt.machineID = tbl_eqpmt_kits_current.machineID; ").ToList();
+                //test
                 SalesCustomer1.Add(vm_SalesCustomer1);
             }
             sqlconn.Close();
-            //end query for .....
+            
           
             return View(SalesCustomer1);
         }
-        private List<string> test ()
+        private List<string> kitsCurrent()
         {
-            List<string> testKitList = new List<string>();
-            testKitList.Add("aa");
-            testKitList.Add("bb");
-            testKitList.Add("cc");           
-            return testKitList; 
+            List<string> kc = new List<string>();
+            kc.Add("aa");
+            kc.Add("bb");
+            kc.Add("cc");           
+            return kc;            
         }
 
     }
