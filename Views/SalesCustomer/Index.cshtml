@@ -62,15 +62,18 @@
     </td>
     <td>
         @for (var i = 0; i < (item.kitsCurrent.Count); i++)
-        {@*<p>Line @i</p>*@
+        {
         <p>@Html.DisplayFor(modelItem => item.kitsCurrent[@i])</p>
-    }
+        }
     </td>
     <td>
-        future
+        @Html.DisplayFor(modelItem => item.kitsAvlblbNotInstld.Count)
     </td>
     <td>
-        future
+        @for (var i = 0; i < (item.kitsAvlblbNotInstld.Count); i++)
+        {
+            <p>@Html.DisplayFor(modelItem => item.kitsAvlblbNotInstld[@i])</p>
+        }
     </td>
 
 </tr>
