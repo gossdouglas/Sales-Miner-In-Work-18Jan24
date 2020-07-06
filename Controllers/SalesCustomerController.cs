@@ -23,14 +23,23 @@ namespace allpax_sale_miner.Controllers
             string mainconn = ConfigurationManager.ConnectionStrings["allpax_sale_minerEntities"].ConnectionString;
             SqlConnection sqlconn = new SqlConnection(mainconn);
 
-            //begin query for .....        
+            // begin empty and build custEqpmtWkitsAvlbl and custEqpmtWkitsInstld tables  
+            //this is handled by a stored procedure on the sql server named dbo.bldSalesOppsTables
+            sqlconn.Open();
+            SqlCommand sqlcomm1 = new SqlCommand("dbo.bldSalesOppsTables", sqlconn);
+            sqlcomm1.CommandType = System.Data.CommandType.StoredProcedure;
+            sqlcomm1.ExecuteNonQuery();
+            sqlconn.Close();
+            //end empty and build custEqpmtWkitsAvlbl and custEqpmtWkitsInstld tables
+
+            //begin query for customer equipment        
             string sqlquery =
                 "SELECT cmps411.tbl_customer_eqpmt.jobNum, cmps411.tbl_customer_eqpmt.customerCode, " +
                 "cmps411.tbl_customer_eqpmt.model, cmps411.tbl_customer_eqpmt.machineID " +
                 "FROM " +
                 "cmps411.tbl_customer_eqpmt";
-            //end query for .....
-           
+            //end query for customer equipment
+
             SqlCommand sqlcomm = new SqlCommand(sqlquery, sqlconn);
             SqlDataAdapter sda = new SqlDataAdapter(sqlcomm);
             DataTable dt = new DataTable();
@@ -44,12 +53,12 @@ namespace allpax_sale_miner.Controllers
                 vm_SalesCustomer1.model = dr[2].ToString();
                 vm_SalesCustomer1.machineID = dr[3].ToString();
                 vm_SalesCustomer1.kitsCurrent = kitsCurrent(vm_SalesCustomer1.customerCode, vm_SalesCustomer1.machineID);
-                vm_SalesCustomer1.kitsAvlblbNotInstld = kitsAvlblbNotInstld();
+                vm_SalesCustomer1.kitsAvlblbNotInstld = kitsAvlblbNotInstld(vm_SalesCustomer1.customerCode, vm_SalesCustomer1.jobNo, vm_SalesCustomer1.machineID);
                 SalesCustomer1.Add(vm_SalesCustomer1);
             }
             sqlconn.Close();
                       
-            return View(SalesCustomer1);
+             return View(SalesCustomer1);
         }
         //begin add kitsCurrent
         public List<string> kitsCurrent(string customerCode, string machineID)
@@ -78,7 +87,7 @@ namespace allpax_sale_miner.Controllers
             }
             return kc;            
         }
-        public List<string> kitsAvlblbNotInstld()
+        public List<string> kitsAvlblbNotInstld(string customerCode, string jobNo, string machineID)
         {
             List<string> mWkaBni = new List<string>();
 
@@ -94,15 +103,15 @@ namespace allpax_sale_miner.Controllers
                 "AND cmps411.custEqpmtWkitsAvlbl.kitID_kitsAvlbl = cmps411.custEqpmtWkitsInstld.kitID_kitsCurrent " +
                 "WHERE custEqpmtWkitsInstld.machineID_kitsCurrent is NULL " +
                 "AND cmps411.custEqpmtWkitsInstld.kitID_kitsCurrent is NULL " +
-                "AND custEqpmtWkitsAvlbl.customerCode_cEqpmt = 'AHV' " +
-                "AND custEqpmtWkitsAvlbl.jobNum_cEqpmt = 'J2001' " +
-                "AND cmps411.custEqpmtWkitsAvlbl.machineID_cEqpmt = 'AHV-LDR-01'";
+                "AND custEqpmtWkitsAvlbl.customerCode_cEqpmt = @customerCode " +
+                "AND custEqpmtWkitsAvlbl.jobNum_cEqpmt = @jobNo " +
+                "AND cmps411.custEqpmtWkitsAvlbl.machineID_cEqpmt = @machineID";
             //end query for kits available but not installed by machine
 
             SqlCommand sqlcomm3 = new SqlCommand(sqlquery3, sqlconn);
-            //sqlcomm3.Parameters.Add(new SqlParameter("customerCode", customerCode));
-            //sqlcomm3.Parameters.Add(new SqlParameter("jobNo", jobNo));
-            //sqlcomm3.Parameters.Add(new SqlParameter("machineID", machineID));
+            sqlcomm3.Parameters.Add(new SqlParameter("customerCode", customerCode));
+            sqlcomm3.Parameters.Add(new SqlParameter("jobNo", jobNo));
+            sqlcomm3.Parameters.Add(new SqlParameter("machineID", machineID));
             SqlDataAdapter sda3 = new SqlDataAdapter(sqlcomm3);
             DataTable dt3 = new DataTable();
             sda3.Fill(dt3);
