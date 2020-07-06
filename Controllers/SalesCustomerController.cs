@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using allpax_sale_miner.Models;
 using System.Dynamic;
+using System.Security.Cryptography;
 
 namespace allpax_sale_miner.Controllers
 {
@@ -46,11 +47,12 @@ namespace allpax_sale_miner.Controllers
                 vm_SalesCustomer1.machineID = dr[3].ToString();
 
                 //begin add kitsCurrent;
-                vm_SalesCustomer1.kitsCurrent = kitsCurrent();
+                //vm_SalesCustomer1.kitsCurrent = kitsCurrent("aem-ldr-01");
+                vm_SalesCustomer1.kitsCurrent = kitsCurrent(vm_SalesCustomer1.machineID);
 
                 //end add kitsCurrent
                 //test
-                
+
                 //test
                 SalesCustomer1.Add(vm_SalesCustomer1);
             }
@@ -59,7 +61,7 @@ namespace allpax_sale_miner.Controllers
           
             return View(SalesCustomer1);
         }
-        public List<string> kitsCurrent()
+        public List<string> kitsCurrent(string machineID)
         {
             List<string> kc = new List<string>();
             //kc.Add("aa");
@@ -69,9 +71,15 @@ namespace allpax_sale_miner.Controllers
             string mainconn = ConfigurationManager.ConnectionStrings["allpax_sale_minerEntities"].ConnectionString;
             SqlConnection sqlconn = new SqlConnection(mainconn);
 
-            string sqlquery2 = "SELECT cmps411.tbl_eqpmt_kits_current.machineID, cmps411.tbl_eqpmt_kits_current.kitID FROM cmps411.tbl_customer_eqpmt INNER JOIN cmps411.tbl_eqpmt_kits_current ON cmps411.tbl_customer_eqpmt.machineID = tbl_eqpmt_kits_current.machineID WHERE cmps411.tbl_eqpmt_kits_current.machineID = 'AEM-LDR-01'" ;
+            string sqlquery2 = "SELECT cmps411.tbl_eqpmt_kits_current.machineID, cmps411.tbl_eqpmt_kits_current.kitID " +
+                "FROM cmps411.tbl_customer_eqpmt " +
+                "INNER JOIN cmps411.tbl_eqpmt_kits_current ON cmps411.tbl_customer_eqpmt.machineID = tbl_eqpmt_kits_current.machineID " +
+            //"WHERE cmps411.tbl_eqpmt_kits_current.machineID = '@machineID'";
+            "WHERE cmps411.tbl_eqpmt_kits_current.machineID = @machineID";
+            //"WHERE cmps411.tbl_eqpmt_kits_current.machineID = 'aem-ldr-01'";
 
             SqlCommand sqlcomm2 = new SqlCommand(sqlquery2, sqlconn);
+            sqlcomm2.Parameters.Add(new SqlParameter("machineID", machineID));
             SqlDataAdapter sda2 = new SqlDataAdapter(sqlcomm2);
             DataTable dt2 = new DataTable();
             sda2.Fill(dt2);
