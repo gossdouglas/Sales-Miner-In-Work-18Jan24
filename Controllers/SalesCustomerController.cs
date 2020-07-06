@@ -46,29 +46,43 @@ namespace allpax_sale_miner.Controllers
                 vm_SalesCustomer1.machineID = dr[3].ToString();
 
                 //begin add kitsCurrent;
-                //vm_SalesCustomer1.kitsCurrent = kitsCurrent();
+                vm_SalesCustomer1.kitsCurrent = kitsCurrent();
+
                 //end add kitsCurrent
                 //test
-                var sql = db.tbl_customer_eqpmt.SqlQuery
-                    ("SELECT cmps411.tbl_customer_eqpmt.customerCode, cmps411.tbl_customer_eqpmt.eqpmtType, " +
-                    "cmps411.tbl_customer_eqpmt.model, cmps411.tbl_customer_eqpmt.machineID, cmps411.tbl_eqpmt_kits_current.machineID, " +
-                    "cmps411.tbl_eqpmt_kits_current.kitID " +
-                    "FROM cmps411.tbl_customer_eqpmt " +
-                    "INNER JOIN cmps411.tbl_eqpmt_kits_current ON cmps411.tbl_customer_eqpmt.machineID = tbl_eqpmt_kits_current.machineID; ").ToList();
+                
                 //test
                 SalesCustomer1.Add(vm_SalesCustomer1);
             }
-            sqlconn.Close();
+            //sqlconn.Close();
             
           
             return View(SalesCustomer1);
         }
-        private List<string> kitsCurrent()
+        public List<string> kitsCurrent()
         {
             List<string> kc = new List<string>();
-            kc.Add("aa");
-            kc.Add("bb");
-            kc.Add("cc");           
+            //kc.Add("aa");
+            //kc.Add("bb");
+            //kc.Add("cc");
+
+            string mainconn = ConfigurationManager.ConnectionStrings["allpax_sale_minerEntities"].ConnectionString;
+            SqlConnection sqlconn = new SqlConnection(mainconn);
+
+            string sqlquery2 = "SELECT cmps411.tbl_eqpmt_kits_current.machineID, cmps411.tbl_eqpmt_kits_current.kitID FROM cmps411.tbl_customer_eqpmt INNER JOIN cmps411.tbl_eqpmt_kits_current ON cmps411.tbl_customer_eqpmt.machineID = tbl_eqpmt_kits_current.machineID WHERE cmps411.tbl_eqpmt_kits_current.machineID = 'AEM-LDR-01'" ;
+
+            SqlCommand sqlcomm2 = new SqlCommand(sqlquery2, sqlconn);
+            SqlDataAdapter sda2 = new SqlDataAdapter(sqlcomm2);
+            DataTable dt2 = new DataTable();
+            sda2.Fill(dt2);
+            foreach (DataRow dr2 in dt2.Rows)
+            {
+                //List<string> kc = new List<string>();
+
+                kc.Add(dr2[1].ToString());
+               
+            }
+
             return kc;            
         }
 
