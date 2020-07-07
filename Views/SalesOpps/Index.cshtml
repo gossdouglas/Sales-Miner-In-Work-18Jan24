@@ -14,12 +14,12 @@
         <th>
             Job Number
         </th>
-        <th>
+        @*<th>
             Customer Code
         </th>
         <th>
             Equipment Type
-        </th>
+        </th>*@
         <th>
             Model
         </th>
@@ -27,7 +27,7 @@
             Machine ID
         </th>
         <th>
-            Kit ID
+            Available Kits
         </th>
         <th></th>
     </tr>
@@ -37,12 +37,12 @@
     <td>
         @Html.DisplayFor(modelItem => item.jobNo)
     </td>
-    <td>
+    @*<td>
         @Html.DisplayFor(modelItem => item.customerCode)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.eqpmtType)
-    </td>
+    </td>*@
     <td>
         @Html.DisplayFor(modelItem => item.model)
     </td>
@@ -50,7 +50,11 @@
         @Html.DisplayFor(modelItem => item.machineID)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.kitsAvlbl_kitID)
+        @*@Html.DisplayFor(modelItem => item.kitsAvlblbNotInstld.Count)*@
+        @for (var i = 0; i < (item.kitsAvlblbNotInstld.Count); i++)
+        {
+            <p>@Html.DisplayFor(modelItem => item.kitsAvlblbNotInstld[@i])</p>
+        }
     </td>
 </tr>
 }

@@ -16,5 +16,6 @@ namespace allpax_sale_miner.ViewModels
         public string kitsCurrent_kitID { get; set; }
         public string kitsAvlbl_model { get; set; }
         public string kitsAvlbl_kitID { get; set; }
+        public List<string> kitsAvlblbNotInstld { get; internal set; }
     }
 }

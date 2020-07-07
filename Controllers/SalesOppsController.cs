@@ -37,9 +37,10 @@ namespace allpax_sale_miner.Controllers
             //end empty and build custEqpmtWkitsAvlbl and custEqpmtWkitsInstld tables 
 
             //begin query for kits available, but not installed
-            string sqlquery =
-                "SELECT custEqpmtWkitsAvlbl.customerCode_cEqpmt, custEqpmtWkitsAvlbl.jobNum_cEqpmt, custEqpmtWkitsAvlbl.eqpmtType_cEqpmt, " +
-                "cmps411.custEqpmtWkitsAvlbl.model_cEqpmt, cmps411.custEqpmtWkitsAvlbl.machineID_cEqpmt, kitID_kitsAvlbl " +
+            string sqlquery2 =
+                "SELECT DISTINCT custEqpmtWkitsAvlbl.customerCode_cEqpmt, custEqpmtWkitsAvlbl.jobNum_cEqpmt, custEqpmtWkitsAvlbl.eqpmtType_cEqpmt, " +
+                "cmps411.custEqpmtWkitsAvlbl.model_cEqpmt, cmps411.custEqpmtWkitsAvlbl.machineID_cEqpmt " +
+                //"kitID_kitsAvlbl " +
 
                 "FROM cmps411.custEqpmtWkitsAvlbl " +
                 "LEFT JOIN cmps411.custEqpmtWkitsInstld ON " +
@@ -52,27 +53,62 @@ namespace allpax_sale_miner.Controllers
 
                 "AND custEqpmtWkitsAvlbl.customerCode_cEqpmt=@customerCode";
            
-            SqlCommand sqlcomm3 = new SqlCommand(sqlquery, sqlconn);
-            sqlcomm3.Parameters.AddWithValue("@customerCode", customerCode);
-            SqlDataAdapter sda = new SqlDataAdapter(sqlcomm3);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            foreach (DataRow dr in dt.Rows)
+            SqlCommand sqlcomm2 = new SqlCommand(sqlquery2, sqlconn);
+            sqlcomm2.Parameters.AddWithValue("@customerCode", customerCode);
+            SqlDataAdapter sda2 = new SqlDataAdapter(sqlcomm2);
+            DataTable dt2 = new DataTable();
+            sda2.Fill(dt2);
+            foreach (DataRow dr2 in dt2.Rows)
             {
                 machinesW_kitsAvlbl_BnotInstalled mWkitsAvlblBnotInstalled = new machinesW_kitsAvlbl_BnotInstalled();
 
-                mWkitsAvlblBnotInstalled.customerCode = dr[0].ToString();
-                mWkitsAvlblBnotInstalled.jobNo = dr[1].ToString();
-                mWkitsAvlblBnotInstalled.eqpmtType = dr[2].ToString();
-                mWkitsAvlblBnotInstalled.model = dr[3].ToString();
-                mWkitsAvlblBnotInstalled.machineID = dr[4].ToString();
-                mWkitsAvlblBnotInstalled.kitsAvlbl_kitID = dr[5].ToString();
+                mWkitsAvlblBnotInstalled.customerCode = dr2[0].ToString();
+                mWkitsAvlblBnotInstalled.jobNo = dr2[1].ToString();
+                mWkitsAvlblBnotInstalled.eqpmtType = dr2[2].ToString();
+                mWkitsAvlblBnotInstalled.model = dr2[3].ToString();
+                mWkitsAvlblBnotInstalled.machineID = dr2[4].ToString();
+                //mWkitsAvlblBnotInstalled.kitsAvlbl_kitID = dr2[5].ToString();
+                mWkitsAvlblBnotInstalled.kitsAvlblbNotInstld = kitsAvlblbNotInstld(mWkitsAvlblBnotInstalled.customerCode, mWkitsAvlblBnotInstalled.jobNo, mWkitsAvlblBnotInstalled.machineID);
 
                 mWkaBni.Add(mWkitsAvlblBnotInstalled);
             }
 
             //end query for kits available, but not installed
             return View(mWkaBni);
+        }
+        public List<string> kitsAvlblbNotInstld(string customerCode, string jobNo, string machineID)
+        {
+            List<string> mWkaBni = new List<string>();
+
+            string mainconn = ConfigurationManager.ConnectionStrings["allpax_sale_minerEntities"].ConnectionString;
+            SqlConnection sqlconn = new SqlConnection(mainconn);
+
+            //begin query for kits available but not installed by machine
+            string sqlquery3 = "SELECT custEqpmtWkitsAvlbl.customerCode_cEqpmt, custEqpmtWkitsAvlbl.jobNum_cEqpmt, custEqpmtWkitsAvlbl.eqpmtType_cEqpmt, " +
+                "cmps411.custEqpmtWkitsAvlbl.model_cEqpmt, cmps411.custEqpmtWkitsAvlbl.machineID_cEqpmt, kitID_kitsAvlbl " +
+                "FROM cmps411.custEqpmtWkitsAvlbl " +
+                "LEFT JOIN cmps411.custEqpmtWkitsInstld " +
+                "ON cmps411.custEqpmtWkitsAvlbl.machineID_cEqpmt = cmps411.custEqpmtWkitsInstld.machineID_kitsCurrent " +
+                "AND cmps411.custEqpmtWkitsAvlbl.kitID_kitsAvlbl = cmps411.custEqpmtWkitsInstld.kitID_kitsCurrent " +
+                "WHERE custEqpmtWkitsInstld.machineID_kitsCurrent is NULL " +
+                "AND cmps411.custEqpmtWkitsInstld.kitID_kitsCurrent is NULL " +
+                "AND custEqpmtWkitsAvlbl.customerCode_cEqpmt = @customerCode " +
+                "AND custEqpmtWkitsAvlbl.jobNum_cEqpmt = @jobNo " +
+                "AND cmps411.custEqpmtWkitsAvlbl.machineID_cEqpmt = @machineID";
+            //end query for kits available but not installed by machine
+
+            SqlCommand sqlcomm3 = new SqlCommand(sqlquery3, sqlconn);
+            sqlcomm3.Parameters.Add(new SqlParameter("customerCode", customerCode));
+            sqlcomm3.Parameters.Add(new SqlParameter("jobNo", jobNo));
+            sqlcomm3.Parameters.Add(new SqlParameter("machineID", machineID));
+            SqlDataAdapter sda3 = new SqlDataAdapter(sqlcomm3);
+            DataTable dt3 = new DataTable();
+            sda3.Fill(dt3);
+            foreach (DataRow dr3 in dt3.Rows)
+            {
+                mWkaBni.Add(dr3[5].ToString());
+            }
+            return mWkaBni;
         }
 
     }
