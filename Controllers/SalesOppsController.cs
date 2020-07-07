@@ -15,8 +15,14 @@ namespace allpax_sale_miner.Controllers
     public class SalesOppsController : Controller
     {
         private allpax_sale_minerEntities db = new allpax_sale_minerEntities();
-        public ActionResult Index(String customerCode)
+        public ActionResult Index(String customerCode, string name, string address, string city, string state)
         {
+            ViewBag.customerCode = customerCode;
+            ViewBag.name = name;
+            ViewBag.address = address;
+            ViewBag.city = city;
+            ViewBag.state = state;
+
             List<machinesW_kitsAvlbl_BnotInstalled> mWkaBni = new List<machinesW_kitsAvlbl_BnotInstalled>();
             string mainconn = ConfigurationManager.ConnectionStrings["allpax_sale_minerEntities"].ConnectionString;
             SqlConnection sqlconn = new SqlConnection(mainconn);

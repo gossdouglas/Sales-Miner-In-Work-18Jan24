@@ -69,7 +69,8 @@
                     var editItem5 = $("#slctd_state").val();
                     var editItem6 = $("#slctd_zipCode").val();
 
-                    window.location = '/SalesOpps?customerCode='+selectedItem1;
+                    window.location = '/SalesOpps?customerCode=' + selectedItem1 + '&name=' + selectedItem2 + '&address='
+                        + selectedItem3 + '&city=' + selectedItem4 + '&state='+selectedItem5;
 
                     //begin axios add post
                     //axios.post('/SalesOpps/CustSalesOpps', {

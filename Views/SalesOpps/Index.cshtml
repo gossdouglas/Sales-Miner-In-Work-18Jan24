@@ -3,9 +3,11 @@
 @{
     ViewBag.Title = "Index";
 }
-    <h3>@ViewBag.Message</h3>
-
-    <h2>Customer Sales Opportunities-</h2>
+    <hr />
+    <h2 style="text-align:center">@ViewBag.name (@ViewBag.customerCode)</h2>
+    <h3 style="text-align:center">@ViewBag.address, @ViewBag.city, @ViewBag.state</h3>
+    <h4 style="text-align:center">Sales Opportunities</h4>
+    <hr />
 
 <table class="table">
     <tr>

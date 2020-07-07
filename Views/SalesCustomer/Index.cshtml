@@ -28,15 +28,15 @@
         <th>
             Machine ID
         </th>
-        <th>
+        @*<th>
             Number of Current Kits
-        </th>
+        </th>*@
         <th>
             Current Kits
         </th>
-        <th>
+        @*<th>
             Number of Available Kits
-        </th>
+        </th>*@
         <th>
             Available Kits
         </th>
@@ -57,18 +57,18 @@
     <td>
         @Html.DisplayFor(modelItem => item.machineID)
     </td>
-    <td>
+    @*<td>
         @Html.DisplayFor(modelItem => item.kitsCurrent.Count)
-    </td>
+    </td>*@
     <td>
         @for (var i = 0; i < (item.kitsCurrent.Count); i++)
         {
         <p>@Html.DisplayFor(modelItem => item.kitsCurrent[@i])</p>
         }
     </td>
-    <td>
+    @*<td>
         @Html.DisplayFor(modelItem => item.kitsAvlblbNotInstld.Count)
-    </td>
+    </td>*@
     <td>
         @for (var i = 0; i < (item.kitsAvlblbNotInstld.Count); i++)
         {
