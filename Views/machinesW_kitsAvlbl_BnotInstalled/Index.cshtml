@@ -64,9 +64,13 @@
     <td>
         @Html.DisplayFor(modelItem => item.kitsAvlbl_model)
     </td>*@
-    <td>
-        @Html.DisplayFor(modelItem => item.kitsAvlbl_kitID)
-    </td>
+<td>
+    @*@Html.DisplayFor(modelItem => item.kitsAvlblbNotInstld.Count)*@
+    @for (var i = 0; i < (item.kitsAvlblbNotInstld.Count); i++)
+    {
+        <p>@Html.DisplayFor(modelItem => item.kitsAvlblbNotInstld[@i])</p>
+    }
+</td>
 </tr>
 }
 
