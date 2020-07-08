@@ -2,76 +2,77 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<hr />
+<h3 style="text-align:center">All Sales Opportunities</h3>
+<h4 style="text-align:center"><script>document.write(new Date().toLocaleDateString());</script></h4>
+<hr />
+@*All Customer Sales Opportunities*@
+<head>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {//begin document read jquery statements
+            var table = $('#datatable_sales_opps').DataTable({
+                orderCellsTop: true,
+                fixedHeader: true,
+                paging: false,
+                //"scrollY": "50vh",
+                //"scrollX": true,
+                //"scrollCollapse": true,
+                order: [[1, "asc"]],
+                searching: false
+            });
 
-<h2>All Sales Opportunities</h2>
+            $('.dataTables_length').addClass('bs-select');
+        });//end document read jquery statements
+    </script>
+</head>
+<div class="container-fluid">
+    <div class="col-md-12" style="border:none">
+        <table id="datatable_sales_opps" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th class="th-sm">
+                        Job Number
+                    </th>
+                    <th class="th-sm">
+                        Customer (Customer Code)
+                    </th>
+                    <th class="th-sm">
+                        Equipment Type
+                    </th>
+                    <th class="th-sm">
+                        Model
+                    </th>
+                    <th class="th-sm">
+                        Machine ID
+                    </th>
+                    <th class="th-sm">
+                        Kits Available
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr class="record" id="">
+                    <td id="" value=@Html.DisplayFor(modelItem => item.jobNo)>@Html.DisplayFor(modelItem => item.jobNo)</td>                    
+                    <td id="" value=@Html.DisplayFor(modelItem => item.name)>@Html.DisplayFor(modelItem => item.name) (@Html.DisplayFor(modelItem => item.customerCode))</td>
+                    <td id="" value=@Html.DisplayFor(modelItem => item.eqpmtType)>@Html.DisplayFor(modelItem => item.eqpmtType)</td>
+                    <td id="" value=@Html.DisplayFor(modelItem => item.model)>@Html.DisplayFor(modelItem => item.model)</td>
+                    <td id="" value=@Html.DisplayFor(modelItem => item.machineID)>@Html.DisplayFor(modelItem => item.machineID)</td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.kitsAvlblbNotInstld.Count)*@
+                        @for (var i = 0; i < (item.kitsAvlblbNotInstld.Count); i++)
+                        {
+                            <p>@Html.DisplayFor(modelItem => item.kitsAvlblbNotInstld[@i])</p>
+                        }
+                    </td>
+                </tr>
+                }
+        </table>
+    </div>
+</div>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.jobNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.customerCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.eqpmtType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.model)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.machineID)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.kitsCurrent_machineID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.kitsCurrent_kitID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.kitsAvlbl_model)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.kitsAvlbl_kitID)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.jobNo)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.customerCode)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.eqpmtType)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.model)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.machineID)
-    </td>
-    @*<td>
-        @Html.DisplayFor(modelItem => item.kitsCurrent_machineID)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.kitsCurrent_kitID)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.kitsAvlbl_model)
-    </td>*@
-<td>
-    @*@Html.DisplayFor(modelItem => item.kitsAvlblbNotInstld.Count)*@
-    @for (var i = 0; i < (item.kitsAvlblbNotInstld.Count); i++)
-    {
-        <p>@Html.DisplayFor(modelItem => item.kitsAvlblbNotInstld[@i])</p>
-    }
-</td>
-</tr>
-}
-
-</table>

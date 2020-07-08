@@ -484,7 +484,10 @@
     <Content Include="Views\machinesW_kitsAvlbl_BnotInstalled\Index.cshtml" />
     <Content Include="Views\SalesCustomer\Index.cshtml" />
     <Content Include="Views\SalesLanding\Index.cshtml" />
-    <Content Include="Views\SalesOpps\Index.cshtml" />
+    <Content Include="Views\SalesOpps\index.cshtml" />
+    <Content Include="Views\SalesLanding\Index-inwork.cshtml" />
+    <Content Include="Views\machinesW_kitsAvlbl_BnotInstalled\Index-update model.cshtml" />
+    <Content Include="Views\machinesW_kitsAvlbl_BnotInstalled\Index - orig.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

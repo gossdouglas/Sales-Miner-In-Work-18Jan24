@@ -34,7 +34,7 @@ namespace allpax_sale_miner.Controllers
             //begin query for kits available, but not installed
             string sqlquery2 = 
                 "SELECT DISTINCT custEqpmtWkitsAvlbl.customerCode_cEqpmt, custEqpmtWkitsAvlbl.jobNum_cEqpmt, custEqpmtWkitsAvlbl.eqpmtType_cEqpmt, " +
-                "cmps411.custEqpmtWkitsAvlbl.model_cEqpmt, cmps411.custEqpmtWkitsAvlbl.machineID_cEqpmt "+
+                "cmps411.custEqpmtWkitsAvlbl.model_cEqpmt, cmps411.custEqpmtWkitsAvlbl.machineID_cEqpmt, cmps411.custEqpmtWkitsAvlbl.name_customer " +
                 //"kitID_kitsAvlbl " +
 
                 "FROM cmps411.custEqpmtWkitsAvlbl " +
@@ -56,7 +56,7 @@ namespace allpax_sale_miner.Controllers
                 mWkitsAvlblBnotInstalled.eqpmtType = dr[2].ToString();
                 mWkitsAvlblBnotInstalled.model = dr[3].ToString();
                 mWkitsAvlblBnotInstalled.machineID = dr[4].ToString();
-                //mWkitsAvlblBnotInstalled.kitsAvlbl_kitID = dr[5].ToString();
+                mWkitsAvlblBnotInstalled.name = dr[5].ToString();
                 mWkitsAvlblBnotInstalled.kitsAvlblbNotInstld = kitsAvlblbNotInstld(mWkitsAvlblBnotInstalled.customerCode, mWkitsAvlblBnotInstalled.jobNo, mWkitsAvlblBnotInstalled.machineID);
 
                 mWkaBni.Add(mWkitsAvlblBnotInstalled);

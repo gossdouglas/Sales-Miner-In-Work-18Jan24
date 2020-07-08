@@ -9,6 +9,7 @@ namespace allpax_sale_miner.ViewModels
     {
         public string jobNo { get; set; }
         public string customerCode { get; set; }
+        public string name { get; set; }
         public string eqpmtType { get; set; }
         public string model { get; set; }
         public string machineID { get; set; }
