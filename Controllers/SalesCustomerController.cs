@@ -35,9 +35,11 @@ namespace allpax_sale_miner.Controllers
             //begin query for customer equipment        
             string sqlquery =
                 "SELECT cmps411.tbl_customer_eqpmt.jobNum, cmps411.tbl_customer_eqpmt.customerCode, " +
-                "cmps411.tbl_customer_eqpmt.model, cmps411.tbl_customer_eqpmt.machineID " +
+                "cmps411.tbl_customer_eqpmt.model, cmps411.tbl_customer_eqpmt.machineID, cmps411.tbl_customer.name " +
                 "FROM " +
-                "cmps411.tbl_customer_eqpmt";
+                "cmps411.tbl_customer_eqpmt " +
+                "INNER JOIN " +
+                "cmps411.tbl_customer ON cmps411.tbl_customer_eqpmt.customerCode = cmps411.tbl_customer.customerCode";
             //end query for customer equipment
 
             SqlCommand sqlcomm = new SqlCommand(sqlquery, sqlconn);
@@ -52,6 +54,7 @@ namespace allpax_sale_miner.Controllers
                 vm_SalesCustomer1.customerCode = dr[1].ToString();
                 vm_SalesCustomer1.model = dr[2].ToString();
                 vm_SalesCustomer1.machineID = dr[3].ToString();
+                vm_SalesCustomer1.name = dr[4].ToString();
                 vm_SalesCustomer1.kitsCurrent = kitsCurrent(vm_SalesCustomer1.customerCode, vm_SalesCustomer1.machineID);
                 vm_SalesCustomer1.kitsAvlblbNotInstld = kitsAvlblbNotInstld(vm_SalesCustomer1.customerCode, vm_SalesCustomer1.jobNo, vm_SalesCustomer1.machineID);
                 SalesCustomer1.Add(vm_SalesCustomer1);

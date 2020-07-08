@@ -13,6 +13,7 @@ namespace allpax_sale_miner.ViewModels
         public string eqpmtType { get; set; }
         public string model { get; set; }
         public string machineID { get; set; }
+        public string name { get; set; }
         public List<string> kitsCurrent { get; internal set; }
         public List<string> kitsAvlblbNotInstld { get; internal set; }
     }
