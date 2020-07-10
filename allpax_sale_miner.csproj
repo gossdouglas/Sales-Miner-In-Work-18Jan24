@@ -189,6 +189,10 @@
     <Compile Include="Controllers\machinesW_kitsAvlbl_BnotInstalledController.cs" />
     <Compile Include="Controllers\machinesW_kitsAvlblController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DataService.asmx.cs">
+      <DependentUpon>DataService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -199,6 +203,10 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\allpax_sale_minerEntities.cs" />
+    <Compile Include="Models\Dropdown Models\dpdwn-customerCode.cs" />
+    <Compile Include="Models\Dropdown Models\dpdwn-eqpmtType.cs" />
+    <Compile Include="Models\Dropdown Models\dpdwn-eventType.cs" />
+    <Compile Include="Models\Dropdown Models\dpdwn-model.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\salesOppsModel.cs" />
@@ -229,6 +237,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\mdb.min.css" />
+    <Content Include="DataService.asmx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
