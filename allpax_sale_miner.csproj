@@ -207,6 +207,7 @@
     <Compile Include="Models\Dropdown Models\dpdwn-eqpmtType.cs" />
     <Compile Include="Models\Dropdown Models\dpdwn-eventType.cs" />
     <Compile Include="Models\Dropdown Models\dpdwn-model.cs" />
+    <Compile Include="Models\Dropdown Models\dpdwn-states.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\salesOppsModel.cs" />

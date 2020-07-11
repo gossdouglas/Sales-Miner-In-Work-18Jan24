@@ -26,6 +26,72 @@
             //    } );
             //} );
 
+            //begin cascading dropdown logic
+            var customerCodes_Dpdwn = $('#addRecordItem1');
+            var eqpmtTypes_Dpdwn = $('#addRecordItem4');
+            var models_Dpdwn = $('#addRecordItem5');
+
+            //begin fill the customer code dropdown
+            $.ajax({
+                url: 'DataService.asmx/GetCustomerCodes',
+                method: 'post',
+                dataType: 'json',
+                success: function (data) {
+
+                    customerCodes_Dpdwn.append($('<option/>', { value: -1, text: 'Select Customer Code' }));
+
+                    eqpmtTypes_Dpdwn.append($('<option/>', { value: -1, text: 'Select Equipment Type' }));
+
+                    models_Dpdwn.append($('<option/>', { value: -1, text: 'Select Equipment Model' }));
+                    models_Dpdwn.prop('disabled', true);
+
+                    $(data).each(function (index, item) {
+                        customerCodes_Dpdwn.append($('<option/>', { value: item.customerCode, text: item.customerCode }));
+                    });
+                }               
+            });
+            //end fill the customer code dropdown
+
+            //begin fill the equipment type dropdown
+            $.ajax({
+                url: 'DataService.asmx/GetEqpmtTypes',
+                method: 'post',
+                dataType: 'json',
+                success: function (data) {
+
+                    $(data).each(function (index, item) {
+                        eqpmtTypes_Dpdwn.append($('<option/>', { value: item.eqpmtType, text: item.eqpmtType }));
+                    });
+                }
+            });
+            //end fill the equipment type dropdown
+
+            //begin clear out the selected model if selected equipment type changes
+            eqpmtTypes_Dpdwn.change(function () {
+                //if ($(this.val() == "-1")) {
+                    models_Dpdwn.empty();
+                    models_Dpdwn.append($('<option/>', { value: -1, text: 'Select Equipment Model' }));
+                    models_Dpdwn.val('-1');
+                    models_Dpdwn.prop('disabled', true);
+                //}
+                $.ajax({
+                    url: 'DataService.asmx/GetEqpmtModelsByEqpmtTypes',
+                    method: 'post',
+                    dataType: 'json',
+                    data: { eqpmtType: $(this).val() },
+                    success: function (data) {
+
+                        $(data).each(function (index, item) {
+                            models_Dpdwn.append($('<option/>', { value: item.model, text: item.model }));
+                        });
+                    }
+                });
+                models_Dpdwn.prop('disabled', false);
+            });
+            //end clear out the selected model if selected equipment type changes
+            
+            //end cascading dropdown logic
+
             var table = $('#datatable_customer_eqpmt').DataTable({
                 orderCellsTop: true,
                 fixedHeader: true,
@@ -229,16 +295,19 @@
             <h5>Customer Equipment Management</h5>
             <form class="form-inline">
                 <div class="form-group">
-                    @*<label for="addRecordItem1">Customer Code</label>*@
-                    @Html.DropDownList("customerCode", null, "Select Customer Code", new { @id = "addRecordItem1", @name = "addRecordItem1", @class = "form-control form-control-sm" })
+                    @*@Html.DropDownList("customerCode", null, "Select Customer Code", new { @id = "addRecordItem1", @name = "addRecordItem1", @class = "form-control form-control-sm" })*@
+                    <select class="form-control form-control-sm" id = "addRecordItem1" name = "addRecordItem1">
+                    </select>
                 </div>
                 <div class="form-group">
-                    @*<label for="addRecordItem3">Equipment Type</label>*@
-                    @Html.DropDownList("eqpmtType", null, "Select Equipment Type", new { @id = "addRecordItem4", @name = "addRecordItem4", @class = "form-control form-control-sm" })
+                    @*@Html.DropDownList("eqpmtType", null, "Select Equipment Type", new { @id = "addRecordItem4", @name = "addRecordItem4", @class = "form-control form-control-sm" })*@
+                    <select class="form-control form-control-sm" id="addRecordItem4" name="addRecordItem4">
+                    </select>
                 </div>
                 <div class="form-group">
-                    @*<label for="addRecordItem3">Equipment Type</label>*@
-                    @Html.DropDownList("model", null, "Select Equipment Model", new { @id = "addRecordItem5", @name = "addRecordItem5", @class = "form-control form-control-sm" })
+                    @*@Html.DropDownList("model", null, "Select Equipment Model", new { @id = "addRecordItem5", @name = "addRecordItem5", @class = "form-control form-control-sm" })*@
+                    <select class="form-control form-control-sm" id="addRecordItem5" name="addRecordItem5">
+                    </select>
                 </div>
                 <div class="form-group">
                     @*<label for="addRecordItem2">Machine ID</label>*@

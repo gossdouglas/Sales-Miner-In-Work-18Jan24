@@ -116,5 +116,28 @@ namespace allpax_sale_miner
             Context.Response.Write(js.Serialize(EventTypes));
 
         }
+        [WebMethod]
+        public void GetStates()
+        {
+            string cs = ConfigurationManager.ConnectionStrings["allpax_sale_minerEntities"].ConnectionString;
+            List<dpdwn_states> States = new List<dpdwn_states>();
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand("spGetStates", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    dpdwn_states state = new dpdwn_states();
+                    state.abbrev = rdr["abbrev"].ToString();
+                    state.state = rdr["state"].ToString();
+                    States.Add(state);
+                }
+            }
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Context.Response.Write(js.Serialize(States));
+
+        }
     }
 }
