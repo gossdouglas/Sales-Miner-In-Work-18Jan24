@@ -26,6 +26,42 @@
             //    } );
             //} );
 
+            //begin cascading dropdown logic
+            var customerCodes_Dpdwn = $('#addRecordItem1');
+            var eventType_Dpdwn = $('#addRecordItem3');
+
+            //begin fill the customer codes dropdown
+            $.ajax({
+                url: 'DataService.asmx/GetCustomerCodes',
+                method: 'post',
+                dataType: 'json',
+                success: function (data) {
+
+                    customerCodes_Dpdwn.append($('<option/>', { value: -1, text: 'Select Customer Code' }));
+
+                    $(data).each(function (index, item) {
+                        customerCodes_Dpdwn.append($('<option/>', { value: item.customerCode, text: item.customerCode }));
+                    });
+                }
+            });
+            //end fill the customer codes dropdown
+
+            //begin fill the event types dropdown
+            $.ajax({
+                url: 'DataService.asmx/GetEventTypes',
+                method: 'post',
+                dataType: 'json',
+                success: function (data) {
+
+                    eventType_Dpdwn.append($('<option/>', { value: -1, text: 'Select Event Type' }));
+
+                    $(data).each(function (index, item) {
+                        eventType_Dpdwn.append($('<option/>', { value: item.eventType, text: item.eventType }));
+                    });
+                }
+            });
+            //end fill the event types dropdown
+
             var table = $('#datatable_customerevent').DataTable({
                 orderCellsTop: true,
                 fixedHeader: true,
@@ -241,25 +277,22 @@
         <div class="col-md-12">
             <h5>Customer Events</h5>
             <form class="form-inline">
-                <div class="form-group">
-                    @*<label for="addRecordItem1">Customer Code</label>*@
-                    @Html.DropDownList("customerCode", null, "Select Customer Code", new { @id = "addRecordItem1", @name = "addRecordItem1", @class = "form-control form-control-sm" })
+                <div class="form-group">                   
+                    <select class="form-control form-control-sm" id="addRecordItem1" name="addRecordItem1">
+                    </select>
                 </div>
                 <div class="form-group">
                     @*<label for="addRecordItem2">Event ID</label>*@
                     @*<input type="text" class="form-control form-control-sm" id="addRecordItem2" placeholder="Event ID" value="">*@
                 </div>
                 <div class="form-group">
-                    @*<label for="addRecordItem3">Event Type</label>*@
-                    @Html.DropDownList("eventType", null, "Select Event Type", new { @id = "addRecordItem3", @name = "addRecordItem3", @class = "form-control form-control-sm" })
-                    @*<input type="text" class="form-control form-control-sm" id="addRecordItem3" placeholder="Event Type" value="">*@
+                    <select class="form-control form-control-sm" id="addRecordItem3" name="addRecordItem3">
+                    </select>
                 </div>
                 <div class="form-group">
-                    @*<label for="addRecordItem4">Start Date</label>*@
                     <input type="date" class="form-control form-control-sm" id="addRecordItem4" placeholder="Start Date" value="">
                 </div>
                 <div class="form-group">
-                    @*<label for="addRecordItem5">End Date</label>*@
                     <input type="date" class="form-control form-control-sm" id="addRecordItem5" placeholder="End Date" value="">
                 </div>
                 <button type="submit" class="btn btn-primary btn-sm" id="addButton" style="background-color: royalblue">Add</button>

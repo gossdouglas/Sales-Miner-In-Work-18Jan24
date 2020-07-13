@@ -24,6 +24,23 @@
          //        }
          //    } );
          //} );
+
+            var eqpmtTypes_Dpdwn = $('#addRecordItem1');
+
+            //begin fill the equipment type dropdown
+            $.ajax({
+                url: 'DataService.asmx/GetEqpmtTypes',
+                method: 'post',
+                dataType: 'json',
+                success: function (data) {
+
+                    eqpmtTypes_Dpdwn.append($('<option/>', { value: -1, text: 'Select Equipment Type' }));
+                    $(data).each(function (index, item) {
+                        eqpmtTypes_Dpdwn.append($('<option/>', { value: item.eqpmtType, text: item.eqpmtType }));
+                    });
+                }
+            });
+            //end fill the equipment type dropdown
  
             var table = $('#datable_eqpmgmt').DataTable({
                 orderCellsTop: true,
@@ -220,9 +237,11 @@
             <form class="form-inline">
                 <div class="form-group">
                     @*<label for="addRecordItem1">Type</label>
-                        <input type="text" class="form-control" id="addRecordItem1" placeholder="Equipment Type" value="">*@
+        <input type="text" class="form-control" id="addRecordItem1" placeholder="Equipment Type" value="">*@
                     @*<label for="addRecordItem1">Equipment Type</label>*@
-                    @Html.DropDownList("eqpmtType", null, "Select Equipment Type", new { @id = "addRecordItem1", @name = "addRecordItem1", @class = "form-control form-control-sm" })
+                    @*@Html.DropDownList("eqpmtType", null, "Select Equipment Type", new { @id = "addRecordItem1", @name = "addRecordItem1", @class = "form-control form-control-sm" })*@
+                    <select class="form-control form-control-sm" id="addRecordItem1" name="addRecordItem1">
+                    </select>
                 </div>
                 <div class="form-group">
                     @*<label for="addRecordItem2">Model</label>*@
