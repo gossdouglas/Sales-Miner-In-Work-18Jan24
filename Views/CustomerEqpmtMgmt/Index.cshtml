@@ -91,21 +91,7 @@
             //end clear out the selected model if selected equipment type changes
             
             //end cascading dropdown logic
-
-            //begin test modal for kits installed
-            $('#exampleModal').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget) // Button that triggered the modal
-                //var recipient = button.data('whatever') // Extract info from data-* attributes
-                var recipient = button.data('whatever') // Extract info from data-* attributes
-                // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-                // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-                var modal = $(this)
-                modal.find('.modal-title').text('New message to ' + recipient)
-                modal.find('.modal-body input').val(recipient)
-            })
-
-            // end test modal for kits installed
-
+           
             var table = $('#datatable_customer_eqpmt').DataTable({
                 orderCellsTop: true,
                 fixedHeader: true,
@@ -131,10 +117,28 @@
                 $("#slctd_machineID").val(selectedItem2);
                 $("#slctd_jobNum").val(selectedItem3);
                 $("#slctd_eqpmtType").val(selectedItem4);
-                $("#slctd_model").val(selectedItem4);
+                $("#slctd_model").val(selectedItem5);
 
             });
             //end when a record class is clicked...
+
+            //begin test modal for kits installed
+            $('#exampleModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget) // Button that triggered the modal
+                //var recipient = button.data('whatever') // Extract info from data-* attributes              
+                // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                var modal = $(this)
+                //modal.find('.modal-title').text('New message to ' + recipient)
+                //modal.find('.modal-body input').val(recipient)
+                modal.find('.modal-title').text('Add Kit to ' + selectedItem2)
+                modal.find('.modal-body #md-customerCode').val(selectedItem1)
+                modal.find('.modal-body #md-eqpmtType').val(selectedItem4)
+                modal.find('.modal-body #md-model').val(selectedItem5)
+                modal.find('.modal-body #md-machineID').val(selectedItem2)
+            })
+
+            // end test modal for kits installed
 
             $(".btn.btn-primary.editButton").click(function () {//when a record's edit button is clicked...
                 $(this).parent().find(".editButton").hide();
@@ -338,7 +342,7 @@
 </div>
 <!--click event begin-->
 <div>
-    <div class="row" style="display:none">
+    <div class="row" style="display:">
         <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
         <div class="col-md-2">Customer Code: <input type="text" id="slctd_customerCode" value="slctd_CustomerCode"></div>
         <div class="col-md-2">Machine ID: <input type="text" id="slctd_machineID" value="slctd_machineID"></div>
@@ -396,7 +400,14 @@
                         <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
                         <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
 
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@Html.DisplayFor(modelItem => item.machineID)">Add Kit @Html.DisplayFor(modelItem => item.machineID)</button>
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"                                
+                                data-customerCode="@Html.DisplayFor(modelItem => item.customerCode)"
+                                data-eqpmtType="@Html.DisplayFor(modelItem => item.eqpmtType)"
+                                data-model="@Html.DisplayFor(modelItem => item.model)"
+                                data-machineID="@Html.DisplayFor(modelItem => item.machineID)"
+                                
+                                
+                                >Add Kit @Html.DisplayFor(modelItem => item.machineID)</button>
 
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -410,12 +421,20 @@
                                     <div class="modal-body">
                                         <form>
                                             <div class="form-group">
-                                                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                                <input type="text" class="form-control" id="recipient-name">
+                                                <label for="md-customerCode" class="col-form-label">Customer Code:</label>
+                                                <input type="text" class="form-control" id="md-customerCode" value=selectedItem2>
                                             </div>
                                             <div class="form-group">
-                                                <label for="message-text" class="col-form-label">Message:</label>
-                                                <textarea class="form-control" id="message-text"></textarea>
+                                                <label for="md-eqpmtType" class="col-form-label">Equipment Type:</label>
+                                                <input type="text" class="form-control" id="md-eqpmtType">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="md-model" class="col-form-label">Model:</label>
+                                                <input type="text" class="form-control" id="md-model">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="md-machineID" class="col-form-label">MachineID:</label>
+                                                <input type="text" class="form-control" id="md-machineID">
                                             </div>
                                         </form>
                                     </div>
