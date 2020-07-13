@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.Script.Serialization;
 using allpax_sale_miner.Models.Dropdown_Models;
+using allpax_sale_miner.Models;
 
 namespace allpax_sale_miner
 {
@@ -138,6 +139,42 @@ namespace allpax_sale_miner
             JavaScriptSerializer js = new JavaScriptSerializer();
             Context.Response.Write(js.Serialize(States));
 
+        }
+        [WebMethod]
+        public void GetKitsAvlblBnotInstalledByMachineID(string machineID)
+        {                    
+            string cs = ConfigurationManager.ConnectionStrings["allpax_sale_minerEntities"].ConnectionString;
+            List<dpdwn_kitsAvlblbNotInstld> kaBnIs = new List<dpdwn_kitsAvlblbNotInstld>();
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                // begin empty and build custEqpmtWkitsAvlbl and custEqpmtWkitsInstld tables  
+                //this is handled by a stored procedure on the sql server named dbo.bldSalesOppsTables
+                con.Open();
+                SqlCommand sqlcomm1 = new SqlCommand("dbo.bldSalesOppsTables", con);
+                sqlcomm1.CommandType = System.Data.CommandType.StoredProcedure;
+                sqlcomm1.ExecuteNonQuery();
+                //end empty and build custEqpmtWkitsAvlbl and custEqpmtWkitsInstld tables
+
+                SqlCommand cmd = new SqlCommand("spGetKitsAvlblBnotInstalledByMachineID", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlParameter param = new SqlParameter()
+                {
+                    ParameterName = "@machineID",
+                    Value = machineID
+                };
+                cmd.Parameters.Add(param);
+                //con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    dpdwn_kitsAvlblbNotInstld kaBnI = new dpdwn_kitsAvlblbNotInstld();
+                    kaBnI.machineID = rdr["machineID_cEqpmt"].ToString();
+                    kaBnI.kitsAvlblbNotInstld = rdr["kitID_kitsAvlbl"].ToString();
+                    kaBnIs.Add(kaBnI);
+                }               
+            }
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Context.Response.Write(js.Serialize(kaBnIs));            
         }
     }
 }
