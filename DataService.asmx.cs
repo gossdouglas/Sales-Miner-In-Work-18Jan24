@@ -176,5 +176,41 @@ namespace allpax_sale_miner
             JavaScriptSerializer js = new JavaScriptSerializer();
             Context.Response.Write(js.Serialize(kaBnIs));            
         }
+        [WebMethod]
+        public void GetKitsInstldByMachineID(string machineID)
+        {
+            string cs = ConfigurationManager.ConnectionStrings["allpax_sale_minerEntities"].ConnectionString;
+            List<dpdwn_kitsInstld> kitsInstld = new List<dpdwn_kitsInstld>();
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                // begin empty and build custEqpmtWkitsAvlbl and custEqpmtWkitsInstld tables  
+                //this is handled by a stored procedure on the sql server named dbo.bldSalesOppsTables
+                con.Open();
+                SqlCommand sqlcomm1 = new SqlCommand("dbo.bldSalesOppsTables", con);
+                sqlcomm1.CommandType = System.Data.CommandType.StoredProcedure;
+                sqlcomm1.ExecuteNonQuery();
+                //end empty and build custEqpmtWkitsAvlbl and custEqpmtWkitsInstld tables
+
+                SqlCommand cmd = new SqlCommand("spGetKitsInstldByMachineID", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlParameter param = new SqlParameter()
+                {
+                    ParameterName = "@machineID",
+                    Value = machineID
+                };
+                cmd.Parameters.Add(param);
+                //con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    dpdwn_kitsInstld kitInstld = new dpdwn_kitsInstld();
+                    kitInstld.machineID = rdr["machineID"].ToString();
+                    kitInstld.kitsInstld = rdr["kitID"].ToString();
+                    kitsInstld.Add(kitInstld);
+                }
+            }
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Context.Response.Write(js.Serialize(kitsInstld));
+        }
     }
 }

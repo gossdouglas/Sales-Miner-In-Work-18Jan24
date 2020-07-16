@@ -34,9 +34,16 @@ namespace allpax_sale_miner.Controllers
             return RedirectToAction("Index");
         }
 
+        //public ActionResult DeleteCurrentEqpmt(tbl_eqpmt_kits_current currentEqpmtDelete)
+        //{
+        //    db.Database.ExecuteSqlCommand("DELETE FROM cmps411.tbl_eqpmt_kits_current WHERE id=({0})", currentEqpmtDelete.id);
+        //    return RedirectToAction("Index");
+        //}
+
         public ActionResult DeleteCurrentEqpmt(tbl_eqpmt_kits_current currentEqpmtDelete)
         {
-            db.Database.ExecuteSqlCommand("DELETE FROM cmps411.tbl_eqpmt_kits_current WHERE id=({0})", currentEqpmtDelete.id);
+            db.Database.ExecuteSqlCommand("DELETE FROM cmps411.tbl_eqpmt_kits_current WHERE machineID=({0}) AND " +
+                "kitID=({1})", currentEqpmtDelete.machineID, currentEqpmtDelete.kitID);
             return RedirectToAction("Index");
         }
 

@@ -149,8 +149,11 @@
                 modal.find('.modal-body #md-model').val(selectedItem5)
                 modal.find('.modal-body #md-machineID').val(selectedItem2)
                 modal.find('.modal-body #md-kitsAvlbl').empty();
+                modal.find('.modal-body #md-kitsAvlbl').append($('<option/>', { value: -1, text: 'Select Kit to Install' }));
+                modal.find('.modal-body #md-kitsInstld').empty();
+                modal.find('.modal-body #md-kitsInstld').append($('<option/>', { value: -1, text: 'Select Kit to Remove' }));
 
-                //begin fill the equipment type dropdown
+                //begin fill the kits available dropdown
                 $.ajax({
                     url: 'DataService.asmx/GetKitsAvlblBnotInstalledByMachineID',
                     method: 'post',
@@ -163,7 +166,22 @@
                         });
                     }
                 });
-            //end fill the equipment type dropdown
+                //end fill the kits available dropdown
+
+                //begin fill the kits installed dropdown
+                $.ajax({
+                    url: 'DataService.asmx/GetKitsInstldByMachineID',
+                    method: 'post',
+                    dataType: 'json',
+                    data: { machineID: selectedItem2 },
+                    success: function (data) {
+
+                        $(data).each(function (index, item) {
+                            modal.find('.modal-body #md-kitsInstld').append($('<option/>', { value: item.kitsInstld, text: item.kitsInstld }));
+                        });
+                    }
+                });
+                //end fill the kits installed dropdown
             })
 
             $('#md-kitsAvlbl-POST').click(function () {
@@ -191,14 +209,35 @@
                     });
                
                 //end axios add post
+              
+            });
 
-                /*
-                $.post('http://path/to/post', 
-                   $('#myForm').serialize(), 
-                   function(data, status, xhr){
-                     // do something here with response;
-                   });
-                */
+            $('#md-kitsInstld-POST').click(function () {
+                var addItem1 = $("#md-machineID").val();
+                var addItem2 = $("#md-kitsInstld").val();
+
+                alert(
+                    "Selected for Delete POST:" + '\n' +
+                    "addItem1: " + addItem1 + '\n' +
+                    "addItem2: " + addItem2 + '\n'
+                );
+                //$("#addRecordItem1").val('');
+                //$("#addRecordItem2").val('');
+                //begin axios add post
+
+                axios.post('/CurrentEqpmtKits/DeleteCurrentEqpmt', {
+                    machineID: addItem1,
+                    kitID: addItem2,
+                })
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+                //end axios add post
+
             });
             // end test modal for kits installed
 
@@ -405,7 +444,7 @@
 </div>
 <!--click event begin-->
 <div>
-    <div class="row" style="display:">
+    <div class="row" style="display:none">
         <div class="col-md-1">ID: <input type="text" id="slctd_id" value="slctd_id"></div>
         <div class="col-md-2">Customer Code: <input type="text" id="slctd_customerCode" value="slctd_CustomerCode"></div>
         <div class="col-md-2">Machine ID: <input type="text" id="slctd_machineID" value="slctd_machineID"></div>
@@ -468,7 +507,7 @@
                                 data-eqpmtType="@Html.DisplayFor(modelItem => item.eqpmtType)"
                                 data-model="@Html.DisplayFor(modelItem => item.model)"
                                 data-machineID="@Html.DisplayFor(modelItem => item.machineID)">
-                            Add Kits
+                            Edit Kits for @Html.DisplayFor(modelItem => item.machineID)
                         </button>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -482,23 +521,20 @@
                                     <div class="modal-body">
                                         <form id="avlblKits-form">
                                             <div class="form-group">
-                                                <label for="md-customerCode" class="col-form-label">Customer Code:</label>
-                                                <input type="text" class="form-control" id="md-customerCode" value=selectedItem2>
+                                                @*<label for="md-customerCode" class="col-form-label">Customer Code:</label>*@
+                                                <input type="hidden" class="form-control" id="md-customerCode" value=selectedItem2>
                                             </div>
                                             <div class="form-group">
-                                                <label for="md-eqpmtType" class="col-form-label">Equipment Type:</label>
-                                                <input type="text" class="form-control" id="md-eqpmtType">
+                                                @*<label for="md-eqpmtType" class="col-form-label">Equipment Type:</label>*@
+                                                <input type="hidden" class="form-control" id="md-eqpmtType">
                                             </div>
                                             <div class="form-group">
-                                                <label for="md-model" class="col-form-label">Model:</label>
-                                                <input type="text" class="form-control" id="md-model">
+                                                @*<label for="md-model" class="col-form-label">Model:</label>*@
+                                                <input type="hidden" class="form-control" id="md-model">
                                             </div>
                                             <div class="form-group">
-                                                <label for="md-machineID" class="col-form-label">MachineID:</label>
-                                                <input type="text" class="form-control" id="md-machineID">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="md-test" id="yo" class="col-form-label">test</label>
+                                                @*<label for="md-machineID" class="col-form-label">MachineID:</label>*@
+                                                <input type="hidden" class="form-control" id="md-machineID">
                                             </div>
                                             <div class="form-group">
                                                 <label for="md-kitsAvlbl" class="col-form-label">Add Kit:</label>
@@ -506,16 +542,16 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="md-kitsInstld" class="col-form-label">Delete Kit:</label>
+                                                <label for="md-kitsInstld" class="col-form-label">Delete Kit :</label>
                                                 <select class="form-control form-control-sm" id="md-kitsInstld" name="md-kitsInstld">
                                                 </select>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <button type="submit" class="btn btn-primary" id="md-kitsAvlbl-POST">Add Kit</button>
                                         <button type="submit" class="btn btn-primary" id="md-kitsInstld-POST">Delete Kit</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
