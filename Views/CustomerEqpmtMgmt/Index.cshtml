@@ -110,14 +110,26 @@
                 selectedItem4 = $(this).find("#record_item4").html();//works valid for inner html only
                 selectedItem5 = $(this).find("#record_item5").html();//works valid for inner html only
 
-
-
                 $("#slctd_id").val(selectedItem0);
                 $("#slctd_customerCode").val(selectedItem1);
                 $("#slctd_machineID").val(selectedItem2);
                 $("#slctd_jobNum").val(selectedItem3);
                 $("#slctd_eqpmtType").val(selectedItem4);
                 $("#slctd_model").val(selectedItem5);
+
+                //begin fill the equipment type dropdown
+            $.ajax({
+                url: 'DataService.asmx/GetEqpmtTypes',
+                method: 'post',
+                dataType: 'json',
+                success: function (data) {
+
+                    $(data).each(function (index, item) {
+                        eqpmtTypes_Dpdwn.append($('<option/>', { value: item.eqpmtType, text: item.eqpmtType }));
+                    });
+                }
+            });
+            //end fill the equipment type dropdown
 
             });
             //end when a record class is clicked...
@@ -136,9 +148,49 @@
                 modal.find('.modal-body #md-eqpmtType').val(selectedItem4)
                 modal.find('.modal-body #md-model').val(selectedItem5)
                 modal.find('.modal-body #md-machineID').val(selectedItem2)
+                modal.find('.modal-body #md-kitsAvlbl').empty();
+
+                //begin fill the equipment type dropdown
+                $.ajax({
+                    url: 'DataService.asmx/GetKitsAvlblBnotInstalledByMachineID',
+                    method: 'post',
+                    dataType: 'json',
+                    data: { machineID: selectedItem2 },
+                    success: function (data) {
+
+                        $(data).each(function (index, item) {
+                            modal.find('.modal-body #md-kitsAvlbl').append($('<option/>', { value: item.kitsAvlblbNotInstld, text: item.kitsAvlblbNotInstld }));
+                        });
+                    }
+                });
+            //end fill the equipment type dropdown
             })
 
+            $('#md-kitsAvlbl-POST').click(function (e) {
+                e.preventDefault();
+                alert(
+                    $('#md-machineID').val() + '\n' +
+                    $('#md-kitsAvlbl').val() + '\n' 
+                    );
+
+                //alert(
+                //    "Selected for Add POST:" + '\n' +
+                //    "addItem1: " + addItem1 + '\n' +
+                //    "addItem2: " + addItem2 + '\n' +
+                //    "addItem3: " + addItem3 + '\n' +
+                //    "addItem4: " + addItem4 + '\n' +
+                //    "addItem5: " + addItem5 + '\n'
+                //);
+                /*
+                $.post('http://path/to/post', 
+                   $('#myForm').serialize(), 
+                   function(data, status, xhr){
+                     // do something here with response;
+                   });
+                */
+            });
             // end test modal for kits installed
+
 
             $(".btn.btn-primary.editButton").click(function () {//when a record's edit button is clicked...
                 $(this).parent().find(".editButton").hide();
@@ -393,22 +445,20 @@
                     <td id="record_item3" value=@Html.DisplayFor(modelItem => item.jobNum)>@Html.DisplayFor(modelItem => item.jobNum)</td>
 
                     <td>
-                        <button class="btn btn-primary btn-sm kitsInstalledButton" style=" background-color: royalblue">Kits Installed</button>
+                        @*<button class="btn btn-primary btn-sm kitsInstalledButton" style=" background-color: royalblue">Kits Installed</button>*@
                         <button class="btn btn-primary btn-sm editButton" style=" background-color: royalblue">Edit</button>
                         <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
                         <button class="btn btn-primary btn-sm deleteButton" style=" background-color: royalblue">Delete</button>
                         <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
                         <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
 
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"                                
+                        <button type="button" class="btn btn-primary btn-sm kitsInstalledButton" data-toggle="modal" data-target="#exampleModal"
                                 data-customerCode="@Html.DisplayFor(modelItem => item.customerCode)"
                                 data-eqpmtType="@Html.DisplayFor(modelItem => item.eqpmtType)"
                                 data-model="@Html.DisplayFor(modelItem => item.model)"
-                                data-machineID="@Html.DisplayFor(modelItem => item.machineID)"
-                                
-                                
-                                >Add Kit @Html.DisplayFor(modelItem => item.machineID)</button>
-
+                                data-machineID="@Html.DisplayFor(modelItem => item.machineID)">
+                            Edit Kits for @Html.DisplayFor(modelItem => item.machineID)
+                        </button>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -419,7 +469,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form>
+                                        <form id="avlblKits-form">
                                             <div class="form-group">
                                                 <label for="md-customerCode" class="col-form-label">Customer Code:</label>
                                                 <input type="text" class="form-control" id="md-customerCode" value=selectedItem2>
@@ -437,6 +487,9 @@
                                                 <input type="text" class="form-control" id="md-machineID">
                                             </div>
                                             <div class="form-group">
+                                                <label for="md-test" id="yo" class="col-form-label">test</label>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="md-kitsAvlbl" class="col-form-label">Kits Available:</label>
                                                 <select class="form-control form-control-sm" id="md-kitsAvlbl" name="md-kitsAvlbl">
                                                 </select>
@@ -445,12 +498,11 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Send message</button>
+                                        <button type="submit" class="btn btn-primary" id="md-kitsAvlbl-POST">Add Kit</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </td>
                 </tr>
                 }
