@@ -143,7 +143,7 @@
                 var modal = $(this)
                 //modal.find('.modal-title').text('New message to ' + recipient)
                 //modal.find('.modal-body input').val(recipient)
-                modal.find('.modal-title').text('Add Kit to ' + selectedItem2)
+                modal.find('.modal-title').text('Add or Delete Kits for ' + selectedItem2)
                 modal.find('.modal-body #md-customerCode').val(selectedItem1)
                 modal.find('.modal-body #md-eqpmtType').val(selectedItem4)
                 modal.find('.modal-body #md-model').val(selectedItem5)
@@ -166,21 +166,32 @@
             //end fill the equipment type dropdown
             })
 
-            $('#md-kitsAvlbl-POST').click(function (e) {
-                e.preventDefault();
-                alert(
-                    $('#md-machineID').val() + '\n' +
-                    $('#md-kitsAvlbl').val() + '\n' 
-                    );
+            $('#md-kitsAvlbl-POST').click(function () {
+                var addItem1 = $("#md-machineID").val();
+                var addItem2 = $("#md-kitsAvlbl").val();
 
-                //alert(
-                //    "Selected for Add POST:" + '\n' +
-                //    "addItem1: " + addItem1 + '\n' +
-                //    "addItem2: " + addItem2 + '\n' +
-                //    "addItem3: " + addItem3 + '\n' +
-                //    "addItem4: " + addItem4 + '\n' +
-                //    "addItem5: " + addItem5 + '\n'
-                //);
+                alert(
+                    "Selected for Add POST:" + '\n' +
+                    "addItem1: " + addItem1 + '\n' +
+                    "addItem2: " + addItem2 + '\n'
+                );
+                //$("#addRecordItem1").val('');
+                //$("#addRecordItem2").val('');
+                //begin axios add post
+
+                axios.post('/CurrentEqpmtKits/AddCurrentEqpmt', {
+                    machineID: addItem1,
+                    kitID: addItem2,
+                })
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+               
+                //end axios add post
+
                 /*
                 $.post('http://path/to/post', 
                    $('#myForm').serialize(), 
@@ -457,7 +468,7 @@
                                 data-eqpmtType="@Html.DisplayFor(modelItem => item.eqpmtType)"
                                 data-model="@Html.DisplayFor(modelItem => item.model)"
                                 data-machineID="@Html.DisplayFor(modelItem => item.machineID)">
-                            Edit Kits for @Html.DisplayFor(modelItem => item.machineID)
+                            Add Kits
                         </button>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -490,8 +501,13 @@
                                                 <label for="md-test" id="yo" class="col-form-label">test</label>
                                             </div>
                                             <div class="form-group">
-                                                <label for="md-kitsAvlbl" class="col-form-label">Kits Available:</label>
+                                                <label for="md-kitsAvlbl" class="col-form-label">Add Kit:</label>
                                                 <select class="form-control form-control-sm" id="md-kitsAvlbl" name="md-kitsAvlbl">
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="md-kitsInstld" class="col-form-label">Delete Kit:</label>
+                                                <select class="form-control form-control-sm" id="md-kitsInstld" name="md-kitsInstld">
                                                 </select>
                                             </div>
                                         </form>
@@ -499,6 +515,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <button type="submit" class="btn btn-primary" id="md-kitsAvlbl-POST">Add Kit</button>
+                                        <button type="submit" class="btn btn-primary" id="md-kitsInstld-POST">Delete Kit</button>
                                     </div>
                                 </div>
                             </div>
