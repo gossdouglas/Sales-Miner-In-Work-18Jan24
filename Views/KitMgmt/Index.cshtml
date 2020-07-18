@@ -42,22 +42,22 @@
                 selectedItem2 = $(this).find("#record_item2").html();//works valid for inner html only
                 selectedItem3 = $(this).find("#record_item3").html();//works valid for inner html only
 
-                //selectedItem4 = $(this).find("#record_item4").html();//works valid for inner html only
-                //selectedItem5 = $(this).find("#record_item5").html();//works valid for inner html only
-                //selectedItem6 = $(this).find("#record_item6").html();//works valid for inner html only
-                //selectedItem7 = $(this).find("#record_item7").html();//works valid for inner html only
-                //selectedItem8 = $(this).find("#record_item8").html();//works valid for inner html only
+                selectedItem4 = $(this).find("#record_item4").html();//works valid for inner html only
+                selectedItem5 = $(this).find("#record_item5").html();//works valid for inner html only
+                selectedItem6 = $(this).find("#record_item6").html();//works valid for inner html only
+                selectedItem7 = $(this).find("#record_item7").html();//works valid for inner html only
+                selectedItem8 = $(this).find("#record_item8").html();//works valid for inner html only
 
                 $("#slctd_id").val(selectedItem0);
                 $("#slctd_kitID").val(selectedItem1);
                 $("#slctd_description").val(selectedItem2);
                 $("#slctd_filePath").val(selectedItem3);
 
-                //$("#slctd_kitItem_1").val(selectedItem4);
-                //$("#slctd_kitItem_2").val(selectedItem5);
-                //$("#slctd_kitItem_3").val(selectedItem6);
-                //$("#slctd_kitItem_4").val(selectedItem7);
-                //$("#slctd_kitItem_5").val(selectedItem8);
+                $("#slctd_kitItem_1").val(selectedItem4);
+                $("#slctd_kitItem_2").val(selectedItem5);
+                $("#slctd_kitItem_3").val(selectedItem6);
+                $("#slctd_kitItem_4").val(selectedItem7);
+                $("#slctd_kitItem_5").val(selectedItem8);
 
             });
             //end when a record class is clicked...
@@ -100,42 +100,42 @@
                 var addItem2 = $("#addRecordItem2").val();
                 var addItem3 = $("#addRecordItem3").val();
 
-                //var addItem4 = $("#addRecordItem4").val();
-                //var addItem5 = $("#addRecordItem5").val();
-                //var addItem6 = $("#addRecordItem6").val();
-                //var addItem7 = $("#addRecordItem7").val();
-                //var addItem8 = $("#addRecordItem8").val();
+                var addItem4 = $("#addRecordItem4").val();
+                var addItem5 = $("#addRecordItem5").val();
+                var addItem6 = $("#addRecordItem6").val();
+                var addItem7 = $("#addRecordItem7").val();
+                var addItem8 = $("#addRecordItem8").val();
 
                 alert(
                     "Selected for Add POST:" + '\n' +
                     "addItem1: " + addItem1 + '\n' +
                     "addItem2: " + addItem2 + '\n' +
-                    "addItem3: " + addItem3 + '\n'
-                    //"addItem4: " + addItem4 + '\n' +
-                    //"addItem5: " + addItem5 + '\n' +
-                    //"addItem6: " + addItem7 + '\n' +
-                    //"addItem7: " + addItem7 + '\n' +
-                    //"addItem8: " + addItem8 + '\n' 
+                    "addItem3: " + addItem3 + '\n' +
+                    "addItem4: " + addItem4 + '\n' +
+                    "addItem5: " + addItem5 + '\n' +
+                    "addItem6: " + addItem6 + '\n' +
+                    "addItem7: " + addItem7 + '\n' +
+                    "addItem8: " + addItem8 + '\n' 
                 );
                 $("#addRecordItem1").val('');
                 $("#addRecordItem2").val('');
                 $("#addRecordItem3").val('');
-                //$("#addRecordItem4").val('');
-                //$("#addRecordItem5").val('');
-                //$("#addRecordItem6").val('');
-                //$("#addRecordItem7").val('');
-                //$("#addRecordItem8").val('');
+                $("#addRecordItem4").val('');
+                $("#addRecordItem5").val('');
+                $("#addRecordItem6").val('');
+                $("#addRecordItem7").val('');
+                $("#addRecordItem8").val('');
                 //begin axios add post
 
                 axios.post('/KitMgmt/AddKit', {
                     kitID: addItem1,
                     description: addItem2,
-                    filePath: addItem3
-                    //kitItem_1: addItem4,
-                    //kitItem_2: addItem5,
-                    //kitItem_3: addItem6,
-                    //kitItem_4: addItem7,
-                    //kitItem_5: addItem8,
+                    filePath: addItem3,
+                    kitItem_1: addItem4,
+                    kitItem_2: addItem5,
+                    kitItem_3: addItem6,
+                    kitItem_4: addItem7,
+                    kitItem_5: addItem8
                 })
                     .then(function (response) {
                         console.log(response);
@@ -291,11 +291,11 @@
             <div class="col-md-2">Kit ID: <input type="text" id="slctd_kitID" value="slctd_kitID"></div>
             <div class="col-md-2">Desc: <input type="text" id="slctd_description" value="slctd_description"></div>
             <div class="col-md-2">File Path: <input type="text" id="slctd_filePath" value="slctd_filePath"></div>
-            @*<div class="col-md-2">Kit Item 1: <input type="text" id="slctd_kitItem_1" value="slctd_kitItem_1"></div>
+            <div class="col-md-2">Kit Item 1: <input type="text" id="slctd_kitItem_1" value="slctd_kitItem_1"></div>
             <div class="col-md-2">Kit Item 2: <input type="text" id="slctd_kitItem_2" value="slctd_kitItem_2"></div>
             <div class="col-md-2">Kit Item 3: <input type="text" id="slctd_kitItem_3" value="slctd_kitItem_3"></div>
             <div class="col-md-2">Kit Item 4: <input type="text" id="slctd_kitItem_4" value="slctd_kitItem_4"></div>
-            <div class="col-md-2">Kit Item 5: <input type="text" id="slctd_kitItem_5" value="slctd_kitItem_5"></div>*@
+            <div class="col-md-2">Kit Item 5: <input type="text" id="slctd_kitItem_5" value="slctd_kitItem_5"></div>
         </div>
     </div>
     <!--click event end-->
@@ -309,7 +309,7 @@
                         ID
                     </th>
                     <th class="th-sm">
-                        Kit ID
+                        Kit ID (key)
                     </th>
                     <th class="th-sm">
                         Description
