@@ -167,6 +167,11 @@
                 var editItem1 = $("#slctd_kitID").val();
                 var editItem2 = $("#slctd_description").val();
                 var editItem3 = $("#slctd_filePath").val();
+                var editItem4 = $("#slctd_kitItem_1").val();
+                var editItem5 = $("#slctd_kitItem_2").val();
+                var editItem6 = $("#slctd_kitItem_3").val();
+                var editItem7 = $("#slctd_kitItem_4").val();
+                var editItem8 = $("#slctd_kitItem_5").val();
 
 
                 alert(
@@ -174,7 +179,13 @@
                     "editItem0: " + editItem0 + '\n' +
                     "editItem1: " + editItem1 + '\n' +
                     "editItem2: " + editItem2 + '\n' +
-                    "editItem3: " + editItem3 + '\n'
+                    "editItem3: " + editItem3 + '\n' +
+                    "editItem4: " + editItem4 + '\n' +
+                    "editItem5: " + editItem5 + '\n' +
+                    "editItem6: " + editItem6 + '\n' +
+                    "editItem7: " + editItem7 + '\n' +
+                    "editItem8: " + editItem8 + '\n' 
+
                 );
 
                 //begin axios add post
@@ -182,7 +193,12 @@
                     kitID: editItem1,
                     description: editItem2,
                     filePath: editItem3,
-                    id: editItem0
+                    id: editItem0,
+                    kitItem_1: editItem4,
+                    kitItem_2: editItem5,
+                    kitItem_3: editItem6,
+                    kitItem_4: editItem7,
+                    kitItem_5: editItem8
 
                 })
                     .then(function (response) {

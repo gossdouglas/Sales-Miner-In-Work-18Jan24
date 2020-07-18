@@ -42,8 +42,12 @@ namespace allpax_sale_miner.Controllers
         }
         public ActionResult UpdateKit(tbl_kit kitUpdate)
         {
-            db.Database.ExecuteSqlCommand("UPDATE cmps411.tbl_kit SET kitID={0},description={1},filePath={2} WHERE id={3}",
-                kitUpdate.kitID, kitUpdate.description, kitUpdate.filePath, kitUpdate.id);
+            //db.Database.ExecuteSqlCommand("UPDATE cmps411.tbl_kit SET kitID={0},description={1},filePath={2} WHERE id={3}",
+            //    kitUpdate.kitID, kitUpdate.description, kitUpdate.filePath, kitUpdate.id);
+
+            db.Database.ExecuteSqlCommand("UPDATE cmps411.tbl_kit SET kitID={0},description={1},filePath={2}, kitItem_1={4}, kitItem_2={5}, kitItem_3={6}, kitItem_4={7}, kitItem_5={8} " +
+                "WHERE id={3}",
+                kitUpdate.kitID, kitUpdate.description, kitUpdate.filePath, kitUpdate.id, kitUpdate.kitItem_1, kitUpdate.kitItem_2, kitUpdate.kitItem_3, kitUpdate.kitItem_4, kitUpdate.kitItem_5);
 
             return RedirectToAction("Index");
         }
