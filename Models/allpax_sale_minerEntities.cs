@@ -157,6 +157,86 @@ namespace allpax_sale_miner.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
+               .Property(e => e.kitItem_1)
+               .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.kitItem_2)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.kitItem_3)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.kitItem_4)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.kitItem_5)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.kitItem_6)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.kitItem_7)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.kitItem_8)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.kitItem_9)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.kitItem_10)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.kitItem_11)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.kitItem_12)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.kitItem_13)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.kitItem_14)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.kitItem_15)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.kitItem_16)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.kitItem_17)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.kitItem_18)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.kitItem_19)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.kitItem_20)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
                 .HasMany(e => e.tbl_eqpmt_kits_avlbl)
                 .WithRequired(e => e.tbl_kit)
                 .WillCascadeOnDelete(false);

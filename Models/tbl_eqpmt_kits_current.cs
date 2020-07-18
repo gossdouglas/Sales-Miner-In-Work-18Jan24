@@ -11,7 +11,7 @@ namespace allpax_sale_miner.Models
     {
         [Key]
         [Column(Order = 0)]
-        [StringLength(10)]
+        [StringLength(50)]
         public string machineID { get; set; }
 
         [Key]

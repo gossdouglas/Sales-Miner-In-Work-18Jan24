@@ -25,7 +25,8 @@ namespace allpax_sale_miner.Controllers
         [HttpPost]
         public ActionResult AddKit(tbl_kit kitAdd)
         {
-            db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_kit Values({0},{1},{2})", kitAdd.kitID, kitAdd.description, kitAdd.filePath);
+            db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_kit Values({0},{1},{2},{3},{4},{5},{6},{7},{8})", 
+                kitAdd.kitID, kitAdd.description, kitAdd.filePath, kitAdd.kitItem_1, kitAdd.kitItem_2, kitAdd.kitItem_3, kitAdd.kitItem_4, kitAdd.kitItem_5);
             return new EmptyResult();
         }
 
