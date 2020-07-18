@@ -47,17 +47,27 @@
                 selectedItem6 = $(this).find("#record_item6").html();//works valid for inner html only
                 selectedItem7 = $(this).find("#record_item7").html();//works valid for inner html only
                 selectedItem8 = $(this).find("#record_item8").html();//works valid for inner html only
+                selectedItem9 = $(this).find("#record_item9").html();//works valid for inner html only
+                selectedItem10 = $(this).find("#record_item10").html();//works valid for inner html only
+                selectedItem11 = $(this).find("#record_item11").html();//works valid for inner html only
+                selectedItem12 = $(this).find("#record_item12").html();//works valid for inner html only
+                selectedItem13 = $(this).find("#record_item13").html();//works valid for inner html only
 
                 $("#slctd_id").val(selectedItem0);
                 $("#slctd_kitID").val(selectedItem1);
                 $("#slctd_description").val(selectedItem2);
                 $("#slctd_filePath").val(selectedItem3);
 
-                $("#slctd_kitItem_1").val(selectedItem4);
-                $("#slctd_kitItem_2").val(selectedItem5);
-                $("#slctd_kitItem_3").val(selectedItem6);
-                $("#slctd_kitItem_4").val(selectedItem7);
-                $("#slctd_kitItem_5").val(selectedItem8);
+                $("#slctd_descKitItem_1").val(selectedItem4);
+                $("#slctd_partNoKitItem_1").val(selectedItem5);
+                $("#slctd_descKitItem_2").val(selectedItem6);
+                $("#slctd_partNoKitItem_2").val(selectedItem7);
+                $("#slctd_descKitItem_3").val(selectedItem8);
+                $("#slctd_partNoKitItem_3").val(selectedItem9);
+                $("#slctd_descKitItem_4").val(selectedItem10);
+                $("#slctd_partNoKitItem_4").val(selectedItem11);
+                $("#slctd_descKitItem_5").val(selectedItem12);
+                $("#slctd_partNoKitItem_5").val(selectedItem13);
 
             });
             //end when a record class is clicked...
@@ -105,6 +115,11 @@
                 var addItem6 = $("#addRecordItem6").val();
                 var addItem7 = $("#addRecordItem7").val();
                 var addItem8 = $("#addRecordItem8").val();
+                var addItem9 = $("#addRecordItem9").val();
+                var addItem10 = $("#addRecordItem10").val();
+                var addItem11 = $("#addRecordItem11").val();
+                var addItem12 = $("#addRecordIte12").val();
+                var addItem13 = $("#addRecordItem13").val();
 
                 alert(
                     "Selected for Add POST:" + '\n' +
@@ -115,7 +130,12 @@
                     "addItem5: " + addItem5 + '\n' +
                     "addItem6: " + addItem6 + '\n' +
                     "addItem7: " + addItem7 + '\n' +
-                    "addItem8: " + addItem8 + '\n' 
+                    "addItem8: " + addItem8 + '\n' +
+                    "addItem9: " + addItem9 + '\n' +
+                    "addItem10: " + addItem10 + '\n' +
+                    "addItem11: " + addItem11 + '\n' +
+                    "addItem12: " + addItem12 + '\n' +
+                    "addItem13: " + addItem13 + '\n'
                 );
                 $("#addRecordItem1").val('');
                 $("#addRecordItem2").val('');
@@ -125,17 +145,28 @@
                 $("#addRecordItem6").val('');
                 $("#addRecordItem7").val('');
                 $("#addRecordItem8").val('');
+                $("#addRecordItem9").val('');
+                $("#addRecordItem10").val('');
+                $("#addRecordItem11").val('');
+                $("#addRecordItem12").val('');
+                $("#addRecordItem13").val('');
                 //begin axios add post
 
                 axios.post('/KitMgmt/AddKit', {
                     kitID: addItem1,
                     description: addItem2,
                     filePath: addItem3,
-                    kitItem_1: addItem4,
-                    kitItem_2: addItem5,
-                    kitItem_3: addItem6,
-                    kitItem_4: addItem7,
-                    kitItem_5: addItem8
+                    descKitItem_1: addItem4,
+                    partNoKitItem_1: addItem5,
+                    descKitItem_2: addItem6,
+                    partNoKitItem_2: addItem7,
+                    descKitItem_3: addItem8,
+                    partNoKitItem_3: addItem9,
+                    descKitItem_4: addItem10,
+                    partNoKitItem_4: addItem11,
+                    descKitItem_5: addItem12,
+                    partNoKitItem_5: addItem13
+
                 })
                     .then(function (response) {
                         console.log(response);
@@ -281,35 +312,36 @@
                     <input type="text" class="form-control form-control-sm" id="addRecordItem3" placeholder="File Path" value="">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-sm" id="addRecordItem4" placeholder="Kit Item 1" value="">
+                    <input type="text" class="form-control form-control-sm" id="addRecordItem4" placeholder="Kit Item 1 Desc" value="">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-sm" id="addRecordItem5" placeholder="Kit Item 2" value="">
+                    <input type="text" class="form-control form-control-sm" id="addRecordItem5" placeholder="Kit Item 1 Part No." value="">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-sm" id="addRecordItem6" placeholder="Kit Item 3" value="">
+                    <input type="text" class="form-control form-control-sm" id="addRecordItem6" placeholder="Kit Item 2 Desc" value="">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-sm" id="addRecordItem7" placeholder="Kit Item 4" value="">
+                    <input type="text" class="form-control form-control-sm" id="addRecordItem7" placeholder="Kit Item 2 Part No." value="">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-sm" id="addRecordItem8" placeholder="Kit Item 5" value="">
+                    <input type="text" class="form-control form-control-sm" id="addRecordItem8" placeholder="Kit Item 3 Desc" value="">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-sm" id="addRecordItem4" placeholder="Kit Item 1" value="">
+                    <input type="text" class="form-control form-control-sm" id="addRecordItem9" placeholder="Kit Item 3 Part No." value="">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-sm" id="addRecordItem5" placeholder="Kit Item 2" value="">
+                    <input type="text" class="form-control form-control-sm" id="addRecordItem10" placeholder="Kit Item 4 Desc" value="">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-sm" id="addRecordItem6" placeholder="Kit Item 3" value="">
+                    <input type="text" class="form-control form-control-sm" id="addRecordItem11" placeholder="Kit Item 4 Part No." value="">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-sm" id="addRecordItem7" placeholder="Kit Item 4" value="">
+                    <input type="text" class="form-control form-control-sm" id="addRecordItem12" placeholder="Kit Item 5 Desc" value="">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-sm" id="addRecordItem8" placeholder="Kit Item 5" value="">
+                    <input type="text" class="form-control form-control-sm" id="addRecordItem13" placeholder="Kit Item 5 Part No." value="">
                 </div>
+
                 <button type="submit" class="btn btn-primary btn-sm" id="addButton" style="background-color: royalblue">Add</button>
             </form><hr />
         </div>
@@ -322,8 +354,16 @@
             <div class="col-md-2">Kit ID: <input type="text" id="slctd_kitID" value="slctd_kitID"></div>
             <div class="col-md-2">Desc: <input type="text" id="slctd_description" value="slctd_description"></div>
             <div class="col-md-2">File Path: <input type="text" id="slctd_filePath" value="slctd_filePath"></div>
-            <div class="col-md-2">Kit Item 1: <input type="text" id="slctd_descKitItem_1" value="slctd_descKitItem_1"></div>
-            <div class="col-md-2">Kit Item 2: <input type="text" id="slctd_partNoKitItem_1" value="slctd_partNoKitItem_1"></div>
+            <div class="col-md-2">Kit Item 1 Desc: <input type="text" id="slctd_descKitItem_1" value="slctd_descKitItem_1"></div>
+            <div class="col-md-2">Kit Item 1 Part No.: <input type="text" id="slctd_partNoKitItem_1" value="slctd_partNoKitItem_1"></div>
+            <div class="col-md-2">Kit Item 2 Desc: <input type="text" id="slctd_descKitItem_2" value="slctd_descKitItem_2"></div>
+            <div class="col-md-2">Kit Item 2 Part No.: <input type="text" id="slctd_partNoKitItem_2" value="slctd_partNoKitItem_2"></div>
+            <div class="col-md-2">Kit Item 3 Desc: <input type="text" id="slctd_descKitItem_3" value="slctd_descKitItem_3"></div>
+            <div class="col-md-2">Kit Item 3 Part No.: <input type="text" id="slctd_partNoKitItem_3" value="slctd_partNoKitItem_3"></div>
+            <div class="col-md-2">Kit Item 4 Desc: <input type="text" id="slctd_descKitItem_4" value="slctd_descKitItem_4"></div>
+            <div class="col-md-2">Kit Item 4 Part No.: <input type="text" id="slctd_partNoKitItem_4" value="slctd_partNoKitItem_4"></div>
+            <div class="col-md-2">Kit Item 5 Desc: <input type="text" id="slctd_descKitItem_5" value="slctd_descKitItem_5"></div>
+            <div class="col-md-2">Kit Item 5 Part No.: <input type="text" id="slctd_partNoKitItem_5" value="slctd_partNoKitItem_5"></div>
 
 
         </div>
@@ -393,14 +433,14 @@
 
                     <td id="record_item4" value=@Html.DisplayFor(modelItem => item.descKitItem_1)>@Html.DisplayFor(modelItem => item.descKitItem_1)</td>
                     <td id="record_item5" value=@Html.DisplayFor(modelItem => item.partNoKitItem_1)>@Html.DisplayFor(modelItem => item.partNoKitItem_1)</td>
-                    <td id="record_item4" value=@Html.DisplayFor(modelItem => item.descKitItem_2)>@Html.DisplayFor(modelItem => item.descKitItem_2)</td>
-                    <td id="record_item5" value=@Html.DisplayFor(modelItem => item.partNoKitItem_2)>@Html.DisplayFor(modelItem => item.partNoKitItem_2)</td>
-                    <td id="record_item4" value=@Html.DisplayFor(modelItem => item.descKitItem_3)>@Html.DisplayFor(modelItem => item.descKitItem_3)</td>
-                    <td id="record_item5" value=@Html.DisplayFor(modelItem => item.partNoKitItem_3)>@Html.DisplayFor(modelItem => item.partNoKitItem_3)</td>
-                    <td id="record_item4" value=@Html.DisplayFor(modelItem => item.descKitItem_4)>@Html.DisplayFor(modelItem => item.descKitItem_4)</td>
-                    <td id="record_item5" value=@Html.DisplayFor(modelItem => item.partNoKitItem_4)>@Html.DisplayFor(modelItem => item.partNoKitItem_4)</td>
-                    <td id="record_item4" value=@Html.DisplayFor(modelItem => item.descKitItem_5)>@Html.DisplayFor(modelItem => item.descKitItem_5)</td>
-                    <td id="record_item5" value=@Html.DisplayFor(modelItem => item.partNoKitItem_5)>@Html.DisplayFor(modelItem => item.partNoKitItem_5)</td>
+                    <td id="record_item6" value=@Html.DisplayFor(modelItem => item.descKitItem_2)>@Html.DisplayFor(modelItem => item.descKitItem_2)</td>
+                    <td id="record_item7" value=@Html.DisplayFor(modelItem => item.partNoKitItem_2)>@Html.DisplayFor(modelItem => item.partNoKitItem_2)</td>
+                    <td id="record_item8" value=@Html.DisplayFor(modelItem => item.descKitItem_3)>@Html.DisplayFor(modelItem => item.descKitItem_3)</td>
+                    <td id="record_item9" value=@Html.DisplayFor(modelItem => item.partNoKitItem_3)>@Html.DisplayFor(modelItem => item.partNoKitItem_3)</td>
+                    <td id="record_item10" value=@Html.DisplayFor(modelItem => item.descKitItem_4)>@Html.DisplayFor(modelItem => item.descKitItem_4)</td>
+                    <td id="record_item11" value=@Html.DisplayFor(modelItem => item.partNoKitItem_4)>@Html.DisplayFor(modelItem => item.partNoKitItem_4)</td>
+                    <td id="record_item12" value=@Html.DisplayFor(modelItem => item.descKitItem_5)>@Html.DisplayFor(modelItem => item.descKitItem_5)</td>
+                    <td id="record_item13" value=@Html.DisplayFor(modelItem => item.partNoKitItem_5)>@Html.DisplayFor(modelItem => item.partNoKitItem_5)</td>
 
 
                     <td>
