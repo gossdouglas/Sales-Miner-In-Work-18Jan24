@@ -73,7 +73,7 @@ namespace allpax_sale_miner.Controllers
                 "descKitItem_7='', partNoKitItem_7='', " +//not used
                 "descKitItem_8='', partNoKitItem_8='', " +//not used
                 "descKitItem_9='', partNoKitItem_9='', " +//not used
-                "descKitItem_10='', partNoKitItem_10='', " +//not used
+                "descKitItem_10='', partNoKitItem_10='' " +
 
                 "WHERE id={3}",
 
