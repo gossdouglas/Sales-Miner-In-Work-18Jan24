@@ -13,18 +13,12 @@ namespace allpax_sale_miner.Controllers
     public class CustomerEventController : Controller
     {
         private allpax_sale_minerEntities db = new allpax_sale_minerEntities();
-
-        // GET: CustomerEvent
         public ActionResult Index()
         {
             var sql = db.tbl_customer_event.SqlQuery("SELECT * from cmps411.tbl_customer_event").ToList();
 
-            ViewBag.customerCode = new SelectList(db.tbl_customer, "customerCode", "customerCode");
-            ViewBag.eventType = new SelectList(db.tbl_event_type, "eventType", "eventType");
-
             return View(sql.ToList());
         }
-        //begin CMPS 411 controller code
         [HttpPost]
         public ActionResult AddEvent(tbl_customer_event eventAdd)
         {
@@ -45,7 +39,6 @@ namespace allpax_sale_miner.Controllers
 
             return new EmptyResult();
         }
-        //end CMPS 411 controller code
         protected override void Dispose(bool disposing)
         {
             if (disposing)

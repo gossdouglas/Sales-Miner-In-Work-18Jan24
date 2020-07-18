@@ -13,8 +13,6 @@ namespace allpax_sale_miner.Controllers
     public class EqpmtMgmtController : Controller
     {
         private allpax_sale_minerEntities db = new allpax_sale_minerEntities();
-
-        // GET: EqpmtMgmt
         public ActionResult Index()
         {
             var sql = db.tbl_eqpmt_type.SqlQuery("SELECT * from cmps411.tbl_eqpmt_type").ToList();
@@ -22,8 +20,6 @@ namespace allpax_sale_miner.Controllers
 
             return View(sql.ToList());
         }
-
-        //begin CMPS 411 controller code
         [HttpPost]
         public ActionResult AddEqpmt(tbl_eqpmt_type eqpmtAdd)
         {
@@ -45,8 +41,6 @@ namespace allpax_sale_miner.Controllers
 
             return new EmptyResult();
         }
-
-        //end CMPS 411 controller code
         protected override void Dispose(bool disposing)
         {
             if (disposing)

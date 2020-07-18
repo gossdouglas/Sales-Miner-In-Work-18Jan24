@@ -13,15 +13,11 @@ namespace allpax_sale_miner.Controllers
     public class EqpmtTypeMgmtController : Controller
     {
         private allpax_sale_minerEntities db = new allpax_sale_minerEntities();
-
-        // GET: EqpmtTypeMgmt
         public ActionResult Index()
         {
             var sql = db.tbl_eqpmt_type_mgmt.SqlQuery("SELECT * from cmps411.tbl_eqpmt_type_mgmt").ToList();
             return View(sql.ToList());
         }
-
-        //begin CMPS 411 controller code
         [HttpPost]
         public ActionResult AddEqpmtType(tbl_eqpmt_type_mgmt eqpmtTypeAdd)
         {

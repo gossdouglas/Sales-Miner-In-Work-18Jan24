@@ -18,11 +18,6 @@ namespace allpax_sale_miner.Controllers
         // GET: CustomerEvent
         public ActionResult Index()
         {
-
-            ViewBag.customerCode = new SelectList(db.tbl_customer, "customerCode", "customerCode");
-            ViewBag.eqpmtType = new SelectList(db.tbl_eqpmt_type_mgmt, "eqpmtType", "eqpmtType");
-            ViewBag.model = new SelectList(db.tbl_eqpmt_type, "model", "model");
-
             var sql = db.tbl_customer_eqpmt.SqlQuery("SELECT * from cmps411.tbl_customer_eqpmt").ToList();
 
             return View(sql.ToList());

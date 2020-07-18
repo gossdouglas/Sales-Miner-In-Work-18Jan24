@@ -19,8 +19,6 @@ namespace allpax_sale_miner.Controllers
             var sql = db.tbl_event_type.SqlQuery("SELECT * from cmps411.tbl_event_type").ToList();
             return View(sql.ToList());
         }
-
-        //begin CMPS 411 controller code
         [HttpPost]
         public ActionResult AddEvent(tbl_event_type eventAdd)
         {
@@ -42,7 +40,6 @@ namespace allpax_sale_miner.Controllers
 
             return new EmptyResult();
         }
-        //end CMPS 411 controller code
         protected override void Dispose(bool disposing)
         {
             if (disposing)
