@@ -31,11 +31,11 @@ namespace allpax_sale_miner.Controllers
                 "{7},{8}," +
                 "{9},{10}," +
                 "{11}, {12}," +
-                "'', '', " +
-                "'', '', " +
-                "'', ''," +
-                "'', ''," +
-                "'', '' )", 
+                "'', '', " +//not used
+                "'', '', " +//not used
+                "'', ''," +//not used
+                "'', ''," +//not used
+                "'', '' )", //not used
                 kitAdd.kitID, kitAdd.description, kitAdd.filePath, 
                 kitAdd.descKitItem_1, kitAdd.partNoKitItem_1, 
                 kitAdd.descKitItem_2, kitAdd.partNoKitItem_2, 
@@ -48,8 +48,6 @@ namespace allpax_sale_miner.Controllers
                 kitAdd.descKitItem_9, kitAdd.partNoKitItem_9, 
                 kitAdd.descKitItem_10, kitAdd.partNoKitItem_10);
 
-            //db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_customer_eqpmt Values({0},{1},{2}, {3}, {4}custEqpmtAdd.customerCode, custEqpmtAdd.eqpmtType, custEqpmtAdd.model, custEqpmtAdd.machineID, custEqpmtAdd.jobNum);
-
             return new EmptyResult();
         }
 
@@ -60,8 +58,6 @@ namespace allpax_sale_miner.Controllers
         }
         public ActionResult UpdateKit(tbl_kit kitUpdate)
         {
-            //db.Database.ExecuteSqlCommand("UPDATE cmps411.tbl_kit SET kitID={0},description={1},filePath={2} WHERE id={3}",
-            //    kitUpdate.kitID, kitUpdate.description, kitUpdate.filePath, kitUpdate.id);
 
             db.Database.ExecuteSqlCommand("UPDATE cmps411.tbl_kit SET kitID={0},description={1},filePath={2}, " +
                 "descKitItem_1={4}, partNoKitItem_1={5}, " +
@@ -73,7 +69,7 @@ namespace allpax_sale_miner.Controllers
                 "descKitItem_7='', partNoKitItem_7='', " +//not used
                 "descKitItem_8='', partNoKitItem_8='', " +//not used
                 "descKitItem_9='', partNoKitItem_9='', " +//not used
-                "descKitItem_10='', partNoKitItem_10='' " +
+                "descKitItem_10='', partNoKitItem_10='' " +//not used
 
                 "WHERE id={3}",
 
