@@ -25,30 +25,9 @@ namespace allpax_sale_miner.Controllers
         [HttpPost]
         public ActionResult AddKit(tbl_kit kitAdd)
         {
-            db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_kit Values" +
-                "({0},{1},{2}," +
-                "{3},{4}," +
-                "{5},{6}," +
-                "{7}, {8}, " +
-                "{9}, {10}, " +
-                "{11}, {12}, " +
-                "'', '', " +//not used
-                "'', '', " +//not used
-                "'', '', " +//not used
-                "'', '', " +//not used
-                "'', '' )",//not used
-                "kitAdd.kitID, kitAdd.description, kitAdd.filePath, " +
-                "kitAdd.descKitItem_1, kitAdd.partNoKitItem_1, " +
-                "kitAdd.descKitItem_2, kitAdd.partNoKitItem_2, " +
-                "kitAdd.descKitItem_3, kitAdd.partNoKitItem_3, " +
-                "kitAdd.descKitItem_4, kitAdd.partNoKitItem_4, " +
-                "kitAdd.descKitItem_5, kitAdd.partNoKitItem_5, " +
-                "kitAdd.descKitItem_6, kitAdd.partNoKitItem_6, " +//not used
-                "kitAdd.descKitItem_7, kitAdd.partNoKitItem_7, " +//not used
-                "kitAdd.descKitItem_8, kitAdd.partNoKitItem_8, " +//not used
-                "kitAdd.descKitItem_9, kitAdd.partNoKitItem_9, " +//not used
-                "kitAdd.descKitItem_10, kitAdd.partNoKitItem_10)");//not used
+            db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_kit Values ({0},{1},{2},{3},{4},{5},{6},{7}, {8},{9}, {10},{11}, {12},'', '', '', '', '', '','', '','', '' )", kitAdd.kitID, kitAdd.description, kitAdd.filePath, kitAdd.descKitItem_1, kitAdd.partNoKitItem_1, kitAdd.descKitItem_2, kitAdd.partNoKitItem_2, kitAdd.descKitItem_3, kitAdd.partNoKitItem_3, kitAdd.descKitItem_4, kitAdd.partNoKitItem_4, kitAdd.descKitItem_5, kitAdd.partNoKitItem_5, kitAdd.descKitItem_6, kitAdd.partNoKitItem_6, kitAdd.descKitItem_7, kitAdd.partNoKitItem_7, kitAdd.descKitItem_8, kitAdd.partNoKitItem_8, kitAdd.descKitItem_9, kitAdd.partNoKitItem_9, kitAdd.descKitItem_10, kitAdd.partNoKitItem_10);
 
+            //db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_customer_eqpmt Values({0},{1},{2}, {3}, {4}custEqpmtAdd.customerCode, custEqpmtAdd.eqpmtType, custEqpmtAdd.model, custEqpmtAdd.machineID, custEqpmtAdd.jobNum);
 
             return new EmptyResult();
         }
