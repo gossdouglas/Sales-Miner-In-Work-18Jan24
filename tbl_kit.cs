@@ -25,63 +25,63 @@ namespace allpax_sale_miner
         public int id { get; set; }
 
         [StringLength(50)]
-        public string kitItem_1 { get; set; }
+        public string descKitItem_1 { get; set; }
 
         [StringLength(50)]
-        public string kitItem_2 { get; set; }
+        public string partNoKitItem_1 { get; set; }
 
         [StringLength(50)]
-        public string kitItem_3 { get; set; }
+        public string descKitItem_2 { get; set; }
 
         [StringLength(50)]
-        public string kitItem_4 { get; set; }
+        public string partNoKitItem_2 { get; set; }
 
         [StringLength(50)]
-        public string kitItem_5 { get; set; }
+        public string descKitItem_3 { get; set; }
 
         [StringLength(50)]
-        public string kitItem_6 { get; set; }
+        public string partNoKitItem_3 { get; set; }
 
         [StringLength(50)]
-        public string kitItem_7 { get; set; }
+        public string descKitItem_4 { get; set; }
 
         [StringLength(50)]
-        public string kitItem_8 { get; set; }
+        public string partNoKitItem_4 { get; set; }
 
         [StringLength(50)]
-        public string kitItem_9 { get; set; }
+        public string descKitItem_5 { get; set; }
 
         [StringLength(50)]
-        public string kitItem_10 { get; set; }
+        public string partNoKitItem_5 { get; set; }
 
         [StringLength(50)]
-        public string kitItem_11 { get; set; }
+        public string descKitItem_6 { get; set; }
 
         [StringLength(50)]
-        public string kitItem_12 { get; set; }
+        public string partNoKitItem_6 { get; set; }
 
         [StringLength(50)]
-        public string kitItem_13 { get; set; }
+        public string descKitItem_7 { get; set; }
 
         [StringLength(50)]
-        public string kitItem_14 { get; set; }
+        public string partNoKitItem_7 { get; set; }
 
         [StringLength(50)]
-        public string kitItem_15 { get; set; }
+        public string descKitItem_8 { get; set; }
 
         [StringLength(50)]
-        public string kitItem_16 { get; set; }
+        public string partNoKitItem_8 { get; set; }
 
         [StringLength(50)]
-        public string kitItem_17 { get; set; }
+        public string descKitItem_9 { get; set; }
 
         [StringLength(50)]
-        public string kitItem_18 { get; set; }
+        public string partNoKitItem_9 { get; set; }
 
         [StringLength(50)]
-        public string kitItem_19 { get; set; }
+        public string descKitItem_10 { get; set; }
 
         [StringLength(50)]
-        public string kitItem_20 { get; set; }
+        public string partNoKitItem_10 { get; set; }
     }
 }

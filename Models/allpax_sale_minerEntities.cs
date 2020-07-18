@@ -157,83 +157,83 @@ namespace allpax_sale_miner.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-               .Property(e => e.kitItem_1)
+               .Property(e => e.descKitItem_1)
                .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-                .Property(e => e.kitItem_2)
+                .Property(e => e.partNoKitItem_1)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-                .Property(e => e.kitItem_3)
+                .Property(e => e.descKitItem_2)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-                .Property(e => e.kitItem_4)
+                .Property(e => e.partNoKitItem_2)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-                .Property(e => e.kitItem_5)
+                .Property(e => e.descKitItem_3)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-                .Property(e => e.kitItem_6)
+                .Property(e => e.partNoKitItem_3)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-                .Property(e => e.kitItem_7)
+                .Property(e => e.descKitItem_4)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-                .Property(e => e.kitItem_8)
+                .Property(e => e.partNoKitItem_4)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-                .Property(e => e.kitItem_9)
+                .Property(e => e.descKitItem_5)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-                .Property(e => e.kitItem_10)
+                .Property(e => e.partNoKitItem_5)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-                .Property(e => e.kitItem_11)
+                .Property(e => e.descKitItem_6)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-                .Property(e => e.kitItem_12)
+                .Property(e => e.partNoKitItem_6)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-                .Property(e => e.kitItem_13)
+                .Property(e => e.descKitItem_7)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-                .Property(e => e.kitItem_14)
+                .Property(e => e.partNoKitItem_7)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-                .Property(e => e.kitItem_15)
+                .Property(e => e.descKitItem_8)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-                .Property(e => e.kitItem_16)
+                .Property(e => e.partNoKitItem_8)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-                .Property(e => e.kitItem_17)
+                .Property(e => e.descKitItem_9)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-                .Property(e => e.kitItem_18)
+                .Property(e => e.partNoKitItem_9)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-                .Property(e => e.kitItem_19)
+                .Property(e => e.descKitItem_10)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()
-                .Property(e => e.kitItem_20)
+                .Property(e => e.partNoKitItem_10)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tbl_kit>()

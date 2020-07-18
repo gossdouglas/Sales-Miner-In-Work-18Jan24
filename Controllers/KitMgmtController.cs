@@ -25,11 +25,29 @@ namespace allpax_sale_miner.Controllers
         [HttpPost]
         public ActionResult AddKit(tbl_kit kitAdd)
         {
-            db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_kit Values({0},{1},{2},{3},{4},{5},{6},{7}, " +
-                "'', '', '', '', '', '', '', '', '', '', '', '', '', '', '' )", 
-                kitAdd.kitID, kitAdd.description, kitAdd.filePath, kitAdd.kitItem_1, kitAdd.kitItem_2, kitAdd.kitItem_3, kitAdd.kitItem_4, kitAdd.kitItem_5, 
-                kitAdd.kitItem_6, kitAdd.kitItem_7, kitAdd.kitItem_8, kitAdd.kitItem_9, kitAdd.kitItem_10, kitAdd.kitItem_11, kitAdd.kitItem_12, 
-                kitAdd.kitItem_13, kitAdd.kitItem_14, kitAdd.kitItem_15, kitAdd.kitItem_16, kitAdd.kitItem_17, kitAdd.kitItem_18, kitAdd.kitItem_19, kitAdd.kitItem_20);
+            db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_kit Values" +
+                "({0},{1},{2}," +
+                "{3},{4}," +
+                "{5},{6}," +
+                "{7}, {8}, " +
+                "{9}, {10}, " +
+                "{11}, {12}, " +
+                "'', '', " +//not used
+                "'', '', " +//not used
+                "'', '', " +//not used
+                "'', '', " +//not used
+                "'', '' )",//not used
+                "kitAdd.kitID, kitAdd.description, kitAdd.filePath, " +
+                "kitAdd.descKitItem_1, kitAdd.partNoKitItem_1, " +
+                "kitAdd.descKitItem_2, kitAdd.partNoKitItem_2, " +
+                "kitAdd.descKitItem_3, kitAdd.partNoKitItem_3, " +
+                "kitAdd.descKitItem_4, kitAdd.partNoKitItem_4, " +
+                "kitAdd.descKitItem_5, kitAdd.partNoKitItem_5, " +
+                "kitAdd.descKitItem_6, kitAdd.partNoKitItem_6, " +//not used
+                "kitAdd.descKitItem_7, kitAdd.partNoKitItem_7, " +//not used
+                "kitAdd.descKitItem_8, kitAdd.partNoKitItem_8, " +//not used
+                "kitAdd.descKitItem_9, kitAdd.partNoKitItem_9, " +//not used
+                "kitAdd.descKitItem_10, kitAdd.partNoKitItem_10)");//not used
 
 
             return new EmptyResult();
@@ -45,9 +63,31 @@ namespace allpax_sale_miner.Controllers
             //db.Database.ExecuteSqlCommand("UPDATE cmps411.tbl_kit SET kitID={0},description={1},filePath={2} WHERE id={3}",
             //    kitUpdate.kitID, kitUpdate.description, kitUpdate.filePath, kitUpdate.id);
 
-            db.Database.ExecuteSqlCommand("UPDATE cmps411.tbl_kit SET kitID={0},description={1},filePath={2}, kitItem_1={4}, kitItem_2={5}, kitItem_3={6}, kitItem_4={7}, kitItem_5={8} " +
+            db.Database.ExecuteSqlCommand("UPDATE cmps411.tbl_kit SET kitID={0},description={1},filePath={2}, " +
+                "descKitItem_1={4}, partNoKitItem_1={5}, " +
+                "descKitItem_2={6}, partNoKitItem_2={7}, " +
+                "descKitItem_3={8}, partNoKitItem_3={9}, " +
+                "descKitItem_4={10}, partNoKitItem_4={11}, " +
+                "descKitItem_5={12}, partNoKitItem_5={13}, " +
+                "descKitItem_6='', partNoKitItem_6='', " +//not used
+                "descKitItem_7='', partNoKitItem_7='', " +//not used
+                "descKitItem_8='', partNoKitItem_8='', " +//not used
+                "descKitItem_9='', partNoKitItem_9='', " +//not used
+                "descKitItem_10='', partNoKitItem_10='', " +//not used
+
                 "WHERE id={3}",
-                kitUpdate.kitID, kitUpdate.description, kitUpdate.filePath, kitUpdate.id, kitUpdate.kitItem_1, kitUpdate.kitItem_2, kitUpdate.kitItem_3, kitUpdate.kitItem_4, kitUpdate.kitItem_5);
+
+                kitUpdate.kitID, kitUpdate.description, kitUpdate.filePath, kitUpdate.id, 
+                kitUpdate.descKitItem_1, kitUpdate.partNoKitItem_1,
+                kitUpdate.descKitItem_2, kitUpdate.partNoKitItem_2,
+                kitUpdate.descKitItem_3, kitUpdate.partNoKitItem_3,
+                kitUpdate.descKitItem_4, kitUpdate.partNoKitItem_4,
+                kitUpdate.descKitItem_5, kitUpdate.partNoKitItem_5,
+                kitUpdate.descKitItem_6, kitUpdate.partNoKitItem_6,//not used
+                kitUpdate.descKitItem_7, kitUpdate.partNoKitItem_7,//not used
+                kitUpdate.descKitItem_8, kitUpdate.partNoKitItem_8,//not used
+                kitUpdate.descKitItem_9, kitUpdate.partNoKitItem_9,//not used
+                kitUpdate.descKitItem_10, kitUpdate.partNoKitItem_10);//not used
 
             return RedirectToAction("Index");
         }
