@@ -302,7 +302,7 @@
 
 </head>
 <style>
-    div.row {
+    /*div.row {
         width: auto;
         height: auto;
         overflow-x: hidden;
@@ -312,7 +312,41 @@
 
     .form-group {
         margin: 5px;
+    }*/
+
+    /*testing out scrollable tds*/
+    table {
+        table-layout: fixed;
+        width: 100%;
+        *margin-left: -100px; /*ie7*/
     }
+
+    td, th {
+        vertical-align: top;
+        border-top: 1px solid #ccc;
+        padding: 10px;
+        width: 100px;
+    }
+
+    .fix {
+        position: absolute;
+        *position: relative; /*ie7*/
+        margin-left: -100px;
+        width: 100px;
+    }
+
+    .outer {
+        position: relative;
+    }
+
+    .inner {
+        overflow-x: scroll;
+        overflow-y: visible;
+        width: 600px;
+        margin-left: 100px;
+    }
+
+    /*testing out scrollable tds*/
 </style>
 
 <div class="container-fluid">
@@ -445,35 +479,84 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
-                    <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
-                    <td id="record_item1" value=@Html.DisplayFor(modelItem => item.kitID)>@Html.DisplayFor(modelItem => item.kitID)</td>
-                    <td id="record_item2" value=@Html.DisplayFor(modelItem => item.description)>@Html.DisplayFor(modelItem => item.description)</td>
-                    <td id="record_item3" value=@Html.DisplayFor(modelItem => item.filePath)>@Html.DisplayFor(modelItem => item.filePath)</td>
+                    <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
+                        <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
+                        <td id="record_item1" value=@Html.DisplayFor(modelItem => item.kitID)>@Html.DisplayFor(modelItem => item.kitID)</td>
+                        <td id="record_item2" value=@Html.DisplayFor(modelItem => item.description)>@Html.DisplayFor(modelItem => item.description)</td>
+                        <td id="record_item3" value=@Html.DisplayFor(modelItem => item.filePath)>@Html.DisplayFor(modelItem => item.filePath)</td>
 
-                    <td id="record_item4" value=@Html.DisplayFor(modelItem => item.descKitItem_1)>@Html.DisplayFor(modelItem => item.descKitItem_1)</td>
-                    <td id="record_item5" value=@Html.DisplayFor(modelItem => item.partNoKitItem_1)>@Html.DisplayFor(modelItem => item.partNoKitItem_1)</td>
-                    <td id="record_item6" value=@Html.DisplayFor(modelItem => item.descKitItem_2)>@Html.DisplayFor(modelItem => item.descKitItem_2)</td>
-                    <td id="record_item7" value=@Html.DisplayFor(modelItem => item.partNoKitItem_2)>@Html.DisplayFor(modelItem => item.partNoKitItem_2)</td>
-                    <td id="record_item8" value=@Html.DisplayFor(modelItem => item.descKitItem_3)>@Html.DisplayFor(modelItem => item.descKitItem_3)</td>
-                    <td id="record_item9" value=@Html.DisplayFor(modelItem => item.partNoKitItem_3)>@Html.DisplayFor(modelItem => item.partNoKitItem_3)</td>
-                    <td id="record_item10" value=@Html.DisplayFor(modelItem => item.descKitItem_4)>@Html.DisplayFor(modelItem => item.descKitItem_4)</td>
-                    <td id="record_item11" value=@Html.DisplayFor(modelItem => item.partNoKitItem_4)>@Html.DisplayFor(modelItem => item.partNoKitItem_4)</td>
-                    <td id="record_item12" value=@Html.DisplayFor(modelItem => item.descKitItem_5)>@Html.DisplayFor(modelItem => item.descKitItem_5)</td>
-                    <td id="record_item13" value=@Html.DisplayFor(modelItem => item.partNoKitItem_5)>@Html.DisplayFor(modelItem => item.partNoKitItem_5)</td>
+                        <td id="record_item4" value=@Html.DisplayFor(modelItem => item.descKitItem_1)>@Html.DisplayFor(modelItem => item.descKitItem_1)</td>
+                        <td id="record_item5" value=@Html.DisplayFor(modelItem => item.partNoKitItem_1)>@Html.DisplayFor(modelItem => item.partNoKitItem_1)</td>
+                        <td id="record_item6" value=@Html.DisplayFor(modelItem => item.descKitItem_2)>@Html.DisplayFor(modelItem => item.descKitItem_2)</td>
+                        <td id="record_item7" value=@Html.DisplayFor(modelItem => item.partNoKitItem_2)>@Html.DisplayFor(modelItem => item.partNoKitItem_2)</td>
+                        <td id="record_item8" value=@Html.DisplayFor(modelItem => item.descKitItem_3)>@Html.DisplayFor(modelItem => item.descKitItem_3)</td>
+                        <td id="record_item9" value=@Html.DisplayFor(modelItem => item.partNoKitItem_3)>@Html.DisplayFor(modelItem => item.partNoKitItem_3)</td>
+                        <td id="record_item10" value=@Html.DisplayFor(modelItem => item.descKitItem_4)>@Html.DisplayFor(modelItem => item.descKitItem_4)</td>
+                        <td id="record_item11" value=@Html.DisplayFor(modelItem => item.partNoKitItem_4)>@Html.DisplayFor(modelItem => item.partNoKitItem_4)</td>
+                        <td id="record_item12" value=@Html.DisplayFor(modelItem => item.descKitItem_5)>@Html.DisplayFor(modelItem => item.descKitItem_5)</td>
+                        <td id="record_item13" value=@Html.DisplayFor(modelItem => item.partNoKitItem_5)>@Html.DisplayFor(modelItem => item.partNoKitItem_5)</td>
 
 
-                    <td>
-                        <button class="btn btn-primary btn-sm editButton">Edit</button>
-                        <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
-                        <button class="btn btn-primary btn-sm deleteButton">Delete</button>
-                        <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
-                        <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
-                    </td>
-                </tr>
+                        <td>
+                            <button class="btn btn-primary btn-sm editButton">Edit</button>
+                            <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
+                            <button class="btn btn-primary btn-sm deleteButton">Delete</button>
+                            <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
+                            <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
+                        </td>
+                    </tr>
                 }
         </table>
+
+        <div class="outer">
+            <div class="inner">
+                <table class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <tr>
+                        <th class="fix">gfgffgfg</th>
+                        <th class="th-sm">Col 1</th>
+                        <th>Col 2</th>
+                        <th>Col 3</th>
+                        <th>Col 4</th>
+                        <th>Col 1</th>
+                        <th>Col 2</th>
+                        <th>Col 3</th>
+                        <th>Col 4</th>
+                        <th>Col 1</th>
+                        <th>Col 2</th>
+                        <th>Col 3</th>
+                        <th>Col 4</th>
+                        <th class="fix">Col 5</th>
+                    </tr>
+
+                    @*<tr>
+                        <th class=fix>Header A</th>
+                        <td>col 1 - A</td>
+                        <td>col 2 - A (WITH LONGER CONTENT)</td>
+                        <td>col 3 - A</td>
+                        <td>col 4 - A</td>
+                        <td class=fix>col 5 - A</td>
+                    </tr>
+                    <tr>
+                        <th class=fix>Header B</th>
+                        <td>col 1 - B</td>
+                        <td>col 2 - B</td>
+                        <td>col 3 - B</td>
+                        <td>col 4 - B</td>
+                        <td class=fix>col 5 - B</td>
+                    </tr>
+                    <tr>
+                        <th class=fix>Header C</th>
+                        <td>col 1 - C</td>
+                        <td>col 2 - C</td>
+                        <td>col 3 - C</td>
+                        <td>col 4 - C</td>
+                        <td class=fix>col 5 - C</td>
+                    </tr>*@
+                </table>
+            </div>
+        </div>
     </div>
     <!-- End your project here-->
-    <!--table end-->
+    <!--table end-->  
+
 </div>
