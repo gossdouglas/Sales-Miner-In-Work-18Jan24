@@ -16,7 +16,7 @@ namespace allpax_sale_miner.Controllers
     public class SalesCustomerController : Controller
     {
 
-        public ActionResult Index()
+        public ActionResult Index(string customerCode)
         {
             List<vm_SalesCustomer> SalesCustomer1 = new List<vm_SalesCustomer>();
 
@@ -39,10 +39,12 @@ namespace allpax_sale_miner.Controllers
                 "FROM " +
                 "cmps411.tbl_customer_eqpmt " +
                 "INNER JOIN " +
-                "cmps411.tbl_customer ON cmps411.tbl_customer_eqpmt.customerCode = cmps411.tbl_customer.customerCode";
+                "cmps411.tbl_customer ON cmps411.tbl_customer_eqpmt.customerCode = cmps411.tbl_customer.customerCode "+
+                "WHERE cmps411.tbl_customer_eqpmt.customerCode LIKE @customerCode ";
             //end query for customer equipment
 
             SqlCommand sqlcomm = new SqlCommand(sqlquery, sqlconn);
+            sqlcomm.Parameters.AddWithValue("@customerCode", customerCode);
             SqlDataAdapter sda = new SqlDataAdapter(sqlcomm);
             DataTable dt = new DataTable();
             sda.Fill(dt);

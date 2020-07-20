@@ -58,7 +58,8 @@
                 var editItem5 = $("#slctd_state").val();
                 var editItem6 = $("#slctd_zipCode").val();
 
-                window.location = '/SalesCustomer';
+                //window.location = '/SalesCustomer';
+                window.location = '/SalesCustomer?customerCode=' + selectedItem1;
             });
             //end go to salesCustomer page
             //begin go to salesCustomer page
@@ -139,7 +140,7 @@
                         <td id="record_item6" value=@Html.DisplayFor(modelItem => item.zipCode)>@Html.DisplayFor(modelItem => item.zipCode)</td>
                         <td>
                             <button class="btn btn-primary btn-sm eqpmtButton">Equipment</button>
-                            <button class="btn btn-primary btn-sm salesButton">Sales</button>
+                            <button class="btn btn-primary btn-sm salesButton">Opportunity</button>
                         </td>
                     </tr>
                 }
