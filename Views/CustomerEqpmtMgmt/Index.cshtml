@@ -144,13 +144,13 @@
                 //modal.find('.modal-title').text('New message to ' + recipient)
                 //modal.find('.modal-body input').val(recipient)
                 modal.find('.modal-title').text('Add or Delete Kits for ' + selectedItem2)
-                modal.find('.modal-body #md-customerCode').val(selectedItem1)
-                modal.find('.modal-body #md-eqpmtType').val(selectedItem4)
-                modal.find('.modal-body #md-model').val(selectedItem5)
+                //modal.find('.modal-body #md-customerCode').val(selectedItem1)
+                //modal.find('.modal-body #md-eqpmtType').val(selectedItem4)
+                //modal.find('.modal-body #md-model').val(selectedItem5)
                 modal.find('.modal-body #md-machineID').val(selectedItem2)
                 modal.find('.modal-body #md-kitsAvlbl').empty();
-                modal.find('.modal-body #md-kitsAvlbl').append($('<option/>', { value: -1, text: 'Select Kit to Install' }));
                 modal.find('.modal-body #md-kitsInstld').empty();
+                modal.find('.modal-body #md-kitsAvlbl').append($('<option/>', { value: -1, text: 'Select Kit to Install' }));                
                 modal.find('.modal-body #md-kitsInstld').append($('<option/>', { value: -1, text: 'Select Kit to Remove' }));
 
                 //begin fill the kits available dropdown
@@ -162,8 +162,11 @@
                     success: function (data) {
 
                         $(data).each(function (index, item) {
+
                             modal.find('.modal-body #md-kitsAvlbl').append($('<option/>', { value: item.kitsAvlblbNotInstld, text: item.kitsAvlblbNotInstld }));
+                            modal.find('.modal-body #md-kitsAvlbl').append($('<option/>', { value: 'hi', text: index }));
                         });
+                     
                     }
                 });
                 //end fill the kits available dropdown
@@ -178,6 +181,7 @@
 
                         $(data).each(function (index, item) {
                             modal.find('.modal-body #md-kitsInstld').append($('<option/>', { value: item.kitsInstld, text: item.kitsInstld }));
+                            modal.find('.modal-body #md-kitsInstld').append($('<option/>', { value: item.kitsInstld, text: index }));
                         });
                     }
                 });
@@ -240,8 +244,7 @@
 
             });
             // end test modal for kits installed
-
-
+        
             $(".btn.btn-primary.editButton").click(function () {//when a record's edit button is clicked...
                 $(this).parent().find(".editButton").hide();
                 $(this).parent().find(".updateButton").show();

@@ -168,7 +168,7 @@ namespace allpax_sale_miner
                 while (rdr.Read())
                 {
                     dpdwn_kitsAvlblbNotInstld kaBnI = new dpdwn_kitsAvlblbNotInstld();
-                    kaBnI.machineID = rdr["machineID_cEqpmt"].ToString();
+                    //kaBnI.machineID = rdr["machineID_cEqpmt"].ToString();
                     kaBnI.kitsAvlblbNotInstld = rdr["kitID_kitsAvlbl"].ToString();
                     kaBnIs.Add(kaBnI);
                 }               
@@ -204,7 +204,7 @@ namespace allpax_sale_miner
                 while (rdr.Read())
                 {
                     dpdwn_kitsInstld kitInstld = new dpdwn_kitsInstld();
-                    kitInstld.machineID = rdr["machineID"].ToString();
+                    //kitInstld.machineID = rdr["machineID"].ToString();
                     kitInstld.kitsInstld = rdr["kitID"].ToString();
                     kitsInstld.Add(kitInstld);
                 }
