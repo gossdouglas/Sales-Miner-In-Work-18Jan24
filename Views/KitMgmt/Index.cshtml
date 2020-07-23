@@ -8,6 +8,9 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    @*<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js">
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>*@
+
     <script>
         $(document).ready(function () {//begin document read jquery statements
 
@@ -25,13 +28,17 @@
          //        }
          //    } );
          //} );
+          
+            $('.dataTables_length').addClass('bs-select');
  
             var table = $('#datatable_kitmgmt').DataTable({
                 orderCellsTop: true,
                 fixedHeader: true,
                 paging: false,
                 order: [[1, "asc"]],
-                searching: false
+                searching: false,
+                scrollX: true, 
+                scrollY: 450
             });
            
             $('.dataTables_length').addClass('bs-select');
@@ -210,8 +217,6 @@
                 var editItem12 = $("#slctd_descKitItem_5").val();
                 var editItem13 = $("#slctd_partNoKitItem_5").val();
 
-
-
                 alert(
                     "Selected for Edit POST:" + '\n' +
                     "editItem0: " + editItem0 + '\n' +
@@ -249,7 +254,6 @@
                     partNoKitItem_4: editItem11,
                     descKitItem_5: editItem12,
                     partNoKitItem_5: editItem13
-
 
                 })
                     .then(function (response) {
@@ -312,7 +316,11 @@
 
     .form-group {
         margin: 5px;
-    }   
+    }
+
+    tr td {
+        white-space: nowrap;
+    }
 </style>
 
 <div class="container-fluid">
@@ -390,7 +398,6 @@
             <div class="auto"><input type="text" id="slctd_descKitItem_5" value="slctd_descKitItem_5"></div>
             <div class="auto"><input type="text" id="slctd_partNoKitItem_5" value="slctd_partNoKitItem_5"></div>
 
-
         </div>
     </div>
     <!--click event end-->
@@ -450,36 +457,36 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
-                    <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
-                    <td id="record_item1" value=@Html.DisplayFor(modelItem => item.kitID)>@Html.DisplayFor(modelItem => item.kitID)</td>
-                    <td id="record_item2" value=@Html.DisplayFor(modelItem => item.description)>@Html.DisplayFor(modelItem => item.description)</td>
-                    <td id="record_item3" value=@Html.DisplayFor(modelItem => item.filePath)>@Html.DisplayFor(modelItem => item.filePath)</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm editButton">Edit</button>
-                        <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
-                        <button class="btn btn-primary btn-sm deleteButton">Delete</button>
-                        <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
-                        <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
-                    </td>
-                    <td id="record_item4" value=@Html.DisplayFor(modelItem => item.descKitItem_1)>@Html.DisplayFor(modelItem => item.descKitItem_1)</td>
-                    <td id="record_item5" value=@Html.DisplayFor(modelItem => item.partNoKitItem_1)>@Html.DisplayFor(modelItem => item.partNoKitItem_1)</td>
+                    <tr class="record" id=@Html.DisplayFor(modelItem => item.id)>
+                        <td id="record_item0" value=@Html.DisplayFor(modelItem => item.id)>@Html.DisplayFor(modelItem => item.id)</td>
+                        <td id="record_item1" value=@Html.DisplayFor(modelItem => item.kitID)>@Html.DisplayFor(modelItem => item.kitID)</td>
+                        <td id="record_item2" value=@Html.DisplayFor(modelItem => item.description)>@Html.DisplayFor(modelItem => item.description)</td>
+                        <td id="record_item3" value=@Html.DisplayFor(modelItem => item.filePath)>@Html.DisplayFor(modelItem => item.filePath)</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm editButton">Edit</button>
+                            <button class="btn btn-primary btn-sm updateButton" style="display:none;">Update</button>
+                            <button class="btn btn-primary btn-sm deleteButton">Delete</button>
+                            <button class="btn btn-primary btn-sm confirmButton" style="display:none;">Confirm</button>
+                            <button class="btn btn-primary btn-sm cancelButton" style="display:none;">Cancel</button>
+                        </td>
+                        <td id="record_item4" value=@Html.DisplayFor(modelItem => item.descKitItem_1)>@Html.DisplayFor(modelItem => item.descKitItem_1)</td>
+                        <td id="record_item5" value=@Html.DisplayFor(modelItem => item.partNoKitItem_1)>@Html.DisplayFor(modelItem => item.partNoKitItem_1)</td>
 
-                    <td id="record_item6" value=@Html.DisplayFor(modelItem => item.descKitItem_2)>@Html.DisplayFor(modelItem => item.descKitItem_2)</td>
-                    <td id="record_item7" value=@Html.DisplayFor(modelItem => item.partNoKitItem_2)>@Html.DisplayFor(modelItem => item.partNoKitItem_2)</td>
+                        <td id="record_item6" value=@Html.DisplayFor(modelItem => item.descKitItem_2)>@Html.DisplayFor(modelItem => item.descKitItem_2)</td>
+                        <td id="record_item7" value=@Html.DisplayFor(modelItem => item.partNoKitItem_2)>@Html.DisplayFor(modelItem => item.partNoKitItem_2)</td>
 
-                    <td id="record_item8" value=@Html.DisplayFor(modelItem => item.descKitItem_3)>@Html.DisplayFor(modelItem => item.descKitItem_3)</td>
-                    <td id="record_item9" value=@Html.DisplayFor(modelItem => item.partNoKitItem_3)>@Html.DisplayFor(modelItem => item.partNoKitItem_3)</td>
+                        <td id="record_item8" value=@Html.DisplayFor(modelItem => item.descKitItem_3)>@Html.DisplayFor(modelItem => item.descKitItem_3)</td>
+                        <td id="record_item9" value=@Html.DisplayFor(modelItem => item.partNoKitItem_3)>@Html.DisplayFor(modelItem => item.partNoKitItem_3)</td>
 
-                    <td id="record_item10" value=@Html.DisplayFor(modelItem => item.descKitItem_4)>@Html.DisplayFor(modelItem => item.descKitItem_4)</td>
-                    <td id="record_item11" value=@Html.DisplayFor(modelItem => item.partNoKitItem_4)>@Html.DisplayFor(modelItem => item.partNoKitItem_4)</td>
+                        <td id="record_item10" value=@Html.DisplayFor(modelItem => item.descKitItem_4)>@Html.DisplayFor(modelItem => item.descKitItem_4)</td>
+                        <td id="record_item11" value=@Html.DisplayFor(modelItem => item.partNoKitItem_4)>@Html.DisplayFor(modelItem => item.partNoKitItem_4)</td>
 
-                    <td id="record_item12" value=@Html.DisplayFor(modelItem => item.descKitItem_5)>@Html.DisplayFor(modelItem => item.descKitItem_5)</td>
-                    <td id="record_item13" value=@Html.DisplayFor(modelItem => item.partNoKitItem_5)>@Html.DisplayFor(modelItem => item.partNoKitItem_5)</td>
-                </tr>
+                        <td id="record_item12" value=@Html.DisplayFor(modelItem => item.descKitItem_5)>@Html.DisplayFor(modelItem => item.descKitItem_5)</td>
+                        <td id="record_item13" value=@Html.DisplayFor(modelItem => item.partNoKitItem_5)>@Html.DisplayFor(modelItem => item.partNoKitItem_5)</td>
+
+                    </tr>
                 }
-        </table>
-        
+        </table>       
     </div>
     <!-- End your project here-->
     <!--table end-->  
