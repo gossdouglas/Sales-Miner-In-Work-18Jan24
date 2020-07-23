@@ -43,6 +43,12 @@ namespace allpax_sale_miner.Controllers
                 "WHERE cmps411.tbl_customer_eqpmt.customerCode LIKE @customerCode ";
             //end query for customer equipment
 
+            //bool runOnce = false;
+
+            //vm_SalesCustomer vm_SalesCustomer2 = new vm_SalesCustomer();
+            //vm_SalesCustomer2.jobNoList = jobNoList("aem");
+            //SalesCustomer.Add(vm_SalesCustomer2);
+
             SqlCommand sqlcomm = new SqlCommand(sqlquery, sqlconn);
             sqlcomm.Parameters.AddWithValue("@customerCode", customerCode);
             SqlDataAdapter sda = new SqlDataAdapter(sqlcomm);
@@ -57,14 +63,51 @@ namespace allpax_sale_miner.Controllers
                 vm_SalesCustomer.model = dr[2].ToString();
                 vm_SalesCustomer.machineID = dr[3].ToString();
                 vm_SalesCustomer.name = dr[4].ToString();
+
+                vm_SalesCustomer.jobNoList = jobNoList(vm_SalesCustomer.customerCode);
+
+                //if (!runOnce)
+                //{
+                //    vm_SalesCustomer.jobNoList = jobNoList(vm_SalesCustomer.customerCode);
+                //    runOnce = true;
+                //}
+
                 vm_SalesCustomer.kitsCurrent = kitsCurrent(vm_SalesCustomer.customerCode, vm_SalesCustomer.machineID);
                 vm_SalesCustomer.kitsAvlblbNotInstld = kitsAvlblbNotInstld(vm_SalesCustomer.customerCode, vm_SalesCustomer.jobNo, vm_SalesCustomer.machineID);
                 SalesCustomer.Add(vm_SalesCustomer);
             }
+           
             sqlconn.Close();
                       
              return View(SalesCustomer);
         }
+
+        //begin job list
+        public List<string> jobNoList(string customerCode)
+        {
+            List<string> jl = new List<string>();
+
+            string mainconn = ConfigurationManager.ConnectionStrings["allpax_sale_minerEntities"].ConnectionString;
+            SqlConnection sqlconn = new SqlConnection(mainconn);
+
+            //begin query for currently installed kits by machine 
+            string sqlquery4 = "SELECT DISTINCT cmps411.tbl_customer_eqpmt.jobNum, cmps411.tbl_customer_eqpmt.customerCode " +
+                "FROM cmps411.tbl_customer_eqpmt " +
+                "WHERE cmps411.tbl_customer_eqpmt.customerCode like @customerCode";
+            //end query for currently installed kits by machine 
+
+            SqlCommand sqlcomm4 = new SqlCommand(sqlquery4, sqlconn);
+            sqlcomm4.Parameters.Add(new SqlParameter("customerCode", customerCode));
+            SqlDataAdapter sda4 = new SqlDataAdapter(sqlcomm4);
+            DataTable dt4 = new DataTable();
+            sda4.Fill(dt4);
+            foreach (DataRow dr4 in dt4.Rows)
+            {
+                jl.Add(dr4[0].ToString());
+            }
+            return jl;
+        }
+
         //begin add kitsCurrent
         public List<string> kitsCurrent(string customerCode, string machineID)
         {

@@ -225,6 +225,7 @@
     <Compile Include="Models\tbl_sales_opportunities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\vm_GetJobNosByCustomerCode.cs" />
     <Compile Include="ViewModels\machinesW_kitsAvlbl_BnotInstalled.cs" />
     <Compile Include="ViewModels\vm_SalesCustomer.cs" />
     <Compile Include="ViewModels\machinesW_kitsAvlbl.cs" />

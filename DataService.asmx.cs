@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.Script.Serialization;
 using allpax_sale_miner.Models.Dropdown_Models;
+using allpax_sale_miner.ViewModels;
 using allpax_sale_miner.Models;
 
 namespace allpax_sale_miner
@@ -211,6 +212,43 @@ namespace allpax_sale_miner
             }
             JavaScriptSerializer js = new JavaScriptSerializer();
             Context.Response.Write(js.Serialize(kitsInstld));
+        }
+        [WebMethod]
+        public void GetJobNosByCustomerCode(string customerCode)
+        {
+            string cs = ConfigurationManager.ConnectionStrings["allpax_sale_minerEntities"].ConnectionString;
+            List<vm_GetJobNosByCustomerCode> JobNos = new List<vm_GetJobNosByCustomerCode>();
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                // begin empty and build custEqpmtWkitsAvlbl and custEqpmtWkitsInstld tables  
+                //this is handled by a stored procedure on the sql server named dbo.bldSalesOppsTables
+                con.Open();
+                //SqlCommand sqlcomm1 = new SqlCommand("dbo.bldSalesOppsTables", con);
+                //sqlcomm1.CommandType = System.Data.CommandType.StoredProcedure;
+                //sqlcomm1.ExecuteNonQuery();
+                //end empty and build custEqpmtWkitsAvlbl and custEqpmtWkitsInstld tables
+
+                SqlCommand cmd = new SqlCommand("spGetJobNosByCustomerCode", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlParameter param = new SqlParameter()
+                {
+                    ParameterName = "@customerCode",
+                    Value = customerCode
+                };
+                cmd.Parameters.Add(param);
+                //con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    vm_GetJobNosByCustomerCode JobNo = new vm_GetJobNosByCustomerCode();
+                    //kaBnI.machineID = rdr["machineID_cEqpmt"].ToString();
+                    JobNo.jobNo = rdr["jobNum"].ToString();
+                    JobNo.customerCode = rdr["customerCode"].ToString();
+                    JobNos.Add(JobNo);
+                }
+            }
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Context.Response.Write(js.Serialize(JobNos)); 
         }
     }
 }
