@@ -234,9 +234,9 @@
                 var editItem11 = $("#slctd_partNoKitItem_4").val();
                 var editItem12 = $("#slctd_descKitItem_5").val();
                 var editItem13 = $("#slctd_partNoKitItem_5").val();
-                var editItem14 = $("#slctd_partNoKitItem_4").val();
-                var editItem15 = $("#slctd_descKitItem_5").val();
-                var editItem16 = $("#slctd_partNoKitItem_5").val();
+                var editItem14 = $("#slctd_infoPackage").val();
+                var editItem15 = $("#slctd_mechDrawing").val();
+                var editItem16 = $("#slctd_priceSheet").val();
 
                 alert(
                     "Selected for Edit POST:" + '\n' +
@@ -254,7 +254,10 @@
                     "editItem10: " + editItem10 + '\n' +
                     "editItem11: " + editItem11 + '\n' +
                     "editItem12: " + editItem12 + '\n' +
-                    "editItem13: " + editItem13 + '\n'
+                    "editItem13: " + editItem13 + '\n' +
+                    "editItem14: " + editItem14 + '\n' +
+                    "editItem15: " + editItem15 + '\n' +
+                    "editItem16: " + editItem16 + '\n'
 
                 );
 
@@ -274,7 +277,10 @@
                     descKitItem_4: editItem10,
                     partNoKitItem_4: editItem11,
                     descKitItem_5: editItem12,
-                    partNoKitItem_5: editItem13
+                    partNoKitItem_5: editItem13,
+                    infoPackage: editItem14,
+                    mechDrawing: editItem15,
+                    priceSheet: editItem16
 
                 })
                     .then(function (response) {

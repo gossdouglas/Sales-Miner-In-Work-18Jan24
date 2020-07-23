@@ -72,7 +72,9 @@ namespace allpax_sale_miner.Controllers
                 "descKitItem_7='', partNoKitItem_7='', " +//not used
                 "descKitItem_8='', partNoKitItem_8='', " +//not used
                 "descKitItem_9='', partNoKitItem_9='', " +//not used
-                "descKitItem_10='', partNoKitItem_10='' " +//not used
+                "descKitItem_10='', partNoKitItem_10='', " +//not used
+
+                "infoPackage={24}, mechDrawing={25}, priceSheet={26} )" ,
 
                 "WHERE id={3}",
 
@@ -86,7 +88,8 @@ namespace allpax_sale_miner.Controllers
                 kitUpdate.descKitItem_7, kitUpdate.partNoKitItem_7,//not used
                 kitUpdate.descKitItem_8, kitUpdate.partNoKitItem_8,//not used
                 kitUpdate.descKitItem_9, kitUpdate.partNoKitItem_9,//not used
-                kitUpdate.descKitItem_10, kitUpdate.partNoKitItem_10);//not used
+                kitUpdate.descKitItem_10, kitUpdate.partNoKitItem_10,//not used
+                kitUpdate.infoPackage, kitUpdate.mechDrawing, kitUpdate.priceSheet);
 
             return RedirectToAction("Index");
         }
