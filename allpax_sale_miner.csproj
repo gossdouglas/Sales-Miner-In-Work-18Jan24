@@ -193,7 +193,6 @@
       <DependentUpon>DataService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="fdfdfd.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -226,7 +225,6 @@
     <Compile Include="Models\tbl_sales_opportunities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="tbl_kit.cs" />
     <Compile Include="ViewModels\machinesW_kitsAvlbl_BnotInstalled.cs" />
     <Compile Include="ViewModels\vm_SalesCustomer.cs" />
     <Compile Include="ViewModels\machinesW_kitsAvlbl.cs" />

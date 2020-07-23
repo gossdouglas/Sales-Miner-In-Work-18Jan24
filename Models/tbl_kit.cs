@@ -70,6 +70,11 @@ namespace allpax_sale_miner.Models
         public string descKitItem_10 { get; set; }
         [StringLength(50)]
         public string partNoKitItem_10 { get; set; }
+        public string infoPackage { get; set; }
+
+        public string mechDrawing { get; set; }
+
+        public string priceSheet { get; set; }
 
 
 

@@ -35,7 +35,9 @@ namespace allpax_sale_miner.Controllers
                 "'', '', " +//not used
                 "'', ''," +//not used
                 "'', ''," +//not used
-                "'', '' )", //not used
+                "'', ''," +//not used
+                "{23},{24},{25})",
+
                 kitAdd.kitID, kitAdd.description, kitAdd.filePath, 
                 kitAdd.descKitItem_1, kitAdd.partNoKitItem_1, 
                 kitAdd.descKitItem_2, kitAdd.partNoKitItem_2, 
@@ -46,7 +48,8 @@ namespace allpax_sale_miner.Controllers
                 kitAdd.descKitItem_7, kitAdd.partNoKitItem_7, 
                 kitAdd.descKitItem_8, kitAdd.partNoKitItem_8, 
                 kitAdd.descKitItem_9, kitAdd.partNoKitItem_9, 
-                kitAdd.descKitItem_10, kitAdd.partNoKitItem_10);
+                kitAdd.descKitItem_10, kitAdd.partNoKitItem_10,
+                kitAdd.infoPackage, kitAdd.mechDrawing, kitAdd.priceSheet);
 
             return new EmptyResult();
         }

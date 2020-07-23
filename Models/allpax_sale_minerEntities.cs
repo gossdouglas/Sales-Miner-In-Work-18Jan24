@@ -240,6 +240,18 @@ namespace allpax_sale_miner.Models
                 .HasMany(e => e.tbl_eqpmt_kits_avlbl)
                 .WithRequired(e => e.tbl_kit)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<tbl_kit>()
+               .Property(e => e.infoPackage)
+               .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.mechDrawing)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tbl_kit>()
+                .Property(e => e.priceSheet)
+                .IsUnicode(false);
         }
     }
 }
