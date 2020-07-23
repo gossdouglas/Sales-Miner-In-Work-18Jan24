@@ -8,6 +8,9 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    @*<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js">
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>*@
+
     <script>
         $(document).ready(function () {//begin document read jquery statements
 
@@ -25,6 +28,8 @@
          //        }
          //    } );
          //} );
+          
+            $('.dataTables_length').addClass('bs-select');
  
             var table = $('#datatable_kitmgmt').DataTable({
                 orderCellsTop: true,
@@ -372,7 +377,7 @@
     <!--end inline add-->
     <!--click event begin-->
     <div>
-        <div class="row" style="display:none">
+        <div class="row" style="display:">
             <div class="auto"><input type="text" id="slctd_id" value="slctd_id"></div>
             <div class="auto"><input type="text" id="slctd_kitID" value="slctd_kitID"></div>
             <div class="auto"><input type="text" id="slctd_description" value="slctd_description"></div>
@@ -392,7 +397,6 @@
 
             <div class="auto"><input type="text" id="slctd_descKitItem_5" value="slctd_descKitItem_5"></div>
             <div class="auto"><input type="text" id="slctd_partNoKitItem_5" value="slctd_partNoKitItem_5"></div>
-
 
         </div>
     </div>
