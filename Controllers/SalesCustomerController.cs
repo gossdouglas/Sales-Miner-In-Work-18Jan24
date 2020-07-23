@@ -18,7 +18,7 @@ namespace allpax_sale_miner.Controllers
 
         public ActionResult Index(string customerCode)
         {
-            List<vm_SalesCustomer> SalesCustomer1 = new List<vm_SalesCustomer>();
+            List<vm_SalesCustomer> SalesCustomer = new List<vm_SalesCustomer>();
 
             string mainconn = ConfigurationManager.ConnectionStrings["allpax_sale_minerEntities"].ConnectionString;
             SqlConnection sqlconn = new SqlConnection(mainconn);
@@ -50,20 +50,20 @@ namespace allpax_sale_miner.Controllers
             sda.Fill(dt);
             foreach (DataRow dr in dt.Rows)
             {
-                vm_SalesCustomer vm_SalesCustomer1 = new vm_SalesCustomer();
+                vm_SalesCustomer vm_SalesCustomer = new vm_SalesCustomer();
 
-                vm_SalesCustomer1.jobNo = dr[0].ToString();
-                vm_SalesCustomer1.customerCode = dr[1].ToString();
-                vm_SalesCustomer1.model = dr[2].ToString();
-                vm_SalesCustomer1.machineID = dr[3].ToString();
-                vm_SalesCustomer1.name = dr[4].ToString();
-                vm_SalesCustomer1.kitsCurrent = kitsCurrent(vm_SalesCustomer1.customerCode, vm_SalesCustomer1.machineID);
-                vm_SalesCustomer1.kitsAvlblbNotInstld = kitsAvlblbNotInstld(vm_SalesCustomer1.customerCode, vm_SalesCustomer1.jobNo, vm_SalesCustomer1.machineID);
-                SalesCustomer1.Add(vm_SalesCustomer1);
+                vm_SalesCustomer.jobNo = dr[0].ToString();
+                vm_SalesCustomer.customerCode = dr[1].ToString();
+                vm_SalesCustomer.model = dr[2].ToString();
+                vm_SalesCustomer.machineID = dr[3].ToString();
+                vm_SalesCustomer.name = dr[4].ToString();
+                vm_SalesCustomer.kitsCurrent = kitsCurrent(vm_SalesCustomer.customerCode, vm_SalesCustomer.machineID);
+                vm_SalesCustomer.kitsAvlblbNotInstld = kitsAvlblbNotInstld(vm_SalesCustomer.customerCode, vm_SalesCustomer.jobNo, vm_SalesCustomer.machineID);
+                SalesCustomer.Add(vm_SalesCustomer);
             }
             sqlconn.Close();
                       
-             return View(SalesCustomer1);
+             return View(SalesCustomer);
         }
         //begin add kitsCurrent
         public List<string> kitsCurrent(string customerCode, string machineID)

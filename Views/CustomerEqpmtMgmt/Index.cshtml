@@ -136,6 +136,7 @@
 
             //begin test modal for kits installed
             $('#kitsModal').on('show.bs.modal', function (event) {
+                event.stopPropagation();
                 var button = $(event.relatedTarget) // Button that triggered the modal
                 var modal = $(this)
                 modal.find('.modal-title').text('Add or Delete Kits for ' + selectedItem2)
@@ -152,18 +153,17 @@
                 $.ajax({
                     url: 'DataService.asmx/GetKitsAvlblBnotInstalledByMachineID',
                     method: 'post',
+                    async: false,
                     dataType: 'json',
                     data: { machineID: selectedItem2 },
                     success: function (data) {
 
                         $(data).each(function (index, item) {
-
                             modal.find('.modal-body #md-kitsAvlbl').append($('<option/>', { value: item.kitsAvlblbNotInstld, text: item.kitsAvlblbNotInstld }));
-                            //modal.find('.modal-body #md-kitsAvlbl').append($('<option/>', { value: 'hi', text: index }));
-                        });
-                     
+                        });                   
                     }
                 });
+
                 //end fill the kits available dropdown
 
                 //begin fill the kits installed dropdown
@@ -173,10 +173,9 @@
                     dataType: 'json',
                     data: { machineID: selectedItem2 },
                     success: function (data) {
-
+                        
                         $(data).each(function (index, item) {
                             modal.find('.modal-body #md-kitsInstld').append($('<option/>', { value: item.kitsInstld, text: item.kitsInstld }));
-                            //modal.find('.modal-body #md-kitsInstld').append($('<option/>', { value: item.kitsInstld, text: index }));
                         });
                     }
                 });
