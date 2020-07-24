@@ -43,12 +43,6 @@ namespace allpax_sale_miner.Controllers
                 "WHERE cmps411.tbl_customer_eqpmt.customerCode LIKE @customerCode ";
             //end query for customer equipment
 
-            //bool runOnce = false;
-
-            //vm_SalesCustomer vm_SalesCustomer2 = new vm_SalesCustomer();
-            //vm_SalesCustomer2.jobNoList = jobNoList("aem");
-            //SalesCustomer.Add(vm_SalesCustomer2);
-
             SqlCommand sqlcomm = new SqlCommand(sqlquery, sqlconn);
             sqlcomm.Parameters.AddWithValue("@customerCode", customerCode);
             SqlDataAdapter sda = new SqlDataAdapter(sqlcomm);
@@ -65,12 +59,6 @@ namespace allpax_sale_miner.Controllers
                 vm_SalesCustomer.name = dr[4].ToString();
 
                 vm_SalesCustomer.jobNoList = jobNoList(vm_SalesCustomer.customerCode);
-
-                //if (!runOnce)
-                //{
-                //    vm_SalesCustomer.jobNoList = jobNoList(vm_SalesCustomer.customerCode);
-                //    runOnce = true;
-                //}
 
                 vm_SalesCustomer.kitsCurrent = kitsCurrent(vm_SalesCustomer.customerCode, vm_SalesCustomer.machineID);
                 vm_SalesCustomer.kitsAvlblbNotInstld = kitsAvlblbNotInstld(vm_SalesCustomer.customerCode, vm_SalesCustomer.jobNo, vm_SalesCustomer.machineID);

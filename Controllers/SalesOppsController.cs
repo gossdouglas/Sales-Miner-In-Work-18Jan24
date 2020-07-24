@@ -40,7 +40,6 @@ namespace allpax_sale_miner.Controllers
             string sqlquery2 =
                 "SELECT DISTINCT custEqpmtWkitsAvlbl.customerCode_cEqpmt, custEqpmtWkitsAvlbl.jobNum_cEqpmt, custEqpmtWkitsAvlbl.eqpmtType_cEqpmt, " +
                 "cmps411.custEqpmtWkitsAvlbl.model_cEqpmt, cmps411.custEqpmtWkitsAvlbl.machineID_cEqpmt " +
-                //"kitID_kitsAvlbl " +
 
                 "FROM cmps411.custEqpmtWkitsAvlbl " +
                 "LEFT JOIN cmps411.custEqpmtWkitsInstld ON " +
