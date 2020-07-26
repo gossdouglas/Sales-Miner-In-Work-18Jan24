@@ -54,12 +54,20 @@
                         $("#yo").clone().prop("id", "tab_" + tempJobNo.toString()).appendTo("#jobNoTabs");
                         $("#tab_" + tempJobNo.toString()).children().html(tempJobNo.toString());
                         //$("#tab_J1000").children().attr("href", "#");
+                        //$("#tab_" + tempJobNo).children().attr("id", "anchor_" + tempJobNo);
+                        $("#tab_" + tempJobNo).children().attr("id", tempJobNo+"-tab");
                         $("#tab_" + tempJobNo).children().attr("href", "#" + tempJobNo);
 
                         //$('#home-content').clone().prop("id", "tab_" + tempJobNo.toString() + "Content").appendTo('#jobNoTabsContent');
                         //$("#home-content").clone().prop("id", "tab_" + tempJobNo.toString() + "Content").appendTo("#jobNoTabsContent");
                         //$("#home").clone().appendTo("#jobNoTabsContent");
-                        $("#home").clone().prop("id", "tabContent_" + tempJobNo.toString()).appendTo("#jobNoTabsContent");
+                        //$("#home").clone().prop("id", "tabContent_" + tempJobNo.toString()).appendTo("#jobNoTabsContent");
+                        $("#home").clone().prop("id", tempJobNo.toString()).appendTo("#jobNoTabsContent");
+
+                        $("#"+tempJobNo).attr("aria-labelledby", tempJobNo + "-tab".toString());
+                        //$("#tabContent_" + tempJobNo).attr("aria-labelledby", tempJobNo + "-tab".toString());
+                        //$("#tabContent_" + tempJobNo).html('kjkjkjkjkjk');
+                        $("#" + tempJobNo).html(tempJobNo+' relevant dynamic machine data that comes from some ajax queries.');
                         //$("#tab_" + tempJobNo.toString() + "Content").html(tempJobNo.toString()+" content");
                     });
                 }               
@@ -185,7 +193,7 @@
 
         <ul class="nav nav-tabs" id="jobNoTabs" role="tablist">
             <li class="nav-item" id="yo">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
                    aria-selected="true">J1000 static</a>
             </li>
             <li class="nav-item">
