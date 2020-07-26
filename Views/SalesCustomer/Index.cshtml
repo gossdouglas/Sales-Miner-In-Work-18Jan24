@@ -20,6 +20,20 @@
     <script>
         $(document).ready(function () {//begin document read jquery statements
 
+            //begin set up the data table
+            var table = $('#datatable_eqpmnt_sales').DataTable({
+                orderCellsTop: true,
+                fixedHeader: true,
+                paging: false,
+                //"scrollY": "50vh",
+                //"scrollX": true,
+                //"scrollCollapse": true,
+                order: [[0, "asc"]],
+                searching: false
+            });
+                $('.dataTables_length').addClass('bs-select');
+            //end set up the data table
+
             var queries = {};
             var nav_customerCode = '';
             $.each(document.location.search.substr(1).split('&'), function (c, q) {
