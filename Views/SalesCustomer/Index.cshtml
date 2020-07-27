@@ -195,6 +195,80 @@
             </div>
         </div><br />
 
+        @*<div>
+            <button class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                Basic dropdown
+            </button>
+
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+            </div>
+        </div>*@
+       
+        <div class="row">
+            @*<div class="col-md-6" style="background-color:lavender; border: 1px solid black;">
+                <div id="accordion">
+
+                     <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Equipment Model (Machine ID)
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <button type="button" class="btn btn-primary kitsInstalledButton" data-toggle="collapse" data-target="#kitsModal"
+                                Kit ID
+                            </button>
+                        </div>                      
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Collapsible Group Item #2
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Collapsible Group Item #3
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>*@
+            <div class="col-md-12">   
+                <form>
+                    <label >Default input</label>
+                    <label >Default input</label>
+                </form>
+            </div>
+        </div>
+
         <table id="datatable_eqpmnt_salesTemplate" class="table table-striped table-bordered" hidden>
             <thead>
                 <tr>
@@ -216,9 +290,9 @@
                     <th class="th-sm">
                         Available Kits
                     </th>
-                    <th class="th-sm">
+                    @*<th class="th-sm">
                         Job List
-                    </th>
+                    </th>*@
                 </tr>
             </thead>
             <tbody>
@@ -244,12 +318,12 @@
                                 <span>@Html.DisplayFor(modelItem => item.kitsAvlblbNotInstld[@i]), </span>
                             }
                         </td>
-                        <td class="kits">
+                        @*<td class="kits">
                             @for (var i = 0; i < (item.jobNoList.Count); i++)
                             {
                                 <span>@Html.DisplayFor(modelItem => item.jobNoList[@i]), </span>
                             }
-                        </td>
+                        </td>*@
                     </tr>
                 }
         </table>
