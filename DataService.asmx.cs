@@ -169,8 +169,10 @@ namespace allpax_sale_miner
                 while (rdr.Read())
                 {
                     dpdwn_kitsAvlblbNotInstld kaBnI = new dpdwn_kitsAvlblbNotInstld();
-                    //kaBnI.machineID = rdr["machineID_cEqpmt"].ToString();
+                    kaBnI.machineID = rdr["machineID_cEqpmt"].ToString();
                     kaBnI.kitsAvlblbNotInstld = rdr["kitID_kitsAvlbl"].ToString();
+                    //kaBnI.descKitItem_1 = rdr["descKitItem_1"].ToString();
+                    //kaBnI.partNoKitItem_1 = rdr["partNoKitItem_1"].ToString();
                     kaBnIs.Add(kaBnI);
                 }               
             }
