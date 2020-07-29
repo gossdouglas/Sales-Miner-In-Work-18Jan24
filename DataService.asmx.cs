@@ -252,5 +252,58 @@ namespace allpax_sale_miner
             JavaScriptSerializer js = new JavaScriptSerializer();
             Context.Response.Write(js.Serialize(JobNos)); 
         }
+        [WebMethod]
+        public void GetKitInfoByKitID(string kitID)
+        {
+            string cs = ConfigurationManager.ConnectionStrings["allpax_sale_minerEntities"].ConnectionString;
+            List<tbl_kit> KitInfos = new List<tbl_kit>();
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                // begin empty and build custEqpmtWkitsAvlbl and custEqpmtWkitsInstld tables  
+                //this is handled by a stored procedure on the sql server named dbo.bldSalesOppsTables
+                con.Open();
+                //SqlCommand sqlcomm1 = new SqlCommand("dbo.bldSalesOppsTables", con);
+                //sqlcomm1.CommandType = System.Data.CommandType.StoredProcedure;
+                //sqlcomm1.ExecuteNonQuery();
+                //end empty and build custEqpmtWkitsAvlbl and custEqpmtWkitsInstld tables
+
+                SqlCommand cmd = new SqlCommand("spGetKitInfoByKitID", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlParameter param = new SqlParameter()
+                {
+                    ParameterName = "@kitID",
+                    Value = kitID
+                };
+                cmd.Parameters.Add(param);
+                //con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    tbl_kit KitInfo = new tbl_kit();
+
+                    KitInfo.kitID = rdr["kitID"].ToString();
+                    KitInfo.description = rdr["description"].ToString();
+                    KitInfo.filePath = rdr["filePath"].ToString();
+                    KitInfo.descKitItem_1 = rdr["descKitItem_1"].ToString();
+                    KitInfo.partNoKitItem_1 = rdr["partNoKitItem_1"].ToString();
+                    KitInfo.descKitItem_2 = rdr["descKitItem_2"].ToString();
+                    KitInfo.partNoKitItem_2 = rdr["partNoKitItem_2"].ToString();
+                    KitInfo.descKitItem_3 = rdr["descKitItem_3"].ToString();
+                    KitInfo.partNoKitItem_3 = rdr["partNoKitItem_3"].ToString();
+                    KitInfo.descKitItem_4 = rdr["descKitItem_4"].ToString();
+                    KitInfo.partNoKitItem_4 = rdr["partNoKitItem_4"].ToString();
+                    KitInfo.descKitItem_5 = rdr["descKitItem_5"].ToString();
+                    KitInfo.partNoKitItem_5 = rdr["partNoKitItem_5"].ToString();
+
+                    KitInfo.infoPackage = rdr["infoPackage"].ToString();
+                    KitInfo.mechDrawing = rdr["mechDrawing"].ToString();
+                    KitInfo.priceSheet = rdr["priceSheet"].ToString();
+
+                    KitInfos.Add(KitInfo);
+                }
+            }
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Context.Response.Write(js.Serialize(KitInfos));
+        }
     }
 }
