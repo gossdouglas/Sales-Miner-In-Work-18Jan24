@@ -9,5 +9,7 @@ namespace allpax_sale_miner.Models.Dropdown_Models
     {
         public string machineID { get; set; }
         public string kitsAvlblbNotInstld { get; set; }
+        //public string descKitItem_1 { get; set; }
+        //public string partNoKitItem_1 { get; set; }
     }
 }

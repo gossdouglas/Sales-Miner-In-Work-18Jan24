@@ -40,7 +40,7 @@ namespace allpax_sale_miner.Controllers
                 "cmps411.tbl_customer_eqpmt " +
                 "INNER JOIN " +
                 "cmps411.tbl_customer ON cmps411.tbl_customer_eqpmt.customerCode = cmps411.tbl_customer.customerCode "+
-                "WHERE cmps411.tbl_customer_eqpmt.customerCode LIKE @customerCode ";
+                "WHERE cmps411.tbl_customer_eqpmt.customerCode LIKE @customerCode";
             //end query for customer equipment
 
             SqlCommand sqlcomm = new SqlCommand(sqlquery, sqlconn);
