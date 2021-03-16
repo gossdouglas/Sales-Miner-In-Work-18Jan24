@@ -23,8 +23,9 @@ namespace allpax_sale_miner.Controllers
             //return View(custMgmt.ToList());
 
 
+            //var sql = db.tbl_customer.SqlQuery("SELECT * from cmps411.tbl_customer").ToList();
             var sql = db.tbl_customer.SqlQuery("SELECT * from cmps411.tbl_customer").ToList();
-          
+
             return View(sql.ToList());
             
         }

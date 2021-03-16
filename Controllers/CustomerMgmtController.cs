@@ -37,12 +37,14 @@ namespace allpax_sale_miner.Controllers
         public ActionResult DeleteCustomer(tbl_customer custDelete)
         {
             db.Database.ExecuteSqlCommand("DELETE FROM cmps411.tbl_customer WHERE id=({0})", custDelete.id);
+            //db.Database.ExecuteSqlCommand("DELETE FROM tbl_customer WHERE id=({0})", custDelete.id);
 
             return RedirectToAction("Index");
         } 
         public ActionResult UpdateCustomer(tbl_customer custUpdate)
         {
-          db.Database.ExecuteSqlCommand("UPDATE cmps411.tbl_customer SET customerCode={0},name={1},address={2}, city={3}, state={4}, zipCode={5} WHERE id={6}", 
+          db.Database.ExecuteSqlCommand("UPDATE cmps411.tbl_customer SET customerCode={0},name={1},address={2}, city={3}, state={4}, zipCode={5} WHERE id={6}",
+              //db.Database.ExecuteSqlCommand("UPDATE tbl_customer SET customerCode={0},name={1},address={2}, city={3}, state={4}, zipCode={5} WHERE id={6}",
                 custUpdate.customerCode, custUpdate.name, custUpdate.address, custUpdate.city, custUpdate.state, custUpdate.zipCode, custUpdate.id);
 
             return RedirectToAction("Index");
