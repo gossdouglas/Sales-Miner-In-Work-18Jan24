@@ -26,7 +26,8 @@ namespace allpax_sale_miner.Controllers
         [HttpPost]
         public ActionResult AddCustomer(tbl_customer customerAdd)
         {
-            db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_customer Values({0},{1},{2}, {3}, {4}, {5})", 
+            //db.Database.ExecuteSqlCommand("Insert into cmps411.tbl_customer Values({0},{1},{2}, {3}, {4}, {5})", 
+            db.Database.ExecuteSqlCommand("Insert into tbl_customer Values({0},{1},{2}, {3}, {4}, {5})",
                 customerAdd.customerCode, customerAdd.name, customerAdd.address, customerAdd.city, customerAdd.state, customerAdd.zipCode);
 
             return new EmptyResult();
