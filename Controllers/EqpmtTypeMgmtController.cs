@@ -15,7 +15,8 @@ namespace allpax_sale_miner.Controllers
         private allpax_sale_minerEntities db = new allpax_sale_minerEntities();
         public ActionResult Index()
         {
-            var sql = db.tbl_eqpmt_type_mgmt.SqlQuery("SELECT * from cmps411.tbl_eqpmt_type_mgmt").ToList();
+            //var sql = db.tbl_eqpmt_type_mgmt.SqlQuery("SELECT * from cmps411.tbl_eqpmt_type_mgmt").ToList();
+            var sql = db.tbl_eqpmt_type_mgmt.SqlQuery("SELECT * from tbl_eqpmt_type_mgmt").ToList();
             return View(sql.ToList());
         }
         [HttpPost]
